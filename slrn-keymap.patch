@@ -1,0 +1,163 @@
+diff -Nru slrn-0.9.5.7/doc/slrn.rc slrn-0.9.5.7.new/doc/slrn.rc
+--- slrn-0.9.5.7/doc/slrn.rc	Thu Jul 15 09:27:20 1999
++++ slrn-0.9.5.7.new/doc/slrn.rc	Sat Nov  6 05:01:30 1999
+@@ -372,8 +372,6 @@
+ setkey group	bob		"^K\eOA"
+ setkey group	bob		"^K\e[A"
+ setkey group	catchup		"C"    %  mark group as read
+-setkey group	down		"\eOB" %  next group
+-setkey group	down		"\e[B"
+ setkey group	down		"^N"
+ setkey group	eob		"\e>"  %  end of buffer
+ setkey group	eob		"^K\eOB"
+@@ -381,11 +379,9 @@
+ setkey group	group_search_forward	"/"
+ setkey group	help		"?"
+ setkey group	pagedown	"^D"   %  next page of groups
+-setkey group	pagedown	"\e[6~"
+ setkey group	pagedown	"^V"
+ setkey group	pageup		"\eV"  %  previous page of groups
+ setkey group	pageup		"^U"
+-setkey group	pageup		"\e[5~"
+ setkey group	post		"P"
+ setkey group	quit		"Q"
+ setkey group	redraw		"^L"
+@@ -401,8 +397,6 @@
+ setkey group	toggle_hidden	"l"
+ setkey group	toggle_list_all	"L"
+ setkey group	unsubscribe	"U"    %  unsubscribe
+-setkey group	up		"\eOA" %  previous line
+-setkey group	up		"\e[A"
+ setkey group	up		"^P"
+ 
+ %---------------- Article mode keymap -------------------------------------
+@@ -413,10 +407,7 @@
+ setkey article	skip_quotes	"\t"
+ 
+ setkey article	pageup		"^U"
+-setkey article	pageup		"\e[5~"
+-setkey article	pageup		"\eV"
+ 
+-setkey article	pagedn		"\e[6~"
+ setkey article	pagedn		"^D"
+ setkey article	pagedn		"^V"
+ 
+@@ -442,8 +433,6 @@
+ setkey article  cancel		"\e^C"	% Cancel the article
+ setkey article  delete		"d"	% Mark current article as read and move to the next unread one
+ setkey article  down		"^N"	% Move to the next article
+-setkey article  down		"\e[B"
+-setkey article  down		"\eOB"
+ setkey article  mark_spot	";"	% Set mark at current article
+ setkey article  exchange_mark	","	% Set the mark and return to the location of the previous mark.
+ setkey article  followup	"f"	% Followup on the article
+@@ -452,8 +441,6 @@
+ setkey article  hide_article	"H"	% Hide the article window.
+ setkey article	zoom_article_window	"z"   % Zoom/UnZoom article window
+ setkey article  art_eob		">"	% goto the end of the article
+-setkey article  left		"\eOD"
+-setkey article  left		"\e[D"
+ setkey article  next		"n"	% next unread article
+ setkey article  skip_to_next_group	"N"	% next group
+ setkey article  prev		"p"	% previous unread article
+@@ -462,8 +449,6 @@
+ setkey article  redraw		"^R"
+ setkey article  reply		"r"	% Reply to the author of the current article
+ setkey article  art_bob		"<"	% goto the beginning of the article
+-setkey article  right		"\e[C"
+-setkey article  right		"\eOC"
+ setkey article  save		"O"	% append to a file in Unix mail format
+ setkey article  subject_search_forward	"s"	% Search forward/backward for an article with a specific subject
+ setkey article  subject_search_backward	"S"
+@@ -475,8 +460,6 @@
+ setkey article  toggle_quotes	"T"
+ setkey article  undelete    	"u"	% Mark the current article as unread
+ setkey article  up		"^P"	% Move to the previous article
+-setkey article  up		"\eOA"
+-setkey article  up		"\e[A"
+ setkey article	header_bob	"\e<"	% Move to first article in list
+ setkey article	header_eob	"\e>"	% Move to last article in list
+ setkey article	shrink_window	"^^"	% Ctrl-6 or Ctrl-^	% Shrink header window
+@@ -490,22 +473,9 @@
+ %setkey article  skip_to_prev_group ""     % No default binding
+ %setkey article  fast_quit          ""     % No default binding
+ 
+-% This is a special hack for HP terminals to get the arrow keys working.  
+-% Are there any other terminals being used with non-ANSI arrow keys?
+-#if$TERM hpterm
+-  setkey group up "\eA"
+-  setkey group down "\eB"
+-  setkey article down "\eB"
+-  setkey article up "\eA"
+-  setkey article left "\eD"
+-  setkey article right "\eC"
+-#endif
+-
+ % Command prompt keymap
+ setkey readline bol		 "^A"		% Beginning of line
+ setkey readline eol		 "^E"		% End of line
+-setkey readline right		 "\e[C"		% Move right
+-setkey readline left		 "\e[D"		% Move left
+ setkey readline bdel		 "^H"		% Delete backward
+ setkey readline bdel		 "^?"		% Delete Backward
+ setkey readline del		 "^D"		% Delete Foreword
+diff -Nru slrn-0.9.5.7/src/art.c slrn-0.9.5.7.new/src/art.c
+--- slrn-0.9.5.7/src/art.c	Thu Jul 15 09:27:27 1999
++++ slrn-0.9.5.7.new/src/art.c	Sat Nov  6 03:57:58 1999
+@@ -7267,14 +7267,10 @@
+    SLkm_define_key  ("\033\033OA", (FVOID_STAR) art_lineup, Slrn_Article_Keymap);
+    SLkm_define_key  ("\033\033[B", (FVOID_STAR) art_linedn, Slrn_Article_Keymap);
+    SLkm_define_key  ("\033\033OB", (FVOID_STAR) art_linedn, Slrn_Article_Keymap);
+-   SLkm_define_key  ("\033[A", (FVOID_STAR) header_up, Slrn_Article_Keymap);
+-   SLkm_define_key  ("\033OA", (FVOID_STAR) header_up, Slrn_Article_Keymap);
+-   SLkm_define_key  ("\033[B", (FVOID_STAR) header_down, Slrn_Article_Keymap);
+-   SLkm_define_key  ("\033OB", (FVOID_STAR) header_down, Slrn_Article_Keymap);
+-   SLkm_define_key  ("\033[C", (FVOID_STAR) art_right, Slrn_Article_Keymap);
+-   SLkm_define_key  ("\033OC", (FVOID_STAR) art_right, Slrn_Article_Keymap);
+-   SLkm_define_key  ("\033[D", (FVOID_STAR) art_left, Slrn_Article_Keymap);
+-   SLkm_define_key  ("\033OD", (FVOID_STAR) art_left, Slrn_Article_Keymap);
++   SLkm_define_key  (SLtt_tgetstr("ku"), (FVOID_STAR) header_up, Slrn_Article_Keymap);
++   SLkm_define_key  (SLtt_tgetstr("kd"), (FVOID_STAR) header_down, Slrn_Article_Keymap);
++   SLkm_define_key  (SLtt_tgetstr("kr"), (FVOID_STAR) art_right, Slrn_Article_Keymap);
++   SLkm_define_key  (SLtt_tgetstr("kl"), (FVOID_STAR) art_left, Slrn_Article_Keymap);
+ #endif
+    SLkm_define_key  ("\033S", (FVOID_STAR) toggle_sort, Slrn_Article_Keymap);
+    SLkm_define_key  ("^U", (FVOID_STAR) header_pageup, Slrn_Article_Keymap);
+@@ -7285,8 +7281,8 @@
+    SLkm_define_key  ("^@Q", (FVOID_STAR) header_pagedn, Slrn_Article_Keymap);
+    SLkm_define_key  ("\xE0Q", (FVOID_STAR) header_pagedn, Slrn_Article_Keymap);
+ #else
+-   SLkm_define_key  ("\033[5~", (FVOID_STAR) header_pageup, Slrn_Article_Keymap);
+-   SLkm_define_key  ("\033[6~", (FVOID_STAR) header_pagedn, Slrn_Article_Keymap);
++   SLkm_define_key  (SLtt_tgetstr("kP"), (FVOID_STAR) header_pageup, Slrn_Article_Keymap);
++   SLkm_define_key  (SLtt_tgetstr("kN"), (FVOID_STAR) header_pagedn, Slrn_Article_Keymap);
+ #endif
+    SLkm_define_key  ("^D", (FVOID_STAR) header_pagedn, Slrn_Article_Keymap);
+    SLkm_define_key  ("^V", (FVOID_STAR) header_pagedn, Slrn_Article_Keymap);
+diff -Nru slrn-0.9.5.7/src/group.c slrn-0.9.5.7.new/src/group.c
+--- slrn-0.9.5.7/src/group.c	Thu Jul 15 09:27:25 1999
++++ slrn-0.9.5.7.new/src/group.c	Fri Nov  5 23:46:54 1999
+@@ -1682,8 +1682,8 @@
+    SLkm_define_key  ("^@I", (FVOID_STAR) group_pageup, Slrn_Group_Keymap);
+    SLkm_define_key  ("\xE0I", (FVOID_STAR) group_pageup, Slrn_Group_Keymap);   
+ #else
+-   SLkm_define_key  ("\033[6~", (FVOID_STAR) group_pagedown, Slrn_Group_Keymap);
+-   SLkm_define_key  ("\033[5~", (FVOID_STAR) group_pageup, Slrn_Group_Keymap);
++   SLkm_define_key  (SLtt_tgetstr("kP"), (FVOID_STAR) group_pagedown, Slrn_Group_Keymap);
++   SLkm_define_key  (SLtt_tgetstr("kN"), (FVOID_STAR) group_pageup, Slrn_Group_Keymap);
+ #endif
+    SLkm_define_key  ("m", (FVOID_STAR) move_group_cmd, Slrn_Group_Keymap);
+    SLkm_define_key  ("^U", (FVOID_STAR) group_pageup, Slrn_Group_Keymap);
+@@ -1715,10 +1715,8 @@
+    SLkm_define_key  ("^@P", (FVOID_STAR) group_down, Slrn_Group_Keymap);
+    SLkm_define_key  ("\xE0P", (FVOID_STAR) group_down, Slrn_Group_Keymap);
+ #else
+-   SLkm_define_key  ("\033[A", (FVOID_STAR) group_up, Slrn_Group_Keymap);
+-   SLkm_define_key  ("\033OA", (FVOID_STAR) group_up, Slrn_Group_Keymap);
+-   SLkm_define_key  ("\033[B", (FVOID_STAR) group_down, Slrn_Group_Keymap);
+-   SLkm_define_key  ("\033OB", (FVOID_STAR) group_down, Slrn_Group_Keymap);
++   SLkm_define_key  (SLtt_tgetstr("ku"), (FVOID_STAR) group_up, Slrn_Group_Keymap);
++   SLkm_define_key  (SLtt_tgetstr("kd"), (FVOID_STAR) group_down, Slrn_Group_Keymap);
+ #endif
+    SLkm_define_key  ("N", (FVOID_STAR) group_down, Slrn_Group_Keymap);
+    SLkm_define_key  ("^N", (FVOID_STAR) group_down, Slrn_Group_Keymap);
