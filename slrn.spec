@@ -70,7 +70,7 @@ rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT/{etc/X11/wmconfig,usr/{bin,lib/slrn,man/man1}}
 install -d $RPM_BUILD_ROOT/var/spool/slrnpull/out.going
 
-install doc/slrn.rc $RPM_BUILD_ROOT/usr/lib/slrn
+install doc/slrn.rc $RPM_BUILD_ROOT%{_libdir}/slrn
 install doc/slrn.1 $RPM_BUILD_ROOT%{_mandir}/man1/slrn.1
 install src/objs/slrn $RPM_BUILD_ROOT/usr/bin/slrn
 install src/objs/slrnpull $RPM_BUILD_ROOT/usr/bin/slrnpull
@@ -88,8 +88,8 @@ rm -rf $RPM_BUILD_ROOT
 %config (missingok) /etc/X11/wmconfig/slrn
 %doc doc/{README.GroupLens,README.macros,FAQ,SCORE_FAQ,*.txt,score.sl}
 %attr(755, root, root) /usr/bin/slrn
-%dir /usr/lib/slrn
-%verify (not md5 size mtime) /usr/lib/slrn/slrn.rc
+%dir %{_libdir}/slrn
+%verify (not md5 size mtime) %{_libdir}/slrn/slrn.rc
 %{_mandir}/man1/slrn.1
 
 %files pull
