@@ -4,7 +4,7 @@ Summary(fr):	Le meilleur lecteur de news du monde (Selon Red Hat tout du moins)
 Summary(pl):	£atwy w obs³udze czytnik artyku³ów news
 Summary(tr):	Red Hat'in görüþüne göre dünyanýn en iyi haber grubu okuyucusu
 Name:		slrn
-Version:	0.9.7.1
+Version:	0.9.7.2
 Release:	1
 License:	GPL
 Group:		Applications/News
@@ -79,21 +79,22 @@ konieczno¶ci utrzymywania sta³ego po³±czenia z serwerem news.
 %patch4 -p1
 
 %build
-(
-	cd autoconf
-	aclocal
-	autoconf
-)
-cp -f autoconf/configure .
+# (
+# 	cd autoconf
+# 	aclocal
+# 	autoconf
+# )
+# cp -f autoconf/configure .
 
 INEWS="/usr/bin/inews"; SENDMAIL="/usr/lib/sendmail"
 export INEWS SENDMAIL
 
-%configure \
-	--enable-ipv6
+%configure2_13 \
+	--enable-ipv6 \
+	--with-slrnpull
 
 %{__make}
-%{__make} slrnpull
+# %{__make} slrnpull
 
 %install
 rm -rf $RPM_BUILD_ROOT
