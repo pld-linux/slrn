@@ -1,3 +1,6 @@
+#
+# _with_ssl		build slrn with SSL support (snews://)
+#
 Summary:	The world's best newsreader
 Summary(da):	Verdens bedste nyhedslæser
 Summary(de):	Der weltbeste Newsreader
@@ -29,8 +32,8 @@ URL:		http://www.slrn.org/
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	gettext-devel
-BuildRequires:	inews
 BuildRequires:	slang-devel
+%{?_with_ssl:BuildRequires:	openssl-devel}
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -127,12 +130,13 @@ INEWS="%{_bindir}/inews"; SENDMAIL="/usr/lib/sendmail"
 export INEWS SENDMAIL
 
 %configure \
+	--enable-mid-cache \
 	--enable-ipv6 \
 	--enable-inews \
 	--enable-spool \
 	--with-slrnpull \
 	--enable-setgid-code \
-	--with-libdir=%{_datadir}/%{name}
+	%{?_with_ssl:--with-ssl}
 
 %{__make}
 
