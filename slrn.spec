@@ -10,12 +10,12 @@ License:	GPL
 Group:		Applications/News
 Group(pl):	Aplikacje/News
 Source0:	ftp://space.mit.edu/pub/davis/slrn/%{name}-%{version}.tar.bz2
-Source1:	slrn.1.pl
-Patch0:		slrn-keymap.patch
-Patch1:		slrn-base64.patch
-Patch2:		slrn-home_etc.patch
-Patch3:		slrn-config.patch
-Patch4:		ftp://chiharu.v6.linux.or.jp/pub/Linux/IPv6-2/IPv6_Patched_Apps/slrn/slrn-0.9.6.2-v6-20000723.diff.gz
+Source1:	%{name}.1.pl
+Patch0:		%{name}-keymap.patch
+Patch1:		%{name}-base64.patch
+Patch2:		%{name}-home_etc.patch
+Patch3:		%{name}-config.patch
+Patch4:		ftp://chiharu.v6.linux.or.jp/pub/Linux/IPv6-2/IPv6_Patched_Apps/slrn/%{name}-0.9.6.2-v6-20000723.diff.gz
 URL:		http://www.slrn.org/
 BuildRequires:	slang-devel
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -23,30 +23,31 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 %define		_libdir		%{_datadir}
 
 %description
-Slrn is an easy to use but powerful full-screen NNTP based newsreader. It
-relies extensively on the S-Lang programmer's library for many of its
-features. Slrn works particularly well over slow network connections.
+Slrn is an easy to use but powerful full-screen NNTP based newsreader.
+It relies extensively on the S-Lang programmer's library for many of
+its features. Slrn works particularly well over slow network
+connections.
 
 %description -l de
-Slm ist ein einfach zu bedienender und dennoch äußerst leistungsfähiger
-Voll-Bildschirm-Newsreader auf NNTP-Basis. Viele seiner Funktionen bezieht
-er aus der S-Lang-Programmierer-Library. Seine besondere Stärke ist die
-Arbeit über langsame Netzwerke.
+Slm ist ein einfach zu bedienender und dennoch äußerst
+leistungsfähiger Voll-Bildschirm-Newsreader auf NNTP-Basis. Viele
+seiner Funktionen bezieht er aus der S-Lang-Programmierer-Library.
+Seine besondere Stärke ist die Arbeit über langsame Netzwerke.
 
 %description -l fr
 slrn et un lecteur de news NNTP plein écran facile à utiliser mais
 puissant. Il s'appuie beaucoup sur la bibliothèque S-Lang pour ses
-caractéristiques. slrn fonctionne particulièrement bien avec des connexions
-réseau lentes.
+caractéristiques. slrn fonctionne particulièrement bien avec des
+connexions réseau lentes.
 
 %description -l pl
-Slrn jest wygodnym w obs³udze i ergonomicznym czytnikiem artyku³ów news.
-£adny wygl±d zapewnia mu wykorzystanie biblioteki S-Lang. Slrn znakomicie
-sprawdza siê zw³aszcza na zapchanych i wolnych ³±czach.
+Slrn jest wygodnym w obs³udze i ergonomicznym czytnikiem artyku³ów
+news. £adny wygl±d zapewnia mu wykorzystanie biblioteki S-Lang. Slrn
+znakomicie sprawdza siê zw³aszcza na zapchanych i wolnych ³±czach.
 
 %description -l tr
-Slrn, kullanýmý kolay, çok yetenekli, tam ekran bir haber okuyucudur. Yavaþ
-að baðlantýlarýnda gayet iyi çalýþýr.
+Slrn, kullanýmý kolay, çok yetenekli, tam ekran bir haber okuyucudur.
+Yavaþ að baðlantýlarýnda gayet iyi çalýþýr.
 
 %package pull
 Summary:	Offline news reading support for slrn
@@ -56,8 +57,8 @@ Group(pl):	Aplikacje/News
 Requires:	%{name} = %{version}
 
 %description pull
-This package provides slrnpull, which allows set up of a small news spool
-for offline news reading.
+This package provides slrnpull, which allows set up of a small news
+spool for offline news reading.
 
 %description -l pl pull
 Slrnpull umo¿liwia ¶ci±gniêcie artyku³ów, a nastêpnie czytanie ich bez
