@@ -34,7 +34,7 @@ BuildRequires:	autoconf
 BuildRequires:	automake
 %{?with_canlock:BuildRequires:	canlock-devel >= 2a}
 BuildRequires:	gettext-devel
-%{?with_ssl:BuildRequires:	openssl-devel >= 0.9.7c}
+%{?with_ssl:BuildRequires:	openssl-devel >= 0.9.7d}
 BuildRequires:	slang-devel
 %{?with_uudeview:BuildRequires:	uudeview-devel}
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
