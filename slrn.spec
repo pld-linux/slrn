@@ -91,7 +91,7 @@ aclocal -I autoconf
 autoconf
 automake -a -c
 
-INEWS="/usr/bin/inews"; SENDMAIL="/usr/lib/sendmail"
+INEWS="%{_bindir}/inews"; SENDMAIL="%{_prefix}/lib/sendmail"
 export INEWS SENDMAIL
 
 %configure \
@@ -119,12 +119,13 @@ install %{SOURCE4} $RPM_BUILD_ROOT/etc/logrotate.d/slrn-pull
 > $RPM_BUILD_ROOT%{_var}/spool/slrnpull/data/active
 > $RPM_BUILD_ROOT%{_var}/spool/slrnpull/log
 > $RPM_BUILD_ROOT%{_var}/spool/slrnpull/score
+install contrib/{cleanscore,slrnrc-conv} $RPM_BUILD_ROOT%{_bindir}
 
 install doc/slrnpull/slrnpull.conf $RPM_BUILD_ROOT%{_var}/spool/slrnpull
 install doc/slrn.rc $RPM_BUILD_ROOT%{_sysconfdir}
 
 gzip -9nf doc/{FAQ,FIRST_STEPS,README.*,SCORE_FAQ,THANKS,{help,manual,score,slrnfuns}.txt} \
-	doc/slrnpull/{FAQ,README,SETUP} README COPYRIGHT changes.txt
+	doc/slrnpull/{FAQ,README,SETUP} README COPYRIGHT changes.txt contrib/{README,NEWS}.*
 
 %find_lang %{name}
 
@@ -133,8 +134,10 @@ rm -rf $RPM_BUILD_ROOT
 
 %files -f %{name}.lang
 %defattr(644,root,root,755)
-%doc *.gz doc/{*.gz,score.sl}
+%doc *.gz doc/{*.gz,score.sl} contrib/*.gz
 %attr(755,root,root) %{_bindir}/slrn
+%attr(755,root,root) %{_bindir}/slrnrc-conv
+%attr(755,root,root) %{_bindir}/cleanscore
 %dir %{_libdir}/slrn
 %{_libdir}/slrn/macros
 %{_mandir}/man1/*
