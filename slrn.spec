@@ -13,7 +13,7 @@ Summary(pt_BR):	O melhor leitor de notícias do mundo
 Summary(tr):	Red Hat'in görüþüne göre dünyanýn en iyi haber grubu okuyucusu
 Name:		slrn
 Version:	0.9.8.0
-Release:	1
+Release:	2
 License:	GPL
 Group:		Applications/News
 Source0:	http://dl.sourceforge.net/slrn/%{name}-%{version}.tar.bz2
@@ -27,6 +27,7 @@ Patch1:		%{name}-config.patch
 Patch2:		%{name}-user-agent.patch
 Patch3:		%{name}-sort_visible_headers.patch
 Patch4:		%{name}-sharedlibs.patch
+Patch5:		%{name}-home_etc.patch
 Icon:		slrn.xpm
 URL:		http://www.slrn.org/
 BuildRequires:	autoconf
@@ -118,6 +119,7 @@ spool de notícias, para leitura "offline".
 %patch2 -p1
 %patch3 -p1
 %patch4 -p1
+%patch5 -p1
 
 %build
 rm -f autoconf/missing
