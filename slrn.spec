@@ -1,4 +1,5 @@
 Summary:	The world's best newsreader
+Summary(da):	Verdens bedste nyhedslæser
 Summary(de):	Der weltbeste Newsreader
 Summary(es):	El mejor lector de news del mundo
 Summary(fr):	Le meilleur lecteur de news du monde
@@ -7,7 +8,7 @@ Summary(pt_BR):	O melhor leitor de notícias do mundo
 Summary(tr):	Red Hat'in görüþüne göre dünyanýn en iyi haber grubu okuyucusu
 Name:		slrn
 Version:	0.9.7.4
-Release:	0.5
+Release:	1
 License:	GPL
 Group:		Applications/News
 Source0:	ftp://ftp.sourceforge.net/pub/sourceforge/slrn/%{name}-%{version}.tar.bz2
@@ -27,20 +28,24 @@ Icon:		slrn.xpm
 URL:		http://www.slrn.org/
 BuildRequires:	autoconf
 BuildRequires:	automake
+BuildRequires:	gettext-devel
 BuildRequires:	inews
 BuildRequires:	slang-devel
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
-%define		_libdir		%{_datadir}
-
 %description
-slrn is an easy to use but powerful full-screen NNTP based newsreader.
+Slrn is an easy to use but powerful full-screen NNTP based newsreader.
 It relies extensively on the S-Lang programmer's library for many of
-its features. slrn works particularly well over slow network
+its features. Slrn works particularly well over slow network
 connections.
 
+%description -l da
+Slrn er en bekvæm og kraftig nyhedslæser. Programmet skylder S-Lang
+biblioteket sin funktionalitet. Slrn er godt især ved brug igennem
+langsomme netværk forbindelser.
+
 %description -l de
-slrn ist ein einfach zu bedienender und dennoch äußerst
+Slrn ist ein einfach zu bedienender und dennoch äußerst
 leistungsfähiger Voll-Bildschirm-Newsreader auf NNTP-Basis. Viele
 seiner Funktionen bezieht er aus der S-Lang-Programmierer-Library.
 Seine besondere Stärke ist die Arbeit über langsame Netzwerke.
@@ -52,14 +57,14 @@ varias de sus características. Slrn trabaja en especial con conexiones
 lentas de red.
 
 %description -l fr
-slrn et un lecteur de news NNTP plein écran facile à utiliser mais
+Slrn et un lecteur de news NNTP plein écran facile à utiliser mais
 puissant. Il s'appuie beaucoup sur la bibliothèque S-Lang pour ses
-caractéristiques. slrn fonctionne particulièrement bien avec des
+caractéristiques. Slrn fonctionne particulièrement bien avec des
 connexions réseau lentes.
 
 %description -l pl
-slrn jest wygodnym w obs³udze i ergonomicznym czytnikiem artyku³ów
-news. £adny wygl±d zapewnia mu wykorzystanie biblioteki S-Lang. slrn
+Slrn jest wygodnym w obs³udze i ergonomicznym czytnikiem artyku³ów
+news. Sw± funkcjonalno¶æ program zawdziêcza bibliotece S-Lang. Slrn
 znakomicie sprawdza siê zw³aszcza na zapchanych i wolnych ³±czach.
 
 %description -l pt_BR
@@ -69,21 +74,26 @@ S-Lang para várias das suas características. Slrn trabalha
 particularmente bem com conexões lentas de rede.
 
 %description -l tr
-slrn, kullanýmý kolay, çok yetenekli, tam ekran bir haber okuyucudur.
+Slrn, kullanýmý kolay, çok yetenekli, tam ekran bir haber okuyucudur.
 Yavaþ að baðlantýlarýnda gayet iyi çalýþýr.
 
 %package pull
 Summary:	Offline news reading support for slrn
+Summary(da):	Programmet udstyrer slrn med offline-egenskaber
 Summary(es):	Soporte para lectura de noticias "offline" para slm
 Summary(pl):	Program ¶ci±gaj±cy artyku³y z serwera news
 Summary(pt_BR):	Suporte para leitura de notícias "offline" para o slrn
 Group:		Applications/News
-Requires:	%{name} = %{version}
+Requires:	%{name}
 Obsoletes:	slrn-pl-pull
 
 %description pull
 This package provides slrnpull, which allows set up of a small news
 spool for offline news reading.
+
+%description pull -l da
+Programmet henter indlæg ned til et lokalt newsspool for at brugeren
+kan læse og svare på dem uden at være online.
 
 %description pull -l es
 Soporte para lectura de noticias "offline" para slm
@@ -146,8 +156,9 @@ install contrib/{cleanscore,slrnrc-conv} $RPM_BUILD_ROOT%{_bindir}
 install doc/slrnpull/slrnpull.conf $RPM_BUILD_ROOT%{_var}/spool/slrnpull
 install doc/slrn.rc $RPM_BUILD_ROOT%{_sysconfdir}
 
-gzip -9nf doc/{FAQ,FIRST_STEPS,README.*,SCORE_FAQ,THANKS,{help,manual,score,slrnfuns}.txt} \
-	doc/slrnpull/{FAQ,README,SETUP} README COPYRIGHT changes.txt contrib/{README,NEWS}.*
+gzip -9nf doc/{FAQ,FIRST_STEPS,README.*,SCORE_FAQ,THANKS,{help,manual,score,slrnfuns}.txt,*.sl} \
+	doc/slrnpull/{FAQ,README,SETUP,score,slrn.rc,slrnpull.sh} README COPYRIGHT changes.txt \
+	contrib/{README,NEWS}.*
 
 %find_lang %{name}
 
@@ -156,13 +167,13 @@ rm -rf $RPM_BUILD_ROOT
 
 %files -f %{name}.lang
 %defattr(644,root,root,755)
-%doc *.gz doc/{*.gz,score.sl} contrib/*.gz
+%doc *.gz doc/*.{gz,html} contrib/*.gz
 %attr(755,root,root) %{_bindir}/slrn
 %attr(755,root,root) %{_bindir}/slrnrc-conv
 %attr(755,root,root) %{_bindir}/cleanscore
-%dir %{_libdir}/slrn
-%{_libdir}/slrn/macros
-%{_mandir}/man1/*
+%dir %{_datadir}/slrn
+%{_datadir}/slrn/macros
+%{_mandir}/man1/slrn.1.gz
 %lang(pl) %{_mandir}/pl/man1/*
 %{_applnkdir}/Network/News/*
 %{_pixmapsdir}/*
@@ -170,9 +181,10 @@ rm -rf $RPM_BUILD_ROOT
 
 %files pull
 %defattr(644,root,root,755)
-%doc doc/slrnpull/{*.gz,score,slrn.rc,slrnpull.sh}
+%doc doc/slrnpull/*.gz
 %attr(640,root,news) /etc/logrotate.d/slrn-pull
 %attr(2754,root,news) %{_bindir}/slrnpull
+%{_mandir}/man1/slrnpull.1.gz
 %defattr(664,news,news,755)
 %dir %{_var}/spool/slrnpull
 %dir %{_var}/spool/slrnpull/logs
