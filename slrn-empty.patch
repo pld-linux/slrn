@@ -1,0 +1,17 @@
+diff -ur slrn-0.9.7.2.orig/src/art.c slrn-0.9.7.2/src/art.c
+--- slrn-0.9.7.2.orig/src/art.c	Mon Aug 20 20:41:05 2001
++++ slrn-0.9.7.2/src/art.c	Thu Oct 18 14:59:08 2001
+@@ -2172,6 +2172,13 @@
+ 	cline = l;
+      }
+    
++   if (retval->lines == NULL)
++     {
++	slrn_error ("Server sent empty article.");
++	slrn_art_free_article (retval);
++	return NULL;
++     }
++   
+    retval->cline = retval->lines;
+    retval->needs_sync = 1;
+    
