@@ -149,9 +149,9 @@ diff -Naur slrn-0.9.6.2/src/group.c slrn-0.9.6.2-p/src/group.c
  #else
 -   SLkm_define_key  ("\033[6~", (FVOID_STAR) group_pagedown, Slrn_Group_Keymap);
 -   SLkm_define_key  ("\033[5~", (FVOID_STAR) group_pageup, Slrn_Group_Keymap);
-+   if (SLtt_tgetstr("kP")
++   if (SLtt_tgetstr("kP"))
 +   SLkm_define_key  (SLtt_tgetstr("kP"), (FVOID_STAR) group_pagedown, Slrn_Group_Keymap);
-+   if (SLtt_tgetstr("kN")
++   if (SLtt_tgetstr("kN"))
 +   SLkm_define_key  (SLtt_tgetstr("kN"), (FVOID_STAR) group_pageup, Slrn_Group_Keymap);
  #endif
     SLkm_define_key  ("m", (FVOID_STAR) move_group_cmd, Slrn_Group_Keymap);
@@ -164,9 +164,9 @@ diff -Naur slrn-0.9.6.2/src/group.c slrn-0.9.6.2-p/src/group.c
 -   SLkm_define_key  ("\033OA", (FVOID_STAR) group_up, Slrn_Group_Keymap);
 -   SLkm_define_key  ("\033[B", (FVOID_STAR) group_down, Slrn_Group_Keymap);
 -   SLkm_define_key  ("\033OB", (FVOID_STAR) group_down, Slrn_Group_Keymap);
-+   if (SLtt_tgetstr("ku")
++   if (SLtt_tgetstr("ku"))
 +   SLkm_define_key  (SLtt_tgetstr("ku"), (FVOID_STAR) group_up, Slrn_Group_Keymap);
-+   if (SLtt_tgetstr("kd")
++   if (SLtt_tgetstr("kd"))
 +   SLkm_define_key  (SLtt_tgetstr("kd"), (FVOID_STAR) group_down, Slrn_Group_Keymap);
  #endif
     SLkm_define_key  ("N", (FVOID_STAR) group_down, Slrn_Group_Keymap);
