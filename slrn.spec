@@ -9,6 +9,7 @@ Release:	3
 Copyright:	GPL
 Group:		Applications/News
 Group(pl):	Aplikacje/News
+URL:		http://www.slrn.org
 Source:		ftp://space.mit.edu/pub/davis/slrn/%{name}-%{version}.tar.bz2
 Patch0:		slrn-keymap.patch
 Patch1:		slrn-DESTDIR.patch
