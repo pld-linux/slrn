@@ -1,0 +1,355 @@
+diff -ru slrn-0.9.6.4-old/src/art.c slrn-0.9.6.4/src/art.c
+--- slrn-0.9.6.4-old/src/art.c	Sun Nov 26 19:47:35 2000
++++ slrn-0.9.6.4/src/art.c	Tue Nov 28 23:43:48 2000
+@@ -2810,7 +2810,7 @@
+     from = slrn_extract_header ("From: ", 6);
+     if (from != NULL) from = parse_from (from);
+     if (from == NULL) from = "";
+-    sprintf (me, "%s@%s", Slrn_User_Info.username, Slrn_User_Info.hostname);
++    snprintf (me, sizeof(me)-1, "%s@%s", Slrn_User_Info.username, Slrn_User_Info.hostname);
+     if (slrn_case_strcmp ((unsigned char *) from, (unsigned char *) me))
+       {
+         slrn_error ("Failed: Your name: '%s' is not '%s'", me, from);
+@@ -3377,7 +3377,7 @@
+ 	  }
+ 	strcpy (p, ".txt");
+ #else
+-	sprintf (name, "%s/%s", defdir, Slrn_Current_Group_Name);
++	snprintf (name, sizeof(name)-1, "%s/%s", defdir, Slrn_Current_Group_Name);
+ #endif
+ 	
+ #if !defined(VMS) && !defined(IBMPC_SYSTEM)
+@@ -3395,7 +3395,7 @@
+ 	  }
+ #endif
+      }
+-   else strcpy (file, Output_Filename);
++   else strncpy (file, Output_Filename, sizeof(file) - 1);
+    
+    if (slrn_read_input (input_string, NULL, file, 1, 1) <= 0)
+      {
+@@ -3503,7 +3503,7 @@
+ 
+    slrn_make_home_dirname (uu_dir, where);
+    /* this is expecting a '/' at the end...so we put one there */
+-   strcat (where, "/");
++   strncat (where, "/", SLRN_MAX_PATH_LEN - 1);
+    
+    ret = UUInitialize ();
+    ret = UUSetBusyCallback (NULL, the_uudeview_busy_callback, 100);
+@@ -6278,7 +6278,7 @@
+    from = slrn_extract_header ("From: ", 6);
+    if (from != NULL) from = parse_from (from);
+    if (from == NULL) from = "";
+-   sprintf (me, "%s@%s", Slrn_User_Info.username, Slrn_User_Info.hostname);
++   snprintf (me, sizeof(me)-1, "%s@%s", Slrn_User_Info.username, Slrn_User_Info.hostname);
+ 
+    if (slrn_case_strcmp ((unsigned char *) from, (unsigned char *) me))
+      {
+diff -ru slrn-0.9.6.4-old/src/group.c slrn-0.9.6.4/src/group.c
+--- slrn-0.9.6.4-old/src/group.c	Sun Nov 26 19:47:33 2000
++++ slrn-0.9.6.4/src/group.c	Wed Nov 29 00:28:24 2000
+@@ -839,7 +839,7 @@
+ 	&& (Slrn_Query_Group_Cutoff > 0)))
+      {
+ 	char int_prompt_buf[256];
+-	sprintf (int_prompt_buf, "%s: Read how many?", Slrn_Group_Current_Group->group_name);
++	snprintf (int_prompt_buf, sizeof(int_prompt_buf) - 1, "%s: Read how many?", Slrn_Group_Current_Group->group_name);
+ 	if ((-1 == slrn_read_integer (int_prompt_buf, &n, &n))
+ 	    || (n <= 0))
+ 	  {
+@@ -1836,7 +1836,7 @@
+ # if defined(IBMPC_SYSTEM)
+    sprintf (file, "ds-%s", Slrn_Newsrc_File);
+ # else
+-   sprintf (file, "%s.dsc", Slrn_Newsrc_File);
++   snprintf (file, SLRN_MAX_PATH_LEN-1, "%s.dsc", Slrn_Newsrc_File);
+ # endif
+ #endif
+    
+@@ -1923,7 +1923,7 @@
+ # if defined(IBMPC_SYSTEM)
+    sprintf (file, "ds-%s", Slrn_Newsrc_File);
+ # else
+-   sprintf (file, "%s.dsc", Slrn_Newsrc_File);
++   snprintf (file, SLRN_MAX_PATH_LEN-1, "%s.dsc", Slrn_Newsrc_File);
+ # endif
+ #endif
+    
+@@ -1940,7 +1940,7 @@
+ 		  fp = slrn_open_home_file (file, "r", line, 0);
+ 	       }
+ #else
+-	     sprintf (file, "%s/newsgroups.dsc", Slrn_Lib_Dir);
++	     snprintf (file, SLRN_MAX_PATH_LEN - 1, "%s/newsgroups.dsc", Slrn_Lib_Dir);
+ 	     fp = slrn_open_home_file (file, "r", line, 0);
+ #endif
+ 	  }
+@@ -1989,7 +1989,7 @@
+ # ifdef SLRN_USE_OS2_FAT
+    slrn_os2_make_fat (file, Slrn_Newsrc_File, ".tim");
+ # else
+-   sprintf (file, "%s.time", Slrn_Newsrc_File);
++   snprintf (file, SLRN_MAX_PATH_LEN - 1, "%s.time", Slrn_Newsrc_File);
+ # endif
+ #endif
+    
+diff -ru slrn-0.9.6.4-old/src/grplens.c slrn-0.9.6.4/src/grplens.c
+--- slrn-0.9.6.4-old/src/grplens.c	Sun Nov 26 19:47:31 2000
++++ slrn-0.9.6.4/src/grplens.c	Wed Nov 29 00:26:58 2000
+@@ -701,9 +701,9 @@
+    char buf [GL_MAX_RESPONSE_LINE_LEN];
+    
+    if (rt->rating <= 0) return 0;
+-   sprintf (buf, "%s :rating=%4.2f :sawHeader=1", rt->msgid, (float) rt->rating);
++   snprintf (buf, GL_MAX_RESPONSE_LINE_LEN - 1, "%s :rating=%4.2f :sawHeader=1", rt->msgid, (float) rt->rating);
+    if (rt->saw_article)
+-     strcat (buf + strlen (buf), " :sawArticle=1");
++     strncat (buf + strlen (buf), " :sawArticle=1", GL_MAX_RESPONSE_LINE_LEN - strlen(buf) -1 );
+    
+    return send_gl_line (gl, buf, 0);
+ }
+diff -ru slrn-0.9.6.4-old/src/misc.c slrn-0.9.6.4/src/misc.c
+--- slrn-0.9.6.4-old/src/misc.c	Sun Nov 26 19:47:34 2000
++++ slrn-0.9.6.4/src/misc.c	Wed Nov 29 00:34:51 2000
+@@ -1104,7 +1104,7 @@
+ #endif
+      }
+    
+-   strcpy (editbuf, editor);
++   strncpy (editbuf, editor, sizeof(editbuf) - 1);
+ 
+    if (0 == create_edit_command(editbuf, buf, file, line)) return -1;
+ 
+@@ -1522,7 +1522,11 @@
+    /* if (SLang_Error) return -1; */
+    
+    va_start(ap, str);
++#ifdef HAVE_VSNPRINTF
++   (void) vsnprintf(buf, sizeof(buf) - 1, str, ap);
++#else
+    (void) vsprintf(buf, str, ap);
++#endif
+    va_end(ap);
+    
+    if (dflt)
+@@ -1536,7 +1540,7 @@
+ 	fmt = "? \001Yes, [\001N]o";
+      }
+    
+-   strcat (buf, fmt);
++   strncat (buf, fmt, sizeof(buf)-1);
+    rsp = slrn_get_response ("yYnN\r", buf);
+    if (rsp == '\r') rsp = ch;
+    else rsp |= 0x20;
+@@ -1557,10 +1561,14 @@
+      return -1;
+    
+    va_start(ap, str);
++#ifdef HAVE_VSNPRINTF
++   (void) vsnprintf(buf, sizeof(buf) - 1, str, ap);
++#else
+    (void) vsprintf(buf, str, ap);
++#endif
+    va_end(ap);
+    
+-   strcat (buf, "? [\001Y]es, \001No, \001Cancel");
++   strncat (buf, "? [\001Y]es, \001No, \001Cancel", sizeof(buf) - 1);
+    
+    switch (slrn_get_response ("\007yYnNcC\r", buf))
+      {
+diff -ru slrn-0.9.6.4-old/src/nntp.c slrn-0.9.6.4/src/nntp.c
+--- slrn-0.9.6.4-old/src/nntp.c	Sun Nov 26 19:47:39 2000
++++ slrn-0.9.6.4/src/nntp.c	Wed Nov 29 00:36:03 2000
+@@ -275,7 +275,11 @@
+    char buf[NNTP_BUFFER_SIZE];
+    
+    va_start (ap, fmt);
++#ifdef HAVE_VSNPRINTF
++   vsnprintf (buf, sizeof(buf) - 1, fmt, ap);
++#else
+    vsprintf (buf, fmt, ap);
++#endif
+    va_end (ap);
+    
+    return _nntp_po_puts (buf);
+diff -ru slrn-0.9.6.4-old/src/nntplib.c slrn-0.9.6.4/src/nntplib.c
+--- slrn-0.9.6.4-old/src/nntplib.c	Sun Nov 26 19:47:38 2000
++++ slrn-0.9.6.4/src/nntplib.c	Wed Nov 29 00:39:13 2000
+@@ -318,7 +318,11 @@
+    va_list ap;
+ 
+    va_start (ap, fmt);
++#ifdef HAVE_VSNPRINTF
++   vsnprintf (buf, sizeof(buf) - 1, fmt, ap);
++#else
+    vsprintf (buf, fmt, ap);
++#endif
+    va_end (ap);
+ 
+    return nntp_server_cmd (s, buf);
+@@ -330,7 +334,11 @@
+    va_list ap;
+ 
+    va_start (ap, fmt);
++#ifdef HAVE_VSNPRINTF
++   vsnprintf (buf, sizeof(buf) - 1, fmt, ap);
++#else
+    vsprintf (buf, fmt, ap);
++#endif
+    va_end (ap);
+ 
+    return nntp_start_server_cmd (s, buf);
+@@ -454,7 +462,7 @@
+ 
+    if (host != NULL)
+      {
+-	strcpy (buf, host);
++	strncpy (buf, host, sizeof(buf) - 1);
+ 	return buf;
+      }
+ 
+@@ -756,7 +764,7 @@
+ 	if (minp != NULL) *minp = min;
+ 	if (maxp != NULL) *maxp = max;
+ 
+-	strcpy (s->group_name, name);
++	strncpy (s->group_name, name, NNTP_MAX_GROUP_NAME_LEN - 1);
+ 	break;
+ 
+       case ERR_ACCESS:
+diff -ru slrn-0.9.6.4-old/src/print.c slrn-0.9.6.4/src/print.c
+--- slrn-0.9.6.4-old/src/print.c	Sun Nov 26 19:47:31 2000
++++ slrn-0.9.6.4/src/print.c	Wed Nov 29 00:41:15 2000
+@@ -278,7 +278,7 @@
+      {
+ 	print_cmd = getenv ("PRINTER");
+ 	if (print_cmd == NULL) print_cmd = "";
+-	sprintf (print_cmd_buf, "lpr -P%s", print_cmd);
++	snprintf (print_cmd_buf, sizeof(print_cmd_buf) - 1, "lpr -P%s", print_cmd);
+ 	print_cmd = print_cmd_buf;
+      }
+ 
+diff -ru slrn-0.9.6.4-old/src/server.c slrn-0.9.6.4/src/server.c
+--- slrn-0.9.6.4-old/src/server.c	Sun Nov 26 19:47:36 2000
++++ slrn-0.9.6.4/src/server.c	Wed Nov 29 00:44:20 2000
+@@ -114,7 +114,11 @@
+    char buf [1024];
+    
+    va_start (ap, fmt);
++#ifdef HAVE_VSNPRINTF
++   vsnprintf (buf, sizeof(buf) - 1, fmt, ap);
++#else
+    vsprintf (buf, fmt, ap);
++#endif
+    va_end (ap);
+    
+    return inews_puts(buf);
+@@ -484,7 +488,7 @@
+ 
+    do
+      {
+-	sprintf (name, "%s%lu-%d-%u.%s", prefix,
++	snprintf (name, sizeof(name) - 1, "%s%lu-%d-%u.%s", prefix,
+ 		 (unsigned long) now, pid, num, login_name);
+ 	
+ 	if (-1 == slrn_dircat (Pull_Post_Dir, name, file))
+diff -ru slrn-0.9.6.4-old/src/slrnpull.c slrn-0.9.6.4/src/slrnpull.c
+--- slrn-0.9.6.4-old/src/slrnpull.c	Sun Nov 26 19:47:38 2000
++++ slrn-0.9.6.4/src/slrnpull.c	Wed Nov 29 00:48:44 2000
+@@ -231,8 +231,12 @@
+ {
+    char buf[2048];   
+ 
++#ifdef HAVE_VSNPRINTF
++   vsnprintf (buf, sizeof(buf) - 1, fmt, ap);
++#else
+    vsprintf (buf, fmt, ap);
+-   
++#endif
++
+    write_log (fp, pre, buf);
+    
+    if ((Stdout_Is_TTY == 0) || (fp == stdout) || (fp == stderr))
+@@ -459,7 +463,7 @@
+ 
+    len = strlen (SlrnPull_Spool_News_Dir);
+    
+-   strcpy (dirbuf, SlrnPull_Spool_News_Dir);
++   strncpy (dirbuf, SlrnPull_Spool_News_Dir, SLRN_MAX_PATH_LEN - 2);
+    dirbuf [len] = SLRN_PATH_SLASH_CHAR;
+    len++;
+    
+@@ -1577,7 +1581,7 @@
+    FILE *fp;
+    char file [SLRN_MAX_PATH_LEN + 5];
+    
+-   sprintf (file, "%s.tmp", Active_File);
++   snprintf (file, SLRN_MAX_PATH_LEN - 4, "%s.tmp", Active_File);
+    
+    fp = fopen (file, "w");
+    if (fp == NULL)
+diff -ru slrn-0.9.6.4-old/src/sltcp.c slrn-0.9.6.4/src/sltcp.c
+--- slrn-0.9.6.4-old/src/sltcp.c	Sun Nov 26 19:47:31 2000
++++ slrn-0.9.6.4/src/sltcp.c	Wed Nov 29 00:50:41 2000
+@@ -940,9 +940,13 @@
+    
+    if ((tcp == NULL) || (-1 == tcp->tcp_fd))
+      return -1;
+-   
++
++#ifdef HAVE_VSNPRINTF
++   vsnprintf (buf, sizeof(buf) - 1, fmt, ap);
++#else
+    vsprintf (buf, fmt, ap);
+-   
++#endif
++
+    return sltcp_fputs (tcp, buf);
+ }
+ 
+diff -ru slrn-0.9.6.4-old/src/spool.c slrn-0.9.6.4/src/spool.c
+--- slrn-0.9.6.4-old/src/spool.c	Sun Nov 26 19:47:36 2000
++++ slrn-0.9.6.4/src/spool.c	Wed Nov 29 00:55:12 2000
+@@ -369,7 +369,7 @@
+ {
+    char buf [SLRN_MAX_PATH_LEN];
+    
+-   sprintf (buf, "%s/%d", Spool_Group, num);
++   snprintf (buf, sizeof(buf) - 1, "%s/%d", Spool_Group, num);
+    
+    return fopen (buf,"r");
+ }
+@@ -378,7 +378,7 @@
+ {
+    char buf [SLRN_MAX_PATH_LEN];
+    
+-   sprintf (buf, "%s/%d", Spool_Group, num);
++   snprintf (buf, sizeof(buf) - 1, "%s/%d", Spool_Group, num);
+ 
+    if (1 == slrn_file_exists (buf))
+      return 0;
+@@ -1315,7 +1315,7 @@
+ 
+ static int spool_fake_active (char *path)
+ {
+-   strcpy(Spool_Buf, path);
++   strncpy(Spool_Buf, path, sizeof(Spool_Buf) - 1);
+    *Spool_nBuf='\0';
+    Spool_Head=NULL;
+    spool_fake_active_in (NULL);
+@@ -1374,12 +1374,12 @@
+    if (Spool_fakeactive_newsgroups)
+      {
+       /* newsgroups: alt.foo A group about foo */
+-	sprintf(line,"%s ?\n",Spool_nBuf); /* !HACK! check len */
++	snprintf(line, sizeof(line) - 1, "%s ?\n",Spool_nBuf); /* !HACK! check len */
+      }
+    else
+      {
+       /* active: alt.guitar 0000055382 0000055345 y */
+-	sprintf(line,"%s %ld %ld y\n",Spool_nBuf,Spool_Head->hi,Spool_Head->lo); /* !HACK! check len */
++	snprintf(line, sizeof(line) - 1, "%s %ld %ld y\n",Spool_nBuf,Spool_Head->hi,Spool_Head->lo); /* !HACK! check len */
+      }
+    spool_fake_active_out();
+    return 1;
