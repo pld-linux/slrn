@@ -4,7 +4,7 @@ Summary(fr):	Le meilleur lecteur de news du monde (Selon Red Hat tout du moins)
 Summary(pl):	£atwy w obs³udze czytnik artyku³ów news
 Summary(tr):	Red Hat'in görüþüne göre dünyanýn en iyi haber grubu okuyucusu
 Name:		slrn
-Version:	0.9.7.0a
+Version:	0.9.7.1
 Release:	1
 License:	GPL
 Group:		Applications/News
@@ -82,8 +82,8 @@ konieczno¶ci utrzymywania sta³ego po³±czenia z serwerem news.
 (cd autoconf; aclocal ; autoconf)
 cp -f autoconf/configure .
 
-slrn_cv_domain=no
-export slrn_cv_domain
+INEWS="/usr/bin/inews"; SENDMAIL="/usr/lib/sendmail"
+export INEWS SENDMAIL
 
 %configure \
 	--enable-ipv6
@@ -103,18 +103,18 @@ install %{SOURCE1} $RPM_BUILD_ROOT%{_mandir}/pl/man1/slrn.1
 install %{SOURCE2} $RPM_BUILD_ROOT%{_applnkdir}/Network/News
 install %{SOURCE3} $RPM_BUILD_ROOT%{_pixmapsdir}
 
-install slrnpull/slrnpull.conf $RPM_BUILD_ROOT/var/spool/slrnpull
+install doc/slrnpull/slrnpull.conf $RPM_BUILD_ROOT/var/spool/slrnpull
 install doc/slrn.rc $RPM_BUILD_ROOT%{_sysconfdir}
 
-gzip -9nf doc/{README.{GroupLens,macros,SSL},SCORE_FAQ,THANKS,{help,manual,score,slrnfuns}.txt} \
-	slrnpull/{FAQ,QUICK_INSTALL,README}
+gzip -9nf doc/{FAQ,FIRST_STEPS,README.*,SCORE_FAQ,THANKS,{help,manual,score,slrnfuns}.txt} \
+	doc/slrnpull/{FAQ,README,SETUP} README COPYRIGHT changes.txt
 
 %clean
 rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc doc/{*.gz,score.sl}
+%doc *.gz doc/{*.gz,score.sl}
 %attr(755,root,root) %{_bindir}/slrn
 %dir %{_libdir}/slrn
 %{_libdir}/slrn/*.sl
@@ -127,7 +127,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files pull
 %defattr(644,root,root,755)
-%doc slrnpull/{*.gz,score,slrn.rc,slrnpull.sh}
+%doc doc/slrnpull/{*.gz,score,slrn.rc,slrnpull.sh}
 %attr (2754,root,news) %{_bindir}/slrnpull
 %attr (775,news,news) %dir /var/spool/slrnpull
 %attr (775,news,news) %dir /var/spool/slrnpull/out.going

@@ -1,10 +1,11 @@
---- slrn-0.9.6.4pl4c.orig/src/slrn.c	Mon Mar 19 21:13:41 2001
-+++ slrn-0.9.6.4pl4c/src/slrn.c	Fri Mar 30 17:14:28 2001
-@@ -1120,6 +1120,6 @@
+--- slrn-0.9.7.1/src/slrn.c.orig	Wed May 30 20:45:44 2001
++++ slrn-0.9.7.1/src/slrn.c	Sun Jun 10 19:50:20 2001
+@@ -1127,7 +1127,7 @@
+    /* Make sure terminal is initialized before setting colors.  The 
      * SLtt_get_terminfo call above fixed that.
      */
 -   slrn_read_startup_file (file);      /* global file for all users */
-+   slrn_read_startup_file ("/etc/slrn.rc");	/* global file for all users */
-    slrn_read_startup_file (init_file);
- 
-    if (Slrn_Server_Id == 0) Slrn_Server_Id = Slrn_Default_Server_Obj;
++   slrn_read_startup_file ("/etc/slrn.rc");      /* global file for all users */
+    
+    if (init_file == NULL)
+      {

@@ -1,93 +1,119 @@
-diff -Nur slrn-0.9.6.4pl4c.orig/doc/slrn.rc slrn-0.9.6.4pl4c/doc/slrn.rc
---- slrn-0.9.6.4pl4c.orig/doc/slrn.rc	Fri Mar 16 21:53:47 2001
-+++ slrn-0.9.6.4pl4c/doc/slrn.rc	Fri Mar 30 14:08:37 2001
-@@ -530,25 +530,21 @@
+diff -Nur slrn-0.9.7.1.orig/doc/slrn.rc slrn-0.9.7.1/doc/slrn.rc
+--- slrn-0.9.7.1.orig/doc/slrn.rc	Wed Jun  6 21:26:07 2001
++++ slrn-0.9.7.1/doc/slrn.rc	Sun Jun 10 18:52:34 2001
+@@ -356,26 +356,21 @@
+ %
  
- setkey group	add_group	"A"    %  add a new newsgroup
- setkey group	bob		"\e<"  %  beg of buffer
--setkey group	bob		"^K\eOA"
--setkey group	bob		"^K\e[A"
-+setkey group	bob		"^K^(ku)"
- setkey group	catchup		"C"    %  mark group as read
- setkey group	eob		"\e>"  %  end of buffer
--setkey group	eob		"^K\eOB"
--setkey group	eob		"^K\e[B"
-+setkey group	eob		"^K^(kd)"
- setkey group	group_search_forward	"/"
- setkey group	help		"?"
--setkey group	line_down	"\eOB" %  next group
--setkey group	line_down	"\e[B"
-+setkey group	line_down	"^(kd)" %  next group
- setkey group	line_down	"^N"
--setkey group	line_up		"\eOA" %  previous line
--setkey group	line_up		"\e[A"
-+setkey group	line_up		"^(ku)" %  previous line
- setkey group	line_up		"^P"
--setkey group	page_down	"\e[6~"
-+setkey group	page_down	"^(kN)"
- setkey group	page_down	"^D"   %  next page of groups
- setkey group	page_down	"^V"
- setkey group	page_up		"\eV"  %  previous page of groups
--setkey group	page_up		"\e[5~"
-+setkey group	page_up		"^(kP)"
- setkey group	page_up		"^U"
- setkey group	post		"P"
- setkey group	post_postponed	"\eP"
-@@ -561,7 +557,7 @@
- setkey group	select_group	"\r"   %  read articles from group
- setkey group	subscribe	"S"    %  subscribe to group (See unsubscribe)
- setkey group	suspend		"^Z"
--setkey group	toggle_group_display	"\033A"
-+setkey group	toggle_group_display	"\eA"
- setkey group	toggle_hidden	"l"
- setkey group	toggle_list_all	"L"
- setkey group	toggle_scoring	"K"
-@@ -571,18 +567,14 @@
+ % Cursor movement:
+-setkey group line_down        "\eOB"   % Go to the next group
+-setkey group line_down        "\e[B"
++setkey group line_down        "^(kd)"  % Go to the next group
+ setkey group line_down        "^N"
+-setkey group line_up          "\eOA"   % Go to the previous group
++setkey group line_up          "^(ku)"  % Go to the previous group
+ setkey group line_up          "\e[A"
+ setkey group line_up          "^P"
+ setkey group page_down        "^V"     % Scroll to the next page
+-setkey group page_down        "\e[6~"
+-setkey group page_down        "\e[G"       % (FreeBSD keycode)
++setkey group page_down        "^(kN)"
+ setkey group page_down        "^D"
+ setkey group page_up          "\eV"    % Scroll to the previous page
+-setkey group page_up          "\e[5~"
+-setkey group page_up          "\e[I"       % (FreeBSD keycode)
++setkey group page_up          "^(kP)"
+ setkey group page_up          "^U"
+ setkey group bob              "\e<"    % Go to the bottom of the list
+-setkey group bob              "^K\eOB"
+-setkey group bob              "^K\e[B"
++setkey group bob              "^K^(ku)"
+ setkey group eob              "\e>"    % Go to the top of the list
+-setkey group eob              "^K\eOB"
+-setkey group eob              "^K\e[B"
++setkey group eob              "^K^(kd)"
+ setkey group group_search     "/"      % Group keyword search
  
- setkey article	article_bob	"<"	% goto the beginning of the article
- setkey article	article_eob	">"	% goto the end of the article
--setkey article	article_left		"\eOD"
--setkey article	article_left		"\e[D"
--setkey article	article_line_down	"\e\eOB"
--setkey article	article_line_down	"\e\e[B"	% Scroll article one line down
-+setkey article	article_left		"^(kl)"
-+setkey article	article_line_down	"\e^(kd)"	% Scroll article one line down
- setkey article	article_line_down	"\r"
--setkey article	article_line_up	"\e\eOA"
--setkey article	article_line_up	"\e\e[A"	% Scroll article one line up
-+setkey article	article_line_up	"\e^(ku)"	% Scroll article one line up
- setkey article	article_page_down	" "	% scroll to next page of article or select article
- setkey article	article_page_up	"^?"	% scroll to previous page of article
- setkey article	article_page_up	"b"
--setkey article	article_right		"\eOC"
--setkey article	article_right		"\e[C"
-+setkey article	article_right		"^(kr)"
- setkey article	article_search	"/"	% Search forward through article
- setkey article	author_search_backward	"A"	% Search backward for an author
- setkey article	author_search_forward	"a"	% Search forward for an author
-@@ -599,17 +591,15 @@
- setkey article	goto_article	"j"
- setkey article	header_bob	"\e<"	% Move to first article in list
- setkey article	header_eob	"\e>"	% Move to last article in list
--setkey article	header_line_down	"\eOB"
--setkey article	header_line_down	"\e[B"
-+setkey article	header_line_down	"^(kd)"
- setkey article	header_line_down	"^N"	% Move to the next article
--setkey article	header_line_up	"\eOA"
--setkey article	header_line_up	"\e[A"
-+setkey article	header_line_up	"^(ku)"
- setkey article	header_line_up	"^P"	% Move to the previous article
--setkey article	header_page_down	"\e[6~"
-+setkey article	header_page_down	"^(kN)"
- setkey article	header_page_down	"^D"
- setkey article	header_page_down	"^V"
- setkey article	header_page_up		"\eV"
--setkey article	header_page_up		"\e[5~"
-+setkey article	header_page_up		"^(kP)"
- setkey article	header_page_up		"^U"
- setkey article	help		"?"	% Show help screen
- setkey article	hide_article	"H"	% Hide the article window.
-@@ -652,20 +642,20 @@
+ % Actions:
+@@ -401,7 +396,7 @@
+ setkey group save_newsrc      "X"      % Force a save of the newsrc file
+ 
+ % Display:
+-setkey group toggle_group_formats "\033A" % Toggle group display formats
++setkey group toggle_group_formats "\eA" % Toggle group display formats
+ setkey group toggle_hidden    "l"      % Toggle display of hidden groups
+ setkey group toggle_list_all  "L"      % Toggle listing of unsubscribed groups
+ setkey group redraw           "^L"     % Redraw the screen
+@@ -416,10 +411,8 @@
+ setkey article next                    "n"  % next unread article
+ setkey article previous                "p"  % previous unread article
+ setkey article skip_to_next_group      "N"  % go to the next group
+-setkey article skip_to_next_group      "\e\e[C"
+-setkey article skip_to_next_group      "\e\eOC"
+-setkey article skip_to_previous_group  "\e\e[D"  % go to the previous group
+-setkey article skip_to_previous_group  "\e\eOD"
++setkey article skip_to_next_group      "\e^(kN)"
++setkey article skip_to_previous_group  "\e^(kP)"  % go to the previous group
+ setkey article next_high_score         "!"  % next article with high score
+ setkey article next_same_subject       "="  % next article with same subject
+ setkey article goto_last_read          "L"  % go to the last read article
+@@ -441,37 +434,29 @@
+ setkey article fast_quit            "Q"		% Quit slrn immediately
+ 
+ % Moving in the article pager:
+-setkey article article_line_down    "\eOD"	% Scroll article down one line
+-setkey article article_line_down    "\e[D"
+-setkey article article_line_up      "\e\eOB"	% Scroll article up one line
+-setkey article article_line_up      "\e\e[B"
++setkey article article_line_down    "\e^(kd)"	% Scroll article down one line
++setkey article article_line_up      "\e^(ku)"	% Scroll article up one line
+ setkey article article_page_down    " "		% Scroll article down one page
+ setkey article article_page_up      "^?"	% Scroll article up one page
+ setkey article article_page_up      "b"		% Scroll article up one page
+ setkey article article_eob          ">"		% Move to the end of the article
+ setkey article article_bob          "<"		% Move to the beginning
+-setkey article article_left         "\eOD"	% Pan article to the left
+-setkey article article_left         "\e[D"
+-setkey article article_right        "\eOC"	% Pan article to the right
+-setkey article article_right        "\e[C"
++setkey article article_left         "^(kl)"	% Pan article to the left
++setkey article article_right        "^(kr)"	% Pan article to the right
+ setkey article article_search       "/"		% Search forward in the article
+ setkey article skip_quotes          "\t"	% Skip beyond quoted text
+ setkey article forward_digest       "g"		% Skip to next digest
+ 
+ % Moving in the header display:
+-setkey article header_line_down      "\eOB"	% Move to next article
+-setkey article header_line_down      "\e[B"
++setkey article header_line_down      "^(kd)"	% Move to next article
+ setkey article header_line_down      "^N"
+-setkey article header_line_up        "\eOA"	% Move to previous article
+-setkey article header_line_up        "\e[A"
++setkey article header_line_up        "^(ku)"	% Move to previous article
+ setkey article header_line_up        "^P"
+ setkey article header_page_down      "^V"       % Scroll down one page
+-setkey article header_page_down      "\e[6~"
+-setkey article header_page_down      "\e[G"         % (FreeBSD keycode)
++setkey article header_page_down      "^(kN)"
+ setkey article header_page_down      "^D"
+ setkey article header_page_up        "\eV"	% Scroll up one page
+-setkey article header_page_up        "\e[5~"
+-setkey article header_page_up        "\e[I"         % (FreeBSD keycode)
++setkey article header_page_up        "^(kP)"
+ setkey article header_page_up        "^U"
+ setkey article header_eob            "\e>"	% Go to last article in group
+ setkey article header_bob            "\e<"	% Go to first article in group
+@@ -533,8 +518,8 @@
+ 
+ setkey readline bol		 "^A"		% Beginning of line
+ setkey readline eol		 "^E"		% End of line
+-setkey readline right		 "\e[C"		% Move right
+-setkey readline left		 "\e[D"		% Move left
++setkey readline right		 "^(kr)"	% Move right
++setkey readline left		 "^(kl)"	% Move left
+ setkey readline bdel		 "^H"		% Delete backward
+ setkey readline bdel		 "^?"		% Delete Backward
+ setkey readline del		 "^D"		% Delete Foreword
+@@ -544,11 +529,11 @@
  
  % This is a special hack for HP terminals to get the arrow keys working.  
  % Are there any other terminals being used with non-ANSI arrow keys?
@@ -107,21 +133,10 @@ diff -Nur slrn-0.9.6.4pl4c.orig/doc/slrn.rc slrn-0.9.6.4pl4c/doc/slrn.rc
 +%  setkey article article_left "\eD"
 +%  setkey article article_right "\eC"
 +%#endif
- 
- % Command prompt keymap
- setkey readline bol		 "^A"		% Beginning of line
- setkey readline eol		 "^E"		% End of line
--setkey readline right		 "\e[C"		% Move right
--setkey readline left		 "\e[D"		% Move left
-+setkey readline right		 "^(kr)"	% Move right
-+setkey readline left		 "^(kl)"	% Move left
- setkey readline bdel		 "^H"		% Delete backward
- setkey readline bdel		 "^?"		% Delete Backward
- setkey readline del		 "^D"		% Delete Foreword
-diff -Nur slrn-0.9.6.4pl4c.orig/src/art.c slrn-0.9.6.4pl4c/src/art.c
---- slrn-0.9.6.4pl4c.orig/src/art.c	Wed Mar 21 22:20:32 2001
-+++ slrn-0.9.6.4pl4c/src/art.c	Fri Mar 30 13:54:46 2001
-@@ -7400,18 +7400,12 @@
+diff -Nur slrn-0.9.7.1.orig/src/art.c slrn-0.9.7.1/src/art.c
+--- slrn-0.9.7.1.orig/src/art.c	Tue Jun  5 16:56:23 2001
++++ slrn-0.9.7.1/src/art.c	Sun Jun 10 18:40:43 2001
+@@ -7570,22 +7570,14 @@
     SLkm_define_key  ("^@K", (FVOID_STAR) art_left, Slrn_Article_Keymap);
     SLkm_define_key  ("\xE0K", (FVOID_STAR) art_left, Slrn_Article_Keymap);
  #else
@@ -129,6 +144,10 @@ diff -Nur slrn-0.9.6.4pl4c.orig/src/art.c slrn-0.9.6.4pl4c/src/art.c
 -   SLkm_define_key  ("\033\033OA", (FVOID_STAR) art_lineup, Slrn_Article_Keymap);
 -   SLkm_define_key  ("\033\033[B", (FVOID_STAR) art_linedn, Slrn_Article_Keymap);
 -   SLkm_define_key  ("\033\033OB", (FVOID_STAR) art_linedn, Slrn_Article_Keymap);
+-   SLkm_define_key  ("\033\033[C", (FVOID_STAR) skip_to_next_group_1, Slrn_Article_Keymap);
+-   SLkm_define_key  ("\033\033OC", (FVOID_STAR) skip_to_next_group_1, Slrn_Article_Keymap);
+-   SLkm_define_key  ("\033\033[D", (FVOID_STAR) skip_to_prev_group, Slrn_Article_Keymap);
+-   SLkm_define_key  ("\033\033OD", (FVOID_STAR) skip_to_prev_group, Slrn_Article_Keymap);
 -   SLkm_define_key  ("\033[A", (FVOID_STAR) header_up, Slrn_Article_Keymap);
 -   SLkm_define_key  ("\033OA", (FVOID_STAR) header_up, Slrn_Article_Keymap);
 -   SLkm_define_key  ("\033[B", (FVOID_STAR) header_down, Slrn_Article_Keymap);
@@ -139,6 +158,8 @@ diff -Nur slrn-0.9.6.4pl4c.orig/src/art.c slrn-0.9.6.4pl4c/src/art.c
 -   SLkm_define_key  ("\033OD", (FVOID_STAR) art_left, Slrn_Article_Keymap);
 +   SLkm_define_key  ("\033^(ku)", (FVOID_STAR) art_lineup, Slrn_Article_Keymap);
 +   SLkm_define_key  ("\033^(kd)", (FVOID_STAR) art_linedn, Slrn_Article_Keymap);
++   SLkm_define_key  ("\033^(kr)", (FVOID_STAR) skip_to_next_group_1, Slrn_Article_Keymap);
++   SLkm_define_key  ("\033^(kl)", (FVOID_STAR) skip_to_prev_group, Slrn_Article_Keymap);
 +   SLkm_define_key  ("^(ku)", (FVOID_STAR) header_up, Slrn_Article_Keymap);
 +   SLkm_define_key  ("^(kd)", (FVOID_STAR) header_down, Slrn_Article_Keymap);
 +   SLkm_define_key  ("^(kr)", (FVOID_STAR) art_right, Slrn_Article_Keymap);
@@ -146,21 +167,23 @@ diff -Nur slrn-0.9.6.4pl4c.orig/src/art.c slrn-0.9.6.4pl4c/src/art.c
  #endif
     SLkm_define_key  ("\033S", (FVOID_STAR) toggle_sort, Slrn_Article_Keymap);
     SLkm_define_key  ("^U", (FVOID_STAR) header_pageup, Slrn_Article_Keymap);
-@@ -7422,8 +7416,8 @@
+@@ -7596,10 +7588,8 @@
     SLkm_define_key  ("^@Q", (FVOID_STAR) header_pagedn, Slrn_Article_Keymap);
     SLkm_define_key  ("\xE0Q", (FVOID_STAR) header_pagedn, Slrn_Article_Keymap);
  #else
 -   SLkm_define_key  ("\033[5~", (FVOID_STAR) header_pageup, Slrn_Article_Keymap);
+-   SLkm_define_key  ("\033[I", (FVOID_STAR) header_pageup, Slrn_Article_Keymap);
 -   SLkm_define_key  ("\033[6~", (FVOID_STAR) header_pagedn, Slrn_Article_Keymap);
+-   SLkm_define_key  ("\033[G", (FVOID_STAR) header_pagedn, Slrn_Article_Keymap);
 +   SLkm_define_key  ("^(kP)", (FVOID_STAR) header_pageup, Slrn_Article_Keymap);
 +   SLkm_define_key  ("^(kN)", (FVOID_STAR) header_pagedn, Slrn_Article_Keymap);
  #endif
     SLkm_define_key  ("^D", (FVOID_STAR) header_pagedn, Slrn_Article_Keymap);
     SLkm_define_key  ("^V", (FVOID_STAR) header_pagedn, Slrn_Article_Keymap);
-diff -Nur slrn-0.9.6.4pl4c.orig/src/group.c slrn-0.9.6.4pl4c/src/group.c
---- slrn-0.9.6.4pl4c.orig/src/group.c	Wed Mar 21 21:54:47 2001
-+++ slrn-0.9.6.4pl4c/src/group.c	Fri Mar 30 13:56:14 2001
-@@ -1820,10 +1820,8 @@
+diff -Nur slrn-0.9.7.1.orig/src/group.c slrn-0.9.7.1/src/group.c
+--- slrn-0.9.7.1.orig/src/group.c	Fri Jun  1 21:24:23 2001
++++ slrn-0.9.7.1/src/group.c	Sun Jun 10 18:42:22 2001
+@@ -1910,10 +1910,8 @@
     SLkm_define_key ("\0338", (FVOID_STAR) slrn_digit_arg, Slrn_Group_Keymap);
     SLkm_define_key ("\0339", (FVOID_STAR) slrn_digit_arg, Slrn_Group_Keymap);
     SLkm_define_key ("\0330", (FVOID_STAR) slrn_digit_arg, Slrn_Group_Keymap);
@@ -170,21 +193,23 @@ diff -Nur slrn-0.9.6.4pl4c.orig/src/group.c slrn-0.9.6.4pl4c/src/group.c
 -   SLkm_define_key  ("^K\033OB", (FVOID_STAR) group_eob, Slrn_Group_Keymap);
 +   SLkm_define_key  ("^K^(ku)", (FVOID_STAR) group_bob, Slrn_Group_Keymap);
 +   SLkm_define_key  ("^K^(kd)", (FVOID_STAR) group_eob, Slrn_Group_Keymap);
-    SLkm_define_key  ("\033A", (FVOID_STAR) toggle_group_display, Slrn_Group_Keymap);
+    SLkm_define_key  ("\033a", (FVOID_STAR) toggle_group_formats, Slrn_Group_Keymap);
     SLkm_define_key  ("\033>", (FVOID_STAR) group_eob, Slrn_Group_Keymap);
     SLkm_define_key  ("\033<", (FVOID_STAR) group_bob, Slrn_Group_Keymap);
-@@ -1835,8 +1833,8 @@
+@@ -1925,10 +1923,8 @@
     SLkm_define_key  ("^@I", (FVOID_STAR) group_pageup, Slrn_Group_Keymap);
     SLkm_define_key  ("\xE0I", (FVOID_STAR) group_pageup, Slrn_Group_Keymap);   
  #else
 -   SLkm_define_key  ("\033[6~", (FVOID_STAR) group_pagedown, Slrn_Group_Keymap);
+-   SLkm_define_key  ("\033[G", (FVOID_STAR) group_pagedown, Slrn_Group_Keymap);
 -   SLkm_define_key  ("\033[5~", (FVOID_STAR) group_pageup, Slrn_Group_Keymap);
+-   SLkm_define_key  ("\033[I", (FVOID_STAR) group_pageup, Slrn_Group_Keymap);
 +   SLkm_define_key  ("^(kN)", (FVOID_STAR) group_pagedown, Slrn_Group_Keymap);
 +   SLkm_define_key  ("^(kP)", (FVOID_STAR) group_pageup, Slrn_Group_Keymap);
  #endif
     SLkm_define_key  ("m", (FVOID_STAR) move_group_cmd, Slrn_Group_Keymap);
     SLkm_define_key  ("^U", (FVOID_STAR) group_pageup, Slrn_Group_Keymap);
-@@ -1868,10 +1866,8 @@
+@@ -1961,10 +1957,8 @@
     SLkm_define_key  ("^@P", (FVOID_STAR) group_down, Slrn_Group_Keymap);
     SLkm_define_key  ("\xE0P", (FVOID_STAR) group_down, Slrn_Group_Keymap);
  #else
@@ -197,9 +222,9 @@ diff -Nur slrn-0.9.6.4pl4c.orig/src/group.c slrn-0.9.6.4pl4c/src/group.c
  #endif
     SLkm_define_key  ("N", (FVOID_STAR) group_down, Slrn_Group_Keymap);
     SLkm_define_key  ("^N", (FVOID_STAR) group_down, Slrn_Group_Keymap);
-diff -Nur slrn-0.9.6.4pl4c.orig/src/menu.c slrn-0.9.6.4pl4c/src/menu.c
---- slrn-0.9.6.4pl4c.orig/src/menu.c	Sun Mar 18 20:20:17 2001
-+++ slrn-0.9.6.4pl4c/src/menu.c	Fri Mar 30 13:57:58 2001
+diff -Nur slrn-0.9.7.1.orig/src/menu.c slrn-0.9.7.1/src/menu.c
+--- slrn-0.9.7.1.orig/src/menu.c	Wed Jun  6 14:07:14 2001
++++ slrn-0.9.7.1/src/menu.c	Sun Jun 10 18:31:14 2001
 @@ -598,23 +598,12 @@
     SLkm_define_key  ("^@K", (FVOID_STAR) sl_left, Select_List_Keymap);
     SLkm_define_key  ("\xE0K", (FVOID_STAR) sl_left, Select_List_Keymap);

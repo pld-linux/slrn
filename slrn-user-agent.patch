@@ -1,15 +1,15 @@
-diff -Nur slrn-0.9.7.0a.orig/macros/uname.sl slrn-0.9.7.0a/macros/uname.sl
---- slrn-0.9.7.0a.orig/macros/uname.sl	Thu Jan  1 01:00:00 1970
-+++ slrn-0.9.7.0a/macros/uname.sl	Sat Mar 31 00:00:21 2001
+diff -Nur slrn-0.9.7.1.orig/macros/uname.sl slrn-0.9.7.1/macros/uname.sl
+--- slrn-0.9.7.1.orig/macros/uname.sl	Thu Jan  1 01:00:00 1970
++++ slrn-0.9.7.1/macros/uname.sl	Sun Jun 10 19:00:03 2001
 @@ -0,0 +1,4 @@
 +% example of customizing User-Agent header
 +
 +set_string_variable("system_type", uname().sysname + " " + uname().release
 +    + "/" + uname().machine);
-diff -Nur slrn-0.9.7.0a.orig/src/misc.h slrn-0.9.7.0a/src/misc.h
---- slrn-0.9.7.0a.orig/src/misc.h	Tue Mar 27 16:35:45 2001
-+++ slrn-0.9.7.0a/src/misc.h	Sat Mar 31 00:00:21 2001
-@@ -64,6 +64,8 @@
+diff -Nur slrn-0.9.7.1.orig/src/misc.h slrn-0.9.7.1/src/misc.h
+--- slrn-0.9.7.1.orig/src/misc.h	Tue May 22 14:40:28 2001
++++ slrn-0.9.7.1/src/misc.h	Sun Jun 10 19:00:03 2001
+@@ -73,6 +73,8 @@
     char *signature;
     char *posting_host;		       /* FQDN or NULL */
     char *login_name;
@@ -18,10 +18,10 @@ diff -Nur slrn-0.9.7.0a.orig/src/misc.h slrn-0.9.7.0a/src/misc.h
  }
  Slrn_User_Info_Type;
  
-diff -Nur slrn-0.9.7.0a.orig/src/post.c slrn-0.9.7.0a/src/post.c
---- slrn-0.9.7.0a.orig/src/post.c	Tue Mar 27 16:36:52 2001
-+++ slrn-0.9.7.0a/src/post.c	Sat Mar 31 00:05:43 2001
-@@ -572,6 +572,7 @@
+diff -Nur slrn-0.9.7.1.orig/src/post.c slrn-0.9.7.1/src/post.c
+--- slrn-0.9.7.1.orig/src/post.c	Sat May 26 20:35:02 2001
++++ slrn-0.9.7.1/src/post.c	Sun Jun 10 19:44:10 2001
+@@ -653,6 +653,7 @@
     char line [MAX_LINE_BUFLEN];
     char *system_os_name;
     int has_from = 0, has_messageid = 0, header = 1;
@@ -29,11 +29,12 @@ diff -Nur slrn-0.9.7.0a.orig/src/post.c slrn-0.9.7.0a/src/post.c
  
     if ((save_file == NULL) || (*save_file == 0))
       return 0;
-@@ -624,12 +625,19 @@
- 		  if (Slrn_Use_Mime)
+@@ -705,8 +706,15 @@
+ 		  if (Slrn_Use_Mime & MIME_ARCHIVE)
  		    slrn_mime_add_headers (outfp);
  #endif
 -		  system_os_name = slrn_get_os_name ();
+-		  fprintf (outfp, "User-Agent: slrn/%s (%s)\n", Slrn_Version,
 +		  if (Slrn_User_Info.user_agent != NULL)
 +		    User_Agent = Slrn_User_Info.user_agent;
 +		  else
@@ -42,17 +43,11 @@ diff -Nur slrn-0.9.7.0a.orig/src/post.c slrn-0.9.7.0a/src/post.c
 +		    system_os_name = Slrn_User_Info.system_type;
 +		  else
 +		    system_os_name = slrn_get_os_name ();
- #if SLRN_HAS_USER_AGENT
--		  fprintf (outfp, "User-Agent: slrn/%s (%s)\n", Slrn_Version,
 +		  fprintf (outfp, "User-Agent: %s/%s (%s)\n", User_Agent, Slrn_Version,
  			   system_os_name);
- #else
--		  fprintf (outfp, "X-Newsreader: slrn (%s %s)\n", Slrn_Version,
-+		  fprintf (outfp, "X-Newsreader: %s (%s %s)\n", User_Agent, Slrn_Version,
- 			   system_os_name);
- #endif
  		  header = 0;
-@@ -775,13 +783,20 @@
+ 	       }
+@@ -849,13 +857,20 @@
     SLang_Name_Type *filter_hook;
  #endif
     int once_more;
@@ -75,24 +70,19 @@ diff -Nur slrn-0.9.7.0a.orig/src/post.c slrn-0.9.7.0a/src/post.c
  
     try_again:
  
-@@ -1005,11 +1020,11 @@
+@@ -1086,7 +1101,7 @@
+ 		  if (Slrn_Use_Mime & MIME_DISPLAY)
  		    slrn_mime_add_headers (0);   /* 0 --> Slrn_Post_Obj->po_puts */
  #endif
- #if SLRN_HAS_USER_AGENT
 -		  Slrn_Post_Obj->po_printf ("User-Agent: slrn/%s (%s)\n\n", 
 +		  Slrn_Post_Obj->po_printf ("User-Agent: %s/%s (%s)\n\n", User_Agent,
- 					    Slrn_Version, 
- 					    system_os_name);
- #else
--		  Slrn_Post_Obj->po_printf ("X-Newsreader: slrn (%s %s)\n\n", Slrn_Version,
-+		  Slrn_Post_Obj->po_printf ("X-Newsreader: %s (%s %s)\n\n", User_Agent, Slrn_Version,
- 			       system_os_name);
- #endif
+ 					    Slrn_Version, system_os_name);
  		  header = 0;
-diff -Nur slrn-0.9.7.0a.orig/src/startup.c slrn-0.9.7.0a/src/startup.c
---- slrn-0.9.7.0a.orig/src/startup.c	Tue Mar 27 16:40:26 2001
-+++ slrn-0.9.7.0a/src/startup.c	Sat Mar 31 00:00:21 2001
-@@ -549,6 +549,8 @@
+ #if SLRN_HAS_MIME
+diff -Nur slrn-0.9.7.1.orig/src/startup.c slrn-0.9.7.1/src/startup.c
+--- slrn-0.9.7.1.orig/src/startup.c	Thu May 24 13:40:11 2001
++++ slrn-0.9.7.1/src/startup.c	Sun Jun 10 19:00:04 2001
+@@ -636,6 +636,8 @@
       {"followup_custom_headers", &Slrn_Followup_Custom_Headers},
       {"reply_custom_headers", &Slrn_Reply_Custom_Headers},
       {"supersedes_custom_headers", &Slrn_Supersedes_Custom_Headers},

@@ -20,10 +20,11 @@ diff -Nur slrn-0.9.6.4pl4c.orig/src/slrnconf.h slrn-0.9.6.4pl4c/src/slrnconf.h
 diff -Nur slrn-0.9.6.4pl4c.orig/src/slrnfeat.h slrn-0.9.6.4pl4c/src/slrnfeat.h
 --- slrn-0.9.6.4pl4c.orig/src/slrnfeat.h	Sun Mar 11 21:55:57 2001
 +++ slrn-0.9.6.4pl4c/src/slrnfeat.h	Fri Mar 30 14:21:50 2001
-@@ -59,7 +59,7 @@
+@@ -59,8 +59,8 @@
    /* Note the -S flag.  slrn appends the signature to the file to be posted and
-    * the -S flag tells inews not to also do this.  The -h flag must be used.
-    */
+    * the -S flag tells inews not to also do this.  The -h flag must be used. */
+
+   /* Changing this here has no effect when using ./configure (on Unix) */
 -# define SLRN_INEWS_COMMAND      "/usr/local/bin/inews -S -h"
 +# define SLRN_INEWS_COMMAND      "/usr/bin/inews -S -h"
  #endif
