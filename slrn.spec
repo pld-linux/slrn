@@ -11,8 +11,9 @@ Group:		Applications/News
 Group(pl):	Aplikacje/News
 Source:		ftp://space.mit.edu/pub/davis/slrn/%{name}-%{version}.tar.bz2
 Source1:	%{name}.1.pl
-Patch0:		slrn-keymap.patch
-Patch1:		slrn-base64.patch
+Patch0:		%{name}-keymap.patch
+Patch1:		%{name}-base64.patch
+Patch2:		%{name}-home_etc.patch
 URL:		http://www.slrn.org/
 BuildRequires:	slang-devel
 BuildRoot:	/tmp/%{name}-%{version}-root
@@ -64,6 +65,7 @@ bez konieczno¶ci utrzymywania sta³ego po³±czenia z serwerem news.
 %setup  -q
 %patch0 -p1
 %patch1 -p1
+%patch2 -p1
 
 %build
 slrn_cv_domain=no
