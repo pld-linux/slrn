@@ -23,6 +23,8 @@ Patch4:		%{name}-etc.patch
 Icon:		slrn.xpm
 URL:		http://www.slrn.org/
 BuildRequires:	slang-devel
+BuildRequires:	autoconf
+BuildRequires:	automake
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %define		_libdir		%{_datadir}
@@ -79,22 +81,23 @@ konieczno¶ci utrzymywania sta³ego po³±czenia z serwerem news.
 %patch4 -p1
 
 %build
-# (
-# 	cd autoconf
-# 	aclocal
-# 	autoconf
-# )
-# cp -f autoconf/configure .
+(
+	cd autoconf
+	aclocal -I .
+	autoconf
+)
+cp -f autoconf/configure .
 
 INEWS="/usr/bin/inews"; SENDMAIL="/usr/lib/sendmail"
 export INEWS SENDMAIL
 
-%configure2_13 \
+%configure \
 	--enable-ipv6 \
+	--enable-inews \
+	--enable-spool \
 	--with-slrnpull
 
 %{__make}
-# %{__make} slrnpull
 
 %install
 rm -rf $RPM_BUILD_ROOT
