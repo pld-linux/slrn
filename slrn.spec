@@ -71,7 +71,7 @@ install -d $RPM_BUILD_ROOT/{etc/X11/wmconfig,usr/{bin,lib/slrn,man/man1}}
 install -d $RPM_BUILD_ROOT/var/spool/slrnpull/out.going
 
 install doc/slrn.rc $RPM_BUILD_ROOT/usr/lib/slrn
-install doc/slrn.1 $RPM_BUILD_ROOT/usr/man/man1/slrn.1
+install doc/slrn.1 $RPM_BUILD_ROOT%{_mandir}/man1/slrn.1
 install src/objs/slrn $RPM_BUILD_ROOT/usr/bin/slrn
 install src/objs/slrnpull $RPM_BUILD_ROOT/usr/bin/slrnpull
 install $RPM_SOURCE_DIR/slrn.wmconfig $RPM_BUILD_ROOT/etc/X11/wmconfig/slrn
@@ -90,7 +90,7 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755, root, root) /usr/bin/slrn
 %dir /usr/lib/slrn
 %verify (not md5 size mtime) /usr/lib/slrn/slrn.rc
-%attr(644, root,  man) /usr/man/man1/slrn.1
+%attr(644, root,  man) %{_mandir}/man1/slrn.1
 
 %files pull
 %defattr(644, root, root, 755)
