@@ -11,10 +11,11 @@ Summary(pt_BR):	O melhor leitor de notícias do mundo
 Summary(tr):	Red Hat'in görüþüne göre dünyanýn en iyi haber grubu okuyucusu
 Name:		slrn
 Version:	0.9.7.4
-Release:	3
+Release:	4
 License:	GPL
 Group:		Applications/News
 Source0:	ftp://ftp.sourceforge.net/pub/sourceforge/slrn/%{name}-%{version}.tar.bz2
+# Source0-md5:	da944c58f301cf07a41f996d91de8431
 Source1:	%{name}.1.pl
 Source2:	%{name}.desktop
 Source3:	%{name}.png
@@ -27,6 +28,11 @@ Patch4:		%{name}-amfix.patch
 Patch5:		%{name}-sort_visible_headers.patch
 Patch6:		%{name}-locate_by_msgid.patch
 Patch7:		%{name}-ac253.patch
+Patch8:		http://slrn.sourceforge.net/patches/slrn-0.9.7.4-popup_win.diff
+Patch9:		http://slrn.sourceforge.net/patches/slrn-0.9.7.4-mem_leak.diff
+Patch10:	http://slrn.sourceforge.net/patches/slrn-0.9.7.4-po.diff
+Patch11:	http://slrn.sourceforge.net/patches/slrn-0.9.7.4-link_subjects.diff
+Patch12:	%{name}-po.patch
 Icon:		slrn.xpm
 URL:		http://www.slrn.org/
 BuildRequires:	autoconf
@@ -119,6 +125,11 @@ spool de notícias, para leitura "offline".
 %patch5 -p1
 %patch6 -p1
 %patch7 -p1
+%patch8 -p1
+%patch9 -p1
+%patch10 -p1
+%patch11 -p1
+%patch12 -p1
 
 %build
 rm -f autoconf/missing

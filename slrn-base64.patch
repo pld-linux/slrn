@@ -1,0 +1,110 @@
+diff -ur slrn-0.9.6.0.orig/src/mime.c slrn-0.9.6.0/src/mime.c
+--- slrn-0.9.6.0.orig/src/mime.c	Sun Dec 19 22:51:32 1999
++++ slrn-0.9.6.0/src/mime.c	Sun Jan  9 20:07:00 2000
+@@ -465,9 +465,95 @@
+ }
+ 
+ 
+-static void decode_mime_base64 (void)
++static void decode_mime_base64 (Slrn_Article_Type *a)
+ {
+-   Slrn_Mime_Needs_Metamail = 1;
++   Slrn_Article_Line_Type *line, *body, *b;
++   unsigned long Article_Size = 0;
++   char *Article_Body,*Article_B64,*Article_Begin,*String_Begin;
++   
++   if (a == NULL)
++     return;
++   
++   line = a->lines;
++
++   while (((body = line) != NULL) && (line->flags & HEADER_LINE)) {
++      line = line->next;
++   }
++ 
++   b = body = body->next; 
++   while (b != NULL) {
++      Article_Size+=strlen(b->buf);
++      b = b->next;
++   }
++   Article_Size++;
++ 
++   if ((Article_Body = slrn_malloc(Article_Size,1,1))==NULL) 
++   {
++      Slrn_Mime_Needs_Metamail = 1;
++      return;
++   }
++ 
++   if ((Article_B64 = slrn_malloc(Article_Size,1,1))==NULL) 
++   {
++      Slrn_Mime_Needs_Metamail = 1;
++      slrn_free(Article_Body);
++      return;
++   }
++ 
++   b = body;
++   while (b != NULL) {
++      strcat(Article_B64,b->buf);
++      b = b->next;
++   }
++
++   decode_base64(Article_Body,Article_B64,Article_B64+Article_Size);
++
++   Article_Size  = strlen(Article_Body);
++   Article_Begin = Article_Body;
++   String_Begin  = Article_B64;
++
++   while (Article_Begin-Article_Body < Article_Size) {
++  
++   while ('\n' != (*String_Begin = *Article_Begin++)) {
++      if (*String_Begin == 0) break;   
++      String_Begin++;
++   }
++   *String_Begin = 0;
++
++   String_Begin = Article_B64;
++   while (*String_Begin != 0) {
++      if ((*String_Begin == 0x0a)||(*String_Begin == 0x0d)) { *String_Begin = 0; }
++      *String_Begin++;
++   }
++
++   if (NULL==(body->buf=slrn_realloc(body->buf,strlen(Article_B64)+1,1))) {
++      slrn_free(Article_Body);
++      slrn_free(Article_B64);
++      Slrn_Mime_Needs_Metamail = 1;
++      return;
++   } 
++
++   strcpy(body->buf,Article_B64);
++
++   if (NULL==body->next)
++      if (
++         (NULL==(body->next=(Slrn_Article_Line_Type *) slrn_malloc(sizeof(Slrn_Article_Line_Type),1, 1))) ||
++         (NULL==(body->next->buf = slrn_malloc (1, 1, 1))))
++      {
++         slrn_free(Article_Body);
++         slrn_free(Article_B64);
++         Slrn_Mime_Needs_Metamail = 1;
++         return;
++      } else {
++         body->next->next=NULL;
++         body->next->prev=body;
++      } 
++      body=body->next;
++      String_Begin = Article_B64;
++   } 
++
++   slrn_free(Article_Body);
++   slrn_free(Article_B64);
+ }
+ 
+ /* This function checks if the last character on curr_line is an = and 
+@@ -589,7 +675,7 @@
+ 	return;
+ 	
+       case ENCODED_BASE64:
+-	decode_mime_base64 ();
++	decode_mime_base64 (a);
+ 	break;
+ 	
+       case ENCODED_QUOTED:
