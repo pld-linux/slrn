@@ -9,6 +9,7 @@ Release:	9
 License:	GPL
 Group:		Applications/News
 Group(pl):	Aplikacje/News
+Group(de):	Applikationen/News
 Source0:	ftp://space.mit.edu/pub/davis/slrn/%{name}-%{version}.tar.bz2
 Source1:	%{name}.1.pl
 Patch0:		%{name}-keymap.patch
@@ -55,6 +56,7 @@ Summary:	Offline news reading support for slrn
 Summary(pl):	Program ¶ci±gaj±cy artyku³y z serwera news
 Group:		Applications/News
 Group(pl):	Aplikacje/News
+Group(de):	Applikationen/News
 Requires:	%{name} = %{version}
 
 %description pull
