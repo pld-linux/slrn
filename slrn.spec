@@ -96,13 +96,13 @@ export slrn_cv_domain
 rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT/var/spool/slrnpull/out.going \
 	$RPM_BUILD_ROOT%{_mandir}/pl/man1 \
-	$RPM_BUILD_ROOT%{_applnkdir}/Network/News,%{_pixmapsdir}}
+	$RPM_BUILD_ROOT{%{_applnkdir}/Network/News,%{_pixmapsdir}}
 
 %{__make} install DESTDIR=$RPM_BUILD_ROOT
 
 install %{SOURCE1} $RPM_BUILD_ROOT%{_mandir}/pl/man1/slrn.1
-install %{SOURCE1} $RPM_BUILD_ROOT%{_applnkdir}/Network/News
-install %{SOURCE2} $RPM_BUILD_ROOT%{_pixmapsdir}
+install %{SOURCE2} $RPM_BUILD_ROOT%{_applnkdir}/Network/News
+install %{SOURCE3} $RPM_BUILD_ROOT%{_pixmapsdir}
 
 install slrnpull/slrnpull.conf $RPM_BUILD_ROOT/var/spool/slrnpull
 install doc/slrn.rc $RPM_BUILD_ROOT%{_libdir}/slrn
