@@ -11,6 +11,7 @@ Group:		Applications/News
 Group(pl):	Aplikacje/News
 URL:		http://www.slrn.org
 Source:		ftp://space.mit.edu/pub/davis/slrn/%{name}-%{version}.tar.bz2
+Source1:	%{name}.1.pl
 Patch0:		slrn-keymap.patch
 BuildRequires:	slang-devel
 BuildRoot:	/tmp/%{name}-%{version}-root
@@ -77,11 +78,14 @@ rm -rf $RPM_BUILD_ROOT
 
 make install DESTDIR=$RPM_BUILD_ROOT
 
-install -d $RPM_BUILD_ROOT/var/spool/slrnpull/out.going
+install -d $RPM_BUILD_ROOT/var/spool/slrnpull/out.going \
+	$RPM_BUILD_ROOT%{_mandir}/pl/man1
+
+install %{SOURCE1} $RPM_BUILD_ROOT%{_mandir}/pl/man1/slrn.1
 install slrnpull/slrnpull.conf $RPM_BUILD_ROOT/var/spool/slrnpull
 install doc/slrn.rc $RPM_BUILD_ROOT%{_libdir}/slrn
 
-gzip -9nf $RPM_BUILD_ROOT%{_mandir}/man1/* \
+gzip -9nf $RPM_BUILD_ROOT%{_mandir}/{man1/*,pl/man1/*} \
 	doc/{README.GroupLens,README.macros,FAQ,SCORE_FAQ,{help,score,slrnfuns}.txt} \
 	slrnpull/{FAQ,QUICK_INSTALL,README}
 
@@ -94,17 +98,10 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_bindir}/slrn
 %dir %{_libdir}/slrn
 %verify (not md5 size mtime) %{_libdir}/slrn/slrn.rc
-%{_libdir}/slrn/color.sl
-%{_libdir}/slrn/ispell.sl
-%{_libdir}/slrn/nn.sl
-%{_libdir}/slrn/posthook.sl
-%{_libdir}/slrn/search.sl
-%{_libdir}/slrn/tin-art.sl
-%{_libdir}/slrn/tin-group.sl
-%{_libdir}/slrn/ttyprint.sl
-%{_libdir}/slrn/util.sl
-%{_libdir}/slrn/xcomment.sl
-%{_mandir}/man1/*
+%{_libdir}/slrn/*.sl
+%{_mandir}/man1/*.gz
+
+%lang(pl) %{_mandir}/pl/man1/*.gz
 
 %files pull
 %defattr(644,root,root,755)
