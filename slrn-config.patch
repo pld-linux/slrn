@@ -33,7 +33,7 @@
 +#   define SLRN_SENDMAIL_COMMAND	"/usr/sbin/sendmail -oi -t -oem -odb"
  #   ifndef SLRN_LIB_DIR
 -#    define SLRN_LIB_DIR		"/usr/local/lib/slrn"
-+#    define SLRN_LIB_DIR		"/usr/lib/slrn"
++#    define SLRN_LIB_DIR		"/usr/share/slrn"
  #   endif
  #  endif			       /* unix */
  # endif				       /* os2 */
