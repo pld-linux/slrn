@@ -15,6 +15,7 @@ Release:	4
 License:	GPL
 Group:		Applications/News
 Source0:	ftp://ftp.sourceforge.net/pub/sourceforge/slrn/%{name}-%{version}.tar.bz2
+# Source0-md5:	da944c58f301cf07a41f996d91de8431
 Source1:	%{name}.1.pl
 Source2:	%{name}.desktop
 Source3:	%{name}.png
