@@ -77,12 +77,12 @@ export slrn_cv_domain LDFLAGS
 %configure
 
 make
-make slrnpull
+%{__make} slrnpull
 
 %install
 rm -rf $RPM_BUILD_ROOT
 
-make install DESTDIR=$RPM_BUILD_ROOT
+%{__make} install DESTDIR=$RPM_BUILD_ROOT
 
 install -d $RPM_BUILD_ROOT/var/spool/slrnpull/out.going \
 	$RPM_BUILD_ROOT%{_mandir}/pl/man1
