@@ -27,6 +27,10 @@ Patch4:		%{name}-amfix.patch
 Patch5:		%{name}-sort_visible_headers.patch
 Patch6:		%{name}-locate_by_msgid.patch
 Patch7:		%{name}-ac253.patch
+Patch8:		http://slrn.sourceforge.net/patches/slrn-0.9.7.4-popup_win.diff
+Patch9:		http://slrn.sourceforge.net/patches/slrn-0.9.7.4-mem_leak.diff
+Patch10:	http://slrn.sourceforge.net/patches/slrn-0.9.7.4-po.diff
+Patch11:	http://slrn.sourceforge.net/patches/slrn-0.9.7.4-link_subjects.diff
 Icon:		slrn.xpm
 URL:		http://www.slrn.org/
 BuildRequires:	autoconf
@@ -119,6 +123,10 @@ spool de notícias, para leitura "offline".
 %patch5 -p1
 %patch6 -p1
 %patch7 -p1
+%patch8 -p1
+%patch9 -p1
+%patch10 -p1
+%patch11 -p1
 
 %build
 rm -f autoconf/missing
