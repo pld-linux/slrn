@@ -31,9 +31,9 @@ diff -Nur slrn-0.9.7.1.orig/doc/slrn.rc slrn-0.9.7.1/doc/slrn.rc
 -setkey group eob              "^K\eOB"
 -setkey group eob              "^K\e[B"
 +setkey group eob              "^K^(kd)"
- setkey group group_search     "/"      % Group keyword search
+ setkey group group_search_backward "\\"% Group keyword search backward
+ setkey group group_search_forward  "/" % Group keyword search forward
  
- % Actions:
 @@ -401,7 +396,7 @@
  setkey group save_newsrc      "X"      % Force a save of the newsrc file
  
@@ -225,31 +225,21 @@ diff -Nur slrn-0.9.7.1.orig/src/group.c slrn-0.9.7.1/src/group.c
 diff -Nur slrn-0.9.7.1.orig/src/menu.c slrn-0.9.7.1/src/menu.c
 --- slrn-0.9.7.1.orig/src/menu.c	Wed Jun  6 14:07:14 2001
 +++ slrn-0.9.7.1/src/menu.c	Sun Jun 10 18:31:14 2001
-@@ -598,23 +598,12 @@
-    SLkm_define_key  ("^@K", (FVOID_STAR) sl_left, Select_List_Keymap);
-    SLkm_define_key  ("\xE0K", (FVOID_STAR) sl_left, Select_List_Keymap);
+@@ -685,13 +685,11 @@
+ 	SLkm_define_key  ("^@K", (FVOID_STAR) sl_left, Select_List_Keymap);
+ 	SLkm_define_key  ("\xE0K", (FVOID_STAR) sl_left, Select_List_Keymap);
  #else
--   SLkm_define_key  ("\033[5~", (FVOID_STAR) sl_pageup, Select_List_Keymap);
--   SLkm_define_key  ("\033[6~", (FVOID_STAR) sl_pagedn, Select_List_Keymap);
--   SLkm_define_key  ("\033[A", (FVOID_STAR) sl_up, Select_List_Keymap);
--   SLkm_define_key  ("\033OA", (FVOID_STAR) sl_up, Select_List_Keymap);
--   SLkm_define_key  ("\033[B", (FVOID_STAR) sl_down, Select_List_Keymap);
--   SLkm_define_key  ("\033OB", (FVOID_STAR) sl_down, Select_List_Keymap);
--   SLkm_define_key  ("\033[C", (FVOID_STAR) sl_right, Select_List_Keymap);
--   SLkm_define_key  ("\033OC", (FVOID_STAR) sl_right, Select_List_Keymap);
--   SLkm_define_key  ("\033OD", (FVOID_STAR) sl_left, Select_List_Keymap);
--   SLkm_define_key  ("\033[D", (FVOID_STAR) sl_left, Select_List_Keymap);
--
+-	SLkm_define_key  ("\033[C", (FVOID_STAR) sl_right, Select_List_Keymap);
+-	SLkm_define_key  ("\033OC", (FVOID_STAR) sl_right, Select_List_Keymap);
+-	SLkm_define_key  ("\033OD", (FVOID_STAR) sl_left, Select_List_Keymap);
+-	SLkm_define_key  ("\033[D", (FVOID_STAR) sl_left, Select_List_Keymap);
 -# ifdef __unix__
-+   SLkm_define_key  ("^(kP)", (FVOID_STAR) sl_pageup, Select_List_Keymap);
-+   SLkm_define_key  ("^(kN)", (FVOID_STAR) sl_pagedn, Select_List_Keymap);
-+   SLkm_define_key  ("^(ku)", (FVOID_STAR) sl_up, Select_List_Keymap);
-+   SLkm_define_key  ("^(kd)", (FVOID_STAR) sl_down, Select_List_Keymap);
-    SLkm_define_key  ("^(kr)", (FVOID_STAR) sl_right, Select_List_Keymap);
-    SLkm_define_key  ("^(kl)", (FVOID_STAR) sl_left, Select_List_Keymap);
--   SLkm_define_key  ("^(kd)", (FVOID_STAR) sl_down, Select_List_Keymap);
--   SLkm_define_key  ("^(ku)", (FVOID_STAR) sl_up, Select_List_Keymap);
++	SLkm_define_key  ("^(kP)", (FVOID_STAR) sl_pageup, Select_List_Keymap);
++	SLkm_define_key  ("^(kN)", (FVOID_STAR) sl_pagedn, Select_List_Keymap);
++	SLkm_define_key  ("^(ku)", (FVOID_STAR) sl_up, Select_List_Keymap);
++	SLkm_define_key  ("^(kd)", (FVOID_STAR) sl_down, Select_List_Keymap);
+ 	SLkm_define_key  ("^(kr)", (FVOID_STAR) sl_right, Select_List_Keymap);
+ 	SLkm_define_key  ("^(kl)", (FVOID_STAR) sl_left, Select_List_Keymap);
 -# endif
  #endif
- 
-    SLkm_define_key  ("k", (FVOID_STAR) sl_up, Select_List_Keymap);
+ 	SLkm_define_key  ("k", (FVOID_STAR) sl_up, Select_List_Keymap);
