@@ -60,7 +60,7 @@ nich bez konieczno¶ci utrzymywania sta³ego po³±czenia z serwerem news.
 %build
 CFLAGS="$RPM_OPT_FLAGS" \
 slrn_cv_domain=no \
-./configure %{_target} \
+./configure %{_target_platform} \
 	--prefix=/usr
 make
 make slrnpull
