@@ -5,7 +5,7 @@ Summary(pl):	£atwy w obs³udze czytnik artyku³ów news
 Summary(tr):	Red Hat'in görüþüne göre dünyanýn en iyi haber grubu okuyucusu
 Name:		slrn
 Version:	0.9.6.3
-Release:	1
+Release:	2
 License:	GPL
 Group:		Applications/News
 Group(de):	Applikationen/News
@@ -70,7 +70,7 @@ konieczno¶ci utrzymywania sta³ego po³±czenia z serwerem news.
 %setup  -q
 %patch0 -p1
 %patch1 -p1
-%patch2 -p1
+#%patch2 -p1
 %patch3 -p1
 %patch4 -p1
 
