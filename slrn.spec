@@ -100,31 +100,3 @@ rm -rf $RPM_BUILD_ROOT
 %attr (775, news, news) %dir /var/spool/slrnpull
 %attr (775, news, news) %dir /var/spool/slrnpull/out.going
 %attr (775, news, news) %config(noreplace) %verify(not size md5 mtime) /var/spool/slrnpull/slrnpull.conf
-
-%changelog
-* Thu Jun 24 1999 Micha³ Kuratczyk <kura@pld.org.pl>
-  [0.9.5.5-2]
-- added Group(pl)
-- added gzipping documentation and man pages
-
-* Thu Sep 10 1998 Tomasz K³oczko <kloczek@rudy.mif.pg.gda.pl>
-  [0.9.5.3-1]
-- removed doc/INSTALL from %doc.
-
-* Thu Sep 3 1998 Marcin Korzonek <mkorz@shadow.eu.org>
-  [0.9.5.2-1]
-- added pl translation,
-- allow building from non root account,
-- added slrnpull package.
-
-* Mon Apr 27 1998 Prospector System <bugs@redhat.com>
-- translations modified for de, fr, tr
-
-* Wed Oct 22 1997 Donnie Barnes <djb@redhat.com>
-- added wmconfig entry
-
-* Tue Oct 21 1997 Donnie Barnes <djb@redhat.com>
-- updated from 0.9.3.2 to 0.9.4.3
-
-* Fri Jul 18 1997 Erik Troan <ewt@redhat.com>
-- built against glibc
