@@ -90,6 +90,7 @@ rm -rf $RPM_BUILD_ROOT
 %attr(644, root,  man) /usr/man/man1/slrn.1
 
 %files pull
+%defattr(644, root, root, 755)
 %doc slrnpull/{FAQ,QUICK_INSTALL,README,score,slrn.rc,slrnpull.sh}
 %attr (755, root, root) /usr/bin/slrnpull
 %attr (775, news, news) %dir /var/spool/slrnpull
