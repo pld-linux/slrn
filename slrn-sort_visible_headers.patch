@@ -1,0 +1,217 @@
+diff -ur slrn-0.9.7.3.orig/doc/slrn.rc slrn-0.9.7.3/doc/slrn.rc
+--- slrn-0.9.7.3.orig/doc/slrn.rc	Sat Nov  3 16:13:26 2001
++++ slrn-0.9.7.3/doc/slrn.rc	Sat Jan 12 01:37:32 2002
+@@ -220,6 +220,11 @@
+ % display all the "X-"headers except "X-Trace:").
+ %visible_headers "From:,Subject:,Newsgroups:,Followup-To:,Reply-To:"
+ 
++% If non-zero, visible headers are displayed in specific order.
++% If 1, headers are arranged with respect to visible_headers order put above,
++% If 2, the same as above with multiple matches sorted alphabetically.
++%set visible_headers_sorting_method 2
++
+ % If non-zero, #v+ and #v- will be interpreted as markers of verbatim lines.
+ %set process_verbatim_marks	1
+ 
+diff -ur slrn-0.9.7.3.orig/src/art.h slrn-0.9.7.3/src/art.h
+--- slrn-0.9.7.3.orig/src/art.h	Sat Nov  3 16:15:54 2001
++++ slrn-0.9.7.3/src/art.h	Sat Jan 12 01:35:07 2002
+@@ -50,6 +50,7 @@
+ extern int Slrn_Score_After_XOver;
+ extern int Slrn_Use_Tmpdir;
+ extern int Slrn_Sorting_Mode;
++extern int Slrn_Visible_Headers_Sorting_Mode;
+ extern int Slrn_Threads_Visible;
+ extern int Slrn_Wrap_Mode;
+ extern int Slrn_Wrap_Method;
+diff -ur slrn-0.9.7.3.orig/src/art_misc.c slrn-0.9.7.3/src/art_misc.c
+--- slrn-0.9.7.3.orig/src/art_misc.c	Sat Nov  3 16:15:53 2001
++++ slrn-0.9.7.3/src/art_misc.c	Sat Jan 12 01:35:07 2002
+@@ -65,6 +65,8 @@
+ 
+ static char *Super_Cite_Regexp = "^[^A-Za-z0-9]*\"\\([-_a-zA-Z/]+\\)\" == .+";
+ 
++int Slrn_Visible_Headers_Sorting_Mode = 2;
++
+ static void hide_article_lines (Slrn_Article_Type *a, unsigned int mask) /*{{{*/
+ {
+    Slrn_Article_Line_Type *l;
+@@ -908,6 +910,157 @@
+ 
+ /*}}}*/
+ 
++void _slrn_sort_visible_headers (Slrn_Article_Type *a) /*{{{*/
++{
++   Slrn_Article_Line_Type *l, *lnext, *sorted, *sorted_last;
++   Slrn_Article_Line_Type *sorted_headers, *sorted_headers_last;
++   Visible_Header_Type *sortpos, *sortpos_better;
++   int is_better_match, sort_again;
++   char *colon, *colon_next;
++
++   if (Slrn_Visible_Headers_Sorting_Mode < 1) return;
++
++   sorted_headers = NULL;
++   sorted_headers_last = NULL;
++   sortpos = Visible_Headers;
++   
++   while (sortpos != NULL)
++     {
++	l = a->lines;
++	sorted = NULL;
++	sorted_last = NULL;
++		
++	while ((l != NULL) && (l->flags & HEADER_LINE))
++	  {
++	     lnext = l->next;
++	     if (0 == slrn_case_strncmp ((unsigned char *)l->buf,
++					 (unsigned char *)sortpos->header,
++					 sortpos->len))
++	       {
++		  sortpos_better = sortpos->next;
++		  is_better_match = 0;
++		  while ((sortpos_better != NULL) && (is_better_match == 0))
++		    {
++		       if (0 == slrn_case_strncmp ((unsigned char *)l->buf,
++						   (unsigned char *)sortpos_better->header,
++						   sortpos_better->len))
++			 {
++			    if (sortpos_better->len >= sortpos->len)
++			      is_better_match = 1;
++			 }
++		       sortpos_better = sortpos_better->next;
++		    }
++		  
++		  if (is_better_match == 0)
++		    {
++		       if (l->prev != NULL)
++			 l->prev->next = l->next;
++		       else
++			 a->lines = l->next;
++
++		       if (l->next != NULL)
++			 l->next->prev = l->prev;
++
++		       if (sorted == NULL)
++			 sorted = l;
++		       else
++			 {
++			    sorted_last->next = l;
++			    l->prev = sorted_last;
++			 }
++		       sorted_last = l;
++		    }
++	       }
++	     l = lnext;
++	  }
++    
++	if (Slrn_Visible_Headers_Sorting_Mode > 1)
++	  {
++	     if (sorted != sorted_last)
++	       {
++		  sort_again = 1;
++		  while (sort_again)
++		    {
++		       sort_again = 0;
++		       sorted->prev = NULL;
++		       sorted_last->next = NULL;
++		       l = sorted;
++		       while (l != sorted_last)
++			 {
++			    lnext = l->next;
++
++			    colon = slrn_strchr (l->buf, ':');
++			    if (colon != NULL)
++			      *colon = 0;
++			    
++			    colon_next = slrn_strchr (lnext->buf, ':');
++			    if (colon_next != NULL)
++			      *colon_next = 0;
++			    
++			    if (0 < slrn_case_strcmp ((unsigned char *)l->buf,
++						      (unsigned char *)lnext->buf))
++			      {
++				 sort_again = 1;
++				 if (l->prev != NULL)
++				   l->prev->next = lnext;
++				 else
++				   sorted = lnext;
++				 
++				 lnext->prev = l->prev;
++				 l->prev = lnext;
++				 l->next = lnext->next;
++				 lnext->next = l;
++				 if (l->next != NULL)
++				   l->next->prev = l;
++				 else
++				   sorted_last = l;
++				 
++				 lnext = l;
++			      }
++
++			    if (colon != NULL)
++			      *colon = ':';
++
++			    if (colon_next != NULL)
++			      *colon_next = ':';
++			    
++			    l = lnext;
++			 }
++		    }
++	       }
++	  }
++	
++	if (sorted != NULL)
++	  {
++	     if (sorted_headers == NULL)
++	       {
++		  sorted_headers = sorted;
++		  sorted_headers_last = sorted_last;
++	       }
++	     else
++	       {
++		  sorted_headers->prev = sorted_last;
++		  sorted_last->next = sorted_headers;
++		  sorted_headers = sorted;     
++	       }
++	  }
++	sortpos = sortpos->next;
++     }
++   
++   if (sorted_headers != NULL)
++     {
++	sorted_headers_last->next = a->lines;
++	a->lines->prev = sorted_headers_last;
++	a->lines = sorted_headers;
++	a->cline = sorted_headers;
++	sorted_headers->prev = NULL;
++     }
++
++   return;
++}
++
++/*}}}*/
++
+ int _slrn_art_unfold_header_lines (Slrn_Article_Type *a) /*{{{*/
+ {
+    Slrn_Article_Line_Type *l;
+@@ -952,6 +1105,9 @@
+ 	
+ 	l = l->next;
+      }
++   
++   _slrn_sort_visible_headers (a);
++   
+    return 0;
+ }
+ 
+diff -ur slrn-0.9.7.3.orig/src/startup.c slrn-0.9.7.3/src/startup.c
+--- slrn-0.9.7.3.orig/src/startup.c	Sat Nov  3 16:15:46 2001
++++ slrn-0.9.7.3/src/startup.c	Sat Jan 12 01:35:07 2002
+@@ -521,6 +521,7 @@
+      {"cc_followup", &Slrn_Auto_CC_To_Poster},
+      {"use_tmpdir", &Slrn_Use_Tmpdir},
+      {"sorting_method", &Slrn_Sorting_Mode},
++     {"visible_headers_sorting_method", &Slrn_Visible_Headers_Sorting_Mode},
+      {"uncollapse_threads", &Slrn_Threads_Visible},
+      {"read_active", &Slrn_List_Active_File},
+      {"drop_bogus_groups", &Slrn_Drop_Bogus_Groups},
