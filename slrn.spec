@@ -4,13 +4,12 @@ Summary(fr): Le meilleur lecteur de news du monde (Selon Red Hat tout du moins)
 Summary(pl): £atwy w obs³udze czytnik artyku³ów news
 Summary(tr): Red Hat'in görüþüne göre dünyanýn en iyi haber grubu okuyucusu
 Name:        slrn
-Version:     0.9.5.4
+Version:     0.9.5.5
 Release:     1
 Copyright:   GPL
 Group:       Applications/News
 Source0:     ftp://space.mit.edu/pub/davis/slrn/%{name}%{version}.tar.gz
-Source1:     slrn.wmconfig
-Patch:       %{name}-config.patch
+#Patch:       %{name}-config.patch
 BuildRoot:	/tmp/%{name}-%{version}-root
 
 %description
@@ -55,26 +54,26 @@ nich bez konieczno¶ci utrzymywania sta³ego po³±czenia z serwerem news.
 
 %prep
 %setup -q -n slrn
-%patch -p1
+#%patch -p1
 
 %build
-CFLAGS="$RPM_OPT_FLAGS" \
-slrn_cv_domain=no \
-./configure %{_target_platform} \
-	--prefix=/usr
+slrn_cv_domain=no
+export slrn_cv_domain
+%configure
 make
 make slrnpull
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT/{etc/X11/wmconfig,usr/{bin,lib/slrn,man/man1}}
+install -d $RPM_BUILD_ROOT%{_bindir}
+install -d $RPM_BUILD_ROOT%{_libdir}/slrn
+install -d $RPM_BUILD_ROOT%{_mandir}/man1
 install -d $RPM_BUILD_ROOT/var/spool/slrnpull/out.going
 
 install doc/slrn.rc $RPM_BUILD_ROOT%{_libdir}/slrn
 install doc/slrn.1 $RPM_BUILD_ROOT%{_mandir}/man1/slrn.1
 install src/objs/slrn $RPM_BUILD_ROOT%{_bindir}/slrn
 install src/objs/slrnpull $RPM_BUILD_ROOT%{_bindir}/slrnpull
-install $RPM_SOURCE_DIR/slrn.wmconfig $RPM_BUILD_ROOT/etc/X11/wmconfig/slrn
 
 install slrnpull/slrnpull.conf $RPM_BUILD_ROOT/var/spool/slrnpull
 
@@ -85,7 +84,6 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%config (missingok) /etc/X11/wmconfig/slrn
 %doc doc/{README.GroupLens,README.macros,FAQ,SCORE_FAQ,*.txt,score.sl}
 %attr(755,root,root) %{_bindir}/slrn
 %dir %{_libdir}/slrn
