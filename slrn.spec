@@ -1,15 +1,15 @@
-Summary:     The world's best newsreader (in Red Hat's opinion anyway)
-Summary(de): Der weltbeste Newsreader (Red Hats Meinung)
-Summary(fr): Le meilleur lecteur de news du monde (Selon Red Hat tout du moins)
-Summary(pl): £atwy w obs³udze czytnik artyku³ów news
-Summary(tr): Red Hat'in görüþüne göre dünyanýn en iyi haber grubu okuyucusu
-Name:        slrn
-Version:     0.9.5.5
-Release:     1
-Copyright:   GPL
-Group:       Applications/News
-Source0:     ftp://space.mit.edu/pub/davis/slrn/%{name}%{version}.tar.gz
-#Patch:       %{name}-config.patch
+Summary:	The world's best newsreader (in Red Hat's opinion anyway)
+Summary(de):	Der weltbeste Newsreader (Red Hats Meinung)
+Summary(fr):	Le meilleur lecteur de news du monde (Selon Red Hat tout du moins)
+Summary(pl):	£atwy w obs³udze czytnik artyku³ów news
+Summary(tr):	Red Hat'in görüþüne göre dünyanýn en iyi haber grubu okuyucusu
+Name:		slrn
+Version:	0.9.5.5
+Release:	2
+Copyright:	GPL
+Group:		Applications/News
+Group(pl):	Aplikacje/News
+Source:		ftp://space.mit.edu/pub/davis/slrn/%{name}%{version}.tar.gz
 BuildRoot:	/tmp/%{name}-%{version}-root
 
 %description
@@ -39,66 +39,74 @@ Slrn, kullanýmý kolay, çok yetenekli, tam ekran bir haber okuyucudur.
 Yavaþ að baðlantýlarýnda gayet iyi çalýþýr.
 
 %package pull
-Summary:     Offline news reading support for slrn
-Summary(pl): Program ¶ci±gaj±cy artyku³y z serwera news.
-Group:       Applications/News
-Requires:    %{name} = %{version}
+Summary:	Offline news reading support for slrn
+Summary(pl):	Program ¶ci±gaj±cy artyku³y z serwera news
+Group:		Applications/News
+Group(pl):	Aplikacje/News
+Requires:	%{name} = %{version}
 
 %description pull
 This package provides slrnpull, which allows set up of a small news
 spool for offline news reading.
 
 %description -l pl pull
-Slrnpull umo¿liwia ¶ci±gniêcie artyku³ów news a nastêpnie korzystanie z
-nich bez konieczno¶ci utrzymywania sta³ego po³±czenia z serwerem news.
+Slrnpull umo¿liwia ¶ci±gniêcie artyku³ów , a nastêpnie czytanie ich
+bez konieczno¶ci utrzymywania sta³ego po³±czenia z serwerem news.
 
 %prep
 %setup -q -n slrn
-#%patch -p1
 
 %build
 slrn_cv_domain=no
 export slrn_cv_domain
+
 %configure
 make
 make slrnpull
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT%{_bindir}
-install -d $RPM_BUILD_ROOT%{_libdir}/slrn
-install -d $RPM_BUILD_ROOT%{_mandir}/man1
-install -d $RPM_BUILD_ROOT/var/spool/slrnpull/out.going
+install -d $RPM_BUILD_ROOT{%{_bindir},%{_libdir}/slrn,%{_mandir}/man1} \
+	$RPM_BUILD_ROOT/var/spool/slrnpull/out.going
 
-install doc/slrn.rc $RPM_BUILD_ROOT%{_libdir}/slrn
-install doc/slrn.1 $RPM_BUILD_ROOT%{_mandir}/man1/slrn.1
-install src/objs/slrn $RPM_BUILD_ROOT%{_bindir}/slrn
+install doc/slrn.rc	  $RPM_BUILD_ROOT%{_libdir}/slrn
+install doc/slrn.1	  $RPM_BUILD_ROOT%{_mandir}/man1/slrn.1
+install src/objs/slrn	  $RPM_BUILD_ROOT%{_bindir}/slrn
 install src/objs/slrnpull $RPM_BUILD_ROOT%{_bindir}/slrnpull
 
 install slrnpull/slrnpull.conf $RPM_BUILD_ROOT/var/spool/slrnpull
 
 strip $RPM_BUILD_ROOT%{_bindir}/* || :
 
+gzip -9nf $RPM_BUILD_ROOT%{_mandir}/man1/* \
+	doc/{README.GroupLens,README.macros,FAQ,SCORE_FAQ,*.txt} \
+	slrnpull/{FAQ,QUICK_INSTALL,README}
+
 %clean
 rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc doc/{README.GroupLens,README.macros,FAQ,SCORE_FAQ,*.txt,score.sl}
+%doc doc/{*.gz,score.sl}
 %attr(755,root,root) %{_bindir}/slrn
 %dir %{_libdir}/slrn
 %verify (not md5 size mtime) %{_libdir}/slrn/slrn.rc
-%{_mandir}/man1/slrn.1
+%{_mandir}/man1/*
 
 %files pull
 %defattr(644,root,root,755)
-%doc slrnpull/{FAQ,QUICK_INSTALL,README,score,slrn.rc,slrnpull.sh}
+%doc slrnpull/{*.gz,score,slrn.rc,slrnpull.sh}
 %attr (755,root,root) %{_bindir}/slrnpull
 %attr (775, news, news) %dir /var/spool/slrnpull
 %attr (775, news, news) %dir /var/spool/slrnpull/out.going
 %attr (775, news, news) %config(noreplace) %verify(not size md5 mtime) /var/spool/slrnpull/slrnpull.conf
 
 %changelog
+* Thu Jun 24 1999 Micha³ Kuratczyk <kura@pld.org.pl>
+  [0.9.5.5-2]
+- added Group(pl)
+- added gzipping documentation and man pages
+
 * Thu Sep 10 1998 Tomasz K³oczko <kloczek@rudy.mif.pg.gda.pl>
   [0.9.5.3-1]
 - removed doc/INSTALL from %doc.
