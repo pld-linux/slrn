@@ -11,7 +11,7 @@ Group:       Applications/News
 Source0:     ftp://space.mit.edu/pub/davis/slrn/%{name}%{version}.tar.gz
 Source1:     slrn.wmconfig
 Patch:       %{name}-config.patch
-Buildroot:   /tmp/%{name}-%{version}-root
+BuildRoot:	/tmp/%{name}-%{version}-root
 
 %description
 Slrn is an easy to use but powerful full-screen NNTP based newsreader.
