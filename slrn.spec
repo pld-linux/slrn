@@ -49,13 +49,12 @@ leistungsfähiger Voll-Bildschirm-Newsreader auf NNTP-Basis. Viele
 seiner Funktionen bezieht er aus der S-Lang-Programmierer-Library.
 Seine besondere Stärke ist die Arbeit über langsame Netzwerke.
 
-%description -l pt_BR
-Slrn é um leitor de notícias baseado em NNTP fácil de usar mas
-poderoso com tela cheia. Ele utiliza a biblioteca de programadores
-S-Lang para várias das suas características. Slrn trabalha
-particularmente bem com conexões lentas de rede.
-
 %description -l es
+Slrn es un lector de news basado en NNTP fácil de usar, pero potente
+con pantalla llena. Utiliza la biblioteca de programadores S-Lang para
+varias de sus características. Slrn trabaja en especial con conexiones
+lentas de red.
+
 %description -l fr
 slrn et un lecteur de news NNTP plein écran facile à utiliser mais
 puissant. Il s'appuie beaucoup sur la bibliothèque S-Lang pour ses
@@ -67,10 +66,11 @@ slrn jest wygodnym w obs³udze i ergonomicznym czytnikiem artyku³ów
 news. £adny wygl±d zapewnia mu wykorzystanie biblioteki S-Lang. slrn
 znakomicie sprawdza siê zw³aszcza na zapchanych i wolnych ³±czach.
 
-Slrn es un lector de news basado en NNTP fácil de usar, pero potente
-con pantalla llena. Utiliza la biblioteca de programadores S-Lang para
-varias de sus características. Slrn trabaja en especial con conexiones
-lentas de red.
+%description -l pt_BR
+Slrn é um leitor de notícias baseado em NNTP fácil de usar mas
+poderoso com tela cheia. Ele utiliza a biblioteca de programadores
+S-Lang para várias das suas características. Slrn trabalha
+particularmente bem com conexões lentas de rede.
 
 %description -l tr
 slrn, kullanýmý kolay, çok yetenekli, tam ekran bir haber okuyucudur.
@@ -90,14 +90,14 @@ Requires:	%{name} = %{version}
 This package provides slrnpull, which allows set up of a small news
 spool for offline news reading.
 
-%description -l es pull
+%description pull -l es
 Soporte para lectura de noticias "offline" para slm
 
 %description pull -l pl
 Slrnpull umo¿liwia ¶ci±gniêcie artyku³ów, a nastêpnie czytanie ich bez
 konieczno¶ci utrzymywania sta³ego po³±czenia z serwerem news.
 
-%description -l pt_BR pull
+%description pull -l pt_BR
 Este pacote provê o slrnpull, que permite a configuração de um pequeno
 spool de notícias, para leitura "offline".
 
