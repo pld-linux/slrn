@@ -123,7 +123,8 @@ spool de notícias, para leitura "offline".
 %build
 rm -f autoconf/missing
 aclocal -I autoconf
-autoheader
+# ac2.53 || ac2.52
+autoheader -I src/ || autoheader
 autoconf
 automake -a -c -f
 INEWS="%{_bindir}/inews"; SENDMAIL="/usr/lib/sendmail"
