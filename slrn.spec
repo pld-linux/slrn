@@ -10,7 +10,7 @@ Copyright:	GPL
 Group:		Applications/News
 Group(pl):	Aplikacje/News
 Source:		ftp://space.mit.edu/pub/davis/slrn/%{name}-%{version}.tar.bz2
-BuildPrereq:	slang-devel
+BuildRequires:	slang-devel
 BuildRoot:	/tmp/%{name}-%{version}-root
 
 %description
