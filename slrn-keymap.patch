@@ -1,7 +1,7 @@
 diff -Nur slrn-0.9.7.1.orig/doc/slrn.rc slrn-0.9.7.1/doc/slrn.rc
 --- slrn-0.9.7.1.orig/doc/slrn.rc	Wed Jun  6 21:26:07 2001
 +++ slrn-0.9.7.1/doc/slrn.rc	Sun Jun 10 18:52:34 2001
-@@ -356,26 +356,21 @@
+@@ -357,26 +357,21 @@
  %
  
  % Cursor movement:
@@ -34,7 +34,7 @@ diff -Nur slrn-0.9.7.1.orig/doc/slrn.rc slrn-0.9.7.1/doc/slrn.rc
  setkey group group_search_backward "\\"% Group keyword search backward
  setkey group group_search_forward  "/" % Group keyword search forward
  
-@@ -401,7 +396,7 @@
+@@ -403,7 +398,7 @@
  setkey group save_newsrc      "X"      % Force a save of the newsrc file
  
  % Display:
@@ -43,7 +43,7 @@ diff -Nur slrn-0.9.7.1.orig/doc/slrn.rc slrn-0.9.7.1/doc/slrn.rc
  setkey group toggle_hidden    "l"      % Toggle display of hidden groups
  setkey group toggle_list_all  "L"      % Toggle listing of unsubscribed groups
  setkey group redraw           "^L"     % Redraw the screen
-@@ -416,10 +411,8 @@
+@@ -418,10 +413,8 @@
  setkey article next                    "n"  % next unread article
  setkey article previous                "p"  % previous unread article
  setkey article skip_to_next_group      "N"  % go to the next group
@@ -56,7 +56,7 @@ diff -Nur slrn-0.9.7.1.orig/doc/slrn.rc slrn-0.9.7.1/doc/slrn.rc
  setkey article next_high_score         "!"  % next article with high score
  setkey article next_same_subject       "="  % next article with same subject
  setkey article goto_last_read          "L"  % go to the last read article
-@@ -441,37 +434,29 @@
+@@ -443,37 +436,29 @@
  setkey article fast_quit            "Q"		% Quit slrn immediately
  
  % Moving in the article pager:
@@ -102,7 +102,7 @@ diff -Nur slrn-0.9.7.1.orig/doc/slrn.rc slrn-0.9.7.1/doc/slrn.rc
  setkey article header_page_up        "^U"
  setkey article header_eob            "\e>"	% Go to last article in group
  setkey article header_bob            "\e<"	% Go to first article in group
-@@ -533,8 +518,8 @@
+@@ -536,8 +521,8 @@
  
  setkey readline bol		 "^A"		% Beginning of line
  setkey readline eol		 "^E"		% End of line
@@ -113,7 +113,7 @@ diff -Nur slrn-0.9.7.1.orig/doc/slrn.rc slrn-0.9.7.1/doc/slrn.rc
  setkey readline bdel		 "^H"		% Delete backward
  setkey readline bdel		 "^?"		% Delete Backward
  setkey readline del		 "^D"		% Delete Foreword
-@@ -544,11 +529,11 @@
+@@ -551,11 +536,11 @@
  
  % This is a special hack for HP terminals to get the arrow keys working.  
  % Are there any other terminals being used with non-ANSI arrow keys?
@@ -136,7 +136,7 @@ diff -Nur slrn-0.9.7.1.orig/doc/slrn.rc slrn-0.9.7.1/doc/slrn.rc
 diff -Nur slrn-0.9.7.1.orig/src/art.c slrn-0.9.7.1/src/art.c
 --- slrn-0.9.7.1.orig/src/art.c	Tue Jun  5 16:56:23 2001
 +++ slrn-0.9.7.1/src/art.c	Sun Jun 10 18:40:43 2001
-@@ -7570,22 +7570,14 @@
+@@ -6983,22 +6983,14 @@
     SLkm_define_key  ("^@K", (FVOID_STAR) art_left, Slrn_Article_Keymap);
     SLkm_define_key  ("\xE0K", (FVOID_STAR) art_left, Slrn_Article_Keymap);
  #else
@@ -167,7 +167,7 @@ diff -Nur slrn-0.9.7.1.orig/src/art.c slrn-0.9.7.1/src/art.c
  #endif
     SLkm_define_key  ("\033S", (FVOID_STAR) toggle_sort, Slrn_Article_Keymap);
     SLkm_define_key  ("^U", (FVOID_STAR) header_pageup, Slrn_Article_Keymap);
-@@ -7596,10 +7588,8 @@
+@@ -7008,10 +7000,8 @@
     SLkm_define_key  ("^@Q", (FVOID_STAR) header_pagedn, Slrn_Article_Keymap);
     SLkm_define_key  ("\xE0Q", (FVOID_STAR) header_pagedn, Slrn_Article_Keymap);
  #else
@@ -183,7 +183,7 @@ diff -Nur slrn-0.9.7.1.orig/src/art.c slrn-0.9.7.1/src/art.c
 diff -Nur slrn-0.9.7.1.orig/src/group.c slrn-0.9.7.1/src/group.c
 --- slrn-0.9.7.1.orig/src/group.c	Fri Jun  1 21:24:23 2001
 +++ slrn-0.9.7.1/src/group.c	Sun Jun 10 18:42:22 2001
-@@ -1910,10 +1910,8 @@
+@@ -2041,10 +2041,8 @@
     SLkm_define_key ("\0338", (FVOID_STAR) slrn_digit_arg, Slrn_Group_Keymap);
     SLkm_define_key ("\0339", (FVOID_STAR) slrn_digit_arg, Slrn_Group_Keymap);
     SLkm_define_key ("\0330", (FVOID_STAR) slrn_digit_arg, Slrn_Group_Keymap);
@@ -196,7 +196,7 @@ diff -Nur slrn-0.9.7.1.orig/src/group.c slrn-0.9.7.1/src/group.c
     SLkm_define_key  ("\033a", (FVOID_STAR) toggle_group_formats, Slrn_Group_Keymap);
     SLkm_define_key  ("\033>", (FVOID_STAR) group_eob, Slrn_Group_Keymap);
     SLkm_define_key  ("\033<", (FVOID_STAR) group_bob, Slrn_Group_Keymap);
-@@ -1925,10 +1923,8 @@
+@@ -2056,10 +2054,8 @@
     SLkm_define_key  ("^@I", (FVOID_STAR) group_pageup, Slrn_Group_Keymap);
     SLkm_define_key  ("\xE0I", (FVOID_STAR) group_pageup, Slrn_Group_Keymap);   
  #else
@@ -209,7 +209,7 @@ diff -Nur slrn-0.9.7.1.orig/src/group.c slrn-0.9.7.1/src/group.c
  #endif
     SLkm_define_key  ("m", (FVOID_STAR) move_group_cmd, Slrn_Group_Keymap);
     SLkm_define_key  ("^U", (FVOID_STAR) group_pageup, Slrn_Group_Keymap);
-@@ -1961,10 +1957,8 @@
+@@ -2092,10 +2088,8 @@
     SLkm_define_key  ("^@P", (FVOID_STAR) group_down, Slrn_Group_Keymap);
     SLkm_define_key  ("\xE0P", (FVOID_STAR) group_down, Slrn_Group_Keymap);
  #else
@@ -225,7 +225,7 @@ diff -Nur slrn-0.9.7.1.orig/src/group.c slrn-0.9.7.1/src/group.c
 diff -Nur slrn-0.9.7.1.orig/src/menu.c slrn-0.9.7.1/src/menu.c
 --- slrn-0.9.7.1.orig/src/menu.c	Wed Jun  6 14:07:14 2001
 +++ slrn-0.9.7.1/src/menu.c	Sun Jun 10 18:31:14 2001
-@@ -685,13 +685,11 @@
+@@ -747,13 +747,11 @@
  	SLkm_define_key  ("^@K", (FVOID_STAR) sl_left, Select_List_Keymap);
  	SLkm_define_key  ("\xE0K", (FVOID_STAR) sl_left, Select_List_Keymap);
  #else

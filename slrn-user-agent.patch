@@ -9,7 +9,7 @@ diff -Nur slrn-0.9.7.1.orig/macros/uname.sl slrn-0.9.7.1/macros/uname.sl
 diff -Nur slrn-0.9.7.1.orig/src/misc.h slrn-0.9.7.1/src/misc.h
 --- slrn-0.9.7.1.orig/src/misc.h	Tue May 22 14:40:28 2001
 +++ slrn-0.9.7.1/src/misc.h	Sun Jun 10 19:00:03 2001
-@@ -73,6 +73,8 @@
+@@ -77,6 +77,8 @@
     char *signature;
     char *posting_host;		       /* FQDN or NULL */
     char *login_name;
@@ -18,10 +18,10 @@ diff -Nur slrn-0.9.7.1.orig/src/misc.h slrn-0.9.7.1/src/misc.h
  }
  Slrn_User_Info_Type;
  
-diff -Nur slrn-0.9.7.3.orig/src/post.c slrn-0.9.7.1/src/post.c
---- slrn-0.9.7.3.orig/src/post.c	Sat May 26 20:35:02 2001
-+++ slrn-0.9.7.3/src/post.c	Sun Jun 10 19:44:10 2001
-@@ -653,6 +653,7 @@
+diff -Nur slrn-0.9.7.1.orig/src/post.c slrn-0.9.7.1/src/post.c
+--- slrn-0.9.7.1.orig/src/post.c	Sat May 26 20:35:02 2001
++++ slrn-0.9.7.1/src/post.c	Sun Jun 10 19:44:10 2001
+@@ -695,6 +695,7 @@
     char line [MAX_LINE_BUFLEN];
     char *system_os_name;
     int has_from = 0, has_messageid = 0, header = 1;
@@ -29,7 +29,7 @@ diff -Nur slrn-0.9.7.3.orig/src/post.c slrn-0.9.7.1/src/post.c
  
     if ((save_file == NULL) || (*save_file == 0))
       return 0;
-@@ -705,8 +706,15 @@
+@@ -755,8 +756,15 @@
  		  if (Slrn_Use_Mime & MIME_ARCHIVE)
  		    slrn_mime_add_headers (outfp);
  #endif
@@ -47,7 +47,7 @@ diff -Nur slrn-0.9.7.3.orig/src/post.c slrn-0.9.7.1/src/post.c
  			   system_os_name);
  		  header = 0;
  	       }
-@@ -849,14 +857,21 @@
+@@ -912,14 +920,21 @@
     int filter_hook;
  #endif
     int once_more;
@@ -71,7 +71,7 @@ diff -Nur slrn-0.9.7.3.orig/src/post.c slrn-0.9.7.1/src/post.c
  
     try_again:
  
-@@ -1086,7 +1101,7 @@
+@@ -1193,7 +1208,7 @@
  		  if (Slrn_Use_Mime & MIME_DISPLAY)
  		    slrn_mime_add_headers (0);   /* 0 --> Slrn_Post_Obj->po_puts */
  #endif
@@ -83,7 +83,7 @@ diff -Nur slrn-0.9.7.3.orig/src/post.c slrn-0.9.7.1/src/post.c
 diff -Nur slrn-0.9.7.1.orig/src/startup.c slrn-0.9.7.1/src/startup.c
 --- slrn-0.9.7.1.orig/src/startup.c	Thu May 24 13:40:11 2001
 +++ slrn-0.9.7.1/src/startup.c	Sun Jun 10 19:00:04 2001
-@@ -636,6 +636,8 @@
+@@ -646,6 +646,8 @@
       {"followup_custom_headers", &Slrn_Followup_Custom_Headers},
       {"reply_custom_headers", &Slrn_Reply_Custom_Headers},
       {"supersedes_custom_headers", &Slrn_Supersedes_Custom_Headers},
@@ -92,14 +92,3 @@ diff -Nur slrn-0.9.7.1.orig/src/startup.c slrn-0.9.7.1/src/startup.c
  #if SLRN_HAS_GROUPLENS
       {"grouplens_pseudoname", &Slrn_GroupLens_Pseudoname},
       {"grouplens_host", &Slrn_GroupLens_Host},
---- slrn-0.9.7.3/Makefile.am.orig	Sat Nov  3 16:12:48 2001
-+++ slrn-0.9.7.3/Makefile.am	Fri Nov 23 20:29:11 2001
-@@ -11,7 +11,7 @@
- MACROS = macros/color.sl macros/gsort.sl macros/ispell.sl \
-  macros/latin2.sl macros/multipart.sl macros/nn.sl macros/posthook.sl \
-  macros/search.sl macros/tin-art.sl macros/tin-group.sl macros/ttyprint.sl \
-- macros/util.sl macros/varset.sl macros/xcomment.sl
-+ macros/util.sl macros/varset.sl macros/xcomment.sl macros/uname.sl
- 
- CONTRIB = contrib/cleanscore contrib/slrnrc-conv
- CONTRIBDOCS = contrib/README.cleanscore contrib/README.slrnrc-conv \

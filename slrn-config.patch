@@ -1,7 +1,7 @@
 diff -Nur slrn-0.9.6.4pl4c.orig/src/slrnconf.h slrn-0.9.6.4pl4c/src/slrnconf.h
 --- slrn-0.9.6.4pl4c.orig/src/slrnconf.h	Fri Mar 16 21:38:43 2001
 +++ slrn-0.9.6.4pl4c/src/slrnconf.h	Fri Mar 30 14:17:50 2001
-@@ -49,13 +49,13 @@
+@@ -53,13 +53,13 @@
  #define SLRN_HAS_VERBATIM_MARKS		1
  
  /* define if you want grouplens (R.I.P.) support */
@@ -17,9 +17,9 @@ diff -Nur slrn-0.9.6.4pl4c.orig/src/slrnconf.h slrn-0.9.6.4pl4c/src/slrnconf.h
  
  /* define if slrn should use In-Reply-To if no References are available */
  #define SLRN_HAS_FAKE_REFS		1
-diff -Nur slrn-0.9.7.3.orig/src/slrnfeat.h slrn-0.9.7.3/src/slrnfeat.h
---- slrn-0.9.7.3.orig/src/slrnfeat.h	Sun Mar 11 21:55:57 2001
-+++ slrn-0.9.7.3/src/slrnfeat.h	Fri Mar 30 14:21:50 2001
+diff -Nur slrn-0.9.6.4pl4c.orig/src/slrnfeat.h slrn-0.9.6.4pl4c/src/slrnfeat.h
+--- slrn-0.9.6.4pl4c.orig/src/slrnfeat.h	Sun Mar 11 21:55:57 2001
++++ slrn-0.9.6.4pl4c/src/slrnfeat.h	Fri Mar 30 14:21:50 2001
 @@ -59,8 +59,8 @@
    /* Note the -S flag.  slrn appends the signature to the file to be posted and
     * the -S flag tells inews not to also do this.  The -h flag must be used. */
@@ -30,7 +30,7 @@ diff -Nur slrn-0.9.7.3.orig/src/slrnfeat.h slrn-0.9.7.3/src/slrnfeat.h
  #endif
  
  #if SLRN_HAS_SPOOL_SUPPORT || defined(SLRNPULL_CODE)
-@@ -162,7 +162,7 @@
+@@ -170,7 +170,7 @@
  /* #define OUR_ORGANIZATION "organization-name" */
  /* #define OUR_HOSTNAME "host.name.here" */
  /* #define NNTPSERVER_NAME  "my.server.name" */
@@ -39,7 +39,7 @@ diff -Nur slrn-0.9.7.3.orig/src/slrnfeat.h slrn-0.9.7.3/src/slrnfeat.h
  
  #if SLRN_HAS_GROUPLENS
  # undef SLRN_USE_SLTCP
-@@ -172,7 +172,7 @@
+@@ -180,7 +180,7 @@
  /* The rest of the files apply to slrnpull. */
  
  /* This must be set to an absolute pathname. */
@@ -48,3 +48,15 @@ diff -Nur slrn-0.9.7.3.orig/src/slrnfeat.h slrn-0.9.7.3/src/slrnfeat.h
  
  /* The remaing variables are specified as relative names with respect to the
   * SLRNPULL_ROOT_DIR.
+diff -Nur slrn-0.9.6.4pl4c.orig/acconfig.h slrn-0.9.6.4pl4c/acconfig.h
+--- slrn-0.9.6.4pl4c.orig/acconfig.h	Sun Mar 11 21:55:57 2001
++++ slrn-0.9.6.4pl4c/acconfig.h	Fri Mar 30 14:21:50 2001
+@@ -65,7 +65,7 @@
+ #undef SLRN_SENDMAIL_COMMAND
+ 
+ /* Whether you want the "setgid" patch to work (docs/slrnpull/setgid.txt) */
+-#define SLRNPULL_USE_SETGID_POSTS	0
++#define SLRNPULL_USE_SETGID_POSTS	1
+ 
+ /* Define if NLS is requested */
+ #undef ENABLE_NLS

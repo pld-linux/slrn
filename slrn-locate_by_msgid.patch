@@ -1,7 +1,7 @@
 diff -urN slrn-0.9.7.3.orig/src/art.c slrn-0.9.7.3/src/art.c
 --- slrn-0.9.7.3.orig/src/art.c	Sat Nov  3 21:48:57 2001
 +++ slrn-0.9.7.3/src/art.c	Mon Nov  5 18:47:19 2001
-@@ -6537,6 +6537,11 @@
+@@ -5666,6 +5666,11 @@
  	*buf = '<';
  	msgid = buf;
       }

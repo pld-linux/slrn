@@ -16,14 +16,14 @@ diff -ur slrn-0.9.7.3.orig/doc/slrn.rc slrn-0.9.7.3/doc/slrn.rc
 diff -ur slrn-0.9.7.3.orig/src/art.h slrn-0.9.7.3/src/art.h
 --- slrn-0.9.7.3.orig/src/art.h	Sat Nov  3 16:15:54 2001
 +++ slrn-0.9.7.3/src/art.h	Sat Jan 12 01:35:07 2002
-@@ -50,6 +50,7 @@
+@@ -47,6 +47,7 @@
+ extern int Slrn_Auto_CC_To_Poster;
  extern int Slrn_Score_After_XOver;
  extern int Slrn_Use_Tmpdir;
- extern int Slrn_Sorting_Mode;
 +extern int Slrn_Visible_Headers_Sorting_Mode;
- extern int Slrn_Threads_Visible;
  extern int Slrn_Wrap_Mode;
  extern int Slrn_Wrap_Method;
+ extern int Slrn_Use_Header_Numbers;
 diff -ur slrn-0.9.7.3.orig/src/art_misc.c slrn-0.9.7.3/src/art_misc.c
 --- slrn-0.9.7.3.orig/src/art_misc.c	Sat Nov  3 16:15:53 2001
 +++ slrn-0.9.7.3/src/art_misc.c	Sat Jan 12 01:35:07 2002
@@ -207,11 +207,11 @@ diff -ur slrn-0.9.7.3.orig/src/art_misc.c slrn-0.9.7.3/src/art_misc.c
 diff -ur slrn-0.9.7.3.orig/src/startup.c slrn-0.9.7.3/src/startup.c
 --- slrn-0.9.7.3.orig/src/startup.c	Sat Nov  3 16:15:46 2001
 +++ slrn-0.9.7.3/src/startup.c	Sat Jan 12 01:35:07 2002
-@@ -521,6 +521,7 @@
+@@ -520,6 +520,7 @@
       {"cc_followup", &Slrn_Auto_CC_To_Poster},
       {"use_tmpdir", &Slrn_Use_Tmpdir},
       {"sorting_method", &Slrn_Sorting_Mode},
 +     {"visible_headers_sorting_method", &Slrn_Visible_Headers_Sorting_Mode},
+      {"custom_sort_by_threads", &Slrn_Sort_By_Threads},
       {"uncollapse_threads", &Slrn_Threads_Visible},
       {"read_active", &Slrn_List_Active_File},
-      {"drop_bogus_groups", &Slrn_Drop_Bogus_Groups},
