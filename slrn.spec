@@ -5,7 +5,7 @@ Summary(pl):	£atwy w obs³udze czytnik artyku³ów news
 Summary(tr):	Red Hat'in görüþüne göre dünyanýn en iyi haber grubu okuyucusu
 Name:		slrn
 Version:	0.9.7.3
-Release:	3
+Release:	4
 License:	GPL
 Group:		Applications/News
 Group(de):	Applikationen/News
@@ -149,10 +149,9 @@ rm -rf $RPM_BUILD_ROOT
 %attr(2754,root,news) %{_bindir}/slrnpull
 %defattr(664,news,news,755)
 %dir %{_var}/spool/slrnpull
-%dir %{_var}/spool/slrnpull/data
-%attr(644,news,news) %{_var}/spool/slrnpull/data/active
-%attr(2755,news,news) %dir %{_var}/spool/slrnpull/news
+%{_var}/spool/slrnpull/data
+%attr(2775,news,news) %dir %{_var}/spool/slrnpull/news
 %attr(3775,news,news) %dir %{_var}/spool/slrnpull/out.going
 %attr(3775,news,news) %dir %{_var}/spool/slrnpull/out.going/rejects
-%attr(640,news,news) %ghost %{_var}/spool/slrnpull/log
+%attr(660,news,news) %ghost %{_var}/spool/slrnpull/log
 %config(noreplace) %verify(not md5 size mtime) %{_var}/spool/slrnpull/slrnpull.conf
