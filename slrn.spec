@@ -125,8 +125,8 @@ rm -f autoconf/missing
 aclocal -I autoconf
 # ac2.53 || ac2.52
 autoheader -I src/ || autoheader
-autoconf
-automake -a -c -f
+%{__autoconf}
+%{__automake}
 INEWS="%{_bindir}/inews"; SENDMAIL="/usr/lib/sendmail"
 export INEWS SENDMAIL
 
