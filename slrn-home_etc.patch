@@ -1,15 +1,15 @@
-diff -ruN slrn-0.9.6.2.orig/slrn.lis slrn-0.9.6.2/slrn.lis
+diff -urN slrn-0.9.6.2.orig/slrn.lis slrn-0.9.6.2/slrn.lis
 --- slrn-0.9.6.2.orig/slrn.lis	Thu Dec 23 18:24:31 1999
-+++ slrn-0.9.6.2/slrn.lis	Sat Mar 25 22:29:38 2000
++++ slrn-0.9.6.2/slrn.lis	Thu Apr 20 17:02:51 2000
 @@ -136,3 +136,5 @@
  @src/sortdate.c
  @src/slrndir.c
  @src/slrndir.h
 +@src/userdir.c
 +@src/userdir.h
-diff -ruN slrn-0.9.6.2.orig/src/modules.lis slrn-0.9.6.2/src/modules.lis
+diff -urN slrn-0.9.6.2.orig/src/modules.lis slrn-0.9.6.2/src/modules.lis
 --- slrn-0.9.6.2.orig/src/modules.lis	Thu Dec 23 18:24:42 1999
-+++ slrn-0.9.6.2/src/modules.lis	Sat Mar 25 22:38:01 2000
++++ slrn-0.9.6.2/src/modules.lis	Thu Apr 20 17:02:51 2000
 @@ -13,6 +13,7 @@
  score
  server
@@ -18,9 +18,9 @@ diff -ruN slrn-0.9.6.2.orig/src/modules.lis slrn-0.9.6.2/src/modules.lis
  slrn
  startup
  ttymsg
-diff -ruN slrn-0.9.6.2.orig/src/slrn.c slrn-0.9.6.2/src/slrn.c
+diff -urN slrn-0.9.6.2.orig/src/slrn.c slrn-0.9.6.2/src/slrn.c
 --- slrn-0.9.6.2.orig/src/slrn.c	Thu Dec 23 18:24:38 1999
-+++ slrn-0.9.6.2/src/slrn.c	Sat Mar 25 22:58:25 2000
++++ slrn-0.9.6.2/src/slrn.c	Thu Apr 20 17:37:28 2000
 @@ -67,6 +67,8 @@
  #include <slang.h>
  #include "jdmacros.h"
@@ -30,7 +30,7 @@ diff -ruN slrn-0.9.6.2.orig/src/slrn.c slrn-0.9.6.2/src/slrn.c
  
  #include <errno.h>
  
-@@ -966,7 +968,21 @@
+@@ -966,7 +968,22 @@
     int use_active = 0;
     FILE *fp;
     char file [SLRN_MAX_PATH_LEN];
@@ -38,6 +38,7 @@ diff -ruN slrn-0.9.6.2.orig/src/slrn.c slrn-0.9.6.2/src/slrn.c
 +   char *init_file;
 +
 +   struct cfv etcfile;
++   struct cfv newsfile;
 +   etcfile.variable = "CONFIG_DIR";
 +   etcfile.home_dir = NULL;
 +   etcfile.home_scd = NULL;
@@ -46,16 +47,36 @@ diff -ruN slrn-0.9.6.2.orig/src/slrn.c slrn-0.9.6.2/src/slrn.c
 +   etcfile.suffix = "";
 +   etcfile.mode = M_REGULAR_FILE;
 +
-+   if ((usercfv (&etcfile)) != -1)
++   if ((notnullusercfv (&etcfile)) != -1)
 +       init_file = etcfile.result;
 +   else
 +       init_file = SLRN_USER_SLRNRC_FILENAME;
  
  #ifdef HAVE_SETLOCALE
  # ifdef LC_CTYPE
-diff -ruN slrn-0.9.6.2.orig/src/userdir.c slrn-0.9.6.2/src/userdir.c
+@@ -1188,7 +1205,18 @@
+ #if defined(VMS) || defined(IBMPC_SYSTEM)
+      Slrn_Newsrc_File = "jnews.rc";
+ #else
+-   Slrn_Newsrc_File = ".jnewsrc";
++   newsfile.variable = "CONFIG_DIR";
++   newsfile.home_dir = NULL;
++   newsfile.home_scd = NULL;
++   newsfile.subname = "jnewsrc";
++   newsfile.prefix = ".";
++   newsfile.suffix = "";
++   newsfile.mode = M_REGULAR_FILE;
++
++   if ((notnullusercfv (&newsfile)) != -1)
++       Slrn_Newsrc_File = newsfile.result;
++   else
++       Slrn_Newsrc_File = ".jnewsrc";
+ #endif
+    slrn_message_now ("Using newsrc file %s for server %s.",
+ 		     Slrn_Newsrc_File, Slrn_Server_Obj->sv_name);
+diff -urN slrn-0.9.6.2.orig/src/userdir.c slrn-0.9.6.2/src/userdir.c
 --- slrn-0.9.6.2.orig/src/userdir.c	Thu Jan  1 01:00:00 1970
-+++ slrn-0.9.6.2/src/userdir.c	Mon Feb 21 07:40:50 2000
++++ slrn-0.9.6.2/src/userdir.c	Thu Apr 20 17:02:51 2000
 @@ -0,0 +1,380 @@
 +// $Id$
 +#include "userdir.h"
@@ -437,9 +458,9 @@ diff -ruN slrn-0.9.6.2.orig/src/userdir.c slrn-0.9.6.2/src/userdir.c
 +}
 +
 +/******************************************************************************/
-diff -ruN slrn-0.9.6.2.orig/src/userdir.h slrn-0.9.6.2/src/userdir.h
+diff -urN slrn-0.9.6.2.orig/src/userdir.h slrn-0.9.6.2/src/userdir.h
 --- slrn-0.9.6.2.orig/src/userdir.h	Thu Jan  1 01:00:00 1970
-+++ slrn-0.9.6.2/src/userdir.h	Mon Feb 21 07:40:50 2000
++++ slrn-0.9.6.2/src/userdir.h	Thu Apr 20 17:02:51 2000
 @@ -0,0 +1,153 @@
 +// $Id$
 +#ifndef USERDIR__H
