@@ -58,7 +58,10 @@ nich bez konieczno¶ci utrzymywania sta³ego po³±czenia z serwerem news.
 %patch -p1
 
 %build
-CFLAGS=$RPM_OPT_FLAGS slrn_cv_domain=no ./configure --prefix=/usr
+CFLAGS="$RPM_OPT_FLAGS" \
+slrn_cv_domain=no \
+./configure %{_target} \
+	--prefix=/usr
 make
 make slrnpull
 
