@@ -92,3 +92,14 @@ diff -Nur slrn-0.9.7.1.orig/src/startup.c slrn-0.9.7.1/src/startup.c
  #if SLRN_HAS_GROUPLENS
       {"grouplens_pseudoname", &Slrn_GroupLens_Pseudoname},
       {"grouplens_host", &Slrn_GroupLens_Host},
+--- slrn-0.9.7.3/Makefile.am.orig	Sat Nov  3 16:12:48 2001
++++ slrn-0.9.7.3/Makefile.am	Fri Nov 23 20:29:11 2001
+@@ -11,7 +11,7 @@
+ MACROS = macros/color.sl macros/gsort.sl macros/ispell.sl \
+  macros/latin2.sl macros/multipart.sl macros/nn.sl macros/posthook.sl \
+  macros/search.sl macros/tin-art.sl macros/tin-group.sl macros/ttyprint.sl \
+- macros/util.sl macros/varset.sl macros/xcomment.sl
++ macros/util.sl macros/varset.sl macros/xcomment.sl macros/uname.sl
+ 
+ CONTRIB = contrib/cleanscore contrib/slrnrc-conv
+ CONTRIBDOCS = contrib/README.cleanscore contrib/README.slrnrc-conv \
