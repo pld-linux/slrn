@@ -1,0 +1,3 @@
+- updated to 0.9.7.0a, updated Source0 URL, removed obsolete patches
+- updated ipv6 (needs testing!), config, keymap patches
+- slrn.rc moved to /etc, added %verify(not size mtime md5)
