@@ -39,7 +39,7 @@ BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	gettext-devel
 BuildRequires:	slang-devel
-%{?_with_ssl:BuildRequires:	openssl-devel}
+%{?_with_ssl:BuildRequires:	openssl-devel >= 0.9.6m}
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
