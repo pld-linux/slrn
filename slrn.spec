@@ -4,7 +4,7 @@ Summary(fr):	Le meilleur lecteur de news du monde (Selon Red Hat tout du moins)
 Summary(pl):	£atwy w obs³udze czytnik artyku³ów news
 Summary(tr):	Red Hat'in görüþüne göre dünyanýn en iyi haber grubu okuyucusu
 Name:		slrn
-Version:	0.9.6.0
+Version:	0.9.6.2
 Release:	3
 Copyright:	GPL
 Group:		Applications/News
@@ -12,7 +12,6 @@ Group(pl):	Aplikacje/News
 URL:		http://www.slrn.org
 Source:		ftp://space.mit.edu/pub/davis/slrn/%{name}-%{version}.tar.bz2
 Patch0:		slrn-keymap.patch
-Patch1:		slrn-DESTDIR.patch
 BuildRequires:	slang-devel
 BuildRoot:	/tmp/%{name}-%{version}-root
 
@@ -62,7 +61,6 @@ bez konieczno¶ci utrzymywania sta³ego po³±czenia z serwerem news.
 %prep
 %setup  -q
 %patch0 -p1
-%patch1 -p1
 
 %build
 slrn_cv_domain=no
@@ -78,6 +76,10 @@ make slrnpull
 rm -rf $RPM_BUILD_ROOT
 
 make install DESTDIR=$RPM_BUILD_ROOT
+
+install -d $RPM_BUILD_ROOT/var/spool/slrnpull/out.going
+install slrnpull/slrnpull.conf $RPM_BUILD_ROOT/var/spool/slrnpull
+install doc/slrn.rc $RPM_BUILD_ROOT%{_libdir}/slrn
 
 gzip -9nf $RPM_BUILD_ROOT%{_mandir}/man1/* \
 	doc/{README.GroupLens,README.macros,FAQ,SCORE_FAQ,{help,score,slrnfuns}.txt} \
