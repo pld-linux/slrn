@@ -83,7 +83,7 @@ rm -rf $RPM_BUILD_ROOT
 %files
 %defattr(644, root, root, 755)
 %config (missingok) /etc/X11/wmconfig/slrn
-%doc doc/{README.GroupLens,README.macros,FAQ,SCORE_FAQ,doc/*.txt,doc/score.sl}
+%doc doc/{README.GroupLens,README.macros,FAQ,SCORE_FAQ,*.txt,score.sl}
 %attr(755, root, root) /usr/bin/slrn
 %dir /usr/lib/slrn
 %verify (not md5 size mtime) /usr/lib/slrn/slrn.rc
