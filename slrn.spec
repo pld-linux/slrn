@@ -116,8 +116,8 @@ install %{SOURCE1} $RPM_BUILD_ROOT%{_mandir}/pl/man1/slrn.1
 install %{SOURCE2} $RPM_BUILD_ROOT%{_applnkdir}/Network/News
 install %{SOURCE3} $RPM_BUILD_ROOT%{_pixmapsdir}
 install %{SOURCE4} $RPM_BUILD_ROOT/etc/logrotate.d/slrn-pull
-touch $RPM_BUILD_ROOT%{_var}/spool/slrnpull/data/active
-touch $RPM_BUILD_ROOT%{_var}/spool/slrnpull/log
+> $RPM_BUILD_ROOT%{_var}/spool/slrnpull/data/active
+> $RPM_BUILD_ROOT%{_var}/spool/slrnpull/log
 
 install doc/slrnpull/slrnpull.conf $RPM_BUILD_ROOT%{_var}/spool/slrnpull
 install doc/slrn.rc $RPM_BUILD_ROOT%{_sysconfdir}
