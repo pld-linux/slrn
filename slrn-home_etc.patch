@@ -1,15 +1,15 @@
-diff -urN slrn-0.9.6.2.orig/slrn.lis slrn-0.9.6.2/slrn.lis
---- slrn-0.9.6.2.orig/slrn.lis	Thu Dec 23 18:24:31 1999
-+++ slrn-0.9.6.2/slrn.lis	Thu Apr 20 17:02:51 2000
-@@ -136,3 +136,5 @@
- @src/sortdate.c
- @src/slrndir.c
+diff -Nru slrn-0.9.6.3/slrn.lis slrn-0.9.6.3.new/slrn.lis
+--- slrn-0.9.6.3/slrn.lis	Mon Sep 18 09:03:13 2000
++++ slrn-0.9.6.3.new/slrn.lis	Mon Sep 18 09:04:42 2000
+@@ -138,3 +138,5 @@
  @src/slrndir.h
+ @src/vfile.h
+ @src/vfile.c
 +@src/userdir.c
 +@src/userdir.h
-diff -urN slrn-0.9.6.2.orig/src/modules.lis slrn-0.9.6.2/src/modules.lis
---- slrn-0.9.6.2.orig/src/modules.lis	Thu Dec 23 18:24:42 1999
-+++ slrn-0.9.6.2/src/modules.lis	Thu Apr 20 17:02:51 2000
+diff -Nru slrn-0.9.6.3/src/modules.lis slrn-0.9.6.3.new/src/modules.lis
+--- slrn-0.9.6.3/src/modules.lis	Mon Sep 18 09:03:13 2000
++++ slrn-0.9.6.3.new/src/modules.lis	Mon Sep 18 09:02:06 2000
 @@ -13,6 +13,7 @@
  score
  server
@@ -18,9 +18,9 @@ diff -urN slrn-0.9.6.2.orig/src/modules.lis slrn-0.9.6.2/src/modules.lis
  slrn
  startup
  ttymsg
-diff -urN slrn-0.9.6.2.orig/src/slrn.c slrn-0.9.6.2/src/slrn.c
---- slrn-0.9.6.2.orig/src/slrn.c	Thu Dec 23 18:24:38 1999
-+++ slrn-0.9.6.2/src/slrn.c	Thu Apr 20 17:37:28 2000
+diff -Nru slrn-0.9.6.3/src/slrn.c slrn-0.9.6.3.new/src/slrn.c
+--- slrn-0.9.6.3/src/slrn.c	Mon Sep 18 09:03:13 2000
++++ slrn-0.9.6.3.new/src/slrn.c	Mon Sep 18 09:02:06 2000
 @@ -67,6 +67,8 @@
  #include <slang.h>
  #include "jdmacros.h"
@@ -30,7 +30,7 @@ diff -urN slrn-0.9.6.2.orig/src/slrn.c slrn-0.9.6.2/src/slrn.c
  
  #include <errno.h>
  
-@@ -966,7 +968,22 @@
+@@ -972,7 +974,22 @@
     int use_active = 0;
     FILE *fp;
     char file [SLRN_MAX_PATH_LEN];
@@ -54,7 +54,7 @@ diff -urN slrn-0.9.6.2.orig/src/slrn.c slrn-0.9.6.2/src/slrn.c
  
  #ifdef HAVE_SETLOCALE
  # ifdef LC_CTYPE
-@@ -1188,7 +1205,18 @@
+@@ -1195,7 +1212,18 @@
  #if defined(VMS) || defined(IBMPC_SYSTEM)
       Slrn_Newsrc_File = "jnews.rc";
  #else
@@ -74,9 +74,9 @@ diff -urN slrn-0.9.6.2.orig/src/slrn.c slrn-0.9.6.2/src/slrn.c
  #endif
     slrn_message_now ("Using newsrc file %s for server %s.",
  		     Slrn_Newsrc_File, Slrn_Server_Obj->sv_name);
-diff -urN slrn-0.9.6.2.orig/src/userdir.c slrn-0.9.6.2/src/userdir.c
---- slrn-0.9.6.2.orig/src/userdir.c	Thu Jan  1 01:00:00 1970
-+++ slrn-0.9.6.2/src/userdir.c	Thu Apr 20 17:02:51 2000
+diff -Nru slrn-0.9.6.3/src/userdir.c slrn-0.9.6.3.new/src/userdir.c
+--- slrn-0.9.6.3/src/userdir.c	Thu Jan  1 01:00:00 1970
++++ slrn-0.9.6.3.new/src/userdir.c	Mon Sep 18 09:02:06 2000
 @@ -0,0 +1,380 @@
 +// $Id$
 +#include "userdir.h"
@@ -458,9 +458,9 @@ diff -urN slrn-0.9.6.2.orig/src/userdir.c slrn-0.9.6.2/src/userdir.c
 +}
 +
 +/******************************************************************************/
-diff -urN slrn-0.9.6.2.orig/src/userdir.h slrn-0.9.6.2/src/userdir.h
---- slrn-0.9.6.2.orig/src/userdir.h	Thu Jan  1 01:00:00 1970
-+++ slrn-0.9.6.2/src/userdir.h	Thu Apr 20 17:02:51 2000
+diff -Nru slrn-0.9.6.3/src/userdir.h slrn-0.9.6.3.new/src/userdir.h
+--- slrn-0.9.6.3/src/userdir.h	Thu Jan  1 01:00:00 1970
++++ slrn-0.9.6.3.new/src/userdir.h	Mon Sep 18 09:02:06 2000
 @@ -0,0 +1,153 @@
 +// $Id$
 +#ifndef USERDIR__H
