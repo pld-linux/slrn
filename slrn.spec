@@ -12,11 +12,15 @@ Group(de):	Applikationen/News
 Group(pl):	Aplikacje/News
 Source0:	ftp://space.mit.edu/pub/davis/slrn/%{name}-%{version}.tar.bz2
 Source1:	%{name}.1.pl
+Source2:	%{name}.desktop
+Source3:	%{name}.png
 Patch0:		%{name}-keymap.patch
-Patch1:		%{name}-base64.patch
-Patch2:		%{name}-home_etc.patch
-Patch3:		%{name}-config.patch
-Patch4:		%{name}-0.9.6.3-v6-20000918.patch.gz
+Patch1:		%{name}-home_etc.patch
+Patch2:		%{name}-config.patch
+Patch3:		%{name}-0.9.6.3-v6-20000918.patch.gz
+Patch4:		%{name}-buffer.patch
+patch5:		%{name}-0.9.6.3-pl4.patch
+Icon:		slrn.xpm
 URL:		http://www.slrn.org/
 BuildRequires:	slang-devel
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -69,10 +73,11 @@ konieczno¶ci utrzymywania sta³ego po³±czenia z serwerem news.
 %prep
 %setup  -q
 %patch0 -p1
-%patch1 -p1
-#%patch2 -p1
+#%patch1 -p1
+%patch2 -p1
 %patch3 -p1
 %patch4 -p1
+%patch5 -p1
 
 %build
 (cd autoconf; autoconf)
@@ -89,13 +94,16 @@ export slrn_cv_domain
 
 %install
 rm -rf $RPM_BUILD_ROOT
+install -d $RPM_BUILD_ROOT/var/spool/slrnpull/out.going \
+	$RPM_BUILD_ROOT%{_mandir}/pl/man1 \
+	$RPM_BUILD_ROOT%{_applnkdir}/Network/News,%{_pixmapsdir}}
 
 %{__make} install DESTDIR=$RPM_BUILD_ROOT
 
-install -d $RPM_BUILD_ROOT/var/spool/slrnpull/out.going \
-	$RPM_BUILD_ROOT%{_mandir}/pl/man1
-
 install %{SOURCE1} $RPM_BUILD_ROOT%{_mandir}/pl/man1/slrn.1
+install %{SOURCE1} $RPM_BUILD_ROOT%{_applnkdir}/Network/News
+install %{SOURCE2} $RPM_BUILD_ROOT%{_pixmapsdir}
+
 install slrnpull/slrnpull.conf $RPM_BUILD_ROOT/var/spool/slrnpull
 install doc/slrn.rc $RPM_BUILD_ROOT%{_libdir}/slrn
 
@@ -112,6 +120,8 @@ rm -rf $RPM_BUILD_ROOT
 %dir %{_libdir}/slrn
 %config(noreplace) %{_libdir}/slrn/slrn.rc
 %{_libdir}/slrn/*.sl
+%{_applnkdir}/Network/News/*
+%{_pixmapsdir}/*
 
 %{_mandir}/man1/*
 %lang(pl) %{_mandir}/pl/man1/*
