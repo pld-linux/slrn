@@ -76,7 +76,7 @@ export slrn_cv_domain LDFLAGS
 
 %configure
 
-make
+%{__make}
 %{__make} slrnpull
 
 %install
