@@ -11,7 +11,7 @@ Summary(es):	El mejor lector de news del mundo
 Summary(fr):	Le meilleur lecteur de news du monde
 Summary(pl):	£atwy w obs³udze czytnik artyku³ów news
 Summary(pt_BR):	O melhor leitor de notícias do mundo
-Summary(tr):	Red Hat'in görüþüne göre dünyanýn en iyi haber grubu okuyucusu
+Summary(tr):	Görüþüne göre dünyanýn en iyi haber grubu okuyucusu
 Name:		slrn
 Version:	0.9.8.1
 Release:	1
