@@ -1,22 +1,3 @@
-diff -Nur slrn-0.9.6.4pl4c.orig/src/slrnconf.h slrn-0.9.6.4pl4c/src/slrnconf.h
---- slrn-0.9.6.4pl4c.orig/src/slrnconf.h	Fri Mar 16 21:38:43 2001
-+++ slrn-0.9.6.4pl4c/src/slrnconf.h	Fri Mar 30 14:17:50 2001
-@@ -53,13 +53,13 @@
- #define SLRN_HAS_VERBATIM_MARKS		1
- 
- /* define if you want grouplens (R.I.P.) support */
--#define SLRN_HAS_GROUPLENS		0
-+#define SLRN_HAS_GROUPLENS		1
- 
- /* define if you want slrn to generate Message-IDs */
- #define SLRN_HAS_GEN_MSGID		1
- 
- /* define to make slrn cache Message-IDs to eliminate cross-posts */
--#define SLRN_HAS_MSGID_CACHE		0
-+#define SLRN_HAS_MSGID_CACHE		1
- 
- /* define if slrn should use In-Reply-To if no References are available */
- #define SLRN_HAS_FAKE_REFS		1
 diff -Nur slrn-0.9.6.4pl4c.orig/src/slrnfeat.h slrn-0.9.6.4pl4c/src/slrnfeat.h
 --- slrn-0.9.6.4pl4c.orig/src/slrnfeat.h	Sun Mar 11 21:55:57 2001
 +++ slrn-0.9.6.4pl4c/src/slrnfeat.h	Fri Mar 30 14:21:50 2001
@@ -48,15 +29,3 @@ diff -Nur slrn-0.9.6.4pl4c.orig/src/slrnfeat.h slrn-0.9.6.4pl4c/src/slrnfeat.h
  
  /* The remaing variables are specified as relative names with respect to the
   * SLRNPULL_ROOT_DIR.
-diff -Nur slrn-0.9.6.4pl4c.orig/acconfig.h slrn-0.9.6.4pl4c/acconfig.h
---- slrn-0.9.6.4pl4c.orig/acconfig.h	Sun Mar 11 21:55:57 2001
-+++ slrn-0.9.6.4pl4c/acconfig.h	Fri Mar 30 14:21:50 2001
-@@ -65,7 +65,7 @@
- #undef SLRN_SENDMAIL_COMMAND
- 
- /* Whether you want the "setgid" patch to work (docs/slrnpull/setgid.txt) */
--#define SLRNPULL_USE_SETGID_POSTS	0
-+#define SLRNPULL_USE_SETGID_POSTS	1
- 
- /* Define if NLS is requested */
- #undef ENABLE_NLS
