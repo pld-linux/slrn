@@ -25,21 +25,21 @@ Patch6:		%{name}-amfix.patch
 #Patch5:	%{name}-home_etc.patch
 Icon:		slrn.xpm
 URL:		http://www.slrn.org/
-BuildRequires:	slang-devel
 BuildRequires:	autoconf
 BuildRequires:	automake
+BuildRequires:	slang-devel
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %define		_libdir		%{_datadir}
 
 %description
-Slrn is an easy to use but powerful full-screen NNTP based newsreader.
+slrn is an easy to use but powerful full-screen NNTP based newsreader.
 It relies extensively on the S-Lang programmer's library for many of
-its features. Slrn works particularly well over slow network
+its features. slrn works particularly well over slow network
 connections.
 
 %description -l de
-Slm ist ein einfach zu bedienender und dennoch äußerst
+slrn ist ein einfach zu bedienender und dennoch äußerst
 leistungsfähiger Voll-Bildschirm-Newsreader auf NNTP-Basis. Viele
 seiner Funktionen bezieht er aus der S-Lang-Programmierer-Library.
 Seine besondere Stärke ist die Arbeit über langsame Netzwerke.
@@ -51,12 +51,12 @@ caractéristiques. slrn fonctionne particulièrement bien avec des
 connexions réseau lentes.
 
 %description -l pl
-Slrn jest wygodnym w obs³udze i ergonomicznym czytnikiem artyku³ów
-news. £adny wygl±d zapewnia mu wykorzystanie biblioteki S-Lang. Slrn
+slrn jest wygodnym w obs³udze i ergonomicznym czytnikiem artyku³ów
+news. £adny wygl±d zapewnia mu wykorzystanie biblioteki S-Lang. slrn
 znakomicie sprawdza siê zw³aszcza na zapchanych i wolnych ³±czach.
 
 %description -l tr
-Slrn, kullanýmý kolay, çok yetenekli, tam ekran bir haber okuyucudur.
+slrn, kullanýmý kolay, çok yetenekli, tam ekran bir haber okuyucudur.
 Yavaþ að baðlantýlarýnda gayet iyi çalýþýr.
 
 %package pull
