@@ -84,18 +84,18 @@ strip $RPM_BUILD_ROOT%{_bindir}/* || :
 rm -rf $RPM_BUILD_ROOT
 
 %files
-%defattr(644, root, root, 755)
+%defattr(644,root,root,755)
 %config (missingok) /etc/X11/wmconfig/slrn
 %doc doc/{README.GroupLens,README.macros,FAQ,SCORE_FAQ,*.txt,score.sl}
-%attr(755, root, root) %{_bindir}/slrn
+%attr(755,root,root) %{_bindir}/slrn
 %dir %{_libdir}/slrn
 %verify (not md5 size mtime) %{_libdir}/slrn/slrn.rc
 %{_mandir}/man1/slrn.1
 
 %files pull
-%defattr(644, root, root, 755)
+%defattr(644,root,root,755)
 %doc slrnpull/{FAQ,QUICK_INSTALL,README,score,slrn.rc,slrnpull.sh}
-%attr (755, root, root) %{_bindir}/slrnpull
+%attr (755,root,root) %{_bindir}/slrnpull
 %attr (775, news, news) %dir /var/spool/slrnpull
 %attr (775, news, news) %dir /var/spool/slrnpull/out.going
 %attr (775, news, news) %config(noreplace) %verify(not size md5 mtime) /var/spool/slrnpull/slrnpull.conf
