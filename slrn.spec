@@ -7,7 +7,7 @@ Summary(pt_BR):	O melhor leitor de notícias do mundo
 Summary(tr):	Red Hat'in görüþüne göre dünyanýn en iyi haber grubu okuyucusu
 Name:		slrn
 Version:	0.9.7.4
-Release:	0.4
+Release:	0.5
 License:	GPL
 Group:		Applications/News
 Source0:	ftp://ftp.sourceforge.net/pub/sourceforge/slrn/%{name}-%{version}.tar.bz2
@@ -27,6 +27,7 @@ Icon:		slrn.xpm
 URL:		http://www.slrn.org/
 BuildRequires:	autoconf
 BuildRequires:	automake
+BuildRequires:	inews
 BuildRequires:	slang-devel
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -78,6 +79,7 @@ Summary(pl):	Program ¶ci±gaj±cy artyku³y z serwera news
 Summary(pt_BR):	Suporte para leitura de notícias "offline" para o slrn
 Group:		Applications/News
 Requires:	%{name} = %{version}
+Obsoletes:	slrn-pl-pull
 
 %description pull
 This package provides slrnpull, which allows set up of a small news
@@ -108,7 +110,7 @@ spool de notícias, para leitura "offline".
 %build
 rm -f autoconf/missing
 aclocal -I autoconf
-autoheader -l src
+autoheader
 autoconf
 automake -a -c -f
 INEWS="%{_bindir}/inews"; SENDMAIL="/usr/lib/sendmail"
@@ -125,7 +127,7 @@ export INEWS SENDMAIL
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT%{_var}/spool/slrnpull/{logs,data,news,out.going/rejects} \
+install -d $RPM_BUILD_ROOT%{_var}/spool/slrnpull/{data,logs,news,out.going/rejects} \
 	$RPM_BUILD_ROOT{%{_sysconfdir},%{_mandir}/pl/man1} \
 	$RPM_BUILD_ROOT{%{_applnkdir}/Network/News,%{_pixmapsdir}} \
 	$RPM_BUILD_ROOT/etc/logrotate.d
@@ -173,7 +175,7 @@ rm -rf $RPM_BUILD_ROOT
 %attr(2754,root,news) %{_bindir}/slrnpull
 %defattr(664,news,news,755)
 %dir %{_var}/spool/slrnpull
-%dir %{_var}/spool/logs
+%dir %{_var}/spool/slrnpull/logs
 %attr(2775,news,news) %dir %{_var}/spool/slrnpull/data
 %verify(not md5 size user mtime) %{_var}/spool/slrnpull/data/active
 %attr(2775,news,news) %dir %{_var}/spool/slrnpull/news
