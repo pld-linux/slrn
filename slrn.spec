@@ -99,8 +99,7 @@ install %{SOURCE1} $RPM_BUILD_ROOT%{_mandir}/pl/man1/slrn.1
 install slrnpull/slrnpull.conf $RPM_BUILD_ROOT/var/spool/slrnpull
 install doc/slrn.rc $RPM_BUILD_ROOT%{_libdir}/slrn
 
-gzip -9nf $RPM_BUILD_ROOT%{_mandir}/{man1/*,pl/man1/*} \
-	doc/{README.GroupLens,README.macros,FAQ,SCORE_FAQ,{help,score,slrnfuns}.txt} \
+gzip -9nf doc/{README.GroupLens,README.macros,FAQ,SCORE_FAQ,{help,score,slrnfuns}.txt} \
 	slrnpull/{FAQ,QUICK_INSTALL,README}
 
 %clean
