@@ -16,7 +16,7 @@ Patch1:		%{name}-base64.patch
 Patch2:		%{name}-home_etc.patch
 URL:		http://www.slrn.org/
 BuildRequires:	slang-devel
-BuildRoot:	/tmp/%{name}-%{version}-root
+BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %define		_libdir		%{_datadir}
 
