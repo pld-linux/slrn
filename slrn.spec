@@ -1,5 +1,7 @@
 #
-# _without_ssl		- build slrn without SSL support (snews://)
+# _without_canlock	- build without Cancel-Lock support
+# _without_ssl		- build without SSL support (snews://)
+# _without_uudeview	- build without uudeview support
 #
 Summary:	The world's best newsreader
 Summary(da):	Verdens bedste nyhedslæser
@@ -20,12 +22,13 @@ Source1:	%{name}.1.pl
 Source2:	%{name}.desktop
 Source3:	%{name}.png
 Source4:	%{name}-pull.logrotate
+Patch0:		%{name}-keymap.patch
+Patch1:		%{name}-config.patch
+Patch2:		%{name}-user-agent.patch
+Patch3:		%{name}-sort_visible_headers.patch
+Patch4:		%{name}-sharedlibs.patch
 #Patch0:		%{name}-ipv6.patch
-Patch1:		%{name}-keymap.patch
-Patch2:		%{name}-config.patch
-Patch3:		%{name}-user-agent.patch
 #Patch4:		%{name}-amfix.patch
-Patch5:		%{name}-sort_visible_headers.patch
 #Patch6:		%{name}-locate_by_msgid.patch
 #Patch7:		%{name}-ac253.patch
 #Patch8:		http://slrn.sourceforge.net/patches/slrn-0.9.7.4-popup_win.diff
@@ -36,9 +39,11 @@ Icon:		slrn.xpm
 URL:		http://www.slrn.org/
 BuildRequires:	autoconf
 BuildRequires:	automake
+%{!?_without_canlock:BuildRequires:	canlock-devel >= 2a}
 BuildRequires:	gettext-devel
-BuildRequires:	slang-devel
 %{!?_without_ssl:BuildRequires:	openssl-devel >= 0.9.7}
+BuildRequires:	slang-devel
+%{!?_without_uudeview:BuildRequires:	uudeview-devel}
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -116,19 +121,11 @@ spool de notícias, para leitura "offline".
 
 %prep
 %setup -q
-#%patch0 -p1	-- obsolete
-#%patch1 -p1	-- needs update
-#%patch2 -p1	-- needs update
-#%patch3 -p1	-- needs update
-#%patch4 -p1	-- obsolete
-%patch5 -p1
-#%patch6 -p1	-- obsolete
-#%patch7 -p1	-- obsolete
-# all obsolete
-#%patch8 -p1
-#%patch9 -p1
-#%patch10 -p1
-#%patch11 -p1
+%patch0 -p1
+%patch1 -p1
+%patch2 -p1
+%patch3 -p1
+%patch4 -p1
 
 %build
 rm -f autoconf/missing
@@ -137,17 +134,18 @@ rm -f autoconf/missing
 %{__autoheader}
 %{__autoconf}
 %{__automake}
-INEWS="%{_bindir}/inews"; SENDMAIL="/usr/lib/sendmail"
-export INEWS SENDMAIL
-
 %configure \
+	INEWS="/usr/bin/inews" \
+	SENDMAIL="/usr/lib/sendmail" \
 	--enable-mid-cache \
 	--enable-ipv6 \
 	--enable-inews \
-	--enable-spool \
-	--with-slrnpull \
 	--enable-setgid-code \
-	%{!?_without_ssl:--with-ssl}
+	--enable-spool \
+	%{!?_without_canlock:--with-canlock} \
+	--with-slrnpull \
+	%{!?_without_ssl:--with-ssl} \
+	%{!?_without_uudeview:--with-uudeview}
 
 %{__make}
 
@@ -180,7 +178,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files -f %{name}.lang
 %defattr(644,root,root,755)
-%doc README COPYRIGHT changes.txt contrib/{README,NEWS}.* doc/*.html
+%doc COPYRIGHT README changes.txt contrib/{README,NEWS}.* doc/*.html
 %doc doc/{FAQ,FIRST_STEPS,README.*,THANKS,{help,manual,score,slrnfuns}.txt,*.sl}
 %attr(755,root,root) %{_bindir}/slrn
 %attr(755,root,root) %{_bindir}/slrnrc-conv
@@ -195,7 +193,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files pull
 %defattr(644,root,root,755)
-%doc doc/slrnpull/{README,SETUP,score,slrn.rc,slrnpull.sh}
+%doc doc/slrnpull/{README*,SETUP,score,slrn.rc,slrnpull.sh}
 %attr(640,root,news) /etc/logrotate.d/slrn-pull
 %attr(2754,root,news) %{_bindir}/slrnpull
 %{_mandir}/man1/slrnpull.1*

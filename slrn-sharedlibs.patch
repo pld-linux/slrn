@@ -1,0 +1,28 @@
+--- slrn-0.9.8.0/configure.in.orig	2003-08-26 20:46:39.000000000 +0200
++++ slrn-0.9.8.0/configure.in	2003-08-26 20:52:14.005936424 +0200
+@@ -63,12 +63,12 @@
+ AH_VERBATIM([SLRN_HAS_UUDEVIEW],
+ [/* define if you want uudeview support */
+ #define SLRN_HAS_UUDEVIEW		0])
+-CF_WITH_OPT_LIB(uudeview, UULIB, UUINC, libuu.a, -luu, uudeview.h,
++CF_WITH_OPT_LIB(uudeview, UULIB, UUINC, libuu, -luu, uudeview.h,
+ [SLRN_HAS_UUDEVIEW], [  --with-uudeview[=DIR]   For uudeview library support])
+ AH_VERBATIM([SLRN_HAS_CANLOCK],
+ [/* define if you want cancel lock support using libcanlock */
+ #define SLRN_HAS_CANLOCK  0])
+-CF_WITH_OPT_LIB(canlock, LOCKLIB, LOCKINC, libcanlock.a, -lcanlock, canlock.h,
++CF_WITH_OPT_LIB(canlock, LOCKLIB, LOCKINC, libcanlock, -lcanlock, canlock.h,
+ [SLRN_HAS_CANLOCK],  [  --with-canlock[=DIR]    For cancel-lock library support])
+ 
+ dnl SLRN_LIB_DIR: directory for the global newsgroups.dsc
+--- slrn-0.9.8.0/autoconf/acinclude.m4.orig	2002-11-01 13:32:26.000000000 +0100
++++ slrn-0.9.8.0/autoconf/acinclude.m4	2003-08-26 20:51:52.018279056 +0200
+@@ -586,7 +586,7 @@
+       fi
+   
+       for candidate in $opt_library_dirs; do
+-        if test -r "$candidate/$4" ; then
++        if test -r "$candidate/$4.so" -o -r "$candidate/$4.a" ; then
+           ac_opt_library="$candidate"
+           break
+         fi

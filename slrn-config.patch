@@ -1,26 +1,6 @@
-diff -Nur slrn-0.9.6.4pl4c.orig/src/slrnfeat.h slrn-0.9.6.4pl4c/src/slrnfeat.h
---- slrn-0.9.6.4pl4c.orig/src/slrnfeat.h	Sun Mar 11 21:55:57 2001
-+++ slrn-0.9.6.4pl4c/src/slrnfeat.h	Fri Mar 30 14:21:50 2001
-@@ -59,8 +59,8 @@
-   /* Note the -S flag.  slrn appends the signature to the file to be posted and
-    * the -S flag tells inews not to also do this.  The -h flag must be used. */
-
-   /* Changing this here has no effect when using ./configure (on Unix) */
--# define SLRN_INEWS_COMMAND      "/usr/local/bin/inews -S -h"
-+# define SLRN_INEWS_COMMAND      "/usr/bin/inews -S -h"
- #endif
- 
- #if SLRN_HAS_SPOOL_SUPPORT || defined(SLRNPULL_CODE)
-@@ -170,7 +170,7 @@
- /* #define OUR_ORGANIZATION "organization-name" */
- /* #define OUR_HOSTNAME "host.name.here" */
- /* #define NNTPSERVER_NAME  "my.server.name" */
--/* #define NNTPSERVER_FILE		"/usr/local/lib/news/nntp_server" */
-+#define NNTPSERVER_FILE		"/etc/nntpserver"
- 
- #if SLRN_HAS_GROUPLENS
- # undef SLRN_USE_SLTCP
-@@ -180,7 +180,7 @@
+--- slrn-0.9.8.0/src/slrnfeat.h.orig	2003-07-30 15:36:32.000000000 +0200
++++ slrn-0.9.8.0/src/slrnfeat.h	2003-08-26 20:28:32.059105200 +0200
+@@ -162,7 +162,7 @@
  /* The rest of the files apply to slrnpull. */
  
  /* This must be set to an absolute pathname. */
