@@ -5,13 +5,17 @@ Summary(pl):	£atwy w obs³udze czytnik artyku³ów news
 Summary(tr):	Red Hat'in görüþüne göre dünyanýn en iyi haber grubu okuyucusu
 Name:		slrn
 Version:	0.9.5.7
-Release:	1
+Release:	2
 Copyright:	GPL
 Group:		Applications/News
 Group(pl):	Aplikacje/News
 Source:		ftp://space.mit.edu/pub/davis/slrn/%{name}-%{version}.tar.bz2
+Patch0:		slrn-keymap.patch
+Patch1:		slrn-DESTDIR.patch
 BuildRequires:	slang-devel
 BuildRoot:	/tmp/%{name}-%{version}-root
+
+%define		_libdir		%{_datadir}
 
 %description
 Slrn is an easy to use but powerful full-screen NNTP based newsreader.
@@ -55,32 +59,27 @@ Slrnpull umo¿liwia ¶ci±gniêcie artyku³ów , a nastêpnie czytanie ich
 bez konieczno¶ci utrzymywania sta³ego po³±czenia z serwerem news.
 
 %prep
-%setup -q
+%setup  -q
+%patch0 -p1
+%patch1 -p1
 
 %build
 slrn_cv_domain=no
-export slrn_cv_domain
+LDFLAGS="-s"
+export slrn_cv_domain LDFLAGS
 
 %configure
+
 make
 make slrnpull
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT{%{_bindir},%{_libdir}/slrn,%{_mandir}/man1} \
-	$RPM_BUILD_ROOT/var/spool/slrnpull/out.going
 
-install doc/slrn.rc	  $RPM_BUILD_ROOT%{_libdir}/slrn
-install doc/slrn.1	  $RPM_BUILD_ROOT%{_mandir}/man1/slrn.1
-install src/objs/slrn	  $RPM_BUILD_ROOT%{_bindir}/slrn
-install src/objs/slrnpull $RPM_BUILD_ROOT%{_bindir}/slrnpull
-
-install slrnpull/slrnpull.conf $RPM_BUILD_ROOT/var/spool/slrnpull
-
-strip $RPM_BUILD_ROOT%{_bindir}/* || :
+make install DESTDIR=$RPM_BUILD_ROOT
 
 gzip -9nf $RPM_BUILD_ROOT%{_mandir}/man1/* \
-	doc/{README.GroupLens,README.macros,FAQ,SCORE_FAQ,*.txt} \
+	doc/{README.GroupLens,README.macros,FAQ,SCORE_FAQ,{help,score,slrnfuns}.txt} \
 	slrnpull/{FAQ,QUICK_INSTALL,README}
 
 %clean
@@ -92,12 +91,22 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_bindir}/slrn
 %dir %{_libdir}/slrn
 %verify (not md5 size mtime) %{_libdir}/slrn/slrn.rc
+%{_libdir}/slrn/color.sl
+%{_libdir}/slrn/ispell.sl
+%{_libdir}/slrn/nn.sl
+%{_libdir}/slrn/posthook.sl
+%{_libdir}/slrn/search.sl
+%{_libdir}/slrn/tin-art.sl
+%{_libdir}/slrn/tin-group.sl
+%{_libdir}/slrn/ttyprint.sl
+%{_libdir}/slrn/util.sl
+%{_libdir}/slrn/xcomment.sl
 %{_mandir}/man1/*
 
 %files pull
 %defattr(644,root,root,755)
 %doc slrnpull/{*.gz,score,slrn.rc,slrnpull.sh}
 %attr (755,root,root) %{_bindir}/slrnpull
-%attr (775, news, news) %dir /var/spool/slrnpull
-%attr (775, news, news) %dir /var/spool/slrnpull/out.going
-%attr (775, news, news) %config(noreplace) %verify(not size md5 mtime) /var/spool/slrnpull/slrnpull.conf
+%attr (775,news,news) %dir /var/spool/slrnpull
+%attr (775,news,news) %dir /var/spool/slrnpull/out.going
+%attr (775,news,news) %config(noreplace) %verify(not size md5 mtime) /var/spool/slrnpull/slrnpull.conf
