@@ -1,15 +1,15 @@
-diff -Nur slrn-0.9.6.4pl4c.orig/macros/uname.sl slrn-0.9.6.4pl4c/macros/uname.sl
---- slrn-0.9.6.4pl4c.orig/macros/uname.sl	Thu Jan  1 01:00:00 1970
-+++ slrn-0.9.6.4pl4c/macros/uname.sl	Fri Mar 30 15:11:54 2001
+diff -Nur slrn-0.9.7.0a.orig/macros/uname.sl slrn-0.9.7.0a/macros/uname.sl
+--- slrn-0.9.7.0a.orig/macros/uname.sl	Thu Jan  1 01:00:00 1970
++++ slrn-0.9.7.0a/macros/uname.sl	Sat Mar 31 00:00:21 2001
 @@ -0,0 +1,4 @@
 +% example of customizing User-Agent header
 +
 +set_string_variable("system_type", uname().sysname + " " + uname().release
 +    + "/" + uname().machine);
-diff -Nur slrn-0.9.6.4pl4c.orig/src/misc.h slrn-0.9.6.4pl4c/src/misc.h
---- slrn-0.9.6.4pl4c.orig/src/misc.h	Mon Mar 19 21:21:44 2001
-+++ slrn-0.9.6.4pl4c/src/misc.h	Fri Mar 30 14:50:45 2001
-@@ -63,6 +63,8 @@
+diff -Nur slrn-0.9.7.0a.orig/src/misc.h slrn-0.9.7.0a/src/misc.h
+--- slrn-0.9.7.0a.orig/src/misc.h	Tue Mar 27 16:35:45 2001
++++ slrn-0.9.7.0a/src/misc.h	Sat Mar 31 00:00:21 2001
+@@ -64,6 +64,8 @@
     char *signature;
     char *posting_host;		       /* FQDN or NULL */
     char *login_name;
@@ -18,10 +18,10 @@ diff -Nur slrn-0.9.6.4pl4c.orig/src/misc.h slrn-0.9.6.4pl4c/src/misc.h
  }
  Slrn_User_Info_Type;
  
-diff -Nur slrn-0.9.6.4pl4c.orig/src/post.c slrn-0.9.6.4pl4c/src/post.c
---- slrn-0.9.6.4pl4c.orig/src/post.c	Mon Mar 19 21:22:40 2001
-+++ slrn-0.9.6.4pl4c/src/post.c	Fri Mar 30 14:58:30 2001
-@@ -571,6 +571,7 @@
+diff -Nur slrn-0.9.7.0a.orig/src/post.c slrn-0.9.7.0a/src/post.c
+--- slrn-0.9.7.0a.orig/src/post.c	Tue Mar 27 16:36:52 2001
++++ slrn-0.9.7.0a/src/post.c	Sat Mar 31 00:05:43 2001
+@@ -572,6 +572,7 @@
     char line [MAX_LINE_BUFLEN];
     char *system_os_name;
     int has_from = 0, has_messageid = 0, header = 1;
@@ -29,7 +29,7 @@ diff -Nur slrn-0.9.6.4pl4c.orig/src/post.c slrn-0.9.6.4pl4c/src/post.c
  
     if ((save_file == NULL) || (*save_file == 0))
       return 0;
-@@ -623,12 +624,19 @@
+@@ -624,12 +625,19 @@
  		  if (Slrn_Use_Mime)
  		    slrn_mime_add_headers (outfp);
  #endif
@@ -52,10 +52,47 @@ diff -Nur slrn-0.9.6.4pl4c.orig/src/post.c slrn-0.9.6.4pl4c/src/post.c
  			   system_os_name);
  #endif
  		  header = 0;
-diff -Nur slrn-0.9.6.4pl4c.orig/src/startup.c slrn-0.9.6.4pl4c/src/startup.c
---- slrn-0.9.6.4pl4c.orig/src/startup.c	Mon Mar 19 21:13:57 2001
-+++ slrn-0.9.6.4pl4c/src/startup.c	Fri Mar 30 15:00:10 2001
-@@ -548,6 +548,8 @@
+@@ -775,13 +783,20 @@
+    SLang_Name_Type *filter_hook;
+ #endif
+    int once_more;
+-   char *system_os_name;
++   char *system_os_name, *User_Agent;
+ 
+ #if SLRN_HAS_SLANG
+    filter_hook = SLang_get_function ("post_filter_hook");
+ #endif
+ 
+-   system_os_name = slrn_get_os_name ();
++   if (Slrn_User_Info.system_type != NULL)
++     system_os_name = Slrn_User_Info.system_type;
++   else
++     system_os_name = slrn_get_os_name ();
++   if (Slrn_User_Info.user_agent != NULL)
++     User_Agent = Slrn_User_Info.user_agent;
++   else
++     User_Agent = "slrn";
+ 
+    try_again:
+ 
+@@ -1005,11 +1020,11 @@
+ 		    slrn_mime_add_headers (0);   /* 0 --> Slrn_Post_Obj->po_puts */
+ #endif
+ #if SLRN_HAS_USER_AGENT
+-		  Slrn_Post_Obj->po_printf ("User-Agent: slrn/%s (%s)\n\n", 
++		  Slrn_Post_Obj->po_printf ("User-Agent: %s/%s (%s)\n\n", User_Agent,
+ 					    Slrn_Version, 
+ 					    system_os_name);
+ #else
+-		  Slrn_Post_Obj->po_printf ("X-Newsreader: slrn (%s %s)\n\n", Slrn_Version,
++		  Slrn_Post_Obj->po_printf ("X-Newsreader: %s (%s %s)\n\n", User_Agent, Slrn_Version,
+ 			       system_os_name);
+ #endif
+ 		  header = 0;
+diff -Nur slrn-0.9.7.0a.orig/src/startup.c slrn-0.9.7.0a/src/startup.c
+--- slrn-0.9.7.0a.orig/src/startup.c	Tue Mar 27 16:40:26 2001
++++ slrn-0.9.7.0a/src/startup.c	Sat Mar 31 00:00:21 2001
+@@ -549,6 +549,8 @@
       {"followup_custom_headers", &Slrn_Followup_Custom_Headers},
       {"reply_custom_headers", &Slrn_Reply_Custom_Headers},
       {"supersedes_custom_headers", &Slrn_Supersedes_Custom_Headers},

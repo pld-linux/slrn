@@ -106,7 +106,7 @@ install %{SOURCE3} $RPM_BUILD_ROOT%{_pixmapsdir}
 install slrnpull/slrnpull.conf $RPM_BUILD_ROOT/var/spool/slrnpull
 install doc/slrn.rc $RPM_BUILD_ROOT%{_sysconfdir}
 
-gzip -9nf doc/{README.GroupLens,README.macros,FAQ,SCORE_FAQ,{help,score,slrnfuns}.txt} \
+gzip -9nf doc/{README.{GroupLens,macros,SSL},SCORE_FAQ,THANKS,{help,manual,score,slrnfuns}.txt} \
 	slrnpull/{FAQ,QUICK_INSTALL,README}
 
 %clean
