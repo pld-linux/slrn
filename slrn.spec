@@ -19,9 +19,7 @@ Patch0:		%{name}-ipv6.patch
 Patch1:		%{name}-keymap.patch
 Patch2:		%{name}-config.patch
 Patch3:		%{name}-user-agent.patch
-Patch4:		%{name}-etc.patch
-Patch5:		%{name}-empty.patch
-Patch6:		%{name}-amfix.patch
+Patch4:		%{name}-amfix.patch
 #Patch5:	%{name}-home_etc.patch
 Icon:		slrn.xpm
 URL:		http://www.slrn.org/
@@ -82,8 +80,6 @@ konieczno¶ci utrzymywania sta³ego po³±czenia z serwerem news.
 %patch2 -p1
 %patch3 -p1
 %patch4 -p1
-%patch5 -p1
-%patch6 -p1
 
 %build
 rm -f autoconf/missing
