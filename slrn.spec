@@ -4,12 +4,13 @@ Summary(fr):	Le meilleur lecteur de news du monde (Selon Red Hat tout du moins)
 Summary(pl):	£atwy w obs³udze czytnik artyku³ów news
 Summary(tr):	Red Hat'in görüþüne göre dünyanýn en iyi haber grubu okuyucusu
 Name:		slrn
-Version:	0.9.5.5
-Release:	2
+Version:	0.9.5.7
+Release:	0.1
 Copyright:	GPL
 Group:		Applications/News
 Group(pl):	Aplikacje/News
-Source:		ftp://space.mit.edu/pub/davis/slrn/%{name}%{version}.tar.gz
+Source:		ftp://space.mit.edu/pub/davis/slrn/%{name}-%{version}.tar.bz2
+BuildPrereq:	slang-devel
 BuildRoot:	/tmp/%{name}-%{version}-root
 
 %description
@@ -54,7 +55,7 @@ Slrnpull umo¿liwia ¶ci±gniêcie artyku³ów , a nastêpnie czytanie ich
 bez konieczno¶ci utrzymywania sta³ego po³±czenia z serwerem news.
 
 %prep
-%setup -q -n slrn
+%setup -q
 
 %build
 slrn_cv_domain=no
