@@ -16,8 +16,7 @@ Patch0:		%{name}-keymap.patch
 Patch1:		%{name}-base64.patch
 Patch2:		%{name}-home_etc.patch
 Patch3:		%{name}-config.patch
-Patch4:		ftp://chiharu.v6.linux.or.jp/pub/Linux/IPv6-2/IPv6_Patched_Apps/slrn/%{name}-0.9.6.2-v6-20000723.diff.gz
-Patch5:		%{name}-ipv6-connect.patch
+Patch4:		%{name}-0.9.6.3-v6-20000918.patch.gz
 URL:		http://www.slrn.org/
 BuildRequires:	slang-devel
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -74,9 +73,11 @@ konieczno¶ci utrzymywania sta³ego po³±czenia z serwerem news.
 %patch2 -p1
 %patch3 -p1
 %patch4 -p1
-%patch5 -p1
 
 %build
+(cd autoconf; autoconf)
+cp -f autoconf/configure .
+
 slrn_cv_domain=no
 export slrn_cv_domain
 
