@@ -90,7 +90,7 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755, root, root) /usr/bin/slrn
 %dir /usr/lib/slrn
 %verify (not md5 size mtime) /usr/lib/slrn/slrn.rc
-%attr(644, root,  man) %{_mandir}/man1/slrn.1
+%{_mandir}/man1/slrn.1
 
 %files pull
 %defattr(644, root, root, 755)
