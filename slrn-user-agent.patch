@@ -1,0 +1,66 @@
+diff -Nur slrn-0.9.6.4pl4c.orig/macros/uname.sl slrn-0.9.6.4pl4c/macros/uname.sl
+--- slrn-0.9.6.4pl4c.orig/macros/uname.sl	Thu Jan  1 01:00:00 1970
++++ slrn-0.9.6.4pl4c/macros/uname.sl	Fri Mar 30 15:11:54 2001
+@@ -0,0 +1,4 @@
++% example of customizing User-Agent header
++
++set_string_variable("system_type", uname().sysname + " " + uname().release
++    + "/" + uname().machine);
+diff -Nur slrn-0.9.6.4pl4c.orig/src/misc.h slrn-0.9.6.4pl4c/src/misc.h
+--- slrn-0.9.6.4pl4c.orig/src/misc.h	Mon Mar 19 21:21:44 2001
++++ slrn-0.9.6.4pl4c/src/misc.h	Fri Mar 30 14:50:45 2001
+@@ -63,6 +63,8 @@
+    char *signature;
+    char *posting_host;		       /* FQDN or NULL */
+    char *login_name;
++   char *user_agent;
++   char *system_type;
+ }
+ Slrn_User_Info_Type;
+ 
+diff -Nur slrn-0.9.6.4pl4c.orig/src/post.c slrn-0.9.6.4pl4c/src/post.c
+--- slrn-0.9.6.4pl4c.orig/src/post.c	Mon Mar 19 21:22:40 2001
++++ slrn-0.9.6.4pl4c/src/post.c	Fri Mar 30 14:58:30 2001
+@@ -571,6 +571,7 @@
+    char line [MAX_LINE_BUFLEN];
+    char *system_os_name;
+    int has_from = 0, has_messageid = 0, header = 1;
++   char *User_Agent;
+ 
+    if ((save_file == NULL) || (*save_file == 0))
+      return 0;
+@@ -623,12 +624,19 @@
+ 		  if (Slrn_Use_Mime)
+ 		    slrn_mime_add_headers (outfp);
+ #endif
+-		  system_os_name = slrn_get_os_name ();
++		  if (Slrn_User_Info.user_agent != NULL)
++		    User_Agent = Slrn_User_Info.user_agent;
++		  else
++		    User_Agent = "slrn";
++		  if (Slrn_User_Info.system_type != NULL)
++		    system_os_name = Slrn_User_Info.system_type;
++		  else
++		    system_os_name = slrn_get_os_name ();
+ #if SLRN_HAS_USER_AGENT
+-		  fprintf (outfp, "User-Agent: slrn/%s (%s)\n", Slrn_Version,
++		  fprintf (outfp, "User-Agent: %s/%s (%s)\n", User_Agent, Slrn_Version,
+ 			   system_os_name);
+ #else
+-		  fprintf (outfp, "X-Newsreader: slrn (%s %s)\n", Slrn_Version,
++		  fprintf (outfp, "X-Newsreader: %s (%s %s)\n", User_Agent, Slrn_Version,
+ 			   system_os_name);
+ #endif
+ 		  header = 0;
+diff -Nur slrn-0.9.6.4pl4c.orig/src/startup.c slrn-0.9.6.4pl4c/src/startup.c
+--- slrn-0.9.6.4pl4c.orig/src/startup.c	Mon Mar 19 21:13:57 2001
++++ slrn-0.9.6.4pl4c/src/startup.c	Fri Mar 30 15:00:10 2001
+@@ -548,6 +548,8 @@
+      {"followup_custom_headers", &Slrn_Followup_Custom_Headers},
+      {"reply_custom_headers", &Slrn_Reply_Custom_Headers},
+      {"supersedes_custom_headers", &Slrn_Supersedes_Custom_Headers},
++     {"user_agent", &Slrn_User_Info.user_agent},
++     {"system_type", &Slrn_User_Info.system_type},
+ #if SLRN_HAS_GROUPLENS
+      {"grouplens_pseudoname", &Slrn_GroupLens_Pseudoname},
+      {"grouplens_host", &Slrn_GroupLens_Host},

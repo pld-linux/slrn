@@ -4,22 +4,22 @@ Summary(fr):	Le meilleur lecteur de news du monde (Selon Red Hat tout du moins)
 Summary(pl):	£atwy w obs³udze czytnik artyku³ów news
 Summary(tr):	Red Hat'in görüþüne göre dünyanýn en iyi haber grubu okuyucusu
 Name:		slrn
-Version:	0.9.6.3
-Release:	3
+Version:	0.9.7.0a
+Release:	1
 License:	GPL
 Group:		Applications/News
 Group(de):	Applikationen/News
 Group(pl):	Aplikacje/News
-Source0:	ftp://space.mit.edu/pub/davis/slrn/%{name}-%{version}.tar.bz2
+Source0:	ftp://slrn.sourceforge.net/pub/slrn/%{name}-%{version}.tar.bz2
 Source1:	%{name}.1.pl
 Source2:	%{name}.desktop
 Source3:	%{name}.png
-Patch0:		%{name}-keymap.patch
-Patch1:		%{name}-home_etc.patch
+Patch0:		%{name}-ipv6.patch
+Patch1:		%{name}-keymap.patch
 Patch2:		%{name}-config.patch
-Patch3:		%{name}-0.9.6.3-v6-20000918.patch.gz
-Patch4:		%{name}-buffer.patch
-patch5:		%{name}-0.9.6.3-pl4.patch
+Patch3:		%{name}-user-agent.patch
+Patch4:		%{name}-etc.patch
+#Patch5:	%{name}-home_etc.patch
 Icon:		slrn.xpm
 URL:		http://www.slrn.org/
 BuildRequires:	slang-devel
@@ -73,14 +73,13 @@ konieczno¶ci utrzymywania sta³ego po³±czenia z serwerem news.
 %prep
 %setup  -q
 %patch0 -p1
-#%patch1 -p1
+%patch1 -p1
 %patch2 -p1
 %patch3 -p1
 %patch4 -p1
-%patch5 -p1
 
 %build
-(cd autoconf; autoconf)
+(cd autoconf; aclocal ; autoconf)
 cp -f autoconf/configure .
 
 slrn_cv_domain=no
@@ -95,7 +94,7 @@ export slrn_cv_domain
 %install
 rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT/var/spool/slrnpull/out.going \
-	$RPM_BUILD_ROOT%{_mandir}/pl/man1 \
+	$RPM_BUILD_ROOT{%{_mandir}/pl/man1,%{_sysconfdir}} \
 	$RPM_BUILD_ROOT{%{_applnkdir}/Network/News,%{_pixmapsdir}}
 
 %{__make} install DESTDIR=$RPM_BUILD_ROOT
@@ -105,7 +104,7 @@ install %{SOURCE2} $RPM_BUILD_ROOT%{_applnkdir}/Network/News
 install %{SOURCE3} $RPM_BUILD_ROOT%{_pixmapsdir}
 
 install slrnpull/slrnpull.conf $RPM_BUILD_ROOT/var/spool/slrnpull
-install doc/slrn.rc $RPM_BUILD_ROOT%{_libdir}/slrn
+install doc/slrn.rc $RPM_BUILD_ROOT%{_sysconfdir}
 
 gzip -9nf doc/{README.GroupLens,README.macros,FAQ,SCORE_FAQ,{help,score,slrnfuns}.txt} \
 	slrnpull/{FAQ,QUICK_INSTALL,README}
@@ -118,8 +117,8 @@ rm -rf $RPM_BUILD_ROOT
 %doc doc/{*.gz,score.sl}
 %attr(755,root,root) %{_bindir}/slrn
 %dir %{_libdir}/slrn
-%config(noreplace) %{_libdir}/slrn/slrn.rc
 %{_libdir}/slrn/*.sl
+%config(noreplace) %verify(not size mtime md5) %{_sysconfdir}/slrn.rc
 %{_applnkdir}/Network/News/*
 %{_pixmapsdir}/*
 
