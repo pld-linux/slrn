@@ -1,4 +1,5 @@
 #
+# Conditional build:
 %bcond_without canlock	# - build without Cancel-Lock support
 %bcond_without ssl	# - build without SSL support (snews://)
 %bcond_without uudeview	# - build without uudeview support
@@ -12,12 +13,12 @@ Summary(pl):	£atwy w obs³udze czytnik artyku³ów news
 Summary(pt_BR):	O melhor leitor de notícias do mundo
 Summary(tr):	Red Hat'in görüþüne göre dünyanýn en iyi haber grubu okuyucusu
 Name:		slrn
-Version:	0.9.8.0
-Release:	4
+Version:	0.9.8.1
+Release:	1
 License:	GPL
 Group:		Applications/News
 Source0:	http://dl.sourceforge.net/slrn/%{name}-%{version}.tar.bz2
-# Source0-md5:	47e9931771114ba192356a0473e9649e
+# Source0-md5:	9b613007df537444a5f8a4a2994fadb7
 Source1:	%{name}.1.pl
 Source2:	%{name}.desktop
 Source3:	%{name}.png
@@ -28,6 +29,7 @@ Patch2:		%{name}-user-agent.patch
 Patch3:		%{name}-sort_visible_headers.patch
 Patch4:		%{name}-sharedlibs.patch
 Patch5:		%{name}-home_etc.patch
+Patch6:		%{name}-pl.po-update.patch
 Icon:		slrn.xpm
 URL:		http://www.slrn.org/
 BuildRequires:	autoconf
@@ -120,9 +122,9 @@ spool de notícias, para leitura "offline".
 %patch3 -p1
 %patch4 -p1
 %patch5 -p1
+%patch6 -p1
 
 %build
-rm -f autoconf/missing
 %{__gettextize}
 %{__aclocal} -I autoconf
 %{__autoheader}
