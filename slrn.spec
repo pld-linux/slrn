@@ -55,7 +55,7 @@ This package provides slrnpull, which allows set up of a small news
 spool for offline news reading.
 
 %description -l pl pull
-Slrnpull umo¿liwia ¶ci±gniêcie artyku³ów , a nastêpnie czytanie ich
+Slrnpull umo¿liwia ¶ci±gniêcie artyku³ów, a nastêpnie czytanie ich
 bez konieczno¶ci utrzymywania sta³ego po³±czenia z serwerem news.
 
 %prep
