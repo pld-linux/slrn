@@ -5,7 +5,7 @@ Summary(pl):	£atwy w obs³udze czytnik artyku³ów news
 Summary(tr):	Red Hat'in görüþüne göre dünyanýn en iyi haber grubu okuyucusu
 Name:		slrn
 Version:	0.9.6.2
-Release:	6
+Release:	7
 License:	GPL
 Group:		Applications/News
 Group(pl):	Aplikacje/News
@@ -15,6 +15,7 @@ Patch0:		slrn-keymap.patch
 Patch1:		slrn-base64.patch
 Patch2:		slrn-home_etc.patch
 Patch3:		slrn-config.patch
+Patch4:		ftp://chiharu.v6.linux.or.jp/pub/Linux/IPv6-2/IPv6_Patched_Apps/slrn/slrn-0.9.6.2-v6-20000723.diff.gz
 URL:		http://www.slrn.org/
 BuildRequires:	slang-devel
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -68,13 +69,15 @@ konieczno¶ci utrzymywania sta³ego po³±czenia z serwerem news.
 %patch1 -p1
 %patch2 -p1
 %patch3 -p1
+%patch4 -p1
 
 %build
 slrn_cv_domain=no
 LDFLAGS="-s"
 export slrn_cv_domain LDFLAGS
 
-%configure
+%configure \
+	--enable-ipv6
 
 %{__make}
 %{__make} slrnpull
