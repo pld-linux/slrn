@@ -7,7 +7,7 @@ Summary(pt_BR):	O melhor leitor de notícias do mundo
 Summary(tr):	Red Hat'in görüþüne göre dünyanýn en iyi haber grubu okuyucusu
 Name:		slrn
 Version:	0.9.7.4
-Release:	0.2
+Release:	0.3
 License:	GPL
 Group:		Applications/News
 Source0:	ftp://ftp.sourceforge.net/pub/sourceforge/slrn/%{name}-%{version}.tar.bz2
@@ -125,7 +125,7 @@ export INEWS SENDMAIL
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT%{_var}/spool/slrnpull/{data,news,out.going/rejects} \
+install -d $RPM_BUILD_ROOT%{_var}/spool/slrnpull/{logs,data,news,out.going/rejects} \
 	$RPM_BUILD_ROOT{%{_sysconfdir},%{_mandir}/pl/man1} \
 	$RPM_BUILD_ROOT{%{_applnkdir}/Network/News,%{_pixmapsdir}} \
 	$RPM_BUILD_ROOT/etc/logrotate.d
@@ -173,6 +173,7 @@ rm -rf $RPM_BUILD_ROOT
 %attr(2754,root,news) %{_bindir}/slrnpull
 %defattr(664,news,news,755)
 %dir %{_var}/spool/slrnpull
+%dir %{_var}/spool/logs
 %attr(2775,news,news) %dir %{_var}/spool/slrnpull/data
 %verify(not md5 size user mtime) %{_var}/spool/slrnpull/data/active
 %attr(2775,news,news) %dir %{_var}/spool/slrnpull/news
