@@ -5,7 +5,7 @@ Summary(pl):	£atwy w obs³udze czytnik artyku³ów news
 Summary(tr):	Red Hat'in görüþüne göre dünyanýn en iyi haber grubu okuyucusu
 Name:		slrn
 Version:	0.9.7.3
-Release:	1
+Release:	2
 License:	GPL
 Group:		Applications/News
 Group(de):	Applikationen/News
@@ -14,6 +14,7 @@ Source0:	ftp://ftp.sourceforge.net/pub/sourceforge/slrn/%{name}-%{version}.tar.b
 Source1:	%{name}.1.pl
 Source2:	%{name}.desktop
 Source3:	%{name}.png
+Source4:	%{name}-pull.logrotate
 Patch0:		%{name}-ipv6.patch
 Patch1:		%{name}-keymap.patch
 Patch2:		%{name}-config.patch
@@ -104,15 +105,19 @@ export INEWS SENDMAIL
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT%{_var}/spool/slrnpull/out.going \
+install -d $RPM_BUILD_ROOT%{_var}/spool/slrnpull/{data,news,out.going/rejects} \
 	$RPM_BUILD_ROOT{%{_sysconfdir},%{_mandir}/pl/man1} \
-	$RPM_BUILD_ROOT{%{_applnkdir}/Network/News,%{_pixmapsdir}}
+	$RPM_BUILD_ROOT{%{_applnkdir}/Network/News,%{_pixmapsdir}} \
+	$RPM_BUILD_ROOT/etc/logrotate.d
 
 %{__make} install DESTDIR=$RPM_BUILD_ROOT
 
 install %{SOURCE1} $RPM_BUILD_ROOT%{_mandir}/pl/man1/slrn.1
 install %{SOURCE2} $RPM_BUILD_ROOT%{_applnkdir}/Network/News
 install %{SOURCE3} $RPM_BUILD_ROOT%{_pixmapsdir}
+install %{SOURCE4} $RPM_BUILD_ROOT/etc/logrotate.d/slrn-pull
+touch $RPM_BUILD_ROOT%{_var}/spool/slrnpull/data/active
+touch $RPM_BUILD_ROOT%{_var}/spool/slrnpull/log
 
 install doc/slrnpull/slrnpull.conf $RPM_BUILD_ROOT%{_var}/spool/slrnpull
 install doc/slrn.rc $RPM_BUILD_ROOT%{_sysconfdir}
@@ -140,8 +145,14 @@ rm -rf $RPM_BUILD_ROOT
 %files pull
 %defattr(644,root,root,755)
 %doc doc/slrnpull/{*.gz,score,slrn.rc,slrnpull.sh}
+%attr(640,root,news) /etc/logrotate.d/slrn-pull
 %attr(2754,root,news) %{_bindir}/slrnpull
 %defattr(664,news,news,755)
 %dir %{_var}/spool/slrnpull
+%dir %{_var}/spool/slrnpull/data
+%attr(644,news,news) %{_var}/spool/slrnpull/data/active
+%attr(2755,news,news) %dir %{_var}/spool/slrnpull/news
 %attr(3775,news,news) %dir %{_var}/spool/slrnpull/out.going
+%attr(3775,news,news) %dir %{_var}/spool/slrnpull/out.going/rejects
+%attr(640,news,news) %ghost %{_var}/spool/slrnpull/log
 %config(noreplace) %verify(not md5 size mtime) %{_var}/spool/slrnpull/slrnpull.conf
