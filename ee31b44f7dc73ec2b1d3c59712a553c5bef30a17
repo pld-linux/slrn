@@ -1,0 +1,2 @@
+- changed %{_var}/spool/slrnpull/out.going perm to 3775,
+- release 2.
