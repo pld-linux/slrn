@@ -4,7 +4,7 @@ Summary(fr): Le meilleur lecteur de news du monde (Selon Red Hat tout du moins)
 Summary(pl): £atwy w obs³udze czytnik artyku³ów news
 Summary(tr): Red Hat'in görüþüne göre dünyanýn en iyi haber grubu okuyucusu
 Name:        slrn
-Version:     0.9.5.3
+Version:     0.9.5.4
 Release:     1
 Copyright:   GPL
 Group:       Applications/News
