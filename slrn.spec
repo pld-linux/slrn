@@ -7,7 +7,7 @@ Summary(pt_BR):	O melhor leitor de notícias do mundo
 Summary(tr):	Red Hat'in görüþüne göre dünyanýn en iyi haber grubu okuyucusu
 Name:		slrn
 Version:	0.9.7.4
-Release:	0.3
+Release:	0.4
 License:	GPL
 Group:		Applications/News
 Source0:	ftp://ftp.sourceforge.net/pub/sourceforge/slrn/%{name}-%{version}.tar.bz2
@@ -108,7 +108,7 @@ spool de notícias, para leitura "offline".
 %build
 rm -f autoconf/missing
 aclocal -I autoconf
-autoheader -I src
+autoheader -l src
 autoconf
 automake -a -c -f
 INEWS="%{_bindir}/inews"; SENDMAIL="/usr/lib/sendmail"
