@@ -10,7 +10,7 @@ License:	GPL
 Group:		Applications/News
 Group(de):	Applikationen/News
 Group(pl):	Aplikacje/News
-Source0:	ftp://slrn.sourceforge.net/pub/slrn/%{name}-%{version}.tar.bz2
+Source0:	ftp://ftp.sourceforge.net/pub/sourceforge/slrn/%{name}-%{version}.tar.bz2
 Source1:	%{name}.1.pl
 Source2:	%{name}.desktop
 Source3:	%{name}.png
