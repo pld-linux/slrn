@@ -11,7 +11,7 @@ Summary(pt_BR):	O melhor leitor de notícias do mundo
 Summary(tr):	Red Hat'in görüþüne göre dünyanýn en iyi haber grubu okuyucusu
 Name:		slrn
 Version:	0.9.7.4
-Release:	1
+Release:	2
 License:	GPL
 Group:		Applications/News
 Source0:	ftp://ftp.sourceforge.net/pub/sourceforge/slrn/%{name}-%{version}.tar.bz2
@@ -162,10 +162,6 @@ install contrib/{cleanscore,slrnrc-conv} $RPM_BUILD_ROOT%{_bindir}
 install doc/slrnpull/slrnpull.conf $RPM_BUILD_ROOT%{_var}/spool/slrnpull
 install doc/slrn.rc $RPM_BUILD_ROOT%{_sysconfdir}
 
-gzip -9nf doc/{FAQ,FIRST_STEPS,README.*,SCORE_FAQ,THANKS,{help,manual,score,slrnfuns}.txt,*.sl} \
-	doc/slrnpull/{FAQ,README,SETUP,score,slrn.rc,slrnpull.sh} README COPYRIGHT changes.txt \
-	contrib/{README,NEWS}.*
-
 %find_lang %{name}
 
 %clean
@@ -173,7 +169,8 @@ rm -rf $RPM_BUILD_ROOT
 
 %files -f %{name}.lang
 %defattr(644,root,root,755)
-%doc *.gz doc/*.{gz,html} contrib/*.gz
+%doc README COPYRIGHT changes.txt contrib/{README,NEWS}.* doc/*.html
+%doc doc/{FAQ,FIRST_STEPS,README.*,SCORE_FAQ,THANKS,{help,manual,score,slrnfuns}.txt,*.sl}
 %attr(755,root,root) %{_bindir}/slrn
 %attr(755,root,root) %{_bindir}/slrnrc-conv
 %attr(755,root,root) %{_bindir}/cleanscore
@@ -187,7 +184,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files pull
 %defattr(644,root,root,755)
-%doc doc/slrnpull/*.gz
+%doc doc/slrnpull/{FAQ,README,SETUP,score,slrn.rc,slrnpull.sh}
 %attr(640,root,news) /etc/logrotate.d/slrn-pull
 %attr(2754,root,news) %{_bindir}/slrnpull
 %{_mandir}/man1/slrnpull.1.gz

@@ -67,7 +67,7 @@ diff -Nur slrn-0.9.6.4pl4c.orig/src/sltcp.c slrn-0.9.6.4pl4c/src/sltcp.c
     /* If it does not look like a numerical address, use nameserver */
     if (!isdigit(*host) || (-1L == (long)(fake_addr = inet_addr (host))))
       {
-@@ -227,14 +245,47 @@
+@@ -227,14 +245,48 @@
     memset ((char *) &s_in, 0, sizeof(s_in));
     s_in.sin_family = h_addr_type;
     s_in.sin_port = htons((unsigned short) port);
@@ -106,6 +106,7 @@ diff -Nur slrn-0.9.6.4pl4c.orig/src/sltcp.c slrn-0.9.6.4pl4c/src/sltcp.c
 +	if (!not_connected)
 +	  break;
 +     }
++   freeaddrinfo(res0);
 +#else	/* INET6 / !INET6 */
     if (-1 == (s = socket (h_addr_type, SOCK_STREAM, 0)))
       {
@@ -125,3 +126,66 @@ diff -Nur slrn-0.9.6.4pl4c.orig/src/sltcp.c slrn-0.9.6.4pl4c/src/sltcp.c
     
     if (not_connected) 
       {
+--- slrn-0.9.7.4/src/nntplib.c.orig	Wed Mar 13 14:03:31 2002
++++ slrn-0.9.7.4/src/nntplib.c	Tue May 28 20:33:42 2002
+@@ -31,6 +31,9 @@
+ # include <unistd.h>
+ #endif
+ 
++#include <netdb.h>
++#include <netinet/in.h>
++
+ #include <stdarg.h>
+ #include <slang.h>
+ #include "jdmacros.h"
+@@ -587,6 +590,9 @@
+    char *a, *b, *bmax;
+    int def_port = 119;
+    char *def_service = "nntp";
++#ifdef INET6
++   int quoteaddr=0;
++#endif
+ 
+    a = host;
+    if (0 == strncmp (a, "snews://", 8))
+@@ -602,8 +608,24 @@
+ 
+    b = s->host;
+    bmax = b + NNTP_MAX_HOST_LEN;
++#ifdef INET6
++   while ((*a !=0) && ((*a != ':') || quoteaddr) && (b < bmax))
++      if(*a == '[')
++        {
++	   quoteaddr=1;
++	   a++;
++	}
++      else if(*a == ']')
++        {
++	   quoteaddr=0;
++	   a++;
++	}
++      else
++	 *b++ = *a++;
++#else
+    while ((*a != 0) && (*a != ':') && (b < bmax))
+      *b++ = *a++;
++#endif
+    *b = 0;
+    slrn_strncpy (s->name, host, NNTP_MAX_HOST_LEN);
+ 
+@@ -615,8 +637,14 @@
+ 
+    if (port <= 0)
+      {
++	struct servent *se;
++
+ 	if (*a == ':')
+-	  port = atoi (a + 1);
++	  {
++	     if (!(port = atoi (a + 1)))
++		if ((se=getservbyname(a + 1, "tcp")) != NULL)
++		   port = ntohs (se->s_port);
++	  }
+ 	else if (-1 == (port = sltcp_map_service_to_port (def_service)))
+ 	  port = def_port;
+      }
