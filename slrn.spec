@@ -1,7 +1,7 @@
 #
-# _without_canlock	- build without Cancel-Lock support
-# _without_ssl		- build without SSL support (snews://)
-# _without_uudeview	- build without uudeview support
+%bcond_without canlock	# - build without Cancel-Lock support
+%bcond_without ssl	# - build without SSL support (snews://)
+%bcond_without uudeview	# - build without uudeview support
 #
 Summary:	The world's best newsreader
 Summary(da):	Verdens bedste nyhedslæser
@@ -13,7 +13,7 @@ Summary(pt_BR):	O melhor leitor de notícias do mundo
 Summary(tr):	Red Hat'in görüþüne göre dünyanýn en iyi haber grubu okuyucusu
 Name:		slrn
 Version:	0.9.8.0
-Release:	2
+Release:	3
 License:	GPL
 Group:		Applications/News
 Source0:	http://dl.sourceforge.net/slrn/%{name}-%{version}.tar.bz2
@@ -32,11 +32,11 @@ Icon:		slrn.xpm
 URL:		http://www.slrn.org/
 BuildRequires:	autoconf
 BuildRequires:	automake
-%{!?_without_canlock:BuildRequires:	canlock-devel >= 2a}
+%{?with_canlock:BuildRequires:	canlock-devel >= 2a}
 BuildRequires:	gettext-devel
-%{!?_without_ssl:BuildRequires:	openssl-devel >= 0.9.7c}
+%{?with_ssl:BuildRequires:	openssl-devel >= 0.9.7c}
 BuildRequires:	slang-devel
-%{!?_without_uudeview:BuildRequires:	uudeview-devel}
+%{?with_uudeview:BuildRequires:	uudeview-devel}
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -136,10 +136,10 @@ rm -f autoconf/missing
 	--enable-inews \
 	--enable-setgid-code \
 	--enable-spool \
-	%{!?_without_canlock:--with-canlock} \
+	%{?with_canlock:--with-canlock --with-canlock=%{_libdir}} \
 	--with-slrnpull \
-	%{!?_without_ssl:--with-ssl} \
-	%{!?_without_uudeview:--with-uudeview}
+	%{?with_ssl:--with-ssl --with-ssl-library=%{_libdir}} \
+	%{?with_uudeview:--with-uudeview --with-uudeview=%{_libdir}}
 
 %{__make}
 
