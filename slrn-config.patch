@@ -17,9 +17,9 @@ diff -Nur slrn-0.9.6.4pl4c.orig/src/slrnconf.h slrn-0.9.6.4pl4c/src/slrnconf.h
  
  /* define if slrn should use In-Reply-To if no References are available */
  #define SLRN_HAS_FAKE_REFS		1
-diff -Nur slrn-0.9.6.4pl4c.orig/src/slrnfeat.h slrn-0.9.6.4pl4c/src/slrnfeat.h
---- slrn-0.9.6.4pl4c.orig/src/slrnfeat.h	Sun Mar 11 21:55:57 2001
-+++ slrn-0.9.6.4pl4c/src/slrnfeat.h	Fri Mar 30 14:21:50 2001
+diff -Nur slrn-0.9.7.3.orig/src/slrnfeat.h slrn-0.9.7.3/src/slrnfeat.h
+--- slrn-0.9.7.3.orig/src/slrnfeat.h	Sun Mar 11 21:55:57 2001
++++ slrn-0.9.7.3/src/slrnfeat.h	Fri Mar 30 14:21:50 2001
 @@ -59,8 +59,8 @@
    /* Note the -S flag.  slrn appends the signature to the file to be posted and
     * the -S flag tells inews not to also do this.  The -h flag must be used. */
@@ -30,15 +30,6 @@ diff -Nur slrn-0.9.6.4pl4c.orig/src/slrnfeat.h slrn-0.9.6.4pl4c/src/slrnfeat.h
  #endif
  
  #if SLRN_HAS_SPOOL_SUPPORT || defined(SLRNPULL_CODE)
-@@ -153,7 +153,7 @@
- #    define SLRN_SENDMAIL_COMMAND	"/usr/lib/sendmail -oi -t -oem -odb"
- #   endif
- #   ifndef SLRN_LIB_DIR
--#    define SLRN_LIB_DIR		"/usr/local/lib/slrn"
-+#    define SLRN_LIB_DIR		"/usr/share/slrn"
- #   endif
- #  endif			       /* unix */
- # endif				       /* os2 */
 @@ -162,7 +162,7 @@
  /* #define OUR_ORGANIZATION "organization-name" */
  /* #define OUR_HOSTNAME "host.name.here" */
@@ -57,12 +48,3 @@ diff -Nur slrn-0.9.6.4pl4c.orig/src/slrnfeat.h slrn-0.9.6.4pl4c/src/slrnfeat.h
  
  /* The remaing variables are specified as relative names with respect to the
   * SLRNPULL_ROOT_DIR.
-@@ -189,7 +189,7 @@
-  * created with the setgid bit enabled, which slrnpull will do if this is
-  * set to 1.  See slrn/slrnpull/setgid.txt for more information.
-  */
--#define SLRNPULL_USE_SETGID_POSTS	0
-+#define SLRNPULL_USE_SETGID_POSTS	1
- 
- /* The file that will be used for killing articles as they are fetched. */
- #define SLRNPULL_SCORE_FILE	"score"

@@ -18,9 +18,9 @@ diff -Nur slrn-0.9.7.1.orig/src/misc.h slrn-0.9.7.1/src/misc.h
  }
  Slrn_User_Info_Type;
  
-diff -Nur slrn-0.9.7.1.orig/src/post.c slrn-0.9.7.1/src/post.c
---- slrn-0.9.7.1.orig/src/post.c	Sat May 26 20:35:02 2001
-+++ slrn-0.9.7.1/src/post.c	Sun Jun 10 19:44:10 2001
+diff -Nur slrn-0.9.7.3.orig/src/post.c slrn-0.9.7.1/src/post.c
+--- slrn-0.9.7.3.orig/src/post.c	Sat May 26 20:35:02 2001
++++ slrn-0.9.7.3/src/post.c	Sun Jun 10 19:44:10 2001
 @@ -653,6 +653,7 @@
     char line [MAX_LINE_BUFLEN];
     char *system_os_name;
@@ -47,15 +47,16 @@ diff -Nur slrn-0.9.7.1.orig/src/post.c slrn-0.9.7.1/src/post.c
  			   system_os_name);
  		  header = 0;
  	       }
-@@ -849,13 +857,20 @@
-    SLang_Name_Type *filter_hook;
+@@ -849,14 +857,21 @@
+    int filter_hook;
  #endif
     int once_more;
 -   char *system_os_name;
 +   char *system_os_name, *User_Agent;
+    char *responses;
  
  #if SLRN_HAS_SLANG
-    filter_hook = SLang_get_function ("post_filter_hook");
+    filter_hook = slrn_is_hook_defined (HOOK_POST_FILTER);
  #endif
  
 -   system_os_name = slrn_get_os_name ();
@@ -91,3 +92,14 @@ diff -Nur slrn-0.9.7.1.orig/src/startup.c slrn-0.9.7.1/src/startup.c
  #if SLRN_HAS_GROUPLENS
       {"grouplens_pseudoname", &Slrn_GroupLens_Pseudoname},
       {"grouplens_host", &Slrn_GroupLens_Host},
+--- slrn-0.9.7.3/Makefile.am.orig	Sat Nov  3 16:12:48 2001
++++ slrn-0.9.7.3/Makefile.am	Fri Nov 23 20:29:11 2001
+@@ -11,7 +11,7 @@
+ MACROS = macros/color.sl macros/gsort.sl macros/ispell.sl \
+  macros/latin2.sl macros/multipart.sl macros/nn.sl macros/posthook.sl \
+  macros/search.sl macros/tin-art.sl macros/tin-group.sl macros/ttyprint.sl \
+- macros/util.sl macros/varset.sl macros/xcomment.sl
++ macros/util.sl macros/varset.sl macros/xcomment.sl macros/uname.sl
+ 
+ CONTRIB = contrib/cleanscore contrib/slrnrc-conv
+ CONTRIBDOCS = contrib/README.cleanscore contrib/README.slrnrc-conv \
