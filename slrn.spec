@@ -5,7 +5,7 @@ Summary(pl):	£atwy w obs³udze czytnik artyku³ów news
 Summary(tr):	Red Hat'in görüþüne göre dünyanýn en iyi haber grubu okuyucusu
 Name:		slrn
 Version:	0.9.7.3
-Release:	4
+Release:	5
 License:	GPL
 Group:		Applications/News
 Group(de):	Applikationen/News
@@ -118,6 +118,7 @@ install %{SOURCE3} $RPM_BUILD_ROOT%{_pixmapsdir}
 install %{SOURCE4} $RPM_BUILD_ROOT/etc/logrotate.d/slrn-pull
 > $RPM_BUILD_ROOT%{_var}/spool/slrnpull/data/active
 > $RPM_BUILD_ROOT%{_var}/spool/slrnpull/log
+> $RPM_BUILD_ROOT%{_var}/spool/slrnpull/score
 
 install doc/slrnpull/slrnpull.conf $RPM_BUILD_ROOT%{_var}/spool/slrnpull
 install doc/slrn.rc $RPM_BUILD_ROOT%{_sysconfdir}
@@ -149,9 +150,11 @@ rm -rf $RPM_BUILD_ROOT
 %attr(2754,root,news) %{_bindir}/slrnpull
 %defattr(664,news,news,755)
 %dir %{_var}/spool/slrnpull
-%{_var}/spool/slrnpull/data
+%attr(2775,news,news) %dir %{_var}/spool/slrnpull/data
+%verify(not md5 size user mtime) %{_var}/spool/slrnpull/data/active
 %attr(2775,news,news) %dir %{_var}/spool/slrnpull/news
 %attr(3775,news,news) %dir %{_var}/spool/slrnpull/out.going
 %attr(3775,news,news) %dir %{_var}/spool/slrnpull/out.going/rejects
 %attr(660,news,news) %ghost %{_var}/spool/slrnpull/log
+%config(noreplace) %verify(not md5 size mtime) %{_var}/spool/slrnpull/score
 %config(noreplace) %verify(not md5 size mtime) %{_var}/spool/slrnpull/slrnpull.conf
