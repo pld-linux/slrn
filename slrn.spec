@@ -13,7 +13,7 @@ Summary(pt_BR):	O melhor leitor de notícias do mundo
 Summary(tr):	Red Hat'in görüþüne göre dünyanýn en iyi haber grubu okuyucusu
 Name:		slrn
 Version:	0.9.8.0
-Release:	3
+Release:	4
 License:	GPL
 Group:		Applications/News
 Source0:	http://dl.sourceforge.net/slrn/%{name}-%{version}.tar.bz2
@@ -147,14 +147,14 @@ rm -f autoconf/missing
 rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT%{_var}/spool/slrnpull/{data,logs,news,out.going/rejects} \
 	$RPM_BUILD_ROOT{%{_sysconfdir},%{_mandir}/pl/man1} \
-	$RPM_BUILD_ROOT{%{_applnkdir}/Network/News,%{_pixmapsdir}} \
+	$RPM_BUILD_ROOT{%{_desktopdir},%{_pixmapsdir}} \
 	$RPM_BUILD_ROOT/etc/logrotate.d
 
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
 
 install %{SOURCE1} $RPM_BUILD_ROOT%{_mandir}/pl/man1/slrn.1
-install %{SOURCE2} $RPM_BUILD_ROOT%{_applnkdir}/Network/News
+install %{SOURCE2} $RPM_BUILD_ROOT%{_desktopdir}
 install %{SOURCE3} $RPM_BUILD_ROOT%{_pixmapsdir}
 install %{SOURCE4} $RPM_BUILD_ROOT/etc/logrotate.d/slrn-pull
 > $RPM_BUILD_ROOT%{_var}/spool/slrnpull/data/active
@@ -181,7 +181,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/slrn/macros
 %{_mandir}/man1/slrn.1*
 %lang(pl) %{_mandir}/pl/man1/*
-%{_applnkdir}/Network/News/*
+%{_desktopdir}/*
 %{_pixmapsdir}/*
 %config(noreplace,missingok) %verify(not md5 size mtime) %{_sysconfdir}/slrn.rc
 
