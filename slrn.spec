@@ -66,12 +66,12 @@ Requires:	%{name} = %{version}
 This package provides slrnpull, which allows set up of a small news
 spool for offline news reading.
 
-%description -l pl pull
+%description pull -l pl
 Slrnpull umo¿liwia ¶ci±gniêcie artyku³ów, a nastêpnie czytanie ich bez
 konieczno¶ci utrzymywania sta³ego po³±czenia z serwerem news.
 
 %prep
-%setup  -q
+%setup -q
 %patch0 -p1
 %patch1 -p1
 %patch2 -p1
@@ -126,7 +126,7 @@ export INEWS SENDMAIL
 %lang(pl) %{_mandir}/pl/man1/*
 %{_applnkdir}/Network/News/*
 %{_pixmapsdir}/*
-%config(noreplace) %verify(not md5 size mtime) %{_sysconfdir}/slrn.rc
+%config(noreplace,missingok) %verify(not md5 size mtime) %{_sysconfdir}/slrn.rc
 
 %files pull
 %defattr(644,root,root,755)
