@@ -5,7 +5,7 @@ Summary(pl):	£atwy w obs³udze czytnik artyku³ów news
 Summary(tr):	Red Hat'in görüþüne göre dünyanýn en iyi haber grubu okuyucusu
 Name:		slrn
 Version:	0.9.6.2
-Release:	8
+Release:	9
 License:	GPL
 Group:		Applications/News
 Group(pl):	Aplikacje/News
@@ -109,7 +109,7 @@ rm -rf $RPM_BUILD_ROOT
 %doc doc/{*.gz,score.sl}
 %attr(755,root,root) %{_bindir}/slrn
 %dir %{_libdir}/slrn
-%verify (not md5 size mtime) %{_libdir}/slrn/slrn.rc
+%config(noreplace) %{_libdir}/slrn/slrn.rc
 %{_libdir}/slrn/*.sl
 
 %{_mandir}/man1/*
