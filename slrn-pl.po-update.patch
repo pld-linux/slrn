@@ -1,0 +1,328 @@
+--- slrn-0.9.8.1/po/pl.po.orig	2004-10-07 01:44:39.000000000 +0200
++++ slrn-0.9.8.1/po/pl.po	2004-11-24 22:24:33.176990392 +0100
+@@ -15,12 +15,12 @@
+ #
+ msgid ""
+ msgstr ""
+-"Project-Id-Version: slrn 0.9.8.0\n"
++"Project-Id-Version: slrn 0.9.8.1\n"
+ "Report-Msgid-Bugs-To: \n"
+ "POT-Creation-Date: 2004-10-07 01:44+0200\n"
+-"PO-Revision-Date: 2003-10-16 12:03+0100\n"
++"PO-Revision-Date: 2004-11-24 22:00+0100\n"
+ "Last-Translator: Tomasz Sienicki <tsca@edb.dk>\n"
+-"Language-Team: Polish <pl@li.org>\n"
++"Language-Team: Polish <translation-team-pl@lists.sourceforge.net>\n"
+ "MIME-Version: 1.0\n"
+ "Content-Type: text/plain; charset=iso-8859-2\n"
+ "Content-Transfer-Encoding: 8bit\n"
+@@ -82,7 +82,7 @@
+ 
+ #: src/art.c:1331 src/help.c:571
+ msgid "<Space>"
+-msgstr ""
++msgstr "<Spacja>"
+ 
+ #: src/art.c:2165
+ msgid "Goto article: "
+@@ -433,7 +433,7 @@
+ #: src/art.c:5137 src/slrnpull.c:1339
+ #, c-format
+ msgid "Score %d killed article %s\n"
+-msgstr "Punktacja %d zabitego artyku³u %s\n"
++msgstr "Punktacja %d zabi³a artyku³ %s\n"
+ 
+ #: src/art.c:5141 src/slrnpull.c:1345
+ #, c-format
+@@ -1586,24 +1586,23 @@
+ 
+ #: src/help.c:125
+ msgid "  T                  Display quoted lines (on/off)."
+-msgstr "  T                  W³±cz/wy³acz wy¶wietlanie cytowanych wierszy."
++msgstr "  T                  W³±cz/wy³±cz wy¶wietlanie cytowanych wierszy."
+ 
+ #: src/help.c:126
+ msgid "  \\                  Show signature (on/off)."
+-msgstr "  \\                  W³±cz/wy³acz wy¶wietlanie sygnaturki."
++msgstr "  \\                  W³±cz/wy³±cz wy¶wietlanie sygnaturki."
+ 
+ #: src/help.c:127
+ msgid "  W                  Wrap long lines (on/off)."
+ msgstr "  W                  W³±cz/wy³±cz zawijanie wierszy."
+ 
+ #: src/help.c:129
+-#, fuzzy
+ msgid "  ESC ?              Reveal spoilers."
+ msgstr "  ESC ?              Ujawnij spoilery."
+ 
+ #: src/help.c:131
+ msgid "  ]                  Show PGP signature (on/off)."
+-msgstr "  ]                  W³±cz/wy³acz wy¶wietlanie sygnatury PGP."
++msgstr "  ]                  W³±cz/wy³±cz wy¶wietlanie sygnatury PGP."
+ 
+ #: src/help.c:132
+ msgid "  [                  Show verbatim marks (on/off)."
+@@ -1870,7 +1869,7 @@
+ #: src/help.c:207
+ msgid "      ESC 1 u             Unsubscribe from groups matching a pattern."
+ msgstr ""
+-"      ESC 1 u             Odwo³aj subskrybcjê grup wed³ug podanego wzorca."
++"      ESC 1 u             Odwo³aj subskrypcjê grup wed³ug podanego wzorca."
+ 
+ #: src/help.c:208
+ msgid "  m                       Move newsgroup to a different location."
+@@ -1953,117 +1952,115 @@
+ 
+ #: src/help.c:557
+ msgid "<PageUp>"
+-msgstr ""
++msgstr "<PageUp>"
+ 
+ #: src/help.c:558
+ msgid "<PageDown>"
+-msgstr ""
++msgstr "<PageDown>"
+ 
+ #: src/help.c:559
+ msgid "<Up>"
+-msgstr ""
++msgstr "<Góra>"
+ 
+ #: src/help.c:560
+ msgid "<Down>"
+-msgstr ""
++msgstr "<Dó³>"
+ 
+ #: src/help.c:561
+ msgid "<Right>"
+-msgstr ""
++msgstr "<Prawo>"
+ 
+ #: src/help.c:562
+ msgid "<Left>"
+-msgstr ""
++msgstr "<Lewo>"
+ 
+ #: src/help.c:563
+-#, fuzzy
+ msgid "<Delete>"
+-msgstr "Usun±æ %s"
++msgstr "<Delete>"
+ 
+ #: src/help.c:564
+ msgid "<BackSpace>"
+-msgstr ""
++msgstr "<BackSpace>"
+ 
+ #: src/help.c:565
+ msgid "<Insert>"
+-msgstr ""
++msgstr "<Insert>"
+ 
+ #: src/help.c:566
+ msgid "<Home>"
+-msgstr ""
++msgstr "<Home>"
+ 
+ #: src/help.c:567
+ msgid "<End>"
+-msgstr ""
++msgstr "<End>"
+ 
+ #: src/help.c:568
+ msgid "<Enter>"
+-msgstr ""
++msgstr "<Enter>"
+ 
+ #: src/help.c:569
+ msgid "<Return>"
+-msgstr ""
++msgstr "<Return>"
+ 
+ #: src/help.c:570
+ msgid "<Tab>"
+-msgstr ""
++msgstr "<Tab>"
+ 
+ #: src/help.c:572
+ msgid "<F1>"
+-msgstr ""
++msgstr "<F1>"
+ 
+ #: src/help.c:573
+ msgid "<F2>"
+-msgstr ""
++msgstr "<F2>"
+ 
+ #: src/help.c:574
+ msgid "<F3>"
+-msgstr ""
++msgstr "<F3>"
+ 
+ #: src/help.c:575
+ msgid "<F4>"
+-msgstr ""
++msgstr "<F4>"
+ 
+ #: src/help.c:576
+ msgid "<F5>"
+-msgstr ""
++msgstr "<F5>"
+ 
+ #: src/help.c:577
+ msgid "<F6>"
+-msgstr ""
++msgstr "<F6>"
+ 
+ #: src/help.c:578
+ msgid "<F7>"
+-msgstr ""
++msgstr "<F7>"
+ 
+ #: src/help.c:579
+ msgid "<F8>"
+-msgstr ""
++msgstr "<F8>"
+ 
+ #: src/help.c:580
+ msgid "<F9>"
+-msgstr ""
++msgstr "<F9>"
+ 
+ #: src/help.c:581
+ msgid "<F10>"
+-msgstr ""
++msgstr "<F10>"
+ 
+ #: src/help.c:582
+ msgid "<F11>"
+-msgstr ""
++msgstr "<F11>"
+ 
+ #: src/help.c:583
+ msgid "<F12>"
+-msgstr ""
++msgstr "<F12>"
+ 
+ #: src/help.c:584
+ msgid "<Esc>"
+-msgstr ""
++msgstr "<Esc>"
+ 
+ #: src/help.c:752
+-#, fuzzy
+ msgid "Ctrl-"
+-msgstr "Ctrl-%c"
++msgstr "Ctrl-"
+ 
+ #: src/interp.c:105
+ msgid "positive integer expected"
+@@ -2752,9 +2749,9 @@
+ msgstr "Nieznany kod NNTP"
+ 
+ #: src/post.c:531
+-#, fuzzy, c-format
++#, c-format
+ msgid "Unable to re-open %s."
+-msgstr "Nie mogê otworzyæ pliku %s."
++msgstr "Nie mogê ponownie otworzyæ pliku %s."
+ 
+ #: src/post.c:651
+ msgid "The first line must begin with a header."
+@@ -3268,7 +3265,7 @@
+ "--version       Poka¿ wersjê i obs³ugiwane funkcje.\n"
+ "\n"
+ "Tryb NNTP zawiera dodatkowe opcje; uruchom \"slrn --nntp --help\" aby je "
+-"wyswietliæ.\n"
++"wy¶wietliæ.\n"
+ 
+ #: src/slrn.c:966
+ #, c-format
+@@ -3600,9 +3597,9 @@
+ msgstr "B³±d zapisu bazy overview: %s:%d."
+ 
+ #: src/slrnpull.c:1341
+-#, fuzzy, c-format
++#, c-format
+ msgid "Score %d requested article %s\n"
+-msgstr "Punktacja %d zabitego artyku³u %s\n"
++msgstr "Punktacja %d za¿±da³a artyku³u %s\n"
+ 
+ #: src/slrnpull.c:1404
+ msgid "Internal error: Buffer in get_heads not large enough!"
+@@ -3748,7 +3745,7 @@
+ msgstr "W sumie odebrano %lu bajtów, wys³ano %lu bajtów w czasie %ld sekund."
+ 
+ #: src/slrnpull.c:2111
+-#, fuzzy, c-format
++#, c-format
+ msgid ""
+ "%s usage: %s [options]\n"
+ " Options:\n"
+@@ -3769,12 +3766,14 @@
+ "  --rebuild            Like --expire; additionally rebuilds overview files.\n"
+ "  --version            Show the version number.\n"
+ msgstr ""
+-"%s u¿ycie: %s [opcje]\n"
++"U¿ycie %s: %s [opcje]\n"
+ " Opcje:\n"
+ "  -d SPOOLDIR          Katalog spoola dla serwera.\n"
+ "  -h NAZWA_SERWERA     Nazwa serwera NNTP.\n"
+-"  --debug PLIK         Zapisz dialog z serwerem do pliku.\n"
++"  --debug PLIK         Zapisz dialog z serwerem do PLIKu.\n"
+ "  --expire             Wykasuj przedawnione artyku³y i nie ¶ci±gaj nowych.\n"
++"  --fetch-score PUNKTY ¦ci±gaj cia³a artyku³ów z punktacj± co najmniej PUNKTY\n"
++"                       (do u¿ywania w trybie \"true offline\")\n"
+ "  --help               Wy¶wietl pomoc.\n"
+ "  --kill-log PLIK      Odnotuj w PLIKu wszystkie zabite artyku³y.\n"
+ "  --kill-score PUNKTY  Zabij artyku³y z punktacj± poni¿ej warto¶ci PUNKTY.\n"
+@@ -4359,49 +4358,3 @@
+ #: src/xover.c:1016
+ msgid "Server does not provide this capability."
+ msgstr "Serwer nie obs³uguje tej funkcji."
+-
+-#~ msgid "SPACE"
+-#~ msgstr "SPACJA"
+-
+-#~ msgid "TAB"
+-#~ msgstr "TAB"
+-
+-#~ msgid "RETURN"
+-#~ msgstr "ENTER"
+-
+-#~ msgid "ESCAPE"
+-#~ msgstr "ESC"
+-
+-#~ msgid "DELETE"
+-#~ msgstr "DELETE"
+-
+-#~ msgid "BACKSPACE"
+-#~ msgstr "BACKSPACE"
+-
+-#~ msgid "trying %s\n"
+-#~ msgstr "próbujê %s\n"
+-
+-#~ msgid "[This message has also been posted.]"
+-#~ msgstr "[Wiadomo¶æ wys³ana równie¿ na grupê dyskusyjn±.]"
+-
+-#~ msgid ""
+-#~ "%s: Obsolete variable name on line %d: followup\n"
+-#~ "The new name is followup_string"
+-#~ msgstr ""
+-#~ "%s: Przestarza³a nazwa zmiennej w wierszu %d: followup\n"
+-#~ "Nowa nazwa to followup_string"
+-
+-#~ msgid "%a, %d %b %Y at %H:%M GMT"
+-#~ msgstr "%a, %d %b %Y o %H:%M GMT"
+-
+-#~ msgid "fFpPiIcC"
+-#~ msgstr "fFtTiIaA"
+-
+-#~ msgid "In article %m, %r wrote:"
+-#~ msgstr "W artykule %m %r napisa³(a):"
+-
+-#~ msgid "Subject"
+-#~ msgstr "Temat"
+-
+-#~ msgid "Author"
+-#~ msgstr "Autor"
