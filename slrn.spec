@@ -1,5 +1,5 @@
 #
-# _with_ssl		build slrn with SSL support (snews://)
+# _without_ssl		- build slrn without SSL support (snews://)
 #
 Summary:	The world's best newsreader
 Summary(da):	Verdens bedste nyhedslæser
@@ -10,35 +10,35 @@ Summary(pl):	£atwy w obs³udze czytnik artyku³ów news
 Summary(pt_BR):	O melhor leitor de notícias do mundo
 Summary(tr):	Red Hat'in görüþüne göre dünyanýn en iyi haber grubu okuyucusu
 Name:		slrn
-Version:	0.9.7.4
-Release:	3
+Version:	0.9.8.0
+Release:	0.1
 License:	GPL
 Group:		Applications/News
 Source0:	http://dl.sourceforge.net/slrn/%{name}-%{version}.tar.bz2
-# Source0-md5:	da944c58f301cf07a41f996d91de8431
+# Source0-md5:	47e9931771114ba192356a0473e9649e
 Source1:	%{name}.1.pl
 Source2:	%{name}.desktop
 Source3:	%{name}.png
 Source4:	%{name}-pull.logrotate
-Patch0:		%{name}-ipv6.patch
+#Patch0:		%{name}-ipv6.patch
 Patch1:		%{name}-keymap.patch
 Patch2:		%{name}-config.patch
 Patch3:		%{name}-user-agent.patch
-Patch4:		%{name}-amfix.patch
+#Patch4:		%{name}-amfix.patch
 Patch5:		%{name}-sort_visible_headers.patch
-Patch6:		%{name}-locate_by_msgid.patch
-Patch7:		%{name}-ac253.patch
-Patch8:		http://slrn.sourceforge.net/patches/slrn-0.9.7.4-popup_win.diff
-Patch9:		http://slrn.sourceforge.net/patches/slrn-0.9.7.4-mem_leak.diff
-Patch10:	http://slrn.sourceforge.net/patches/slrn-0.9.7.4-po.diff
-Patch11:	http://slrn.sourceforge.net/patches/slrn-0.9.7.4-link_subjects.diff
+#Patch6:		%{name}-locate_by_msgid.patch
+#Patch7:		%{name}-ac253.patch
+#Patch8:		http://slrn.sourceforge.net/patches/slrn-0.9.7.4-popup_win.diff
+#Patch9:		http://slrn.sourceforge.net/patches/slrn-0.9.7.4-mem_leak.diff
+#Patch10:	http://slrn.sourceforge.net/patches/slrn-0.9.7.4-po.diff
+#Patch11:	http://slrn.sourceforge.net/patches/slrn-0.9.7.4-link_subjects.diff
 Icon:		slrn.xpm
 URL:		http://www.slrn.org/
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	gettext-devel
 BuildRequires:	slang-devel
-%{?_with_ssl:BuildRequires:	openssl-devel >= 0.9.7}
+%{!?_without_ssl:BuildRequires:	openssl-devel >= 0.9.7}
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -116,25 +116,25 @@ spool de notícias, para leitura "offline".
 
 %prep
 %setup -q
-%patch0 -p1
-%patch1 -p1
-%patch2 -p1
-%patch3 -p1
-%patch4 -p1
+#%patch0 -p1	-- obsolete
+#%patch1 -p1	-- needs update
+#%patch2 -p1	-- needs update
+#%patch3 -p1	-- needs update
+#%patch4 -p1	-- obsolete
 %patch5 -p1
-%patch6 -p1
-%patch7 -p1
-%patch8 -p1
-%patch9 -p1
-%patch10 -p1
-%patch11 -p1
+#%patch6 -p1	-- obsolete
+#%patch7 -p1	-- obsolete
+# all obsolete
+#%patch8 -p1
+#%patch9 -p1
+#%patch10 -p1
+#%patch11 -p1
 
 %build
 rm -f autoconf/missing
 %{__gettextize}
 %{__aclocal} -I autoconf
-# ac2.53 || ac2.52
-%{__autoheader} -I src/ || autoheader
+%{__autoheader}
 %{__autoconf}
 %{__automake}
 INEWS="%{_bindir}/inews"; SENDMAIL="/usr/lib/sendmail"
@@ -147,7 +147,7 @@ export INEWS SENDMAIL
 	--enable-spool \
 	--with-slrnpull \
 	--enable-setgid-code \
-	%{?_with_ssl:--with-ssl}
+	%{!?_without_ssl:--with-ssl}
 
 %{__make}
 
@@ -158,7 +158,8 @@ install -d $RPM_BUILD_ROOT%{_var}/spool/slrnpull/{data,logs,news,out.going/rejec
 	$RPM_BUILD_ROOT{%{_applnkdir}/Network/News,%{_pixmapsdir}} \
 	$RPM_BUILD_ROOT/etc/logrotate.d
 
-%{__make} install DESTDIR=$RPM_BUILD_ROOT
+%{__make} install \
+	DESTDIR=$RPM_BUILD_ROOT
 
 install %{SOURCE1} $RPM_BUILD_ROOT%{_mandir}/pl/man1/slrn.1
 install %{SOURCE2} $RPM_BUILD_ROOT%{_applnkdir}/Network/News
@@ -180,7 +181,7 @@ rm -rf $RPM_BUILD_ROOT
 %files -f %{name}.lang
 %defattr(644,root,root,755)
 %doc README COPYRIGHT changes.txt contrib/{README,NEWS}.* doc/*.html
-%doc doc/{FAQ,FIRST_STEPS,README.*,SCORE_FAQ,THANKS,{help,manual,score,slrnfuns}.txt,*.sl}
+%doc doc/{FAQ,FIRST_STEPS,README.*,THANKS,{help,manual,score,slrnfuns}.txt,*.sl}
 %attr(755,root,root) %{_bindir}/slrn
 %attr(755,root,root) %{_bindir}/slrnrc-conv
 %attr(755,root,root) %{_bindir}/cleanscore
@@ -194,7 +195,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files pull
 %defattr(644,root,root,755)
-%doc doc/slrnpull/{FAQ,README,SETUP,score,slrn.rc,slrnpull.sh}
+%doc doc/slrnpull/{README,SETUP,score,slrn.rc,slrnpull.sh}
 %attr(640,root,news) /etc/logrotate.d/slrn-pull
 %attr(2754,root,news) %{_bindir}/slrnpull
 %{_mandir}/man1/slrnpull.1*
