@@ -72,13 +72,13 @@ install -d $RPM_BUILD_ROOT/var/spool/slrnpull/out.going
 
 install doc/slrn.rc $RPM_BUILD_ROOT%{_libdir}/slrn
 install doc/slrn.1 $RPM_BUILD_ROOT%{_mandir}/man1/slrn.1
-install src/objs/slrn $RPM_BUILD_ROOT/usr/bin/slrn
-install src/objs/slrnpull $RPM_BUILD_ROOT/usr/bin/slrnpull
+install src/objs/slrn $RPM_BUILD_ROOT%{_bindir}/slrn
+install src/objs/slrnpull $RPM_BUILD_ROOT%{_bindir}/slrnpull
 install $RPM_SOURCE_DIR/slrn.wmconfig $RPM_BUILD_ROOT/etc/X11/wmconfig/slrn
 
 install slrnpull/slrnpull.conf $RPM_BUILD_ROOT/var/spool/slrnpull
 
-strip $RPM_BUILD_ROOT/usr/bin/* || :
+strip $RPM_BUILD_ROOT%{_bindir}/* || :
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -87,7 +87,7 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644, root, root, 755)
 %config (missingok) /etc/X11/wmconfig/slrn
 %doc doc/{README.GroupLens,README.macros,FAQ,SCORE_FAQ,*.txt,score.sl}
-%attr(755, root, root) /usr/bin/slrn
+%attr(755, root, root) %{_bindir}/slrn
 %dir %{_libdir}/slrn
 %verify (not md5 size mtime) %{_libdir}/slrn/slrn.rc
 %{_mandir}/man1/slrn.1
@@ -95,7 +95,7 @@ rm -rf $RPM_BUILD_ROOT
 %files pull
 %defattr(644, root, root, 755)
 %doc slrnpull/{FAQ,QUICK_INSTALL,README,score,slrn.rc,slrnpull.sh}
-%attr (755, root, root) /usr/bin/slrnpull
+%attr (755, root, root) %{_bindir}/slrnpull
 %attr (775, news, news) %dir /var/spool/slrnpull
 %attr (775, news, news) %dir /var/spool/slrnpull/out.going
 %attr (775, news, news) %config(noreplace) %verify(not size md5 mtime) /var/spool/slrnpull/slrnpull.conf
