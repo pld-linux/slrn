@@ -1,0 +1,15 @@
+diff -urN slrn-0.9.7.3.orig/src/art.c slrn-0.9.7.3/src/art.c
+--- slrn-0.9.7.3.orig/src/art.c	Sat Nov  3 21:48:57 2001
++++ slrn-0.9.7.3/src/art.c	Mon Nov  5 18:47:19 2001
+@@ -6537,6 +6537,11 @@
+ 	*buf = '<';
+ 	msgid = buf;
+      }
++   if (!strncmp (msgid + 1, "news:", 5))
++     {
++	msgid += 5;
++	*msgid = '<';
++     }
+    if (msgid [strlen(msgid) - 1] != '>')
+      strcat (msgid, ">"); /* safe */
+    

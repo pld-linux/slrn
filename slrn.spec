@@ -24,6 +24,7 @@ Patch5:		%{name}-official_bugfixes.patch
 Patch6:		%{name}-same_subject_msg.patch
 Patch7:		%{name}-pl_po.patch
 Patch8:		%{name}-sort_visible_headers.patch
+Patch9:		%{name}-locate_by_msgid.patch
 #Patch5:	%{name}-home_etc.patch
 Icon:		slrn.xpm
 URL:		http://www.slrn.org/
@@ -88,6 +89,7 @@ konieczno¶ci utrzymywania sta³ego po³±czenia z serwerem news.
 %patch6 -p1
 %patch7 -p1
 %patch8 -p1
+%patch9 -p1
 
 %build
 rm -f autoconf/missing
