@@ -1,0 +1,9 @@
+[Desktop Entry]
+Name=slrn
+Name[sv]=slrn
+Type=Application
+Comment=Usenet News Reader
+Comment[sv]=Usenet-diskussionsgruppsläsare
+Icon=slrn.png
+Exec=slrn
+Terminal=true
