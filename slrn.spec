@@ -6,14 +6,14 @@ Summary(tr):	Red Hat'in görüþüne göre dünyanýn en iyi haber grubu okuyucusu
 Name:		slrn
 Version:	0.9.6.2
 Release:	1
-Copyright:	GPL
+License:	GPL
 Group:		Applications/News
 Group(pl):	Aplikacje/News
-URL:		http://www.slrn.org
 Source:		ftp://space.mit.edu/pub/davis/slrn/%{name}-%{version}.tar.bz2
 Source1:	%{name}.1.pl
 Patch0:		slrn-keymap.patch
 Patch1:		slrn-base64.patch
+URL:		http://www.slrn.org/
 BuildRequires:	slang-devel
 BuildRoot:	/tmp/%{name}-%{version}-root
 
@@ -101,9 +101,9 @@ rm -rf $RPM_BUILD_ROOT
 %dir %{_libdir}/slrn
 %verify (not md5 size mtime) %{_libdir}/slrn/slrn.rc
 %{_libdir}/slrn/*.sl
-%{_mandir}/man1/*.gz
 
-%lang(pl) %{_mandir}/pl/man1/*.gz
+%{_mandir}/man1/*
+%lang(pl) %{_mandir}/pl/man1/*
 
 %files pull
 %defattr(644,root,root,755)
