@@ -10,5 +10,6 @@ Comment[sv]=Usenet-diskussionsgruppsläsare
 Icon=slrn.png
 Exec=slrn
 Terminal=true
+Categories=Network;News;
 Encoding=UTF-8
 # vi: encoding=utf-8
