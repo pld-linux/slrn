@@ -79,8 +79,12 @@ konieczno¶ci utrzymywania sta³ego po³±czenia z serwerem news.
 %patch4 -p1
 
 %build
-(cd autoconf; aclocal ; autoconf)
-cp -f autoconf/configure .
+(
+	cd autoconf
+	%{__aclocal}
+	%{__autoconf}
+)
+%{__cp} -f autoconf/configure .
 
 INEWS="/usr/bin/inews"; SENDMAIL="/usr/lib/sendmail"
 export INEWS SENDMAIL
@@ -92,25 +96,25 @@ export INEWS SENDMAIL
 %{__make} slrnpull
 
 %install
-rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT/var/spool/slrnpull/out.going \
-	$RPM_BUILD_ROOT{%{_mandir}/pl/man1,%{_sysconfdir}} \
+%{__rm} -rf $RPM_BUILD_ROOT
+%{__install} -d $RPM_BUILD_ROOT%{_var}/spool/slrnpull/out.going \
+	$RPM_BUILD_ROOT{%{_sysconfdir},%{_mandir}/pl/man1} \
 	$RPM_BUILD_ROOT{%{_applnkdir}/Network/News,%{_pixmapsdir}}
 
 %{__make} install DESTDIR=$RPM_BUILD_ROOT
 
-install %{SOURCE1} $RPM_BUILD_ROOT%{_mandir}/pl/man1/slrn.1
-install %{SOURCE2} $RPM_BUILD_ROOT%{_applnkdir}/Network/News
-install %{SOURCE3} $RPM_BUILD_ROOT%{_pixmapsdir}
+%{__install} %{SOURCE1} $RPM_BUILD_ROOT%{_mandir}/pl/man1/slrn.1
+%{__install} %{SOURCE2} $RPM_BUILD_ROOT%{_applnkdir}/Network/News
+%{__install} %{SOURCE3} $RPM_BUILD_ROOT%{_pixmapsdir}
 
-install doc/slrnpull/slrnpull.conf $RPM_BUILD_ROOT/var/spool/slrnpull
-install doc/slrn.rc $RPM_BUILD_ROOT%{_sysconfdir}
+%{__install} doc/slrnpull/slrnpull.conf $RPM_BUILD_ROOT%{_var}/spool/slrnpull
+%{__install} doc/slrn.rc $RPM_BUILD_ROOT%{_sysconfdir}
 
-gzip -9nf doc/{FAQ,FIRST_STEPS,README.*,SCORE_FAQ,THANKS,{help,manual,score,slrnfuns}.txt} \
+%{__gzip} -9nf doc/{FAQ,FIRST_STEPS,README.*,SCORE_FAQ,THANKS,{help,manual,score,slrnfuns}.txt} \
 	doc/slrnpull/{FAQ,README,SETUP} README COPYRIGHT changes.txt
 
 %clean
-rm -rf $RPM_BUILD_ROOT
+%{__rm} -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
@@ -118,17 +122,17 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_bindir}/slrn
 %dir %{_libdir}/slrn
 %{_libdir}/slrn/*.sl
-%config(noreplace) %verify(not size mtime md5) %{_sysconfdir}/slrn.rc
-%{_applnkdir}/Network/News/*
-%{_pixmapsdir}/*
-
 %{_mandir}/man1/*
 %lang(pl) %{_mandir}/pl/man1/*
+%{_applnkdir}/Network/News/*
+%{_pixmapsdir}/*
+%config(noreplace) %verify(not md5 size mtime) %{_sysconfdir}/slrn.rc
 
 %files pull
 %defattr(644,root,root,755)
 %doc doc/slrnpull/{*.gz,score,slrn.rc,slrnpull.sh}
 %attr (2754,root,news) %{_bindir}/slrnpull
-%attr (775,news,news) %dir /var/spool/slrnpull
-%attr (775,news,news) %dir /var/spool/slrnpull/out.going
-%attr (775,news,news) %config(noreplace) %verify(not size md5 mtime) /var/spool/slrnpull/slrnpull.conf
+%defattr(664,news,news,755)
+%dir %{_var}/spool/slrnpull
+%dir %{_var}/spool/slrnpull/out.going
+%config(noreplace) %verify(not md5 size mtime) %{_var}/spool/slrnpull/slrnpull.conf
