@@ -10,20 +10,6 @@ Version:	0.9.7.3
 Release:	8
 License:	GPL
 Group:		Applications/News
-Group(cs):	Aplikace/News
-Group(da):	Programmer/Nyheder
-Group(de):	Applikationen/News
-Group(es):	Aplicaciones/Noticias
-Group(fr):	Applications/Nouvelles
-Group(is):	Forrit/Fréttir
-Group(it):	Applicazioni/News
-Group(no):	Applikasjoner/News
-Group(pl):	Aplikacje/News
-Group(pt):	Aplicações/News
-Group(pt_BR):	Aplicações/News
-Group(ru):	ğÒÉÌÏÖÅÎÉÑ/îÏ×ÏÓÔÉ
-Group(sl):	Programi/Novièarske
-Group(sv):	Tillämpningar/Nyheter
 Source0:	ftp://ftp.sourceforge.net/pub/sourceforge/slrn/%{name}-%{version}.tar.bz2
 Source1:	%{name}.1.pl
 Source2:	%{name}.desktop
@@ -94,20 +80,6 @@ Summary(es):	Soporte para lectura de noticias "offline" para slm
 Summary(pl):	Program ¶ci±gaj±cy artyku³y z serwera news
 Summary(pt_BR):	Suporte para leitura de notícias "offline" para o slrn
 Group:		Applications/News
-Group(cs):	Aplikace/News
-Group(da):	Programmer/Nyheder
-Group(de):	Applikationen/News
-Group(es):	Aplicaciones/Noticias
-Group(fr):	Applications/Nouvelles
-Group(is):	Forrit/Fréttir
-Group(it):	Applicazioni/News
-Group(no):	Applikasjoner/News
-Group(pl):	Aplikacje/News
-Group(pt):	Aplicações/News
-Group(pt_BR):	Aplicações/News
-Group(ru):	ğÒÉÌÏÖÅÎÉÑ/îÏ×ÏÓÔÉ
-Group(sl):	Programi/Novièarske
-Group(sv):	Tillämpningar/Nyheter
 Requires:	%{name} = %{version}
 
 %description pull
