@@ -4,12 +4,12 @@ Summary(fr):	Le meilleur lecteur de news du monde (Selon Red Hat tout du moins)
 Summary(pl):	£atwy w obs³udze czytnik artyku³ów news
 Summary(tr):	Red Hat'in görüþüne göre dünyanýn en iyi haber grubu okuyucusu
 Name:		slrn
-Version:	0.9.6.2
-Release:	9
+Version:	0.9.6.3
+Release:	1
 License:	GPL
 Group:		Applications/News
-Group(pl):	Aplikacje/News
 Group(de):	Applikationen/News
+Group(pl):	Aplikacje/News
 Source0:	ftp://space.mit.edu/pub/davis/slrn/%{name}-%{version}.tar.bz2
 Source1:	%{name}.1.pl
 Patch0:		%{name}-keymap.patch
@@ -55,8 +55,8 @@ Yavaþ að baðlantýlarýnda gayet iyi çalýþýr.
 Summary:	Offline news reading support for slrn
 Summary(pl):	Program ¶ci±gaj±cy artyku³y z serwera news
 Group:		Applications/News
-Group(pl):	Aplikacje/News
 Group(de):	Applikationen/News
+Group(pl):	Aplikacje/News
 Requires:	%{name} = %{version}
 
 %description pull
@@ -78,8 +78,7 @@ konieczno¶ci utrzymywania sta³ego po³±czenia z serwerem news.
 
 %build
 slrn_cv_domain=no
-LDFLAGS="-s"
-export slrn_cv_domain LDFLAGS
+export slrn_cv_domain
 
 %configure \
 	--enable-ipv6
