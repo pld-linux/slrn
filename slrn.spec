@@ -131,7 +131,8 @@ export INEWS SENDMAIL
 	--enable-inews \
 	--enable-spool \
 	--with-slrnpull \
-	--enable-setgid-code
+	--enable-setgid-code \
+	--with-libdir=%{_datadir}/%{name}
 
 %{__make}
 
