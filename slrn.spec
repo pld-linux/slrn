@@ -184,7 +184,7 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_bindir}/cleanscore
 %dir %{_datadir}/slrn
 %{_datadir}/slrn/macros
-%{_mandir}/man1/slrn.1.gz
+%{_mandir}/man1/slrn.1*
 %lang(pl) %{_mandir}/pl/man1/*
 %{_applnkdir}/Network/News/*
 %{_pixmapsdir}/*
@@ -195,7 +195,7 @@ rm -rf $RPM_BUILD_ROOT
 %doc doc/slrnpull/{FAQ,README,SETUP,score,slrn.rc,slrnpull.sh}
 %attr(640,root,news) /etc/logrotate.d/slrn-pull
 %attr(2754,root,news) %{_bindir}/slrnpull
-%{_mandir}/man1/slrnpull.1.gz
+%{_mandir}/man1/slrnpull.1*
 %defattr(664,news,news,755)
 %dir %{_var}/spool/slrnpull
 %dir %{_var}/spool/slrnpull/logs
