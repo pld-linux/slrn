@@ -188,7 +188,7 @@ rm -rf $RPM_BUILD_ROOT
 %files pull
 %defattr(644,root,root,755)
 %doc doc/slrnpull/{README*,SETUP,score,slrn.rc,slrnpull.sh}
-%attr(640,root,news) /etc/logrotate.d/slrn-pull
+%attr(640,root,root) %config(noreplace) %verify(not md5 size mtime) /etc/logrotate.d/slrn-pull
 %attr(2754,root,news) %{_bindir}/slrnpull
 %{_mandir}/man1/slrnpull.1*
 %defattr(664,news,news,755)
