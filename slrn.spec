@@ -81,10 +81,10 @@ konieczno¶ci utrzymywania sta³ego po³±czenia z serwerem news.
 %build
 (
 	cd autoconf
-	%{__aclocal}
-	%{__autoconf}
+	aclocal
+	autoconf
 )
-%{__cp} -f autoconf/configure .
+cp -f autoconf/configure .
 
 INEWS="/usr/bin/inews"; SENDMAIL="/usr/lib/sendmail"
 export INEWS SENDMAIL
@@ -96,25 +96,25 @@ export INEWS SENDMAIL
 %{__make} slrnpull
 
 %install
-%{__rm} -rf $RPM_BUILD_ROOT
-%{__install} -d $RPM_BUILD_ROOT%{_var}/spool/slrnpull/out.going \
+rm -rf $RPM_BUILD_ROOT
+install -d $RPM_BUILD_ROOT%{_var}/spool/slrnpull/out.going \
 	$RPM_BUILD_ROOT{%{_sysconfdir},%{_mandir}/pl/man1} \
 	$RPM_BUILD_ROOT{%{_applnkdir}/Network/News,%{_pixmapsdir}}
 
 %{__make} install DESTDIR=$RPM_BUILD_ROOT
 
-%{__install} %{SOURCE1} $RPM_BUILD_ROOT%{_mandir}/pl/man1/slrn.1
-%{__install} %{SOURCE2} $RPM_BUILD_ROOT%{_applnkdir}/Network/News
-%{__install} %{SOURCE3} $RPM_BUILD_ROOT%{_pixmapsdir}
+install %{SOURCE1} $RPM_BUILD_ROOT%{_mandir}/pl/man1/slrn.1
+install %{SOURCE2} $RPM_BUILD_ROOT%{_applnkdir}/Network/News
+install %{SOURCE3} $RPM_BUILD_ROOT%{_pixmapsdir}
 
-%{__install} doc/slrnpull/slrnpull.conf $RPM_BUILD_ROOT%{_var}/spool/slrnpull
-%{__install} doc/slrn.rc $RPM_BUILD_ROOT%{_sysconfdir}
+install doc/slrnpull/slrnpull.conf $RPM_BUILD_ROOT%{_var}/spool/slrnpull
+install doc/slrn.rc $RPM_BUILD_ROOT%{_sysconfdir}
 
-%{__gzip} -9nf doc/{FAQ,FIRST_STEPS,README.*,SCORE_FAQ,THANKS,{help,manual,score,slrnfuns}.txt} \
+gzip -9nf doc/{FAQ,FIRST_STEPS,README.*,SCORE_FAQ,THANKS,{help,manual,score,slrnfuns}.txt} \
 	doc/slrnpull/{FAQ,README,SETUP} README COPYRIGHT changes.txt
 
 %clean
-%{__rm} -rf $RPM_BUILD_ROOT
+rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
