@@ -131,6 +131,7 @@ spool de notícias, para leitura "offline".
 
 %build
 rm -f autoconf/missing
+%{__gettextize}
 %{__aclocal} -I autoconf
 # ac2.53 || ac2.52
 %{__autoheader} -I src/ || autoheader
