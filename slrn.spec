@@ -14,7 +14,7 @@ Version:	0.9.7.4
 Release:	3
 License:	GPL
 Group:		Applications/News
-Source0:	ftp://ftp.sourceforge.net/pub/sourceforge/slrn/%{name}-%{version}.tar.bz2
+Source0:	http://dl.sourceforge.net/slrn/%{name}-%{version}.tar.bz2
 Source1:	%{name}.1.pl
 Source2:	%{name}.desktop
 Source3:	%{name}.png
