@@ -1,8 +1,8 @@
 #
 # Conditional build:
-%bcond_without canlock	# - build without Cancel-Lock support
-%bcond_without ssl	# - build without SSL support (snews://)
-%bcond_without uudeview	# - build without uudeview support
+%bcond_without	canlock	# - build without Cancel-Lock support
+%bcond_without	ssl	# - build without SSL support (snews://)
+%bcond_without	uudeview	# - build without uudeview support
 #
 Summary:	The world's best newsreader
 Summary(da):	Verdens bedste nyhedslæser
