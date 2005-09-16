@@ -1,5 +1,6 @@
---- slrn-0.9.8.1/po/pl.po.orig	2004-10-07 01:44:39.000000000 +0200
-+++ slrn-0.9.8.1/po/pl.po	2004-11-24 22:24:33.176990392 +0100
+diff -urN slrn-0.9.8.1pl1.org/po/pl.po slrn-0.9.8.1pl1/po/pl.po
+--- slrn-0.9.8.1pl1.org/po/pl.po	2005-02-17 20:54:00.000000000 +0100
++++ slrn-0.9.8.1pl1/po/pl.po	2005-09-16 10:37:25.000000000 +0200
 @@ -15,12 +15,12 @@
  #
  msgid ""
@@ -7,8 +8,9 @@
 -"Project-Id-Version: slrn 0.9.8.0\n"
 +"Project-Id-Version: slrn 0.9.8.1\n"
  "Report-Msgid-Bugs-To: \n"
- "POT-Creation-Date: 2004-10-07 01:44+0200\n"
+-"POT-Creation-Date: 2005-02-17 20:53+0100\n"
 -"PO-Revision-Date: 2003-10-16 12:03+0100\n"
++"POT-Creation-Date: 2004-10-07 01:44+0200\n"
 +"PO-Revision-Date: 2004-11-24 22:00+0100\n"
  "Last-Translator: Tomasz Sienicki <tsca@edb.dk>\n"
 -"Language-Team: Polish <pl@li.org>\n"
@@ -16,24 +18,1221 @@
  "MIME-Version: 1.0\n"
  "Content-Type: text/plain; charset=iso-8859-2\n"
  "Content-Transfer-Encoding: 8bit\n"
-@@ -82,7 +82,7 @@
+@@ -29,178 +29,178 @@
+ msgid "No next digest."
+ msgstr "Brak kolejnych punktów w artykule."
  
- #: src/art.c:1331 src/help.c:571
+-#: src/art.c:1049
++#: src/art.c:1025
+ msgid "Invalid Browser definition."
+ msgstr "Nieprawid³owa definicja przegl±darki."
+ 
+-#: src/art.c:1083
++#: src/art.c:1059
+ msgid "Browse (^G aborts): "
+ msgstr "Przegl±daj (^G anuluje): "
+ 
+-#: src/art.c:1085 src/art.c:4388
++#: src/art.c:1061 src/art.c:4326
+ msgid "Aborted."
+ msgstr "Anulowano."
+ 
+-#: src/art.c:1111
++#: src/art.c:1087
+ msgid "Show all available groups"
+ msgstr "Poka¿ wszystkie dostêpne grupy"
+ 
+-#: src/art.c:1121
++#: src/art.c:1097
+ #, c-format
+ msgid "Try switching to %s"
+ msgstr "Spróbuj prze³±czyæ na %s"
+ 
+-#: src/art.c:1127
++#: src/art.c:1103
+ msgid "Group contains no articles."
+ msgstr "Grupa nie zawiera artyku³ów."
+ 
+-#: src/art.c:1142
++#: src/art.c:1118
+ msgid "No Web Browser has been defined."
+ msgstr "Nie zosta³a zdefiniowana ¿adna przegl±darka."
+ 
+-#: src/art.c:1193
++#: src/art.c:1169
+ msgid "No URLs found."
+ msgstr "Nie znaleziono ¿adnych adresów URL."
+ 
+-#: src/art.c:1225
++#: src/art.c:1201
+ msgid "Search: "
+ msgstr "Znajd¼: "
+ 
+-#: src/art.c:1229 src/art.c:5081 src/group.c:1219
++#: src/art.c:1205 src/art.c:4984 src/group.c:1188
+ msgid "Not found."
+ msgstr "Nie znaleziono."
+ 
+-#: src/art.c:1328
++#: src/art.c:1304
+ #, c-format
+ msgid "At end of article, press %s for next group."
+ msgstr "Koniec artyku³u. %s: przej¶cie do nastêpnej grupy."
+ 
+-#: src/art.c:1331
++#: src/art.c:1307
+ #, c-format
+ msgid "At end of article, press %s for next unread article."
+ msgstr "Koniec artyku³u. %s: przej¶cie do nast. nieprzeczytanej wiadomo¶ci."
+ 
+-#: src/art.c:1355 src/help.c:572
++#: src/art.c:1331 src/help.c:571
  msgid "<Space>"
 -msgstr ""
 +msgstr "<Spacja>"
  
- #: src/art.c:2165
+-#: src/art.c:2191
++#: src/art.c:2165
  msgid "Goto article: "
-@@ -433,7 +433,7 @@
- #: src/art.c:5137 src/slrnpull.c:1339
+ msgstr "Przejd¼ do artyku³u: "
+ 
+-#: src/art.c:2208
++#: src/art.c:2182
+ msgid "Article not found."
+ msgstr "Nie znaleziono artyku³u."
+ 
+-#: src/art.c:2281
++#: src/art.c:2255
+ #, c-format
+ msgid "#%2d/%-2d: Retrieving... %s"
+ msgstr "#%2d/%-2d: Wyszukiwanie... %s"
+ 
+-#: src/art.c:2284
++#: src/art.c:2258
+ #, c-format
+ msgid "[%d] Reading..."
+ msgstr "[%d] Czytam..."
+ 
+-#: src/art.c:2291
++#: src/art.c:2265
+ msgid "Server failed to return article."
+ msgstr "Serwer nie zwróci³ artyku³u."
+ 
+-#: src/art.c:2295
++#: src/art.c:2269
+ #, c-format
+ msgid "Article %d unavailable."
+ msgstr "Artyku³ %d jest niedostêpny."
+ 
+-#: src/art.c:2334
++#: src/art.c:2308
+ msgid "Article transfer aborted or connection lost."
+ msgstr "Przerwano przesy³anie artyku³u lub po³±czenie zosta³o zerwane."
+ 
+-#: src/art.c:2352
++#: src/art.c:2326
+ #, c-format
+ msgid "#%2d/%-2d: Read %4d/%-4d lines (%s) at %.2fkB/sec"
+ msgstr "#%2d/%-2d: Odczytano %4d/%-4d linii (%s) przy %.2fkB/sek"
+ 
+-#: src/art.c:2356
++#: src/art.c:2330
+ #, c-format
+ msgid "#%2d/%-2d: Read %4d/%-4d lines (%s)"
+ msgstr "#%2d/%-2d: Odczytano %4d/%-4d linii (%s)"
+ 
+-#: src/art.c:2362
++#: src/art.c:2336
+ #, c-format
+ msgid "[%d] Read %d/%d lines so far at %.2fkB/sec"
+ msgstr "[%d] Odczytano dot±d %d/%d linii przy %.2fkB/sek"
+ 
+-#: src/art.c:2365
++#: src/art.c:2339
+ #, c-format
+ msgid "[%d] Read %d/%d lines so far"
+ msgstr "[%d] Odczytano dot±d %d/%d linii"
+ 
+-#: src/art.c:2405
++#: src/art.c:2379
+ msgid "Server sent empty article."
+ msgstr "Serwer zwróci³ pusty artyku³."
+ 
+-#: src/art.c:2729
++#: src/art.c:2703
+ msgid "%Y-%m-%d"
+ msgstr "%d.%m.%Y"
+ 
+-#: src/art.c:2772
++#: src/art.c:2746
+ msgid "This operation requires an article"
+ msgstr "Ta operacja wymaga artyku³u."
+ 
+-#: src/art.c:2898
++#: src/art.c:2855
+ #, c-format
+ msgid "%s appears invalid.  Continue anyway"
+ msgstr "%s wygl±da na nieprawid³owy. Kontynuowaæ mimo to"
+ 
+-#: src/art.c:2899 src/art.c:3409
++#: src/art.c:2856 src/art.c:3366
+ msgid "Email address"
+ msgstr "Adres e-mail"
+ 
+-#: src/art.c:2910 src/art.c:3086 src/art.c:3429 src/art.c:3679
+-#: src/slrnpull.c:404 src/slrnpull.c:481 src/slrnpull.c:1149
+-#: src/slrnpull.c:1203
++#: src/art.c:2867 src/art.c:3043 src/art.c:3386 src/art.c:3636
++#: src/slrnpull.c:389 src/slrnpull.c:466 src/slrnpull.c:1134
++#: src/slrnpull.c:1188
+ #, c-format
+ msgid "Unable to open %s for writing."
+ msgstr "Nie mogê otworzyæ %s do zapisu."
+ 
+-#: src/art.c:3036
++#: src/art.c:2993
+ msgid "Are you sure you want to reply"
+ msgstr "Czy na pewno chcesz odpisaæ autorowi"
+ 
+-#: src/art.c:3063
++#: src/art.c:3020
+ msgid "Forward to (^G aborts): "
+ msgstr "Prze¶lij do (^G anuluje): "
+ 
+-#: src/art.c:3065
++#: src/art.c:3022
+ msgid "Aborted.  An email address is required."
+ msgstr "Anulowano. Musisz podaæ adres e-mail."
+ 
+-#: src/art.c:3069
++#: src/art.c:3026
+ msgid "Edit the message before sending"
+ msgstr "Edytuj wiadomo¶æ przed wys³aniem"
+ 
+-#: src/art.c:3173 src/art.c:3635
++#: src/art.c:3130 src/art.c:3592
+ msgid "Posting not allowed by server"
+ msgstr "Serwer nie zezwala na wysy³anie"
+ 
+-#: src/art.c:3180
++#: src/art.c:3137
+ msgid "Are you sure you want to followup"
+ msgstr "Czy na pewno chcesz odpisaæ na grupê"
+ 
+-#: src/art.c:3222
++#: src/art.c:3179
+ msgid "Do you want to reply to POSTER as poster prefers"
+ msgstr "Chcesz odpisaæ bezpo¶rednio do AUTORA zgodnie z jego ¿yczeniem"
+ 
+-#: src/art.c:3260
++#: src/art.c:3217
+ #, c-format
+ msgid "Followup to %s as poster prefers"
+ msgstr "Wys³aæ na %s zgodnie z ¿yczeniem autora"
+ 
+-#: src/art.c:3302
++#: src/art.c:3259
+ msgid "fFaAtTcC"
+ msgstr "fFwWtTrR"
+ 
+-#: src/art.c:3305
++#: src/art.c:3262
+ msgid ""
+ "Crossposting. Set \"Followup-To\", Post to all groups / this group only,"
+ " Cancel?"
+@@ -208,244 +208,244 @@
+ "Crosspost. Ustaw \"Followup-To\", wy¶lij na Wszystkie / Tylko tê grupê,"
+ " Rezygnuj?"
+ 
+-#: src/art.c:3391
++#: src/art.c:3348
+ msgid "Cc message as requested by poster"
+ msgstr "Czy wys³aæ kopiê wiadomo¶ci do autora, zgodnie z jego ¿yczeniem"
+ 
+-#: src/art.c:3397
++#: src/art.c:3354
+ msgid "Cc message to poster"
+ msgstr "Czy wys³aæ kopiê wiadomo¶ci do autora"
+ 
+-#: src/art.c:3409
++#: src/art.c:3366
+ #, c-format
+ msgid "%s appears invalid.  CC anyway"
+ msgstr "%s wygl±da na nieprawid³owy. Wys³aæ mimo to"
+ 
+-#: src/art.c:3582 src/post.c:1026
++#: src/art.c:3539 src/post.c:1017
+ #, c-format
+ msgid "Cannot open file: %s"
+ msgstr "Nie mo¿na otworzyæ pliku %s"
+ 
+-#: src/art.c:3589 src/post.c:1033
++#: src/art.c:3546 src/post.c:1024
+ #, c-format
+ msgid "Zero length file: %s"
+ msgstr "Pusty plik: %s"
+ 
+-#: src/art.c:3649 src/art.c:6880
++#: src/art.c:3597
++msgid "Are you sure you want to supersede"
++msgstr "Czy na pewno zast±piæ artyku³ przez edycjê oryginalnego tekstu"
++
++#: src/art.c:3615 src/art.c:6788
+ #, c-format
+ msgid "Failed: Your name: '%s' is not '%s'"
+ msgstr "B³±d: Twój adres: %s nie pasuje do %s"
+ 
+-#: src/art.c:3654
+-msgid "Are you sure you want to supersede"
+-msgstr "Czy na pewno zast±piæ artyku³ przez edycjê oryginalnego tekstu"
+-
+-#: src/art.c:3774 src/art.c:3823
++#: src/art.c:3731 src/art.c:3780
+ msgid "End of buffer."
+ msgstr "Koniec."
+ 
+-#: src/art.c:3795 src/art.c:3813 src/group.c:1055
++#: src/art.c:3752 src/art.c:3770 src/group.c:1024
+ msgid "Top of buffer."
+ msgstr "Pocz±tek."
+ 
+-#: src/art.c:3858
++#: src/art.c:3815
+ msgid "No previous unread articles."
+ msgstr "Nie ma wcze¶niejszych nieprzeczytanych artyku³ów."
+ 
+-#: src/art.c:3904
++#: src/art.c:3861
+ msgid "No following unread articles."
+ msgstr "Nie ma wiêcej nieprzeczytanych artyku³ów."
+ 
+-#: src/art.c:3945 src/art.c:3958
++#: src/art.c:3902 src/art.c:3915
+ #, c-format
+ msgid "No following unread articles.  Press %s for next group."
+ msgstr "Pozosta³e artyku³y s± przeczytane. %s: przej¶cie do nastêpnej grupy."
+ 
+-#: src/art.c:3989
++#: src/art.c:3946
+ msgid "No more high scoring articles."
+ msgstr "Nie ma wiêcej wa¿nych artyku³ów."
+ 
+-#: src/art.c:4023 src/group.c:1762
++#: src/art.c:3975 src/group.c:1722
+ msgid "Subject: "
+ msgstr "Temat: "
+ 
+-#: src/art.c:4059
++#: src/art.c:4000
+ msgid "No more articles on that subject."
+ msgstr "Nie ma wiêcej artyku³ów z tym tematem."
+ 
+-#: src/art.c:4095
++#: src/art.c:4033
+ #, c-format
+ msgid "Goto Header: %d"
+ msgstr "Przejd¼ do nag³ówka: %d"
+ 
+-#: src/art.c:4177 src/group.c:2633 src/post.c:462
++#: src/art.c:4115 src/group.c:2593 src/post.c:462
+ #, c-format
+ msgid "Unable to open %s."
+ msgstr "Nie mogê otworzyæ pliku %s."
+ 
+-#: src/art.c:4183 src/slrnpull.c:1156 src/slrnpull.c:1164 src/slrnpull.c:1211
+-#: src/slrnpull.c:1219
++#: src/art.c:4121 src/slrnpull.c:1141 src/slrnpull.c:1149 src/slrnpull.c:1196
++#: src/slrnpull.c:1204
+ #, c-format
+ msgid "Error writing to %s."
+ msgstr "B³±d zapisu do pliku %s."
+ 
+-#: src/art.c:4293
++#: src/art.c:4231
+ msgid "Save tagged articles"
+ msgstr "Zapisz zaznaczone artyku³y"
+ 
+-#: src/art.c:4301
++#: src/art.c:4239
+ msgid "Save this thread"
+ msgstr "Zapisz ten w±tek"
+ 
+-#: src/art.c:4322 src/post.c:1655
++#: src/art.c:4260 src/post.c:1642
+ #, c-format
+ msgid "Do you want to create directory %s"
+ msgstr "Czy utworzyæ katalog %s"
+ 
+-#: src/art.c:4325 src/post.c:1659
++#: src/art.c:4263 src/post.c:1646
+ #, c-format
+ msgid "Unable to create directory. (errno = %d)"
+ msgstr "Nie mogê utworzyæ katalogu. (errno = %d)"
+ 
+-#: src/art.c:4330
++#: src/art.c:4268
+ #, c-format
+ msgid "Warning: %s is a regular file."
+ msgstr "Uwaga: %s jest zwyk³ym plikiem"
+ 
+-#: src/art.c:4384
++#: src/art.c:4322
+ msgid "Temporary file (^G aborts): "
+ msgstr "Plik tymczasowy (^G anuluje): "
+ 
+-#: src/art.c:4385
++#: src/art.c:4323
+ msgid "Save to file (^G aborts): "
+ msgstr "Zapisz do pliku (^G anuluje): "
+ 
+-#: src/art.c:4394 src/editscore.c:173 src/post.c:644
++#: src/art.c:4332 src/editscore.c:167 src/post.c:635
+ #, c-format
+ msgid "Unable to open %s"
+ msgstr "Nie mo¿na otworzyæ pliku %s"
+ 
+-#: src/art.c:4492
++#: src/art.c:4422
+ #, c-format
+ msgid "decoding %10s (%3d/%3d) %s"
+ msgstr "dekodowanie %10s (%3d/%3d) %s"
+ 
+-#: src/art.c:4508
++#: src/art.c:4438
+ msgid "Filename buffer not large enough."
+ msgstr "Za ma³y bufor nazwy pliku."
+ 
+-#: src/art.c:4512
++#: src/art.c:4442
+ msgid "Calling uudeview ..."
+ msgstr "Wywo³ujê uudeview ..."
+ 
+-#: src/art.c:4521
++#: src/art.c:4451
+ #, c-format
+ msgid "could not load %s: errno = %d"
+ msgstr "nie mogê za³adowaæ %s: errno = %d"
+ 
+-#: src/art.c:4524
++#: src/art.c:4454
+ #, c-format
+ msgid "could not load %s: %s"
+ msgstr "nie mogê za³adowaæ %s: %s"
+ 
+-#: src/art.c:4543
++#: src/art.c:4473
+ msgid "I/O error."
+ msgstr "B³±d Wej¶cia/Wyj¶cia."
+ 
+-#: src/art.c:4546
++#: src/art.c:4476
+ #, c-format
+ msgid "error decoding %s: %s"
+ msgstr "b³±d dekodowania %s: %s"
+ 
+-#: src/art.c:4570
++#: src/art.c:4500
+ #, c-format
+ msgid "Decode %s"
+ msgstr "Zdekodowaæ %s"
+ 
+-#: src/art.c:4581
++#: src/art.c:4511
+ #, c-format
+ msgid "Delete %s"
+ msgstr "Usun±æ %s"
+ 
+-#: src/art.c:4584
++#: src/art.c:4514
+ #, c-format
+ msgid "Unable to delete %s"
+ msgstr "Nie mogê usun±æ %s"
+ 
+-#: src/art.c:4622
++#: src/art.c:4552
+ #, c-format
+ msgid "Unable to open pipe to %s"
+ msgstr "Nie mogê otworzyæ potoku do %s"
+ 
+-#: src/art.c:4633 src/art.c:4654 src/decode.c:65
++#: src/art.c:4563 src/art.c:4584 src/decode.c:65
+ msgid "Piping not implemented on this system."
+ msgstr "Potoki nie s± dostêpne na tym systemie."
+ 
+-#: src/art.c:4645
++#: src/art.c:4575
+ msgid "Pipe to command: "
+ msgstr "Prze¶lij potokiem do polecenia: "
+ 
+-#: src/art.c:4647
++#: src/art.c:4577
+ msgid "Aborted.  Command name is required."
+ msgstr "Anulowano. Musisz podaæ polecenie."
+ 
+-#: src/art.c:4652
++#: src/art.c:4582
+ #, c-format
+ msgid "Error piping to %s."
+ msgstr "B³±d potokowania do %s."
+ 
+-#: src/art.c:4668
++#: src/art.c:4598
+ msgid "Printing article..."
+ msgstr "Drukowanie artyku³u..."
+ 
+-#: src/art.c:4699
++#: src/art.c:4629
+ msgid "Printing article...done"
+ msgstr "Drukowanie artyku³u...zakoñczone"
+ 
+-#: src/art.c:4715
++#: src/art.c:4645
+ msgid "Are you sure you want to print the article"
+ msgstr "Czy na pewno wydrukowaæ ten artyku³"
+ 
+-#: src/art.c:4987
++#: src/art.c:4917
+ msgid "Mark set."
+ msgstr "Znacznik ustawiony."
+ 
+-#: src/art.c:4999
++#: src/art.c:4929
+ msgid "Mark not set."
+ msgstr "Znacznik nie ustawiony."
+ 
+-#: src/art.c:5025
++#: src/art.c:4950
+ msgid "Subject search "
+ msgstr "Szukaj tematu "
+ 
+-#: src/art.c:5025
++#: src/art.c:4950
+ msgid "Author search "
+ msgstr "Szukaj autora "
+ 
+-#: src/art.c:5026
++#: src/art.c:4951
+ msgid "(forward)"
+ msgstr "(w przód)"
+ 
+-#: src/art.c:5026
++#: src/art.c:4951
+ msgid "(backward)"
+ msgstr "(w ty³)"
+ 
+-#: src/art.c:5234 src/slrnpull.c:1354
++#: src/art.c:5137 src/slrnpull.c:1339
  #, c-format
  msgid "Score %d killed article %s\n"
 -msgstr "Punktacja %d zabitego artyku³u %s\n"
 +msgstr "Punktacja %d zabi³a artyku³ %s\n"
  
- #: src/art.c:5141 src/slrnpull.c:1345
+-#: src/art.c:5238 src/slrnpull.c:1360
++#: src/art.c:5141 src/slrnpull.c:1345
  #, c-format
+ msgid " Score %c%5i: %s (%s:%i)\n"
+ msgstr " Punktacja %c%5i: %s (%s:%i)\n"
+ 
+-#: src/art.c:5242 src/slrnpull.c:1364
++#: src/art.c:5145 src/slrnpull.c:1349
+ #, c-format
+ msgid " Score %c%5i: %s:%i\n"
+ msgstr " Punktacja %c%5i: %s:%i\n"
+ 
+-#: src/art.c:5247 src/slrnpull.c:1369
++#: src/art.c:5150 src/slrnpull.c:1354
+ #, c-format
+ msgid ""
+ "  Newsgroup: %s\n"
+@@ -458,182 +458,182 @@
+ "  Temat: %s\n"
+ "\n"
+ 
+-#: src/art.c:5317
++#: src/art.c:5220
+ msgid "Scoring articles ..."
+ msgstr "Punktujê artyku³y ..."
+ 
+-#: src/art.c:5330
++#: src/art.c:5233
+ #, c-format
+ msgid "Scoring articles: %2d%%, Killed: %u, High: %u, Low: %u"
+ msgstr "Punktacja artyku³ów: %2d%%, Zabite: %u, Wa¿ne: %u, Niewa¿ne: %u"
+ 
+-#: src/art.c:5370
++#: src/art.c:5273
+ msgid "Apply scorefile now"
+ msgstr "Uaktualniæ punktacjê"
+ 
+-#: src/art.c:5416
++#: src/art.c:5319
+ msgid "No scorefile loaded."
+ msgstr "Nie wczytano pliku punktacji."
+ 
+-#: src/art.c:5425
++#: src/art.c:5328
+ msgid "This article is not matched by any scorefile entries."
+ msgstr "Ten artyku³ nie pasuje do ¿adnej regu³ki punktacji."
+ 
+-#: src/art.c:5471
++#: src/art.c:5374
+ msgid "This article is matched by the following scores"
+ msgstr "Artyku³ pasuje do nastêpuj±cych regu³ek punktacji"
+ 
+-#: src/art.c:5573
++#: src/art.c:5476
+ #, c-format
+ msgid "%s: receiving additional headers...[%c]"
+ msgstr "%s: pobieram dodatkowe nag³ówki...[%c]"
+ 
+-#: src/art.c:5658
++#: src/art.c:5561
+ #, c-format
+ msgid "%s: headers received: %2d/%d"
+ msgstr "%s: pobrane nag³ówki: %2d/%d"
+ 
+-#: src/art.c:5819
++#: src/art.c:5722
+ #, c-format
+ msgid "Finding %s from server..."
+ msgstr "Szukam %s na serwerze..."
+ 
+-#: src/art.c:5860
++#: src/art.c:5763
+ #, c-format
+ msgid "Finding children from server...[%c]"
+ msgstr "Szukam potomków na serwerze...[%c]"
+ 
+-#: src/art.c:5868
++#: src/art.c:5771
+ msgid "Your server does not provide support for this feature."
+ msgstr "Twój serwer nie obs³uguje tej funkcji."
+ 
+-#: src/art.c:6052
++#: src/art.c:5955
+ msgid "Header is part of a reference loop"
+ msgstr "Artyku³ jest w pêtli referencji"
+ 
+-#: src/art.c:6106
++#: src/art.c:6009
+ msgid "Article has no parent reference."
+ msgstr "Artyku³ nie posiada ¿adnych referencji."
+ 
+-#: src/art.c:6163
++#: src/art.c:6066
+ #, c-format
+ msgid "Article %s not available."
+ msgstr "Artyku³ %s nie jest dostêpny."
+ 
+-#: src/art.c:6175
++#: src/art.c:6078
+ msgid "Enter Message-ID: "
+ msgstr "Wprowad¼ Message-ID: "
+ 
+-#: src/art.c:6597
++#: src/art.c:6500
+ msgid "Warning: Could not save list of requested bodies."
+ msgstr "Uwaga: lista wybranych artyku³ów nie zosta³a zapisana."
+ 
+-#: src/art.c:6884
++#: src/art.c:6769
+ msgid "Are you sure that you want to cancel this article"
+ msgstr "Czy na pewno anulowaæ ten artyku³"
+ 
+-#: src/art.c:6887
++#: src/art.c:6772
+ msgid "Cancelling..."
+ msgstr "Anulujê..."
+ 
+-#: src/art.c:6903
++#: src/art.c:6806
+ msgid "No message id."
+ msgstr "Brak Message-ID."
+ 
+-#: src/art.c:6933
++#: src/art.c:6836
+ msgid "Done."
+ msgstr "Zrobione."
+ 
+-#: src/art.c:6972
++#: src/art.c:6875
+ msgid "Warning: Can only request article bodies from this group."
+ msgstr ""
+ "Uwaga: z tej grupy mo¿esz oznaczyæ do ¶ci±gniêcia tylko tre¶æ artyku³ów."
+ 
+-#: src/art.c:6989
++#: src/art.c:6892
+ msgid "Mark all articles as read"
+ msgstr "Zaznaczyæ wszystkie artyku³y jako przeczytane"
+ 
+-#: src/art.c:6999
++#: src/art.c:6902
+ msgid "Mark all articles as unread"
+ msgstr "Zaznaczyæ wszystkie artyku³y jako nieprzeczytane"
+ 
+-#: src/art.c:7009
++#: src/art.c:6912
+ msgid "Mark all articles up to here as read"
+ msgstr "Zaznaczyæ artyku³y do bie¿±cej pozycji jako przeczytane"
+ 
+-#: src/art.c:7019
++#: src/art.c:6922
+ msgid "Mark all articles up to here as unread"
+ msgstr "Zaznaczyæ artyku³y do bie¿±cej pozycji jako nieprzeczytane"
+ 
+-#: src/art.c:7120
++#: src/art.c:7023
+ msgid "Rate article (1-5):"
+ msgstr "Oceñ artyku³ (1-5):"
+ 
+-#: src/art.c:7125
++#: src/art.c:7028
+ msgid "Rating must be in range 1 to 5."
+ msgstr "Ocena musi mie¶ciæ siê w zakresie do 1 do 5."
+ 
+-#: src/art.c:7417
++#: src/art.c:7321
+ msgid "Unable to create Article keymap!"
+ msgstr "Nie mogê utworzyæ mapy klawiszy 'Article'!"
+ 
+-#: src/art.c:7855
++#: src/art.c:7759
+ msgid "Group transfer aborted."
+ msgstr "Przerwano ¶ci±ganie grupy."
+ 
+-#: src/art.c:7857
++#: src/art.c:7761
+ msgid "Server read failed."
+ msgstr "B³±d podczas odczytu z serwera."
+ 
+-#: src/art.c:7874
++#: src/art.c:7778
+ #, c-format
+ msgid "No unread articles found. (%d killed)"
+ msgstr "Nie ma nieprzeczytanych wiadomo¶ci. (%d zabitych)"
+ 
+-#: src/art.c:7876
++#: src/art.c:7780
+ msgid "No unread articles found."
+ msgstr "Nie ma nieprzeczytanych wiadomo¶ci."
+ 
+-#: src/art.c:7930
++#: src/art.c:7834
+ #, c-format
+ msgid "Num Killed: %u, Num High: %u, Num Low: %u, Num GroupLens Rated: %d"
+ msgstr ""
+ "Liczba Zabitych: %u, Wa¿nych: %u, Niewa¿nych: %u, Ocenionych z GroupLens: %d"
+ 
+-#: src/art.c:7936
++#: src/art.c:7840
+ #, c-format
+ msgid "Num Killed: %u, Num High: %u, Num Low: %u"
+ msgstr "Liczba Zabitych: %u, Wa¿nych: %u, Niewa¿nych: %u"
+ 
+-#: src/art.c:8137
++#: src/art.c:8041
+ msgid ""
+ "SPC:Select  Ctrl-D:PgDn  Ctrl-U:PgUp  d:Mark-as-Read  n:Next  p:Prev  q:Quit"
+ msgstr ""
+ "SPC:Wybierz Ctrl-D:PgDn Ctrl-U:PgUp d:Przecz. n:Nast. p:Poprz. q:Wyj¶cie"
+ 
+-#: src/art.c:8142
++#: src/art.c:8046
+ msgid "SPC:Pgdn  B:PgUp  u:Un-Mark-as-Read  f:Followup  n:Next  p:Prev  q:Quit"
+ msgstr ""
+ "SPC:PgDn  B:PgUp  u:Nieprzecz.  f:Odpowiedz  n:Nast.  p:Poprz.  q:Wyj¶cie"
+ 
+-#: src/art.c:8353
++#: src/art.c:8257
+ #, c-format
+ msgid "End of Thread.  Next: %s"
+ msgstr "Koniec w±tku. Nastêpny: %s"
+ 
+-#: src/art.c:8355
++#: src/art.c:8259
+ msgid "End of Thread."
+ msgstr "Koniec w±tku."
+ 
+-#: src/art.c:8367
++#: src/art.c:8271
+ msgid "End of Sub-Thread"
+ msgstr "Koniec podw±tku."
+ 
+-#: src/art.c:8990
++#: src/art.c:8894
+ msgid "%p[%u/%t unread] Group: %n%-20g -- %L (%P)"
+ msgstr "%p[%u/%t nieprzeczytanych] Grupa: %n%-20g -- %L (%P)"
+ 
+-#: src/art.c:9178
++#: src/art.c:9082
+ msgid "Spoilers visible!"
+ msgstr "Spoilery widoczne!"
+ 
+@@ -729,26 +729,26 @@
+ "Biblioteka ta jest dostêpna na anonimowym serwerze ftp\n"
+ "space.mit.edu w katalogu pub/davis/slang.\n"
+ 
+-#: src/chmap.c:158 src/chmap.c:165
++#: src/chmap.c:147 src/chmap.c:154
+ #, c-format
+ msgid "File error: %s --- message not posted."
+ msgstr "B³±d pliku: %s --- wiadomo¶æ nie zosta³a wys³ana."
+ 
+-#: src/chmap.c:177
++#: src/chmap.c:166
+ msgid "Write Error. Disk Full? --- message not posted."
+ msgstr "B³±d zapisu. Brak miejsca na dysku? --- wiadomo¶æ nie zosta³a wys³ana."
+ 
+-#: src/chmap.c:207
++#: src/chmap.c:196
+ #, c-format
+ msgid "  Default character set:     %s\n"
+ msgstr "  Domy¶lny zestaw znaków:        %s\n"
+ 
+-#: src/chmap.c:209
++#: src/chmap.c:198
+ #, c-format
+ msgid " SUPPORTED CHARACTER SETS:\n"
+ msgstr " Obs³ugiwane zestawy znaków:\n"
+ 
+-#: src/chmap.c:250
++#: src/chmap.c:239
+ #, c-format
+ msgid "Unsupport character set: %s"
+ msgstr "Nieobs³ugiwany zestaw znaków: %s"
+@@ -808,27 +808,27 @@
+ msgid "Usage: uudecode [-64] [--stdout] [--guess] [filename ...]\n"
+ msgstr "U¿ycie: uudecode [-64] [--stdout] [--guess] [nazwa_pliku ...]\n"
+ 
+-#: src/editscore.c:86
++#: src/editscore.c:80
+ msgid "SsFfRrEeCc"
+ msgstr "SsFsRrEeAa"
+ 
+-#: src/editscore.c:92
++#: src/editscore.c:86
+ msgid "TtAa"
+ msgstr "TtWw"
+ 
+-#: src/editscore.c:96
++#: src/editscore.c:90
+ msgid "A Score file has not been specified."
+ msgstr "Plik punktacji nie zosta³ okre¶lony."
+ 
+-#: src/editscore.c:106
++#: src/editscore.c:100
+ msgid "Pick Score type: Subject, From, References, Edit, Cancel"
+ msgstr "Okre¶l rodzaj punktacji: Subject, From, References, Edytuj, Anuluj"
+ 
+-#: src/editscore.c:123
++#: src/editscore.c:117
+ msgid "Which newsgroups: This group, All groups"
+ msgstr "Które grupy: Ta grupa, Wszystkie grupy"
+ 
+-#: src/editscore.c:131
++#: src/editscore.c:125
+ msgid "Expires (MM/DD/YYYY, DD-MM-YYYY, +NN (days) or leave blank): "
+ msgstr "Wygasa (MM/DD/RRRR, DD-MM-RRRR, +NN (dni) lub pozostaw puste): "
+ 
+@@ -837,12 +837,12 @@
+ msgid "Selecting %s ..."
+ msgstr "Wybieram %s ..."
+ 
+-#: src/group.c:343 src/group.c:476 src/group.c:1126
++#: src/group.c:343 src/group.c:476 src/group.c:1095
+ #, c-format
+ msgid "Group %s is bogus%s."
+ msgstr "Grupa %s nie istnieje%s."
+ 
+-#: src/group.c:344 src/group.c:1127
++#: src/group.c:344 src/group.c:1096
+ msgid " - dropping it"
+ msgstr " - porzucam j±"
+ 
+@@ -860,158 +860,158 @@
+ msgid "Group %s is bogus - ignoring it."
+ msgstr "Grupa %s jest fa³szywa - ignorujê j±."
+ 
+-#: src/group.c:893
++#: src/group.c:862
+ msgid "No articles to read."
+ msgstr "Brak artyku³ów do pobrania."
+ 
+-#: src/group.c:919
++#: src/group.c:888
+ #, c-format
+ msgid "%s: Read how many? "
+ msgstr "%s: Ile artyku³ów pobraæ? "
+ 
+-#: src/group.c:931
++#: src/group.c:900
+ #, c-format
+ msgid "Only downloading %d of %d articles."
+ msgstr "¦ci±gam tylko %d z %d artyku³ow."
+ 
+-#: src/group.c:1011
++#: src/group.c:980
+ msgid "Do you really want to quit"
+ msgstr "Naprawdê chcesz wyj¶æ"
+ 
+-#: src/group.c:1020
++#: src/group.c:989
+ msgid "Write to newsrc file failed.  Quit anyway"
+ msgstr "Zapis do pliku newsrc nie powiód³ siê. Wyj¶æ mimo to"
+ 
+-#: src/group.c:1033 src/group.c:1280
++#: src/group.c:1002 src/group.c:1249
+ msgid "End of Buffer."
+ msgstr "Koniec."
+ 
+-#: src/group.c:1044
++#: src/group.c:1013
+ msgid "Top of Buffer."
+ msgstr "Pocz±tek."
+ 
+-#: src/group.c:1113
++#: src/group.c:1082
+ msgid "Server connection dropped."
+ msgstr "Po³±czenie z serwerem zerwane."
+ 
+-#: src/group.c:1156 src/group.c:2671
++#: src/group.c:1125 src/group.c:2628
+ #, c-format
+ msgid "Checking news%s ..."
+ msgstr "Sprawdzam wiadomo¶ci%s ..."
+ 
+-#: src/group.c:1157 src/group.c:2672
++#: src/group.c:1126 src/group.c:2629
+ msgid " via active file"
+ msgstr " poprzez plik active"
+ 
+-#: src/group.c:1210
++#: src/group.c:1179
+ msgid "Forward"
+ msgstr "W przód"
+ 
+-#: src/group.c:1210
++#: src/group.c:1179
+ msgid "Backward"
+ msgstr "W ty³"
+ 
+-#: src/group.c:1211
++#: src/group.c:1180
+ msgid " Search: "
+ msgstr " szukaj: "
+ 
+-#: src/group.c:1225
++#: src/group.c:1194
+ msgid "Search wrapped."
+ msgstr "Szukam od pocz±tku."
+ 
+-#: src/group.c:1254
++#: src/group.c:1223
+ #, c-format
+ msgid "Group %s does not exist."
+ msgstr "Grupa %s nie istnieje."
+ 
+-#: src/group.c:1270
++#: src/group.c:1239
+ msgid "Add group: "
+ msgstr "Dodaj grupê: "
+ 
+-#: src/group.c:1341
++#: src/group.c:1310
+ #, c-format
+ msgid "Moving %s. Press RETURN when finished."
+ msgstr "Przenoszenie %s. Naci¶nij ENTER kiedy zakoñczysz."
+ 
+-#: src/group.c:1424
++#: src/group.c:1393
+ msgid "Subscribe pattern: "
+ msgstr "Subskrybuj grupy u¿ywaj±c wzorca: "
+ 
+-#: src/group.c:1456
++#: src/group.c:1422
+ #, c-format
+ msgid "Mark %s as read"
+ msgstr "Zaznaczyæ grupê %s jako przeczytan±"
+ 
+-#: src/group.c:1460
++#: src/group.c:1426
+ msgid "Group marked as read."
+ msgstr "Grupa zaznaczona jako przeczytana."
+ 
+-#: src/group.c:1471
++#: src/group.c:1437
+ #, c-format
+ msgid "Mark %s as un-read"
+ msgstr "Zaznaczyæ grupê %s jako nieprzeczytan±"
+ 
+-#: src/group.c:1475
++#: src/group.c:1441
+ msgid "Group marked as un-read."
+ msgstr "Grupa zaznaczona jako nieprzeczytana."
+ 
+-#: src/group.c:1498
++#: src/group.c:1464
+ msgid "Un-Subscribe pattern: "
+ msgstr "Odwo³aj subskrypcjê grup u¿ywaj±c wzorca: "
+ 
+-#: src/group.c:1568
++#: src/group.c:1531
+ msgid "List Groups (e.g., comp*unix*): "
+ msgstr "Wy¶wietl grupy (np.: pl*linux*): "
+ 
+-#: src/group.c:1720
++#: src/group.c:1680
+ msgid "No unread articles."
+ msgstr "Nie ma ¿adnych nieprzeczytanych wiadomo¶ci."
+ 
+-#: src/group.c:1732 src/post.c:993 src/post.c:1379
++#: src/group.c:1692 src/post.c:984 src/post.c:1370
+ msgid "Posting not allowed."
+ msgstr "Wysy³anie nie jest dozwolone."
+ 
+-#: src/group.c:1737
++#: src/group.c:1703
+ msgid "Are you sure that you want to post"
+ msgstr "Czy na pewno chcesz wys³aæ"
+ 
+-#: src/group.c:1753
++#: src/group.c:1713
+ msgid "Newsgroup: "
+ msgstr "Grupa: "
+ 
+-#: src/group.c:1757
++#: src/group.c:1717
+ msgid "Followup-To: "
+ msgstr "Przekieruj odpowied¼ na: "
+ 
+-#: src/group.c:1776
++#: src/group.c:1736
+ msgid "fFsSnNcC"
+ msgstr "pPsSbBaA"
+ 
+-#: src/group.c:1783
++#: src/group.c:1743
+ msgid "Select scoring mode: Full, Simple, None, Cancel"
+ msgstr "Wybierz rodzaj punktacji: Pe³na, ProSta, Brak, Anuluj"
+ 
+-#: src/group.c:1791
++#: src/group.c:1751
+ msgid "Full Header Scoring enabled."
+ msgstr "Punktacja pe³nonag³ówkowa w³±czona."
+ 
+-#: src/group.c:1796
++#: src/group.c:1756
+ msgid "Expensive Scoring disabled."
+ msgstr "Punktacja pe³nonag³ówkowa wy³±czona."
+ 
+-#: src/group.c:1801
++#: src/group.c:1761
+ msgid "Scoring disabled."
+ msgstr "Punktacja wy³±czona."
+ 
+-#: src/group.c:1819
++#: src/group.c:1779
+ msgid "No changes need to be saved."
+ msgstr "Nie ma zmian do zapisania."
+ 
+-#: src/group.c:2014
++#: src/group.c:1974
+ msgid "Unable to create group keymap!"
+ msgstr "Nie mo¿na utworzyæ mapy klawiszy 'Group'!"
+ 
+-#: src/group.c:2172
++#: src/group.c:2132
+ #, c-format
+ msgid ""
+ "Unable to create newsgroup description file:\n"
+@@ -1020,7 +1020,7 @@
+ "Nie mo¿na utworzyæ pliku z opisami grup:\n"
+ "%s\n"
+ 
+-#: src/group.c:2176
++#: src/group.c:2136
+ #, c-format
+ msgid ""
+ "\n"
+@@ -1029,7 +1029,7 @@
+ "\n"
+ "Tworzê plik z opisami %s.\n"
+ 
+-#: src/group.c:2177
++#: src/group.c:2137
+ #, c-format
+ msgid ""
+ "Getting newsgroup descriptions from server.\n"
+@@ -1038,23 +1038,23 @@
+ "Pobieranie opisów grup z serwera.\n"
+ "UWAGA: Mo¿e to d³ugo potrwaæ, je¶li masz wolne po³±czenie!!!\n"
+ 
+-#: src/group.c:2184
++#: src/group.c:2144
+ msgid "Server failed on list newsgroups command."
+ msgstr "Nie mo¿na pobraæ listy grup z serwera."
+ 
+-#: src/group.c:2199
++#: src/group.c:2159
+ msgid "Error reading line from server"
+ msgstr "B³±d odczytu z serwera"
+ 
+-#: src/group.c:2330
++#: src/group.c:2290
+ msgid "Checking for new groups ..."
+ msgstr "Sprawdzam, czy s± nowe grupy ..."
+ 
+-#: src/group.c:2388 src/slrnpull.c:2484
++#: src/group.c:2348 src/slrnpull.c:2449
+ msgid "Server does not implement NEWGROUPS command."
+ msgstr "Serwer nie obs³uguje polecenia NEWGROUPS."
+ 
+-#: src/group.c:2392 src/slrnpull.c:2488
++#: src/group.c:2352 src/slrnpull.c:2453
+ #, c-format
+ msgid ""
+ "Server failed to return proper response to NEWGROUPS:\n"
+@@ -1063,16 +1063,16 @@
+ "Serwer zwróci³ nieprawid³ow± odpowied¼ na polecenie NEWGROUPS:\n"
+ "%s\n"
+ 
+-#: src/group.c:2406 src/group.c:2519
++#: src/group.c:2366 src/group.c:2479
+ msgid "Read from server failed"
+ msgstr "B³±d odczytu z serwera"
+ 
+-#: src/group.c:2417
++#: src/group.c:2377
+ #, c-format
+ msgid "%d new newsgroup(s) found."
+ msgstr "Znaleziono nowe grupy (%d)."
+ 
+-#: src/group.c:2425
++#: src/group.c:2385
+ #, c-format
+ msgid ""
+ "%s appears corrupt.\n"
+@@ -1083,20 +1083,20 @@
+ "Spodziewa³em siê otrzymaæ: NEWGROUPS rrmmdd ggmmss GMT\n"
+ "Naprawiê ten plik dla ciebie.\n"
+ 
+-#: src/group.c:2437
++#: src/group.c:2397
+ #, c-format
+ msgid "Unable to open %s to record date."
+ msgstr "Nie mo¿na otworzyæ %s ¿eby zapisaæ datê."
+ 
+-#: src/group.c:2505
++#: src/group.c:2465
+ msgid "Server failed LIST ACTIVE - authorization missing."
+ msgstr "B³±d polecenia LIST ACTIVE - brak autoryzacji."
+ 
+-#: src/group.c:2506
++#: src/group.c:2466
+ msgid "Server failed LIST ACTIVE."
+ msgstr "B³±d polecenia LIST ACTIVE."
+ 
+-#: src/group.c:2619
++#: src/group.c:2579
+ #, c-format
+ msgid ""
+ "\n"
+@@ -1105,16 +1105,16 @@
+ "\n"
+ "* Plik autozapisu dla pliku %s jest nowszy od orygina³u.\n"
+ 
+-#: src/group.c:2621
++#: src/group.c:2581
+ msgid "Do you want to restore your newsrc from the autosave version"
+ msgstr "Czy chcesz odtworzyæ plik newsrc z pliku autozapisu"
+ 
+-#: src/group.c:2685 src/post.c:1596 src/slrnpull.c:1876
++#: src/group.c:2642 src/post.c:1583 src/slrnpull.c:1860
+ #, c-format
+ msgid "Unable to create %s."
+ msgstr "Nie mogê utworzyæ pliku %s."
+ 
+-#: src/group.c:2688
++#: src/group.c:2645
+ msgid ""
+ "\n"
+ "--The next step may take a while if the NNTP connection is slow.--\n"
+@@ -1124,55 +1124,55 @@
+ "--Je¶li masz wolne ³±cze, nastêpna operacja mo¿e trochê potrwaæ.--\n"
+ "\n"
+ 
+-#: src/group.c:2689
++#: src/group.c:2646
+ #, c-format
+ msgid "Creating %s."
+ msgstr "Tworzenie %s."
+ 
+-#: src/group.c:2700
++#: src/group.c:2657
+ msgid "Unable to read newsrc file"
+ msgstr "Nie mo¿na odczytaæ pliku newsrc"
+ 
+-#: src/group.c:2788
++#: src/group.c:2745
+ #, c-format
+ msgid "Writing %s ..."
+ msgstr "Zapisujê %s ..."
+ 
+-#: src/group.c:2806
++#: src/group.c:2763
+ #, c-format
+ msgid "Unable to open file %s for writing."
+ msgstr "Nie mo¿na otworzyæ pliku %s do zapisu."
+ 
+-#: src/group.c:2895
++#: src/group.c:2852
+ #, c-format
+ msgid "Writing %s ... done."
+ msgstr "Zapisujê %s ... OK."
+ 
+-#: src/group.c:2903
++#: src/group.c:2860
+ #, c-format
+ msgid "Write to %s failed! Disk Full?"
+ msgstr "B³±d zapisu %s. Dysk jest pe³en?"
+ 
+-#: src/group.c:2918
++#: src/group.c:2875
+ msgid ""
+ "SPC:Select  p:Post  c:CatchUp  l:List  q:Quit  ^R:Redraw  (u)s:(Un)Subscribe"
+ msgstr ""
+ "SPC:Wybierz p:Wy¶lij c:Przeczyt. l:Lista q:Wyj¶cie ^R:Od¶wie¿ (u)s:Subskryb."
+ 
+-#: src/group.c:3090
++#: src/group.c:3047
+ msgid "-%D-News Groups: %s %-20g -- %L (%P)"
+ msgstr "[-%D-] Grupy: %s %-20g -- %L (%P)"
+ 
+-#: src/group.c:3122 src/group.c:3160 src/interp.c:361 src/interp.c:431
++#: src/group.c:3079 src/group.c:3117 src/interp.c:361 src/interp.c:431
+ msgid "To use this feature, please update s-lang and recompile slrn."
+ msgstr ""
+ "Aby skorzystaæ z tej funkcji musisz uaktualniæ s-lang i przekompilowaæ slrn."
+ 
+-#: src/group.c:3168 src/interp.c:439
++#: src/group.c:3125 src/interp.c:439
+ msgid "Array of string expected."
+ msgstr "Oczekiwano tablicy napisów."
+ 
+-#: src/group.c:3174 src/interp.c:445
++#: src/group.c:3131 src/interp.c:445
+ msgid "One-dimensional array expected."
+ msgstr "Oczekiwano tablicy jednowymiarowej."
+ 
+@@ -1239,7 +1239,7 @@
+ msgid "Too many arguments"
+ msgstr "Za du¿o argumentów"
+ 
+-#: src/grplens.c:986 src/slrnpull.c:621
++#: src/grplens.c:986 src/slrnpull.c:606
+ #, c-format
+ msgid "Reading %s"
+ msgstr "Czytam %s"
 @@ -1586,24 +1586,23 @@
  
  #: src/help.c:125
@@ -71,7 +1270,7 @@
  
  #: src/help.c:208
  msgid "  m                       Move newsgroup to a different location."
-@@ -1953,117 +1952,115 @@
+@@ -1953,153 +1952,115 @@
  
  #: src/help.c:557
  msgid "<PageUp>"
@@ -144,122 +1343,1720 @@
 -msgstr ""
 +msgstr "<Tab>"
  
- #: src/help.c:572
+-#: src/help.c:571
+-msgid "<BackTab>"
+-msgstr ""
+-
+-#: src/help.c:573
++#: src/help.c:572
  msgid "<F1>"
 -msgstr ""
 +msgstr "<F1>"
  
- #: src/help.c:573
+-#: src/help.c:574
++#: src/help.c:573
  msgid "<F2>"
 -msgstr ""
 +msgstr "<F2>"
  
- #: src/help.c:574
+-#: src/help.c:575
++#: src/help.c:574
  msgid "<F3>"
 -msgstr ""
 +msgstr "<F3>"
  
- #: src/help.c:575
+-#: src/help.c:576
++#: src/help.c:575
  msgid "<F4>"
 -msgstr ""
 +msgstr "<F4>"
  
- #: src/help.c:576
+-#: src/help.c:577
++#: src/help.c:576
  msgid "<F5>"
 -msgstr ""
 +msgstr "<F5>"
  
- #: src/help.c:577
+-#: src/help.c:578
++#: src/help.c:577
  msgid "<F6>"
 -msgstr ""
 +msgstr "<F6>"
  
- #: src/help.c:578
+-#: src/help.c:579
++#: src/help.c:578
  msgid "<F7>"
 -msgstr ""
 +msgstr "<F7>"
  
- #: src/help.c:579
+-#: src/help.c:580
++#: src/help.c:579
  msgid "<F8>"
 -msgstr ""
 +msgstr "<F8>"
  
- #: src/help.c:580
+-#: src/help.c:581
++#: src/help.c:580
  msgid "<F9>"
 -msgstr ""
 +msgstr "<F9>"
  
- #: src/help.c:581
+-#: src/help.c:582
++#: src/help.c:581
  msgid "<F10>"
 -msgstr ""
 +msgstr "<F10>"
  
- #: src/help.c:582
+-#: src/help.c:583
++#: src/help.c:582
  msgid "<F11>"
 -msgstr ""
 +msgstr "<F11>"
  
- #: src/help.c:583
+-#: src/help.c:584
++#: src/help.c:583
  msgid "<F12>"
+-msgstr ""
+-
+-#: src/help.c:585
+-msgid "<F13>"
+-msgstr ""
+-
+-#: src/help.c:586
+-msgid "<F14>"
+-msgstr ""
+-
+-#: src/help.c:587
+-msgid "<F15>"
+-msgstr ""
+-
+-#: src/help.c:588
+-msgid "<F16>"
+-msgstr ""
+-
+-#: src/help.c:589
+-msgid "<F17>"
+-msgstr ""
+-
+-#: src/help.c:590
+-msgid "<F18>"
 -msgstr ""
 +msgstr "<F12>"
  
- #: src/help.c:584
+-#: src/help.c:591
+-msgid "<F19>"
+-msgstr ""
+-
+-#: src/help.c:592
+-msgid "<F20>"
+-msgstr ""
+-
+-#: src/help.c:593
++#: src/help.c:584
  msgid "<Esc>"
 -msgstr ""
 +msgstr "<Esc>"
  
- #: src/help.c:752
+-#: src/help.c:787
 -#, fuzzy
++#: src/help.c:752
  msgid "Ctrl-"
 -msgstr "Ctrl-%c"
 +msgstr "Ctrl-"
  
  #: src/interp.c:105
  msgid "positive integer expected"
-@@ -2752,9 +2749,9 @@
+@@ -2162,36 +2123,36 @@
+ msgid "definekey: no such keymap."
+ msgstr "definekey: nie ma takiej mapy klawiszy."
+ 
+-#: src/interp.c:556
++#: src/interp.c:562
+ msgid "undefinekey: no such keymap."
+ msgstr "undefinekey: nie ma takiej mapy klawiszy."
+ 
+-#: src/interp.c:593 src/interp.c:631 src/slrn.c:1766
++#: src/interp.c:599 src/interp.c:637 src/slrn.c:1752
+ msgid "Quit!"
+ msgstr "Wyj¶cie!"
+ 
+-#: src/interp.c:666
++#: src/interp.c:672
+ msgid "Terminal not initialized."
+ msgstr "Terminal nie zosta³ zainicjowany."
+ 
+-#: src/interp.c:717
++#: src/interp.c:723
+ msgid "Not in article mode."
+ msgstr "Nie jeste¶ w trybie artyku³ów."
+ 
+-#: src/interp.c:850
++#: src/interp.c:856
+ msgid "No article selected"
+ msgstr "Nie wybrano artyku³u"
+ 
+-#: src/interp.c:1270
++#: src/interp.c:1276
+ msgid "Not in group mode."
+ msgstr "Nie jeste¶ w trybie grup."
+ 
+-#: src/interp.c:1399
++#: src/interp.c:1405
+ #, c-format
+ msgid "Unable to open log file %s"
+ msgstr "Nie mo¿na otworzyæ pliku logowania %s"
+ 
+-#: src/interp.c:1459
++#: src/interp.c:1465
+ msgid "Could not replace article with given string."
+ msgstr "Nie mo¿na zast±piæ tre¶ci artyku³u podanym ci±giem"
+ 
+@@ -2335,15 +2296,15 @@
+ msgid "Creating directory list..."
+ msgstr "Tworzenie listy katalogów..."
+ 
+-#: src/mime.c:960
++#: src/mime.c:946
+ msgid "Process this MIME article with metamail"
+ msgstr "Przetwarzaæ ten artyku³ u¿ywaj±c metamail"
+ 
+-#: src/mime.c:974
++#: src/mime.c:960
+ msgid "Unable to open tmp file for metamail."
+ msgstr "Nie mo¿na otworzyæ pliku tymczasowego dla metamail."
+ 
+-#: src/mime.c:1002
++#: src/mime.c:988
+ #, c-format
+ msgid "Press return to continue ..."
+ msgstr "Naci¶nij ENTER aby kontynuowaæ..."
+@@ -2356,143 +2317,143 @@
+ msgid "slrn %v ** Press '?' for help, 'q' to quit. ** Server: %s"
+ msgstr "slrn %v ** '?' pomoc, 'q' wyj¶cie ** Serwer: %s"
+ 
+-#: src/misc.c:820
++#: src/misc.c:693
+ msgid "This function is not available in batch mode."
+ msgstr "Ta funkcja nie jest dostêpna w trybie wsadowym."
+ 
+-#: src/misc.c:1217
++#: src/misc.c:1090
+ msgid "yYnNeE"
+ msgstr "tTnNeE"
+ 
+-#: src/misc.c:1221
++#: src/misc.c:1094
+ msgid "Mail the message? Yes, No, Edit"
+ msgstr "Wys³aæ wiadomo¶æ poczt±? Tak, Nie, Edytuj"
+ 
+-#: src/misc.c:1228
++#: src/misc.c:1101
+ msgid "Sending ..."
+ msgstr "Wysy³anie ..."
+ 
+-#: src/misc.c:1362
++#: src/misc.c:1232
+ msgid "Sending...done"
+ msgstr "Wysy³anie ... OK"
+ 
+-#: src/misc.c:1466
++#: src/misc.c:1336
+ msgid "**UNKNOWN**"
+ msgstr "**NIEZNANY**"
+ 
+-#: src/misc.c:1479
++#: src/misc.c:1349
+ #, c-format
+ msgid "Command %s returned exit status %d.  Press RETURN.\n"
+ msgstr "Polecenie %s zwróci³o kod wyj¶cia %d. Naci¶nij ENTER.\n"
+ 
+-#: src/misc.c:1506
++#: src/misc.c:1376
+ #, c-format
+ msgid "Command %s failed to run.  Press RETURN.\n"
+ msgstr "Polecenie %s zakoñczy³o siê b³êdem. Naci¶nij ENTER.\n"
+ 
+-#: src/misc.c:1547
++#: src/misc.c:1417
+ msgid "Invalid Editor definition."
+ msgstr "Nieprawid³owa definicja edytora."
+ 
+-#: src/misc.c:1625
++#: src/misc.c:1495
+ msgid "No editor command defined."
+ msgstr "Nie zdefiniowano edytora."
+ 
+-#: src/misc.c:1647
++#: src/misc.c:1517
+ msgid "The editor could not be found."
+ msgstr "Nie znaleziono edytora."
+ 
+-#: src/misc.c:1652
++#: src/misc.c:1522
+ msgid "The editor was found, but could not be executed."
+ msgstr "Nie mo¿na uruchomiæ edytora."
+ 
+-#: src/misc.c:1656
++#: src/misc.c:1526
+ msgid "The editor returned a non-zero status."
+ msgstr "Edytor zwróci³ kod b³êdu."
+ 
+-#: src/misc.c:1670
++#: src/misc.c:1540
+ msgid "File was not modified."
+ msgstr "Nie wprowadzono ¿adnych zmian."
+ 
+-#: src/misc.c:1679
++#: src/misc.c:1549
+ msgid "Please use double '\\\\' to separate directories in editor_command"
+ msgstr ""
+ "U¿yj podwójnego znaku '\\\\' jako separatora katalogów w editor_command"
+ 
+-#: src/misc.c:2175
++#: src/misc.c:1930
+ msgid "Possible completions"
+ msgstr "Mo¿liwe uzupe³nienia"
+ 
+-#: src/misc.c:2391
++#: src/misc.c:2058
+ #, c-format
+ msgid "(default: %s) "
+ msgstr "(domy¶lnie: %s) "
+ 
+-#: src/misc.c:2563
++#: src/misc.c:2224
+ msgid "Abort!"
+ msgstr "Przerwano!"
+ 
+-#: src/misc.c:2569
++#: src/misc.c:2230
+ msgid "Integer expected."
+ msgstr "Oczekiwano liczby."
+ 
+-#: src/misc.c:2672
++#: src/misc.c:2332
+ msgid "Invalid response! Try again."
+ msgstr "Niew³a¶ciwa odpowied¼! Spróbuj ponownie."
+ 
+-#: src/misc.c:2707
++#: src/misc.c:2367
+ msgid "yYnN"
+ msgstr "tTnN"
+ 
+-#: src/misc.c:2722
++#: src/misc.c:2382
+ msgid "? [Y]es, No"
+ msgstr "? [T]ak, Nie"
+ 
+-#: src/misc.c:2727
++#: src/misc.c:2387
+ msgid "? Yes, [N]o"
+ msgstr "? Tak, [N]ie"
+ 
+-#: src/misc.c:2755
++#: src/misc.c:2415
+ msgid "yYnNcC"
+ msgstr "tTnNaA"
+ 
+-#: src/misc.c:2765
++#: src/misc.c:2425
+ msgid "? [Y]es, No, Cancel"
+ msgstr "? [T]ak, Nie, Anuluj"
+ 
+-#: src/misc.c:2822 src/misc.c:2833 src/spool.c:1444
++#: src/misc.c:2481 src/spool.c:1439
+ msgid "Invalid regular expression or expression too long."
+ msgstr "Nieprawid³owe lub zbyt d³ugie wyra¿enie regularne."
+ 
+-#: src/misc.c:2971
++#: src/misc.c:2614
+ #, no-c-format
+ msgid "On %D, %r <%f> wrote:"
+ msgstr "Dnia %D %r <%f> napisa³/a:"
+ 
+-#: src/misc.c:2973
++#: src/misc.c:2616
+ #, no-c-format
+ msgid "In %n, you wrote:"
+ msgstr "Na grupie %n napisa³e(a)¶:"
+ 
+-#: src/misc.c:2975
++#: src/misc.c:2618
+ #, no-c-format
+ msgid "[\"Followup-To:\" header set to %n.]"
+ msgstr "Zawarto¶æ nag³ówka [\"Followup-To:\" %n.]"
+ 
+-#: src/misc.c:2978
++#: src/misc.c:2621
+ #, no-c-format
+ msgid "[This message has also been posted to %n.]"
+ msgstr "[Wiadomo¶æ wys³ana równie¿ na grupê dyskusyjn± %n.]"
+ 
+-#: src/misc.c:3209
++#: src/misc.c:2852
+ msgid "Cannot generate \"From:\" line without a valid username."
+ msgstr "Nie mo¿na utworzyæ nag³ówka \"From:\" bez poprawnego username."
+ 
+-#: src/misc.c:3213
++#: src/misc.c:2856
+ msgid "Cannot generate \"From:\" line without a hostname."
+ msgstr "Nie mo¿na utworzyæ nag³ówka \"From:\" bez poprawnego hostname."
+ 
+-#: src/misc.c:3218
++#: src/misc.c:2861
+ msgid "This client cannot handle addresses longer than 255 characters."
+ msgstr "Ten klient nie mo¿e korzystaæ z adresów d³u¿szych ni¿ 255 znaków."
+ 
+@@ -2515,7 +2476,7 @@
+ msgid "Article rejected: %s"
+ msgstr "Artyku³ odrzucony: %s"
+ 
+-#: src/nntp.c:480
++#: src/nntp.c:467
+ msgid ""
+ "--nntp options:\n"
+ "-h nntp-host    Host name to connect to.  This overrides NNTPSERVER "
+@@ -2530,506 +2491,506 @@
+ "119.\n"
+ "                UWAGA: Ta opcja nie dzia³a na niektórych systemach.\n"
+ 
+-#: src/nntplib.c:197 src/post.c:841
++#: src/nntplib.c:197 src/post.c:832
+ #, c-format
+ msgid "Reason: %s"
+ msgstr "Powód: %s"
+ 
+-#: src/nntplib.c:279
++#: src/nntplib.c:267
+ #, c-format
+ msgid "Server %s dropped connection.  Reconnecting..."
+ msgstr "Serwer %s zerwa³ po³±czenie. £±czê ponownie..."
+ 
+-#: src/nntplib.c:428
++#: src/nntplib.c:416
+ msgid "Authorization needed, but could not determine username / password."
+ msgstr "Konieczna jest autoryzacja, lecz nie mogê okre¶liæ u¿ytkownika/has³a."
+ 
+-#: src/nntplib.c:432
++#: src/nntplib.c:420
+ #, c-format
+ msgid "Authenticating %s ..."
+ msgstr "Autoryzacja %s ..."
+ 
+-#: src/nntplib.c:462
++#: src/nntplib.c:450
+ msgid "Authorization failed."
+ msgstr "B³±d autoryzacji."
+ 
+-#: src/nntplib.c:473
++#: src/nntplib.c:461
+ #, c-format
+ msgid "Connecting to host %s ..."
+ msgstr "£±czenie z serwerem %s ..."
+ 
+-#: src/nntplib.c:515
++#: src/nntplib.c:503
+ #, c-format
+ msgid "Connected to host.  %s"
+ msgstr "Po³±czono z serwerem. %s"
+ 
+-#: src/nntplib.c:516
++#: src/nntplib.c:504
+ msgid "Posting ok."
+ msgstr "Wysy³anie dozwolone."
+ 
+-#: src/nntplib.c:516
++#: src/nntplib.c:504
+ msgid "Posting NOT ok."
+ msgstr "Wysy³anie zabronione."
+ 
+-#: src/nntplib.c:522
++#: src/nntplib.c:510
+ msgid "Failed to initialize server"
+ msgstr "B³±d inicjalizacji serwera"
+ 
+-#: src/nntplib.c:586
++#: src/nntplib.c:574
+ msgid "You should set the NNTPSERVER environment variable to your server name."
+ msgstr "Musisz ustawiæ zmienn± ¶rodowiskow± NNTPSERVER na nazwê serwera."
+ 
+-#: src/nntplib.c:588
++#: src/nntplib.c:576
+ msgid "Example: $ define/job NNTPSERVER my.news.server"
+ msgstr "Przyk³ad: $ define/job NNTPSERVER moj.serwer.news"
+ 
+-#: src/nntplib.c:591
++#: src/nntplib.c:579
+ msgid "Example: set NNTPSERVER=my.news.server"
+ msgstr "Przyk³ad: set NNTPSERVER=moj.serwer.news"
+ 
+-#: src/nntplib.c:593
++#: src/nntplib.c:581
+ msgid "Example (csh): setenv NNTPSERVER my.news.server"
+ msgstr "Przyk³ad (csh): setenv NNTPSERVER moj.serwer.news"
+ 
+-#: src/nntplib.c:594
++#: src/nntplib.c:582
+ msgid "Example (sh) : NNTPSERVER='my.news.server' && export NNTPSERVER"
+ msgstr "Przyk³ad (sh) : NNTPSERVER='moj.serwer.news' && export NNTPSERVER"
+ 
+-#: src/nntplib.c:597
++#: src/nntplib.c:585
+ msgid "For now, I'm going to try \"localhost\" as the default..."
+ msgstr "Na razie spróbujê domy¶lnego serwera \"localhost\"..."
+ 
+-#: src/nntplib.c:1159
++#: src/nntplib.c:1147
+ msgid "Help text on way"
+ msgstr "Pomoc w drodze"
+ 
+-#: src/nntplib.c:1161
++#: src/nntplib.c:1149
+ msgid "Authorization capabilities"
+ msgstr "Mo¿liwo¶ci autoryzacji"
+ 
+-#: src/nntplib.c:1163
++#: src/nntplib.c:1151
+ msgid "Debug output"
+ msgstr "Komunikaty debugowania"
+ 
+-#: src/nntplib.c:1165
++#: src/nntplib.c:1153
+ msgid "Hello; you can post"
+ msgstr "Cze¶æ, mo¿esz wysy³aæ"
+ 
+-#: src/nntplib.c:1167
++#: src/nntplib.c:1155
+ msgid "Hello; you can't post"
+ msgstr "Cze¶æ, nie mo¿esz wysy³aæ"
+ 
+-#: src/nntplib.c:1169
++#: src/nntplib.c:1157
+ msgid "Slave status noted"
+ msgstr "Status slave"
+ 
+-#: src/nntplib.c:1171
++#: src/nntplib.c:1159
+ msgid "Closing connection"
+ msgstr "Zamykanie po³±czenia"
+ 
+-#: src/nntplib.c:1173
++#: src/nntplib.c:1161
+ msgid "Group selected"
+ msgstr "Wybrano grupê"
+ 
+-#: src/nntplib.c:1175
++#: src/nntplib.c:1163
+ msgid "Newsgroups follow"
+ msgstr "Grupy news"
+ 
+-#: src/nntplib.c:1177
++#: src/nntplib.c:1165
+ msgid "Article (head & body) follows"
+ msgstr "Artyku³ (nag³ówek i tre¶æ)"
+ 
+-#: src/nntplib.c:1179
++#: src/nntplib.c:1167
+ msgid "Head follows"
+ msgstr "Nag³ówek"
+ 
+-#: src/nntplib.c:1181
++#: src/nntplib.c:1169
+ msgid "Body follows"
+ msgstr "Tre¶æ"
+ 
+-#: src/nntplib.c:1183
++#: src/nntplib.c:1171
+ msgid "No text sent -- stat, next, last"
+ msgstr "Nie wys³ano tekstu -- stat, next, last"
+ 
+-#: src/nntplib.c:1185
++#: src/nntplib.c:1173
+ msgid "New articles by message-id follow"
+ msgstr "Nowe artyku³y wg Message-ID"
+ 
+-#: src/nntplib.c:1187
++#: src/nntplib.c:1175
+ msgid "New newsgroups follow"
+ msgstr "Nowe grupy news"
+ 
+-#: src/nntplib.c:1189
++#: src/nntplib.c:1177
+ msgid "Article transferred successfully"
+ msgstr "Artyku³ przes³any pomy¶lnie"
+ 
+-#: src/nntplib.c:1191
++#: src/nntplib.c:1179
+ msgid "Article posted successfully"
+ msgstr "Artyku³ wys³any pomy¶lnie"
+ 
+-#: src/nntplib.c:1193
++#: src/nntplib.c:1181
+ msgid "Authorization system ok"
+ msgstr "System autoryzacji dzia³a prawid³owo"
+ 
+-#: src/nntplib.c:1195
++#: src/nntplib.c:1183
+ msgid "Authorization (user/pass) ok"
+ msgstr "Autoryzacja (u¿ytkownik/has³o) ok"
+ 
+-#: src/nntplib.c:1197
++#: src/nntplib.c:1185
+ msgid "Ok, XGTITLE info follows"
+ msgstr "Ok, informacje XGTITLE"
+ 
+-#: src/nntplib.c:1199
++#: src/nntplib.c:1187
+ msgid "ok -- overview data follows"
+ msgstr "ok -- dane overview"
+ 
+-#: src/nntplib.c:1201
++#: src/nntplib.c:1189
+ msgid "Continue to send article"
+ msgstr "Kontynuuj wysy³anie (send)"
+ 
+-#: src/nntplib.c:1203
++#: src/nntplib.c:1191
+ msgid "Continue to post article"
+ msgstr "Kontynuuj wysy³anie (post)"
+ 
+-#: src/nntplib.c:1205
++#: src/nntplib.c:1193
+ msgid "authorization is required"
+ msgstr "wymagana autoryzacja"
+ 
+-#: src/nntplib.c:1207
++#: src/nntplib.c:1195
+ msgid "<type> authorization data required"
+ msgstr "<type> wymagane dane autoryzacji"
+ 
+-#: src/nntplib.c:1209
++#: src/nntplib.c:1197
+ msgid "Have to hang up for some reason"
+ msgstr "Jestem zmuszony zaniechaæ"
+ 
+-#: src/nntplib.c:1211
++#: src/nntplib.c:1199
+ msgid "No such newsgroup"
+ msgstr "Nie ma takiej grupy"
+ 
+-#: src/nntplib.c:1213
++#: src/nntplib.c:1201
+ msgid "Not currently in newsgroup"
+ msgstr "Nie wybrano grupy news"
+ 
+-#: src/nntplib.c:1215
++#: src/nntplib.c:1203
+ msgid "No current article selected"
+ msgstr "Nie wybrano artyku³u"
+ 
+-#: src/nntplib.c:1217
++#: src/nntplib.c:1205
+ msgid "No next article in this group"
+ msgstr "Nie ma wiêcej artyku³ów"
+ 
+-#: src/nntplib.c:1219
++#: src/nntplib.c:1207
+ msgid "No previous article in this group"
+ msgstr "Nie ma poprzedniego artyku³u"
+ 
+-#: src/nntplib.c:1221
++#: src/nntplib.c:1209
+ msgid "No such article in this group"
+ msgstr "Nie ma takiego artyku³u"
+ 
+-#: src/nntplib.c:1223
++#: src/nntplib.c:1211
+ msgid "No such article at all"
+ msgstr "Taki artyku³ nie istnieje"
+ 
+-#: src/nntplib.c:1225
++#: src/nntplib.c:1213
+ msgid "Already got that article, don't send"
+ msgstr "Mam ju¿ artyku³, nie wysy³aj"
+ 
+-#: src/nntplib.c:1227
++#: src/nntplib.c:1215
+ msgid "Transfer failed"
+ msgstr "B³±d przesy³ania"
+ 
+-#: src/nntplib.c:1229
++#: src/nntplib.c:1217
+ msgid "Article rejected, don't resend"
+ msgstr "Artyku³ odrzucony, nie ponawiaj"
+ 
+-#: src/nntplib.c:1231
++#: src/nntplib.c:1219
+ msgid "Posting not allowed"
+ msgstr "Wysy³anie zabronione"
+ 
+-#: src/nntplib.c:1233
++#: src/nntplib.c:1221
+ msgid "Posting failed"
+ msgstr "Wysy³anie nie powiod³o siê"
+ 
+-#: src/nntplib.c:1235
++#: src/nntplib.c:1223
+ msgid "authorization required for command"
+ msgstr "dla tego polecenia wymagana jest autoryzacja"
+ 
+-#: src/nntplib.c:1237
++#: src/nntplib.c:1225
+ msgid "Authorization system invalid"
+ msgstr "System autoryzacji nie dzia³a"
+ 
+-#: src/nntplib.c:1239
++#: src/nntplib.c:1227
+ msgid "Authorization data rejected"
+ msgstr "Autoryzacja odrzucona"
+ 
+-#: src/nntplib.c:1241
++#: src/nntplib.c:1229
+ msgid "Command not recognized"
+ msgstr "Nieznane polecenie"
+ 
+-#: src/nntplib.c:1243
++#: src/nntplib.c:1231
+ msgid "Command syntax error"
+ msgstr "B³±d sk³adniowy polecenia"
+ 
+-#: src/nntplib.c:1245
++#: src/nntplib.c:1233
+ msgid "Access to server denied"
+ msgstr "Brak dostêpu do serwera"
+ 
+-#: src/nntplib.c:1247
++#: src/nntplib.c:1235
+ msgid "Program fault, command not performed"
+ msgstr "B³±d programowy, polecenie nie zosta³o wykonane"
+ 
+-#: src/nntplib.c:1249
++#: src/nntplib.c:1237
+ msgid "Authorization Failed"
+ msgstr "B³±d autoryzacji"
+ 
+-#: src/nntplib.c:1252
++#: src/nntplib.c:1240
+ msgid "Unknown NNTP code"
  msgstr "Nieznany kod NNTP"
  
- #: src/post.c:531
+-#: src/post.c:534
 -#, fuzzy, c-format
++#: src/post.c:531
 +#, c-format
  msgid "Unable to re-open %s."
 -msgstr "Nie mogê otworzyæ pliku %s."
 +msgstr "Nie mogê ponownie otworzyæ pliku %s."
  
- #: src/post.c:651
+-#: src/post.c:660
++#: src/post.c:651
  msgid "The first line must begin with a header."
-@@ -3268,7 +3265,7 @@
+ msgstr "Pierwszy wiersz musi byæ nag³ówkiem."
+ 
+-#: src/post.c:670
++#: src/post.c:661
+ msgid "Expecting a header.  This is not a header line."
+ msgstr "Oczekiwano nag³ówka. To nie jest wiersz nag³ówka."
+ 
+-#: src/post.c:678
++#: src/post.c:669
+ msgid "The subject header is not allowed be to empty."
+ msgstr "Temat nie mo¿e byæ pusty."
+ 
+-#: src/post.c:690
++#: src/post.c:681
+ msgid "The Newsgroups header is not allowed be to empty."
+ msgstr "Nag³ówek Newsgroups nie mo¿e byæ pusty."
+ 
+-#: src/post.c:718
++#: src/post.c:709
+ msgid "A space must follow the ':' in a header"
+ msgstr "Za znakiem ':' w nag³ówku musi byæ odstêp"
+ 
+-#: src/post.c:725
++#: src/post.c:716
+ msgid "This news reader will not accept user generated From lines."
+ msgstr "Ten czytnik nie akceptuje nag³ówka From wstawionego przez u¿ytkownika."
+ 
+-#: src/post.c:732
++#: src/post.c:723
+ msgid "This news reader will not accept user generated Message-IDs."
+ msgstr "Ten czytnik odrzuca nag³ówki Message-ID stworzone przez u¿ytkownika."
+ 
+-#: src/post.c:742
++#: src/post.c:733
+ msgid "Subject header is required."
+ msgstr "Brak wymaganego nag³ówka \"Subject\"."
+ 
+-#: src/post.c:747
++#: src/post.c:738
+ msgid "Newsgroups header is required."
+ msgstr "Brak wymaganego nag³ówka \"Newsgroups\"."
+ 
+-#: src/post.c:754
++#: src/post.c:745
+ msgid "Please re-consider if posting to a large number of groups is necessary."
+ msgstr "Rozwa¿ proszê czy wysy³anie tego na du¿± ilo¶æ grup jest konieczne."
+ 
+-#: src/post.c:757
++#: src/post.c:748
+ msgid ""
+ "In most cases, setting a \"Followup-To:\" multiple groups is a bad idea."
+ msgstr ""
+ "Wpisanie do nag³ówka \"Followup-To:\" wielu grup to najczê¶ciej z³y pomys³."
+ 
+-#: src/post.c:760
++#: src/post.c:751
+ msgid "Setting a \"Followup-To:\" is recommended when crossposting."
+ msgstr ""
+ "Ustawienie \"Followup-To:\" jest polecane podczas wysy³ania na wiele grup."
+ 
+-#: src/post.c:774
++#: src/post.c:765
+ msgid "Your message does not appear to have any unquoted text."
+ msgstr "Widzê tu same cytaty, chyba nic nie dopisa³e¶!"
+ 
+-#: src/post.c:833
++#: src/post.c:824
+ msgid "Please keep your signature short. 4 lines is a commonly accepted limit."
+ msgstr "Skróæ swoj± sygnaturkê. Ogólnie przyjêty limit, to cztery wiersze."
+ 
+-#: src/post.c:840
++#: src/post.c:831
+ msgid "Message is not acceptable."
+ msgstr "Wiadomo¶æ jest nieprawid³owa."
+ 
+-#: src/post.c:858
++#: src/post.c:849
+ msgid "Your message is not acceptable for the following reason:"
+ msgstr "Twoja wiadomo¶æ jest nieprawid³owa z powodu:"
+ 
+-#: src/post.c:865
++#: src/post.c:856
+ #, c-format
+ msgid "This message was generated while looking at line %d:"
+ msgstr "B³±d zosta³ wykryty podczas przetwarzania wiersza %d:"
+ 
+-#: src/post.c:871
++#: src/post.c:862
+ msgid ""
+ "Perhaps this error was generated because you did not separate the header"
+ msgstr ""
+ "Byæ mo¿e b³±d wyst±pi³ dlatego, ¿e nie oddzieli³e¶ pustym wierszem sekcji"
+ 
+-#: src/post.c:873
++#: src/post.c:864
+ msgid "section from the body by a BLANK line."
+ msgstr "nag³ówków od reszty wiadomo¶ci."
+ 
+-#: src/post.c:880
++#: src/post.c:871
+ msgid "Your message breaks the following netiquette guidelines:"
+ msgstr "Twoja wiadomo¶æ ³amie zasady netykiety w nastêpuj±cy sposób:"
+ 
+-#: src/post.c:896
++#: src/post.c:887
+ msgid "Lines with more than 80 characters generally need to be wrapped."
+ msgstr "Wiersze zawieraj±ce ponad 80 znaków powinny byæ zawijane."
+ 
+-#: src/post.c:900
++#: src/post.c:891
+ #, c-format
+ msgid "This affects at least line %d:"
+ msgstr "To dotyczy przynajmniej wiersza %d:"
+ 
+-#: src/post.c:902
++#: src/post.c:893
+ #, c-format
+ msgid "This affects %d lines between line %d and %d. First one:"
+ msgstr "Dotyczy to %d wierszy pomiêdzy liniami %d i %d. Pierwszy taki wiersz:"
+ 
+-#: src/post.c:928 src/post.c:1329 src/post.c:1357
++#: src/post.c:919 src/post.c:1320 src/post.c:1348
+ #, c-format
+ msgid "File not found: %s--- message not posted."
+ msgstr "Nie znaleziono pliku: %s --- wiadomo¶æ nie zosta³a wys³ana."
+ 
+-#: src/post.c:935
++#: src/post.c:926
+ #, c-format
+ msgid "***Warning: error saving to %s"
+ msgstr "***Ostrze¿enie: b³±d zapisu do pliku %s"
+ 
+-#: src/post.c:987
++#: src/post.c:978
+ #, c-format
+ msgid "***Warning: error writing to %s"
+ msgstr "***Ostrze¿enie: b³±d zapisu do pliku %s"
+ 
+-#: src/post.c:992
++#: src/post.c:983
+ #, c-format
+ msgid "%s Failed post saved in %s"
+ msgstr "%s Artyku³ zapisano w pliku %s"
+ 
+-#: src/post.c:1133 src/post.c:1166
++#: src/post.c:1124 src/post.c:1157
+ msgid "yYnNeEsSdDfF"
+ msgstr "tTnNeEoOuUfF"
+ 
+-#: src/post.c:1136
++#: src/post.c:1127
+ msgid "Post the message? Yes, No, Edit, poStpone, Delete, Filter"
+ msgstr "Wys³aæ wiadomo¶æ? Tak, Nie, Edytuj, Od³ó¿, Usuñ, Filtr"
+ 
+-#: src/post.c:1140
++#: src/post.c:1131
+ msgid "yYnNeEsSfF"
+ msgstr "tTnNeEoOfF"
+ 
+-#: src/post.c:1143
++#: src/post.c:1134
+ msgid "Post the message? Yes, No, Edit, poStpone, Filter"
+ msgstr "Wys³aæ wiadomo¶æ? Tak, Nie, Edytuj, Od³ó¿, Filtr"
+ 
+-#: src/post.c:1151
++#: src/post.c:1142
+ msgid "yYnNeEsSdD"
+ msgstr "tTnNeEoOuU"
+ 
+-#: src/post.c:1154
++#: src/post.c:1145
+ msgid "Post the message? Yes, No, Edit, poStpone, Delete"
+ msgstr "Wys³aæ wiadomo¶æ? Tak, Nie, Edytuj, Od³ó¿, Usuñ"
+ 
+-#: src/post.c:1158
++#: src/post.c:1149
+ msgid "yYnNeEsS"
+ msgstr "tTnNeEoO"
+ 
+-#: src/post.c:1161
++#: src/post.c:1152
+ msgid "Post the message? Yes, No, Edit, poStpone"
+ msgstr "Wys³aæ wiadomo¶æ? Tak, Nie, Edytuj, Od³ó¿"
+ 
+-#: src/post.c:1184
++#: src/post.c:1175
+ msgid "Sure you want to delete it"
+ msgstr "Czy na pewno usun±æ"
+ 
+-#: src/post.c:1208
++#: src/post.c:1199
+ msgid "yYeEnNcC"
+ msgstr "tTeEnNaA"
+ 
+-#: src/post.c:1211
++#: src/post.c:1202
+ msgid "re-Edit,  or Cancel"
+ msgstr "Edytuj ponownie lub Anuluj"
+ 
+-#: src/post.c:1215 src/post.c:1221
++#: src/post.c:1206 src/post.c:1212
+ msgid "yYeEnNcCfF"
+ msgstr "tTeEnNaAwW"
+ 
+-#: src/post.c:1218
++#: src/post.c:1209
+ msgid "re-Edit, Cancel, or Force the posting (not recommended)"
+ msgstr "Edytuj ponownie, Anuluj lub Wy¶lij pomimo to (nie zalecane)"
+ 
+-#: src/post.c:1315 src/post.c:1351
++#: src/post.c:1306 src/post.c:1342
+ msgid "Posting ..."
+ msgstr "Wysy³anie ..."
+ 
+-#: src/post.c:1347
++#: src/post.c:1338
+ msgid "post_file_hook returned error."
+ msgstr "post_file_hook zwróci³ b³±d."
+ 
+-#: src/post.c:1365
++#: src/post.c:1356
+ #, c-format
+ msgid "Couldn't open %s--- message not posted."
+ msgstr "Nie mo¿na otworzyæ pliku: %s - wiadomo¶æ nie wys³ana."
+ 
+-#: src/post.c:1380
++#: src/post.c:1371
+ msgid "Could not reach server."
+ msgstr "Brak po³±czenia z serwerem."
+ 
+-#: src/post.c:1387
++#: src/post.c:1378
+ msgid "Message-ID generating error."
+ msgstr "B³±d przy generowaniu nag³ówka Message-ID."
+ 
+-#: src/post.c:1398
++#: src/post.c:1389
+ msgid "\"From\" generating error."
+ msgstr "B³±d przy generowaniu nag³ówka \"From\"."
+ 
+-#: src/post.c:1530
++#: src/post.c:1518
+ msgid "Posting...done."
+ msgstr "Wysy³anie ... OK."
+ 
+-#: src/post.c:1552
++#: src/post.c:1539
+ msgid "rReEcC"
+ msgstr "rReEaA"
+ 
+-#: src/post.c:1555
++#: src/post.c:1542
+ msgid "Select one: Repost, Edit, Cancel"
+ msgstr "Wybierz: Repostuj, Edytuj, Anuluj"
+ 
+-#: src/post.c:1666
++#: src/post.c:1653
+ msgid "Aborted on user request."
+ msgstr "Wyj¶cie na ¿±danie u¿ytkownika."
+ 
+-#: src/post.c:1672
++#: src/post.c:1659
+ msgid "postpone_directory points to a regular file (not a directory)"
+ msgstr "postpone_directory wskazuje na zwyk³y plik (a nie na katalog)"
+ 
+-#: src/post.c:1684
++#: src/post.c:1671
+ msgid "Not implemented yet. Sorry"
+ msgstr "Funkcja nie jest jeszcze zaimplementowana."
+ 
+-#: src/post.c:1700
++#: src/post.c:1687
+ msgid "Save to: "
+ msgstr "Zapisz do pliku: "
+ 
+-#: src/post.c:1706
++#: src/post.c:1693
+ msgid "File exists, overwrite"
+ msgstr "Plik istnieje, nadpisaæ"
+ 
+-#: src/post.c:1718
++#: src/post.c:1705
+ msgid "You must specify a name"
+ msgstr "Musisz okre¶liæ nazwê"
+ 
+-#: src/post.c:1720
++#: src/post.c:1707
+ msgid "Illegal filename. Try again"
+ msgstr "B³êdna nazwa pliku. Spróbuj ponownie"
+ 
+-#: src/post.c:1745
++#: src/post.c:1732
+ #, c-format
+ msgid "%s: not a regular file"
+ msgstr "%s: nie jest zwyk³ym plikiem"
+@@ -3080,16 +3041,16 @@
+ msgid "Unable to open %s for printing"
+ msgstr "Nie mo¿na otworzyæ pliku %s dla drukowania"
+ 
+-#: src/score.c:661
++#: src/score.c:603
+ msgid "Reloading score file ..."
+ msgstr "Wczytujê ponownie plik score..."
+ 
+-#: src/score.c:663 src/slrn.c:1003
++#: src/score.c:605 src/slrn.c:996
+ #, c-format
+ msgid "Error processing score file %s."
+ msgstr "B³±d przy przetwarzaniu pliku punktacji %s."
+ 
+-#: src/score.c:907
++#: src/score.c:840
+ #, c-format
+ msgid ""
+ "Error processing %s\n"
+@@ -3102,49 +3063,49 @@
+ "%s\n"
+ "%s\n"
+ 
+-#: src/score.c:1100
++#: src/score.c:1021
+ msgid "Error handling INCLUDE line"
+ msgstr "B³±d obs³ugi dyrektywy INCLUDE"
+ 
+-#: src/score.c:1128
++#: src/score.c:1049
+ msgid "Syntax Error."
+ msgstr "B³±d sk³adni."
+ 
+-#: src/score.c:1185
++#: src/score.c:1106
+ msgid "Expecting 'Expires: MM/DD/YYYY' or 'Expires: DD-MM-YYYY'"
+ msgstr "Oczekiwano 'Expires: MM/DD/RRRR' lub 'Expires: DD-MM-RRRR'"
+ 
+-#: src/score.c:1192
++#: src/score.c:1113
+ #, c-format
+ msgid "%s has expired score on line %d"
+ msgstr "%s zawiera przestarza³± punktacjê w wierszu %d"
+ 
+-#: src/score.c:1208
++#: src/score.c:1129
+ msgid "Bad group regular expression."
+ msgstr "Nieprawid³owa grupa lub wyra¿enie regularne."
+ 
+-#: src/score.c:1228
++#: src/score.c:1149
+ msgid "Expecting Score keyword."
+ msgstr "Oczekiwano s³owa Score."
+ 
+-#: src/score.c:1287 src/score.c:1298
++#: src/score.c:1208 src/score.c:1219
+ msgid "Missing COLON."
+ msgstr "Brakuje DWUKROPKA."
+ 
+-#: src/score.c:1307
++#: src/score.c:1228
+ msgid "No regular expression given."
+ msgstr "Nie podano wyra¿enia regularnego."
+ 
+-#: src/score.c:1342
++#: src/score.c:1263
+ msgid "Missing '}' for  subscore"
+ msgstr "Brakuj±cy '}' dla podbloku punktacji"
+ 
+-#: src/score.c:1358
++#: src/score.c:1279
+ #, c-format
+ msgid "*** Warning * Read file %s before - skipping ..."
+ msgstr "*** Ostrze¿enie * Plik %s wczytany wcze¶niej, pomijam..."
+ 
+-#: src/score.c:1372
++#: src/score.c:1293
+ #, c-format
+ msgid "Unable to open score file %s"
+ msgstr "Nie mo¿na otworzyæ pliku punktacji %s"
+@@ -3162,7 +3123,7 @@
+ msgid "Unable to locate inews program \"%s\""
+ msgstr "Nie mogê odnale¼æ programu inews \"%s\""
+ 
+-#: src/server.c:250 src/slrn.c:1118
++#: src/server.c:250 src/slrn.c:1111
+ #, c-format
+ msgid "Unable to add preprocessor name %s."
+ msgstr "Nie mogê dodaæ nazwy preprocesora %s."
+@@ -3204,7 +3165,7 @@
+ msgid "Posting directory %s does not exist."
+ msgstr "Katalog wysy³ania %s nie istnieje."
+ 
+-#: src/slrn.c:192
++#: src/slrn.c:187
+ #, c-format
+ msgid ""
+ "slrn: pid %d is locking the newsrc file. If you're not running another\n"
+@@ -3213,42 +3174,42 @@
+ "slrn: pid %d blokuje plik newsrc. Je¶li nie uruchamiasz nastêpnej\n"
+ "      kopii slrn, usuñ plik %s"
+ 
+-#: src/slrn.c:197
++#: src/slrn.c:192
+ #, c-format
+ msgid "slrn: pid %d is locking the newsrc file."
+ msgstr "slrn: pid %d blokuje plik newsrc."
+ 
+-#: src/slrn.c:268 src/slrn.c:275
++#: src/slrn.c:263 src/slrn.c:270
+ #, c-format
+ msgid "Unable to create lock file %s."
+ msgstr "Nie mo¿na utworzyæ pliku blokuj±cego %s."
+ 
+-#: src/slrn.c:382
++#: src/slrn.c:377
+ msgid "pop_suspension: underflow!"
+ msgstr "pop_suspension: niedope³nienie!"
+ 
+-#: src/slrn.c:447
++#: src/slrn.c:442
+ msgid "Not implemented."
+ msgstr "Nie zaimplementowane."
+ 
+-#: src/slrn.c:460 src/slrn.c:479
++#: src/slrn.c:455 src/slrn.c:474
+ msgid "Suspension not allowed by shell."
+ msgstr "Shell nie zezwala na zawieszenie programu."
+ 
+-#: src/slrn.c:640
++#: src/slrn.c:635
+ msgid "Unable to initialize the tty"
+ msgstr "B³±d inicjacji tty"
+ 
+-#: src/slrn.c:877
++#: src/slrn.c:870
+ #, c-format
+ msgid "slrn: quiting on signal %d.\n"
+ msgstr "slrn: sygna³: %d, koñczê.\n"
+ 
+-#: src/slrn.c:894
++#: src/slrn.c:887
+ msgid "slrn fatal error:"
+ msgstr "B³±d krytyczny:"
+ 
+-#: src/slrn.c:922
++#: src/slrn.c:915
+ #, c-format
+ msgid ""
+ "Usage: slrn [--inews] [--nntp ...] [--spool] OPTIONS\n"
+@@ -3304,51 +3265,51 @@
  "--version       Poka¿ wersjê i obs³ugiwane funkcje.\n"
  "\n"
  "Tryb NNTP zawiera dodatkowe opcje; uruchom \"slrn --nntp --help\" aby je "
 -"wyswietliæ.\n"
 +"wy¶wietliæ.\n"
  
- #: src/slrn.c:966
+-#: src/slrn.c:973
++#: src/slrn.c:966
  #, c-format
-@@ -3600,9 +3597,9 @@
+ msgid "%s is not a supported option."
+ msgstr "opcja %s nie jest obs³ugiwana."
+ 
+-#: src/slrn.c:975
++#: src/slrn.c:968
+ #, c-format
+ msgid "%s is not supported."
+ msgstr "%s nie jest obs³ugiwane."
+ 
+-#: src/slrn.c:996
++#: src/slrn.c:989
+ #, c-format
+ msgid "*** Warning: Score file %s does not exist"
+ msgstr "*** Ostrze¿enie: Plik punktacji %s nie istnieje"
+ 
+-#: src/slrn.c:1095
++#: src/slrn.c:1088
+ #, c-format
+ msgid "Unable to open %s for debugging."
+ msgstr "Nie mo¿na otworzyæ %s dla debugowania."
+ 
+-#: src/slrn.c:1143
++#: src/slrn.c:1136
+ msgid "The -d and --create flags must not be specified together."
+ msgstr "Nie mo¿na u¿ywaæ jednocze¶nie opcji -d i --create."
+ 
+-#: src/slrn.c:1160
++#: src/slrn.c:1149
+ msgid "Error initializing SLtcp interface"
+ msgstr "B³±d inicjalizacji interfejsu SLtcp"
+ 
+-#: src/slrn.c:1165
++#: src/slrn.c:1154
+ #, c-format
+ msgid "Error initializing S-Lang interpreter.\n"
+ msgstr "B³±d inicjowania interpretera S-Lang.\n"
+ 
+-#: src/slrn.c:1180
++#: src/slrn.c:1169
+ msgid "Error configuring server objects."
+ msgstr "B³±d konfiguracji struktur serwera."
+ 
+-#: src/slrn.c:1204
++#: src/slrn.c:1193
+ #, c-format
+ msgid "Could not read specified config file %s\n"
+ msgstr "B³±d odczytu podanego pliku konfiguracyjnego %s\n"
+ 
+-#: src/slrn.c:1210
++#: src/slrn.c:1199
+ msgid ""
+ "\n"
+ "! Your configuration file contains obsolete commands or function names that\n"
+@@ -3367,26 +3328,25 @@
+ "¼ród³owym\n"
+ "! lub pobraæ go z <URL:http://slrn.sourceforge.net/data/>.\n"
+ 
+-#: src/slrn.c:1226
++#: src/slrn.c:1215
+ msgid "Failed to select character set."
+ msgstr "B³±d wyboru zestawu znaków."
+ 
+-#: src/slrn.c:1263
++#: src/slrn.c:1252
+ msgid "Unable to select server/post object."
+ msgstr "B³±d wyboru obiektu serwera/wysy³ania."
+ 
+-#: src/slrn.c:1279
+-#, fuzzy, c-format
++#: src/slrn.c:1268
++#, c-format
+ msgid ""
+ "Unable to find a valid hostname for constructing your e-mail address.\n"
+-"You probably want to specify a hostname in your %s file.\n"
+-"Please see the \"slrn reference manual\" for full details.\n"
++"You will have to specify a hostname in your %s file.\n"
+ msgstr ""
+ "Nie mo¿na odnale¼æ pe³nej nazwy serwera wymaganej dla twojego adresu e-"
+ "mail.\n"
+ "Nale¿y okre¶liæ parametr hostname w pliku %s.\n"
+ 
+-#: src/slrn.c:1289
++#: src/slrn.c:1277
+ msgid ""
+ "Unable to find your user name.  This means that a valid 'From' header line\n"
+ "cannot be constructed.  Try setting the USER environment variable.\n"
+@@ -3395,40 +3355,40 @@
+ "utworzyæ\n"
+ "prawid³owego nag³ówka 'From'. Spróbuj ustawiæ zmienn± ¶rodowiskow± USER.\n"
+ 
+-#: src/slrn.c:1297
++#: src/slrn.c:1285
+ msgid "***Warning: Unable to find a unique fully-qualified host name."
+ msgstr "*** Ostrze¿enie: Nie mo¿na odnale¼æ pe³nej nazwy hosta."
+ 
+-#: src/slrn.c:1298
++#: src/slrn.c:1286
+ msgid "            slrn will not generate any Message-IDs."
+ msgstr "                 slrn nie bêdzie generowa³ nag³ówka Message-ID."
+ 
+-#: src/slrn.c:1299
++#: src/slrn.c:1287
+ msgid ""
+ "            Please note that the \"hostname\" setting does not affect this;"
+ msgstr ""
+ "                        Zauwa¿, ¿e opcja \"hostname\" nie ma na to wp³ywu,"
+ 
+-#: src/slrn.c:1300
++#: src/slrn.c:1288
+ msgid "            see the \"slrn reference manual\" for details."
+ msgstr ""
+ "                        szczegó³y znajdziesz w podrêczniku u¿ytkownika slrn."
+ 
+-#: src/slrn.c:1331
++#: src/slrn.c:1319
+ #, c-format
+ msgid "Using newsrc file %s for server %s."
+ msgstr "U¿ywam pliku newsrc %s dla serwera %s. "
+ 
+-#: src/slrn.c:1343 src/slrnpull.c:2361
++#: src/slrn.c:1331 src/slrnpull.c:2326
+ msgid "Unable to initialize server."
+ msgstr "Nie mo¿na zainicjowaæ serwera."
+ 
+-#: src/slrn.c:1358
++#: src/slrn.c:1346
+ #, c-format
+ msgid "Unable to open %s.  I will try .newsrc."
+ msgstr "Nie mogê otworzyæ %s. Spróbujê u¿yæ .newsrc."
+ 
+-#: src/slrn.c:1363
++#: src/slrn.c:1351
+ #, c-format
+ msgid ""
+ "\n"
+@@ -3441,45 +3401,45 @@
+ "Je¶li chcesz utworzyc %s, dodaj w wierszu poleceñ opcje:\n"
+ "   -f %s --create\n"
+ 
+-#: src/slrn.c:1380 src/slrnpull.c:2091 src/slrnpull.c:2103
++#: src/slrn.c:1368 src/slrnpull.c:2075 src/slrnpull.c:2087
+ #, c-format
+ msgid "Unable to open %s for logging."
+ msgstr "Nie mogê otworzyæ pliku logowania %s."
+ 
+-#: src/slrn.c:1397
++#: src/slrn.c:1384
+ msgid "Initializing GroupLens"
+ msgstr "Inicjalizacja GroupLens"
+ 
+-#: src/slrn.c:1400
++#: src/slrn.c:1387
+ #, c-format
+ msgid "GroupLens disabled.\n"
+ msgstr "GroupLens wy³±czone.\n"
+ 
+-#: src/slrn.c:1409
++#: src/slrn.c:1396
+ msgid "Failed to initialize server."
+ msgstr "Nie mo¿na zainicjalizowaæ serwera."
+ 
+-#: src/slrn.c:1415
++#: src/slrn.c:1402
+ msgid "OVERVIEW.FMT not RFC 2980 compliant -- XOVER support disabled."
+ msgstr "OVERVIEW.FMT nie jest zgodny z RFC 2980 -- obs³uga XOVER wy³±czona."
+ 
+-#: src/slrn.c:1428
++#: src/slrn.c:1415
+ msgid "* Press Ctrl-C to quit, any other key to continue.\n"
+ msgstr "* Ctrl-C - wyj¶cie, dowolny inny klawisz - kontynuacja.\n"
+ 
+-#: src/slrn.c:1431
++#: src/slrn.c:1418
+ msgid "Exit on user request."
+ msgstr "Wyj¶cie na ¿±danie u¿ytkownika."
+ 
+-#: src/slrn.c:1458
++#: src/slrn.c:1445
+ msgid "Internal Error: Mode_Stack overflow"
+ msgstr "B³±d wewnêtrzny: przepe³nienie Mode_Stack"
+ 
+-#: src/slrn.c:1473
++#: src/slrn.c:1460
+ msgid "Internal Error: Mode_Stack underflow"
+ msgstr "B³±d wewnêtrzny: niedope³nienie Mode_Stack"
+ 
+-#: src/slrn.c:1574
++#: src/slrn.c:1561
+ #, c-format
+ msgid "call: %s not in current keymap."
+ msgstr "call: brak polecenia %s w bie¿±cej mapie klawiszy."
+@@ -3497,295 +3457,295 @@
+ msgid "chdir %s failed.  Does the directory exist?"
+ msgstr "zmiana katalogu na %s nie powiod³a siê. Czy katalog istnieje?"
+ 
+-#: src/slrnpull.c:337
++#: src/slrnpull.c:322
+ #, c-format
+ msgid "Created dir %s."
+ msgstr "Utworzono katalog %s."
+ 
+-#: src/slrnpull.c:345
++#: src/slrnpull.c:330
+ #, c-format
+ msgid "Unable to create directory %s. (errno = %d)"
+ msgstr "Nie mogê utworzyæ katalogu %s. (errno = %d)"
+ 
+-#: src/slrnpull.c:380 src/slrnpull.c:453
++#: src/slrnpull.c:365 src/slrnpull.c:438
+ #, c-format
+ msgid "Error reading %s."
+ msgstr "B³±d odczytu pliku %s."
+ 
+-#: src/slrnpull.c:388 src/slrnpull.c:461
++#: src/slrnpull.c:373 src/slrnpull.c:446
+ #, c-format
+ msgid "Error parsing %s."
+ msgstr "B³±d sk³adniowy w pliku %s."
+ 
+-#: src/slrnpull.c:409 src/slrnpull.c:486 src/slrnpull.c:2500
++#: src/slrnpull.c:394 src/slrnpull.c:471 src/slrnpull.c:2465
+ #, c-format
+ msgid "Write to %s failed."
+ msgstr "B³±d zapisu do pliku %s."
+ 
+-#: src/slrnpull.c:414 src/slrnpull.c:492
++#: src/slrnpull.c:399 src/slrnpull.c:477
+ #, c-format
+ msgid "Error closing %s."
+ msgstr "B³±d zamkniêcia pliku %s."
+ 
+-#: src/slrnpull.c:614
++#: src/slrnpull.c:599
+ #, c-format
+ msgid "Unable to open active groups file %s"
+ msgstr "Nie mogê otworzyæ pliku active %s."
+ 
+-#: src/slrnpull.c:652
++#: src/slrnpull.c:637
+ #, c-format
+ msgid "%s: line %u: group name too long."
+ msgstr "%s: wiersz %u: za d³uga nazwa grupy."
+ 
+-#: src/slrnpull.c:669
++#: src/slrnpull.c:654
+ #, c-format
+ msgid "%s: line %u: Group name contains whitespace."
+ msgstr "%s: wiersz %u: nazwa grupy zawiera odstêpy."
+ 
+-#: src/slrnpull.c:689
++#: src/slrnpull.c:674
+ #, c-format
+ msgid "%s: line %u: expecting positive integer in second field."
+ msgstr "%s: wiersz %u: w drugim polu oczekiwano dodatniej liczby ca³kowitej."
+ 
+-#: src/slrnpull.c:704
++#: src/slrnpull.c:689
+ #, c-format
+ msgid "%s: line %u: expecting positive integer in third field."
+ msgstr "%s: wiersz %u: w trzecim polu oczekiwano dodatniej liczby ca³kowitej."
+ 
+-#: src/slrnpull.c:719
++#: src/slrnpull.c:704
+ #, c-format
+ msgid "%s: line %u: expecting 0 or 1 in fourth field."
+ msgstr "%s: wiersz %u: w czwartym polu oczekiwano 1 lub 0."
+ 
+-#: src/slrnpull.c:737
++#: src/slrnpull.c:722
+ #, c-format
+ msgid "%s: line %u: group duplicated."
+ msgstr "%s: wiersz %u: powtórzona grupa."
+ 
+-#: src/slrnpull.c:745
++#: src/slrnpull.c:730
+ #, c-format
+ msgid "%s: line %u: failed to add %s."
+ msgstr "%s: wiersz %u: b³±d przy dodawaniu grupy %s."
+ 
+-#: src/slrnpull.c:780 src/slrnpull.c:822 src/util.c:378 src/util.c:531
++#: src/slrnpull.c:765 src/slrnpull.c:807 src/util.c:378 src/util.c:531
+ #: src/util.c:550
+ msgid "Out of memory."
+ msgstr "Brak pamiêci."
+ 
+-#: src/slrnpull.c:851
++#: src/slrnpull.c:836
+ msgid "Read failed."
+ msgstr "B³±d odczytu."
+ 
+-#: src/slrnpull.c:852
++#: src/slrnpull.c:837
+ #, c-format
+ msgid "listgroup %s failed: %s"
+ msgstr "listgroup %s, b³±d: %s"
+ 
+-#: src/slrnpull.c:933
++#: src/slrnpull.c:918
+ #, c-format
+ msgid "The server may contain as many as %d articles in this group"
+ msgstr "Serwer mo¿e zawieraæ do %d artyku³ów w tej grupie"
+ 
+-#: src/slrnpull.c:935
++#: src/slrnpull.c:920
+ #, c-format
+ msgid "Only examining last %u articles since this is a new group"
+ msgstr "Sprawdzam tylko ostatnich %u artyku³ów, gdy¿ jest to nowa grupa"
+ 
+-#: src/slrnpull.c:941
++#: src/slrnpull.c:926
+ msgid ""
+ "Server failed to return proper code for XHDR.  The connection may be lost"
+ msgstr ""
+ "Serwer zwróci³ nieprawid³ow± odpowied¼ na XHDR. Po³±czenie mog³o zostaæ "
+ "utracone."
+ 
+-#: src/slrnpull.c:952
++#: src/slrnpull.c:937
+ #, c-format
+ msgid "Server failed XHDR command: %s"
+ msgstr "B³±d polecenia XHDR: %s"
+ 
+-#: src/slrnpull.c:1010
++#: src/slrnpull.c:995
+ #, c-format
+ msgid "%s: Retrieving %s %d-%d."
+ msgstr "%s: ¦ci±gam %s %d-%d."
+ 
+-#: src/slrnpull.c:1011
++#: src/slrnpull.c:996
+ msgid "headers"
+ msgstr "nag³ówki artyku³ów"
+ 
+-#: src/slrnpull.c:1011
++#: src/slrnpull.c:996
+ msgid "articles"
+ msgstr "artyku³y"
+ 
+-#: src/slrnpull.c:1035
++#: src/slrnpull.c:1020
+ #, c-format
+ msgid "%s: No articles in specified range."
+ msgstr "%s: Nie ma artyku³ów w podanym zakresie."
+ 
+-#: src/slrnpull.c:1083
++#: src/slrnpull.c:1068
+ #, c-format
+ msgid "%u/%u (%u killed), Time: %02u:%02u:%02u, BPS: %lu      "
+ msgstr "%u/%u (%u zabitych), Czas: %02u:%02u:%02u, BPS: %lu      "
+ 
+-#: src/slrnpull.c:1093
++#: src/slrnpull.c:1078
+ #, c-format
+ msgid "%s: %u/%u (%u killed), Time: %02u:%02u:%02u, BPS: %lu"
+ msgstr "%s: %u/%u (%u zabitych), Czas: %02u:%02u:%02u, BPS: %lu"
+ 
+-#: src/slrnpull.c:1118
++#: src/slrnpull.c:1103
+ #, c-format
+ msgid "Error writing to overview database: %s:%d."
  msgstr "B³±d zapisu bazy overview: %s:%d."
  
- #: src/slrnpull.c:1341
+-#: src/slrnpull.c:1356
 -#, fuzzy, c-format
++#: src/slrnpull.c:1341
 +#, c-format
  msgid "Score %d requested article %s\n"
 -msgstr "Punktacja %d zabitego artyku³u %s\n"
 +msgstr "Punktacja %d za¿±da³a artyku³u %s\n"
  
- #: src/slrnpull.c:1404
+-#: src/slrnpull.c:1419
++#: src/slrnpull.c:1404
  msgid "Internal error: Buffer in get_heads not large enough!"
-@@ -3748,7 +3745,7 @@
+ msgstr "B³±d wewnêtrzny: Za ma³y bufor w get_heads!"
+ 
+-#: src/slrnpull.c:1456
++#: src/slrnpull.c:1441
+ #, c-format
+ msgid "Unable to open overview file %s.\n"
+ msgstr "Nie mogê otworzyæ pliku overview %s.\n"
+ 
+-#: src/slrnpull.c:1492
++#: src/slrnpull.c:1477
+ #, c-format
+ msgid "%s: Retrieving requested article bodies."
+ msgstr "%s: ¦ci±gam tre¶æ artyku³ów wybranych do uzupe³nienia."
+ 
+-#: src/slrnpull.c:1600
++#: src/slrnpull.c:1585
+ #, c-format
+ msgid "Error closing overview file for %s."
+ msgstr "B³±d zamkniêcia pliku overview dla grupy %s."
+ 
+-#: src/slrnpull.c:1664
++#: src/slrnpull.c:1649
+ #, c-format
+ msgid "%s: no new articles available."
+ msgstr "%s: Brak nowych artyku³ów."
+ 
+-#: src/slrnpull.c:1671
++#: src/slrnpull.c:1656
+ #, c-format
+ msgid "%u duplicates removed leaving %u/%u."
+ msgstr "Usuniêto duplikatów: %u, pozosta³o %u/%u."
+ 
+-#: src/slrnpull.c:1683
++#: src/slrnpull.c:1668
+ #, c-format
+ msgid "%s: No new articles available."
+ msgstr "%s: Brak nowych artyku³ów."
+ 
+-#: src/slrnpull.c:1688
++#: src/slrnpull.c:1673
+ #, c-format
+ msgid "%s: %u articles available."
+ msgstr "%s: Dostêpnych artyku³ów: %u."
+ 
+-#: src/slrnpull.c:1695
++#: src/slrnpull.c:1680
+ #, c-format
+ msgid "%s: Only retrieving last %u articles."
+ msgstr "%s: ¦ci±gam tylko ostatnich %u artyku³ów."
+ 
+-#: src/slrnpull.c:1756
++#: src/slrnpull.c:1740
+ #, c-format
+ msgid "Fetching articles for %s."
+ msgstr "¦ci±gam grupê %s."
+ 
+-#: src/slrnpull.c:1761
++#: src/slrnpull.c:1745
+ #, c-format
+ msgid "Error selecting group %s.  Code = %d: %s"
+ msgstr "B³±d wyboru grupy %s. Kod b³êdu = %d: %s"
+ 
+-#: src/slrnpull.c:1795
++#: src/slrnpull.c:1779
+ #, c-format
+ msgid "Attempting to post %s..."
+ msgstr "Próbujê wys³aæ %s..."
+ 
+-#: src/slrnpull.c:1800
++#: src/slrnpull.c:1784
+ #, c-format
+ msgid "Unable to open file %s for posting."
+ msgstr "Nie mogê otworzyæ pliku wiadomo¶ci %s do wys³ania."
+ 
+-#: src/slrnpull.c:1807
++#: src/slrnpull.c:1791
+ #, c-format
+ msgid "Server failed post cmd.  Code = %d: %s"
+ msgstr "B³±d polecenia post. Kod b³êdu = %d: %s"
+ 
+-#: src/slrnpull.c:1829 src/slrnpull.c:1840
++#: src/slrnpull.c:1813 src/slrnpull.c:1824
+ #, c-format
+ msgid "Write to server failed while posting %s."
+ msgstr "B³±d podczas wysy³ania %s."
+ 
+-#: src/slrnpull.c:1849
++#: src/slrnpull.c:1833
+ #, c-format
+ msgid "Article %s rejected. status = %d: %s."
+ msgstr "Artyku³ %s odrzucony. B³±d = %d: %s."
+ 
+-#: src/slrnpull.c:1856
++#: src/slrnpull.c:1840
+ #, c-format
+ msgid "Saving article in %s..."
+ msgstr "Zapisujê artyku³ w katalogu %s..."
+ 
+-#: src/slrnpull.c:1858 src/slrnpull.c:1973
++#: src/slrnpull.c:1842 src/slrnpull.c:1957
+ #, c-format
+ msgid "Failed to rename %s to %s."
+ msgstr "Nie mogê zmieniæ nazwy %s na %s."
+ 
+-#: src/slrnpull.c:1864
++#: src/slrnpull.c:1848
+ #, c-format
+ msgid "Unable to delete %s after posting."
+ msgstr "Nie mogê usun±æ pliku %s po wys³aniu."
+ 
+-#: src/slrnpull.c:1873
++#: src/slrnpull.c:1857
+ #, c-format
+ msgid "%s directory does not exist.  Creating it..."
+ msgstr "%s katalog nie istnieje. Tworzê katalog..."
+ 
+-#: src/slrnpull.c:1881
++#: src/slrnpull.c:1865
+ #, c-format
+ msgid "chmod 0%o failed on %s."
+ msgstr "B³±d polecenia chmod 0%o %s."
+ 
+-#: src/slrnpull.c:1905
++#: src/slrnpull.c:1889
+ msgid "Server does not permit posting at this time."
+ msgstr "Tym razem serwer nie pozwala na wysy³anie."
+ 
+-#: src/slrnpull.c:1925
++#: src/slrnpull.c:1909
+ #, c-format
+ msgid "Posting of %s failed."
+ msgstr "Wys³anie %s nie powiod³o siê."
+ 
+-#: src/slrnpull.c:1928
++#: src/slrnpull.c:1912
+ #, c-format
+ msgid "%s posted."
+ msgstr "%s wys³any."
+ 
+-#: src/slrnpull.c:1950
++#: src/slrnpull.c:1934
+ #, c-format
+ msgid "Unable to create tmp active file (%s)."
+ msgstr "Nie mogê utworzyæ tymczasowego pliku active (%s)."
+ 
+-#: src/slrnpull.c:1980
++#: src/slrnpull.c:1964
+ #, c-format
+ msgid "Write failed to tmp active file (%s)."
+ msgstr "B³±d zapisu do tymczasowego pliku active (%s)."
+ 
+-#: src/slrnpull.c:1992
++#: src/slrnpull.c:1976
+ #, c-format
+ msgid "Connection to %s lost. Performing shutdown."
+ msgstr "Po³±czenie do %s zerwane. Wychodzê."
+ 
+-#: src/slrnpull.c:2004
++#: src/slrnpull.c:1988
+ #, c-format
+ msgid "Error opening sltcp interface.\n"
+ msgstr "B³±d otwarcia interfejsu sltcp.\n"
+ 
+-#: src/slrnpull.c:2045
++#: src/slrnpull.c:2029
+ #, c-format
+ msgid "A total of %lu bytes received, %lu bytes sent in %ld seconds."
  msgstr "W sumie odebrano %lu bajtów, wys³ano %lu bajtów w czasie %ld sekund."
  
- #: src/slrnpull.c:2111
+-#: src/slrnpull.c:2127
 -#, fuzzy, c-format
++#: src/slrnpull.c:2111
 +#, c-format
  msgid ""
  "%s usage: %s [options]\n"
  " Options:\n"
-@@ -3769,12 +3766,14 @@
+@@ -3806,12 +3766,14 @@
  "  --rebuild            Like --expire; additionally rebuilds overview files.\n"
  "  --version            Show the version number.\n"
  msgstr ""
@@ -276,7 +3073,484 @@
  "  --help               Wy¶wietl pomoc.\n"
  "  --kill-log PLIK      Odnotuj w PLIKu wszystkie zabite artyku³y.\n"
  "  --kill-score PUNKTY  Zabij artyku³y z punktacj± poni¿ej warto¶ci PUNKTY.\n"
-@@ -4359,49 +4358,3 @@
+@@ -3824,44 +3786,44 @@
+ "  --rebuild            Jak --expire; dodatkowo przebudowuje bazy overview.\n"
+ "  --version            Wy¶wietl numer wersji.\n"
+ 
+-#: src/slrnpull.c:2155
++#: src/slrnpull.c:2139
+ #, c-format
+ msgid "%s version: %s\n"
+ msgstr "%s wersja: %s\n"
+ 
+-#: src/slrnpull.c:2293
++#: src/slrnpull.c:2258
+ #, c-format
+ msgid "Unable to create debug file %s\n"
+ msgstr "Nie mogê utworzyæ pliku debug %s\n"
+ 
+-#: src/slrnpull.c:2311
++#: src/slrnpull.c:2276
+ #, c-format
+ msgid "The slrnpull spool directory has not been defined."
+ msgstr "Katalog spoola nie zosta³ zdefiniowany."
+ 
+-#: src/slrnpull.c:2318
++#: src/slrnpull.c:2283
+ msgid "slrnpull started in expire mode."
+ msgstr "slrnpull startuje w trybie expire."
+ 
+-#: src/slrnpull.c:2320
++#: src/slrnpull.c:2285
+ msgid "slrnpull started."
+ msgstr "slrnpull startuje."
+ 
+-#: src/slrnpull.c:2409
++#: src/slrnpull.c:2374
+ msgid "Checking for new groups."
+ msgstr "Sprawdzam nowe grupy."
+ 
+-#: src/slrnpull.c:2413
++#: src/slrnpull.c:2378
+ #, c-format
+ msgid "Unable to open new groups file %s.\n"
+ msgstr "Nie mogê otworzyæ pliku nowych grup %s.\n"
+ 
+-#: src/slrnpull.c:2510
++#: src/slrnpull.c:2475
+ #, c-format
+ msgid "%d new groups found."
+ msgstr "Liczba nowych grup: %d."
+ 
+-#: src/slrnpull.c:2517
++#: src/slrnpull.c:2482
+ #, c-format
+ msgid ""
+ "%s appears corrupt, expected to see: NEWGROUPS yymmdd hhmmss GMT, I will "
+@@ -3870,125 +3832,125 @@
+ "%s wygl±da na uszkodzony, oczekiwano: NEWGROUPS rrmmdd ggmmss GMT; plik "
+ "zostanie naprawiony."
+ 
+-#: src/slrnpull.c:2596
++#: src/slrnpull.c:2561
+ msgid "Performing shutdown."
+ msgstr "Wychodzê."
+ 
+-#: src/slrnpull.c:2601
++#: src/slrnpull.c:2566
+ msgid "Slrnpull exiting on signal."
+ msgstr "Slrnpull koñczy z powodu sygna³u."
+ 
+-#: src/slrnpull.c:2731
++#: src/slrnpull.c:2696
+ #, c-format
+ msgid "Error creating filename in %s."
+ msgstr "B³±d tworzenia pliku w %s."
+ 
+-#: src/slrnpull.c:2737 src/slrnpull.c:3090
++#: src/slrnpull.c:2702 src/slrnpull.c:3055
+ #, c-format
+ msgid "Unable to stat %s."
+ msgstr "Nie mogê wykonaæ polecenia stat %s."
+ 
+-#: src/slrnpull.c:2747
++#: src/slrnpull.c:2712
+ #, c-format
+ msgid "Unable to read header %d in %s."
+ msgstr "Nie mogê odczytaæ nag³ówka %d w %s."
+ 
+-#: src/slrnpull.c:2753
++#: src/slrnpull.c:2718
+ #, c-format
+ msgid "Header %d not parseable for overview."
+ msgstr "Nie mo¿na przetworzyæ nag³ówka %d!"
+ 
+-#: src/slrnpull.c:2776
++#: src/slrnpull.c:2741
+ #, c-format
+ msgid "%s overview: article %u of %u in %s."
+ msgstr "przegl±d %s: artyku³ %u z %u w %s"
+ 
+-#: src/slrnpull.c:2777
++#: src/slrnpull.c:2742
+ msgid "Creating"
+ msgstr "Tworzenie"
+ 
+-#: src/slrnpull.c:2777
++#: src/slrnpull.c:2742
+ msgid "Updating"
+ msgstr "Aktualizowanie"
+ 
+-#: src/slrnpull.c:2794
++#: src/slrnpull.c:2759
+ #, c-format
+ msgid "Creating Overview file for %s..."
+ msgstr "Tworzê plik overview dla grupy %s..."
+ 
+-#: src/slrnpull.c:2882
++#: src/slrnpull.c:2847
+ msgid "Unable to create filename for overview file.\n"
+ msgstr "Nie mogê utworzyæ nazwy pliku overview.\n"
+ 
+-#: src/slrnpull.c:2892
++#: src/slrnpull.c:2857
+ #, c-format
+ msgid "Unable to open new overview file %s.\n"
+ msgstr "Nie mogê otworzyæ nowego pliku overview %s.\n"
+ 
+-#: src/slrnpull.c:2970
++#: src/slrnpull.c:2935
+ #, c-format
+ msgid "failed to close overview file %s.\n"
+ msgstr "nie mogê zamkn±æ pliku overview %s.\n"
+ 
+-#: src/slrnpull.c:2972
++#: src/slrnpull.c:2937
+ #, c-format
+ msgid "failed to close new overview file %s.\n"
+ msgstr "nie uda³o siê zamkn±æ nowego pliku overview %s.\n"
+ 
+-#: src/slrnpull.c:2982
++#: src/slrnpull.c:2947
+ #, c-format
+ msgid "failed to rename %s to %s."
+ msgstr "Nie mogê zmieniæ nazwy %s na %s."
+ 
+-#: src/slrnpull.c:3015
++#: src/slrnpull.c:2980
+ #, c-format
+ msgid "opendir %s failed."
+ msgstr "B³±d polecenia opendir %s."
+ 
+-#: src/slrnpull.c:3042
++#: src/slrnpull.c:3007
+ #, c-format
+ msgid "malloc error. Unable to expire group %s."
+ msgstr "B³±d funkcji malloc(). Nie mogê wykonaæ expire dla grupy %s."
+ 
+-#: src/slrnpull.c:3168
++#: src/slrnpull.c:3133
+ #, c-format
+ msgid "Unable to expire %s."
+ msgstr "Nie mogê usun±æ %s."
+ 
+-#: src/slrnpull.c:3175
++#: src/slrnpull.c:3140
+ #, c-format
+ msgid "%u articles expired in %s."
+ msgstr "Usuniêto %u artyku³ów z grupy %s."
+ 
+-#: src/slrnpull.c:3203
++#: src/slrnpull.c:3168
+ msgid "Termination requested.  Shutting down."
+ msgstr "Wymuszone zakoñczenie. Wychodzê."
+ 
+-#: src/slrnpull.c:3252
++#: src/slrnpull.c:3217
+ #, c-format
+ msgid "Error reading name and password from %s."
+ msgstr "B³±d odczytu nazwy u¿ytkownika i has³a z pliku %s."
+ 
+-#: src/slrnpull.c:3265
++#: src/slrnpull.c:3230
+ msgid "Empty user name.  Please check syntax of the authinfo file."
+ msgstr "Pusta nazwa u¿ytkownika. Sprawd¼ sk³adniê pliku authinfo."
+ 
+-#: src/slrnpull.c:3293
++#: src/slrnpull.c:3258
+ #, c-format
+ msgid "Unable to read headers file for group %s.\n"
+ msgstr "Nie mogê odczytaæ pliku z nag³ówkami dla grupy %s.\n"
+ 
+-#: src/slrnpull.c:3305
++#: src/slrnpull.c:3270
+ #, c-format
+ msgid "File %s exists, but could not be read."
+ msgstr "Plik %s istnieje, ale nie da³o siê go odczytaæ."
+ 
+-#: src/slrnpull.c:3335 src/slrnpull.c:3347
++#: src/slrnpull.c:3297 src/slrnpull.c:3309
+ #, c-format
+ msgid "Unable to write headers file for group %s.\n"
+ msgstr "Nie mogê zapisaæ pliku z nag³ówkami dla grupy %s.\n"
+ 
+-#: src/slrnpull.c:3354
++#: src/slrnpull.c:3316
+ #, c-format
+ msgid "Error while writing headers file for group %s.\n"
+ msgstr "B³±d podczas zapisu pliku z nag³ówkami dla grupy %s.\n"
+@@ -3998,57 +3960,57 @@
+ msgid "Failed to resolve %s\n"
+ msgstr "Nie mogê odnale¼æ %s\n"
+ 
+-#: src/sltcp.c:281 src/sltcp.c:384
++#: src/sltcp.c:280 src/sltcp.c:383
+ #, c-format
+ msgid "Unable to make connection. Giving up.\n"
+ msgstr "Nie mo¿na ustanowiæ po³±czenia. Poddajê siê.\n"
+ 
+-#: src/sltcp.c:316
++#: src/sltcp.c:315
+ #, c-format
+ msgid "%s: Unknown host.\n"
+ msgstr "%s: Serwer nieznany.\n"
+ 
+-#: src/sltcp.c:375
++#: src/sltcp.c:374
+ #, c-format
+ msgid "connection to %s, port %d:"
+ msgstr "po³±czenie z %s, port %d:"
+ 
+-#: src/sltcp.c:522
++#: src/sltcp.c:521
+ #, c-format
+ msgid "Unable to generate enough entropy\n"
+ msgstr "Nie mogê osi±gn±æ wystarczaj±cego poziomu entropii.\n"
+ 
+-#: src/sltcp.c:541
++#: src/sltcp.c:540
+ #, c-format
+ msgid "SSL_CTX_new failed.\n"
+ msgstr "B³±d funkcji SSL_CTX_new().\n"
+ 
+-#: src/sltcp.c:556
++#: src/sltcp.c:555
+ #, c-format
+ msgid "SSL_new failed\n"
+ msgstr "B³±d funkcji SSL_new().\n"
+ 
+-#: src/sltcp.c:573
++#: src/sltcp.c:572
+ #, c-format
+ msgid "Unexpected error: SSL connection closed\n"
+ msgstr "Niespodziewany b³±d: po³±czenie SSL zamkniête.\n"
+ 
+-#: src/sltcp.c:576
++#: src/sltcp.c:575
+ #, c-format
+ msgid "System call failed: errno = %d\n"
+ msgstr "B³±d funkcji systemowej: errno = %d\n"
+ 
+-#: src/sltcp.c:579
++#: src/sltcp.c:578
+ #, c-format
+ msgid "Possible protocol error\n"
+ msgstr "B³±d protoko³u SSL.\n"
+ 
+-#: src/sltcp.c:583
++#: src/sltcp.c:582
+ #, c-format
+ msgid "%s failed\n"
+ msgstr "B³±d %s.\n"
+ 
+-#: src/sltcp.c:602
++#: src/sltcp.c:601
+ #, c-format
+ msgid ""
+ "\n"
+@@ -4059,26 +4021,26 @@
+ "\n"
+ "*** Ten program nie obs³uguje SSL\n"
+ 
+-#: src/sltcp.c:610
++#: src/sltcp.c:609
+ #, c-format
+ msgid "Memory Allocation Failure.\n"
+ msgstr "B³±d alokacji pamiêci.\n"
+ 
+-#: src/sltcp.c:642
++#: src/sltcp.c:641
+ #, c-format
+ msgid "SSL_set_fd failed\n"
+ msgstr "B³±d funkcji SSL_set_fd()\n"
+ 
+-#: src/sltcp.c:651
++#: src/sltcp.c:650
+ msgid "SSL_connect"
+ msgstr "SSL_connect"
+ 
+-#: src/spool.c:821
++#: src/spool.c:817
+ #, c-format
+ msgid "Unable to open directory %s"
+ msgstr "Nie mo¿na otworzyæ katalogu %s"
+ 
+-#: src/spool.c:1050
++#: src/spool.c:1046
+ #, c-format
+ msgid "Local spool directory '%s' doesn't exist."
+ msgstr "Katalog spoola '%s' nie istnieje."
+@@ -4123,7 +4085,7 @@
+ "Nowa sk³adnia:\n"
+ "set %s\n"
+ 
+-#: src/startup.c:272 src/startup.c:324
++#: src/startup.c:272 src/startup.c:330
+ #, c-format
+ msgid ""
+ "%s: line %d:\n"
+@@ -4132,7 +4094,7 @@
+ "%s: wiersz %d:\n"
+ "%sNie ma takiej mapy klawiszy: %s"
+ 
+-#: src/startup.c:281
++#: src/startup.c:287
+ #, c-format
+ msgid ""
+ "%s: line %d:\n"
+@@ -4141,7 +4103,7 @@
+ "%s: wiersz %d:\n"
+ "%sb³±d definiowania klawisza."
+ 
+-#: src/startup.c:300
++#: src/startup.c:306
+ #, c-format
+ msgid ""
+ "%s: Obsolete function name on line %d: %s\n"
+@@ -4150,7 +4112,7 @@
+ "%s: Przestarza³a nazwa funkcji w wierszu %d: %s\n"
+ "Nowa nazwa to: %s"
+ 
+-#: src/startup.c:368
++#: src/startup.c:365
+ #, c-format
+ msgid ""
+ "%s: line %d:\n"
+@@ -4159,7 +4121,7 @@
+ "%s: wiersz %d:\n"
+ "%sNieprawid³owe wyra¿enie regularne."
+ 
+-#: src/startup.c:383
++#: src/startup.c:381
+ #, c-format
+ msgid ""
+ "%s: line %d:\n"
+@@ -4168,7 +4130,7 @@
+ "%s: wiersz %d:\n"
+ "%sZbyt wiele wyra¿eñ."
+ 
+-#: src/startup.c:810
++#: src/startup.c:804
+ #, c-format
+ msgid ""
+ "%s: Obsolete variable name on line %d: %s\n"
+@@ -4177,7 +4139,7 @@
+ "%s: Przestarza³a nazwa funkcji w wierszu %d: %s\n"
+ "Nowa nazwa to: %s"
+ 
+-#: src/startup.c:820 src/startup.c:889
++#: src/startup.c:814 src/startup.c:883
+ #, c-format
+ msgid ""
+ "%s: In this version of slrn, setting variable\n"
+@@ -4186,7 +4148,7 @@
+ "%s: W tej wersji slrn zmienna\n"
+ "%s jest ignorowana. Po szczegó³y zajrzyj do dokumentacji."
+ 
+-#: src/startup.c:857
++#: src/startup.c:851
+ #, c-format
+ msgid ""
+ "%s: Obsolete variable on line %d: %s\n"
+@@ -4195,7 +4157,7 @@
+ "%s: Przestarza³a zmienna w wierszu %d: %s\n"
+ "Zamiast niej u¿yj polecenia header_display_format."
+ 
+-#: src/startup.c:865
++#: src/startup.c:859
+ #, c-format
+ msgid ""
+ "%s: Obsolete variable on line %d: %s\n"
+@@ -4204,7 +4166,7 @@
+ "%s: Przestarza³a zmienna w wierszu %d: %s\n"
+ "Zamiast niej u¿yj polecenia header_display_format."
+ 
+-#: src/startup.c:872
++#: src/startup.c:866
+ #, c-format
+ msgid ""
+ "%s: Obsolete spelling on line %d:\n"
+@@ -4213,12 +4175,12 @@
+ "%s: Przestarza³a literówka w wierszu %d:\n"
+ "U¿yj \"process_verbatim_marks\" zamiast \"process_verbatum_marks\"."
+ 
+-#: src/startup.c:881
++#: src/startup.c:875
+ #, c-format
+ msgid "%s: Obsolete variable on line %d: %s"
+ msgstr "%s: Przestarza³a zmienna w wierszu %d: %s"
+ 
+-#: src/startup.c:1061
++#: src/startup.c:1055
+ #, c-format
+ msgid ""
+ "%s: Obsolete spelling on line %d:\n"
+@@ -4227,53 +4189,53 @@
+ "%s: Przestarza³a literówka w wierszu %d:\n"
+ "U¿yj \"verbatim\" zamiast \"verbatum\""
+ 
+-#: src/startup.c:1114 src/startup.c:1161
++#: src/startup.c:1108 src/startup.c:1155
+ #, c-format
+ msgid "%s is not a color object"
+ msgstr "%s nie jest obiektem kolorowalnym"
+ 
+-#: src/startup.c:1137
++#: src/startup.c:1131
+ msgid "Due to a limitation in S-Lang, this feature is only available on Unix."
+ msgstr ""
+ "Z powodu ograniczeñ S-Lang, ta funkcja jest dostêpna tylko pod Unixami."
+ 
+-#: src/startup.c:1263
++#: src/startup.c:1257
+ #, c-format
+ msgid "%s is not a valid fully-qualified host name."
+ msgstr "%s nie jest prawid³ow±, pe³n± nazw± hosta."
+ 
+-#: src/startup.c:1553
++#: src/startup.c:1547
+ msgid "Username: "
+ msgstr "Nazwa u¿ytkownika: "
+ 
+-#: src/startup.c:1568
++#: src/startup.c:1562
+ msgid "Password: "
+ msgstr "Has³o: "
+ 
+-#: src/startup.c:1671
++#: src/startup.c:1661
+ msgid "Unable to initialize S-Lang readline library."
+ msgstr "Nie mogê zainicjowaæ biblioteki S-Lang readline."
+ 
+-#: src/startup.c:1680
++#: src/startup.c:1666
+ msgid "Error initializing S-Lang preprocessor."
+ msgstr "B³±d inicjacji preprocesora S-Lang."
+ 
+-#: src/startup.c:1686
++#: src/startup.c:1672
+ #, c-format
+ msgid "Reading startup file %s."
+ msgstr "Czytam plik konfiguracyjny %s."
+ 
+-#: src/startup.c:1720
++#: src/startup.c:1698
+ #, c-format
+ msgid "Server object '%s' is not supported."
+ msgstr "Obiekt serwera '%s' nie jest obs³ugiwany."
+ 
+-#: src/startup.c:1724
++#: src/startup.c:1702
+ #, c-format
+ msgid "Post object '%s' is not supported."
+ msgstr "Obiekt wysy³ania '%s' nie jest obs³ugiwany."
+ 
+-#: src/startup.c:1743
++#: src/startup.c:1721
+ #, c-format
+ msgid ""
+ "%s: line %d:\n"
+@@ -4396,49 +4358,3 @@
  #: src/xover.c:1016
  msgid "Server does not provide this capability."
  msgstr "Serwer nie obs³uguje tej funkcji."
