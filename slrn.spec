@@ -13,12 +13,12 @@ Summary(pl):	£atwy w obs³udze czytnik artyku³ów news
 Summary(pt_BR):	O melhor leitor de notícias do mundo
 Summary(tr):	Görüþüne göre dünyanýn en iyi haber grubu okuyucusu
 Name:		slrn
-Version:	0.9.8.1
-Release:	2
+Version:	0.9.8.1pl1
+Release:	1
 License:	GPL
 Group:		Applications/News
-Source0:	http://dl.sourceforge.net/slrn/%{name}-%{version}.tar.bz2
-# Source0-md5:	9b613007df537444a5f8a4a2994fadb7
+Source0:	http://www.slrn.org/patches/%{name}-%{version}.tar.gz
+# Source0-md5:	a2aa6a802d6a1dc2bb10af3b564c96ef
 Source1:	%{name}.1.pl
 Source2:	%{name}.desktop
 Source3:	%{name}.png
