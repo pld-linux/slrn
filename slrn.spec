@@ -14,7 +14,7 @@ Summary(pt_BR):	O melhor leitor de notícias do mundo
 Summary(tr):	Görüþüne göre dünyanýn en iyi haber grubu okuyucusu
 Name:		slrn
 Version:	0.9.8.1
-Release:	1
+Release:	2
 License:	GPL
 Group:		Applications/News
 Source0:	http://dl.sourceforge.net/slrn/%{name}-%{version}.tar.bz2
@@ -37,7 +37,7 @@ BuildRequires:	automake
 %{?with_canlock:BuildRequires:	canlock-devel >= 2a}
 BuildRequires:	gettext-devel
 %{?with_ssl:BuildRequires:	openssl-devel >= 0.9.7d}
-BuildRequires:	slang-devel
+BuildRequires:	slang-devel >= 2.0.0
 %{?with_uudeview:BuildRequires:	uudeview-devel}
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
