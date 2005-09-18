@@ -39,6 +39,7 @@ BuildRequires:	gettext-devel
 %{?with_ssl:BuildRequires:	openssl-devel >= 0.9.7d}
 BuildRequires:	slang-devel >= 2.0.0
 %{?with_uudeview:BuildRequires:	uudeview-devel}
+Obsoletes:	slrn-pl
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
