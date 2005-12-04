@@ -186,22 +186,22 @@ rm -rf $RPM_BUILD_ROOT
 %lang(pl) %{_mandir}/pl/man1/*
 %{_desktopdir}/*
 %{_pixmapsdir}/*
-%config(noreplace,missingok) %verify(not md5 size mtime) %{_sysconfdir}/slrn.rc
+%config(noreplace,missingok) %verify(not md5 mtime size) %{_sysconfdir}/slrn.rc
 
 %files pull
 %defattr(644,root,root,755)
 %doc doc/slrnpull/{README*,SETUP,score,slrn.rc,slrnpull.sh}
-%attr(640,root,root) %config(noreplace) %verify(not md5 size mtime) /etc/logrotate.d/slrn-pull
+%attr(640,root,root) %config(noreplace) %verify(not md5 mtime size) /etc/logrotate.d/slrn-pull
 %attr(2754,root,news) %{_bindir}/slrnpull
 %{_mandir}/man1/slrnpull.1*
 %defattr(664,news,news,755)
 %dir %{_var}/spool/slrnpull
 %dir %{_var}/spool/slrnpull/logs
 %attr(2775,news,news) %dir %{_var}/spool/slrnpull/data
-%verify(not md5 size user mtime) %{_var}/spool/slrnpull/data/active
+%verify(not md5 mtime size user) %{_var}/spool/slrnpull/data/active
 %attr(2775,news,news) %dir %{_var}/spool/slrnpull/news
 %attr(3775,news,news) %dir %{_var}/spool/slrnpull/out.going
 %attr(3775,news,news) %dir %{_var}/spool/slrnpull/out.going/rejects
 %attr(660,news,news) %ghost %{_var}/spool/slrnpull/log
-%config(noreplace) %verify(not md5 size mtime) %{_var}/spool/slrnpull/score
-%config(noreplace) %verify(not md5 size mtime) %{_var}/spool/slrnpull/slrnpull.conf
+%config(noreplace) %verify(not md5 mtime size) %{_var}/spool/slrnpull/score
+%config(noreplace) %verify(not md5 mtime size) %{_var}/spool/slrnpull/slrnpull.conf
