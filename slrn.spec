@@ -30,7 +30,6 @@ Patch3:		%{name}-sort_visible_headers.patch
 Patch4:		%{name}-sharedlibs.patch
 Patch5:		%{name}-home_etc.patch
 Patch6:		%{name}-pl.po-update.patch
-Icon:		slrn.xpm
 URL:		http://www.slrn.org/
 BuildRequires:	autoconf
 BuildRequires:	automake
