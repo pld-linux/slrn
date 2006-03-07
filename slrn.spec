@@ -14,7 +14,7 @@ Summary(pt_BR):	O melhor leitor de notícias do mundo
 Summary(tr):	Görüþüne göre dünyanýn en iyi haber grubu okuyucusu
 Name:		slrn
 Version:	0.9.8.1pl1
-Release:	1
+Release:	2
 License:	GPL
 Group:		Applications/News
 Source0:	http://www.slrn.org/patches/%{name}-%{version}.tar.gz
@@ -30,6 +30,7 @@ Patch3:		%{name}-sort_visible_headers.patch
 Patch4:		%{name}-sharedlibs.patch
 Patch5:		%{name}-home_etc.patch
 Patch6:		%{name}-pl.po-update.patch
+Patch7:		%{name}-search-author.patch
 URL:		http://www.slrn.org/
 BuildRequires:	autoconf
 BuildRequires:	automake
@@ -123,6 +124,7 @@ spool de notícias, para leitura "offline".
 %patch4 -p1
 %patch5 -p1
 %patch6 -p1
+%patch7 -p1
 
 %build
 %{__gettextize}
