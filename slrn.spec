@@ -1,7 +1,9 @@
+# TODO: adjust iconv patch to warn instead of bail out on mime_charset
+# setting in slrnrc
 #
 # Conditional build:
-%bcond_without	canlock	# - build without Cancel-Lock support
-%bcond_without	ssl	# - build without SSL support (snews://)
+%bcond_without	canlock		# - build without Cancel-Lock support
+%bcond_without	ssl		# - build without SSL support (snews://)
 %bcond_without	uudeview	# - build without uudeview support
 #
 Summary:	The world's best newsreader
@@ -14,7 +16,7 @@ Summary(pt_BR):	O melhor leitor de notícias do mundo
 Summary(tr):	Görüþüne göre dünyanýn en iyi haber grubu okuyucusu
 Name:		slrn
 Version:	0.9.8.1pl1
-Release:	2
+Release:	2.1
 License:	GPL
 Group:		Applications/News
 Source0:	http://www.slrn.org/patches/%{name}-%{version}.tar.gz
@@ -31,6 +33,7 @@ Patch4:		%{name}-sharedlibs.patch
 Patch5:		%{name}-home_etc.patch
 Patch6:		%{name}-pl.po-update.patch
 Patch7:		%{name}-search-author.patch
+Patch8:		%{name}-iconv.patch
 URL:		http://www.slrn.org/
 BuildRequires:	autoconf
 BuildRequires:	automake
@@ -125,6 +128,7 @@ spool de notícias, para leitura "offline".
 %patch5 -p1
 %patch6 -p1
 %patch7 -p1
+%patch8 -p1
 
 %build
 %{__gettextize}
@@ -135,9 +139,10 @@ spool de notícias, para leitura "offline".
 %configure \
 	INEWS="/usr/bin/inews" \
 	SENDMAIL="/usr/lib/sendmail" \
-	--enable-mid-cache \
-	--enable-ipv6 \
+	--enable-iconv \
 	--enable-inews \
+	--enable-ipv6 \
+	--enable-mid-cache \
 	--enable-setgid-code \
 	--enable-spool \
 	%{?with_canlock:--with-canlock --with-canlock=%{_libdir}} \
