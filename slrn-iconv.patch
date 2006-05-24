@@ -1,0 +1,1055 @@
+diff -Nur slrn-0.9.8.1pl1.orig/configure.in slrn-0.9.8.1pl1/configure.in
+--- slrn-0.9.8.1pl1.orig/configure.in	2005-02-17 20:41:16.000000000 +0100
++++ slrn-0.9.8.1pl1/configure.in	2006-04-04 21:56:19.000000000 +0200
+@@ -171,6 +171,7 @@
+ 
+ fi
+ 
++
+ dnl enforce the use of inews
+ AH_VERBATIM([SLRN_FORCE_INEWS],
+ [/* define if you want to force the use of inews */
+@@ -353,6 +354,35 @@
+ AC_DEFINE(SLRN_HAS_SPOOL_SUPPORT, 1)
+ fi
+ 
++
++dnl iconv
++AM_ICONV
++AH_VERBATIM([SLRN_USE_ICONV],
++[/* define this if you want to use iconv */
++#undef SLRN_USE_ICONV])
++AC_ARG_ENABLE([iconv],
++	[  --enable-iconv          Enable use of iconv library],
++	AC_DEFINE([SLRN_USE_ICONV])
++	use_iconv=yes,
++	use_iconv=no)
++
++AH_VERBATIM([USE_ICONV],
++[/* This is defined if use of iconv is requested _and_ libiconv is available */
++#undef USE_ICONV])
++
++if test "x${use_iconv}" = "xyes"; 
++then
++	if test "x${am_cv_func_iconv}" != "xyes"
++	then
++		AC_MSG_FAILURE([Use of libiconv was requested, but the iconv library was not found.  Maybe you need to specify --with-libiconv-prefix?]);
++	fi
++	AC_MSG_NOTICE([We're using iconv])
++	AC_DEFINE([USE_ICONV])
++else
++	AC_MSG_NOTICE([We're NOT using iconv])
++fi
++
++
+ AH_BOTTOM(
+ [/* misc settings copied from the original config.hin file */
+ 
+diff -Nur slrn-0.9.8.1pl1.orig/src/art.c slrn-0.9.8.1pl1/src/art.c
+--- slrn-0.9.8.1pl1.orig/src/art.c	2005-01-29 00:26:09.000000000 +0100
++++ slrn-0.9.8.1pl1/src/art.c	2006-04-04 21:56:19.000000000 +0200
+@@ -79,6 +79,13 @@
+ # include "grplens.h"
+ #endif
+ 
++/* don't use recode for slrnpull */
++#if defined(SLRNPULL_CODE) && defined(USE_ICONV)
++# undef USE_ICONV
++#endif
++
++
++
+ /*}}}*/
+ 
+ /*{{{ extern Global variables  */
+@@ -616,6 +623,9 @@
+      Slrn_Current_Article = NULL;
+ 
+    free_article_lines (a);
++#ifdef USE_ICONV
++   slrn_free (a->charset);
++#endif
+    slrn_free ((char *) a);
+ }
+ 
+@@ -2544,8 +2554,8 @@
+ #if SLRN_HAS_MIME
+ 	     if ((do_mime == 0) && (Slrn_Use_Mime & MIME_DISPLAY))
+ 	       {
+-		  slrn_rfc1522_decode_string (tmp);
+-		  slrn_rfc1522_decode_string (h->from);
++		  slrn_rfc1522_decode_string (&tmp);
++		  slrn_rfc1522_decode_string (&(h->from));
+ 	       }
+ #endif
+ 	     slrn_free (h->realname);
+@@ -5509,22 +5519,44 @@
+ static Slrn_Header_Type *process_xover (Slrn_XOver_Type *xov)
+ {
+    Slrn_Header_Type *h;
++   unsigned char *c;
+    
+    h = (Slrn_Header_Type *) slrn_safe_malloc (sizeof (Slrn_Header_Type));
+    
+    slrn_map_xover_to_header (xov, h);
+    Number_Total++;
+    
++#ifdef USE_ICONV
++   /* ok, some news client (Outlook Express *sigh*) just put unencoded
++    * latin1/9 chars in their headers.  As we don't know any charset at 
++    * this time, replace those chars by '?' chars */
++   c = h->subject;
++   while (*c!='\0' && *c!=0x0a && *c!=0x0d) 
++   { 
++	   if (*c>=0x7f) *c = '?'; c++; 
++   }
++   c = h->from;
++   while (*c!='\0' && *c!=0x0a && *c!=0x0d) 
++   { 
++	   if (*c>=0x7f) *c = '?'; c++; 
++   }
++#endif /* USE_ICONV */
++
+ #if SLRN_HAS_MIME
+    if (Slrn_Use_Mime & MIME_DISPLAY)
+      {
+-	slrn_rfc1522_decode_string (h->subject);
+-	slrn_rfc1522_decode_string (h->from);
++	slrn_rfc1522_decode_string (&(h->subject));
++	slrn_rfc1522_decode_string (&(h->from));
+      }
+ #endif
+ 
+    get_header_real_name (h);
++#ifdef USE_ICONV
++   /* TODO: do we translate here, or do we do it 
++	* in slrn_rfc1522_decode_string? */
++#else /* USE_ICONV */
+    slrn_chmap_fix_header (h);
++#endif /* USE_ICONV */
+    
+ #if SLRN_HAS_GROUPLENS
+    if (Slrn_Use_Group_Lens)
+diff -Nur slrn-0.9.8.1pl1.orig/src/art.h slrn-0.9.8.1pl1/src/art.h
+--- slrn-0.9.8.1pl1.orig/src/art.h	2003-08-18 14:36:53.000000000 +0200
++++ slrn-0.9.8.1pl1/src/art.h	2006-04-04 21:56:19.000000000 +0200
+@@ -195,6 +195,9 @@
+    int mime_needs_metamail;
+ #endif
+    int needs_sync;		       /* non-zero if line number/current line needs updated */
++#ifdef USE_ICONV
++   char * charset;             /* charset from content-type header */
++#endif
+ }
+ Slrn_Article_Type;
+ 
+diff -Nur slrn-0.9.8.1pl1.orig/src/chmap.c slrn-0.9.8.1pl1/src/chmap.c
+--- slrn-0.9.8.1pl1.orig/src/chmap.c	2004-10-30 20:31:48.000000000 +0200
++++ slrn-0.9.8.1pl1/src/chmap.c	2006-04-04 21:56:19.000000000 +0200
+@@ -1,4 +1,6 @@
+ /* -*- mode: C; mode: fold; -*- */
++/* vim:ts=8:sw=2:expandtab 
++ */
+ /*
+  This file is part of SLRN.
+ 
+@@ -47,15 +49,149 @@
+ #include "art.h"
+ #include "chmap.h"
+ 
+-#if SLRN_HAS_CHARACTER_MAP
+-char *Slrn_Charset;
++#ifdef USE_ICONV
++#include <locale.h>
++#include <langinfo.h>
++#include <iconv.h>
++#include <errno.h>
++#endif
+ 
+-static unsigned char *ChMap_To_Iso_Map;
+-static unsigned char *ChMap_From_Iso_Map;
++/* don't use recode for slrnpull */
++#if defined(SLRNPULL_CODE) && defined(USE_ICONV)
++# undef USE_ICONV
++#endif
++
++
++#if SLRN_HAS_CHARACTER_MAP || defined(USE_ICONV)
++
++/* if we use recode, this is set from the environment locale, otherwise it is
++ * specified by the user in the config file */
++char *Slrn_Charset;
+ 
+ /* This include file contains static globals */
+ # include "charmaps.h"
+ 
++#endif /* SLRN_HAS_CHARACTER_MAP || defined(USE_ICONV) */
++
++#ifdef USE_ICONV
++
++const iconv_t ICONV_FAIL = (iconv_t) -1;
++
++/* translate the string *str_ptr from charset cs_from to charset cs_to */
++/* str_ptr will be freed and reallocated */
++char * slrn_chmap_translate_string (
++    char *cs_from, char *cs_to, char **str_ptr)
++  {
++    iconv_t cd;
++    char *retval;
++    char *cs_to_translit;
++    char *str = *str_ptr;
++    size_t in_len, in_left, out_len, out_left;
++    char *in_start, *in_cursor, *out_start, *out_cursor;
++    size_t num;
++
++
++    /* make sure the charsets are initialized */
++    if (cs_from == NULL) cs_from = ICONV_DEFAULT_CHARSET;
++    if (cs_to   == NULL) return *str_ptr;
++
++    /* don't translate if from and to charsets are equal */
++    if (strcasecmp (cs_from, cs_to) == 0)
++      return 0;
++
++    /* concat "//translit" to cs_to */
++    cs_to_translit = slrn_safe_malloc( strlen (cs_to) + 10 + 1);
++    sprintf(cs_to_translit, "%s%s", cs_to, "//translit");
++
++    /* Initialize new translation description */
++    /* TODO: cache this and check cs_from and cs_to every time */
++    cd = iconv_open(cs_to_translit, cs_from);
++    if (cd == ICONV_FAIL)
++      {
++        slrn_error (_("Unsupported translation: %s->%s"), cs_from, cs_to);
++        return NULL;
++      }
++
++    /* number of bytes left in input/output buffers */
++    in_left  = in_len  = strlen (str);
++    out_left = out_len = 2 * strlen(str);
++    in_cursor  = in_start  = str;
++    out_cursor = out_start = slrn_safe_malloc( out_left + 1 );
++    
++    /* iterate until the entire line is translated */
++    while (1)
++    {
++      /* stop if there is nothing left to translate */
++      if (in_left == 0)
++      {
++        break;
++      }
++      
++      /* do the conversion */
++      num = iconv(cd, &in_cursor, &in_left, &out_cursor, &out_left);
++
++      /* the entire line was translated, we're done */
++      if (num>=0) 
++      {
++        break;
++      }
++
++      /* otherwise, an error occured */
++      switch (errno) /* these are the only error that can occur */
++      {
++        case EILSEQ: /* invalid byte sequence at pos in_cursor */
++          /* skip the invalid byte and continue */
++          if (in_left>0) /* otherwise we're done anyway */
++          {
++            in_left--;
++            in_cursor++;
++          }
++          break;
++        case E2BIG: /* output buff is full */
++          /* realloc the output buffer (make it 2 times as large) */
++          slrn_realloc(out_cursor, 2*out_len, 1);
++          out_left = out_len;
++          out_len *= 2;
++          break;
++        case EINVAL: /* incomplete byte sequence at end of string*/
++          /* just skip the rest of the line */
++          in_left = 0;
++          break;
++        case EBADF: /* cd is invalid */
++          slrn_error(_("Internal error while translating string"));
++          in_left = 0;
++          break;
++        default: /* never reached */
++          slrn_error(_("A unknown error occurred.  This should not happen."));
++          in_left = 0;
++          break;
++      }
++    }
++
++    /* make sure string ends in a \0 */
++    *out_cursor = '\0';
++
++    /* now copy the output buffer to a newly allocated string */
++    retval = slrn_safe_strmalloc (out_start);
++
++    /* free the old input string, and set it to the new result */
++    slrn_free (str);
++    *str_ptr = retval;
++
++    /* free variables */
++    slrn_free (out_start);
++    slrn_free (cs_to_translit);
++    iconv_close (cd);
++    
++    return retval;
++  }
++
++#else /* USE_ICONV */
++# if SLRN_HAS_CHARACTER_MAP
++
++static unsigned char *ChMap_To_Iso_Map;
++static unsigned char *ChMap_From_Iso_Map;
++
+ static void chmap_map_string (char *str, unsigned char *map)
+ {
+    unsigned char ch;
+@@ -69,11 +205,11 @@
+ 
+ static void chmap_map_string_from_iso (char *str)
+ {
+-# if SLANG_VERSION >= 20000
++#  if SLANG_VERSION >= 20000
+    /* fixme */
+    if (Slrn_UTF8_Mode)
+      return;
+-#endif
++#  endif
+    chmap_map_string (str, ChMap_From_Iso_Map);
+ }
+ 
+@@ -87,13 +223,17 @@
+    chmap_map_string (str, ChMap_To_Iso_Map);
+ }
+ 
+-#endif
++# endif /*  SLRN_HAS_CHARACTER_MAP */
++
++#endif /* USE_ICONV */
+ 
+ /* Fix a single header; the rest of the header lines are dealt with
+  * later in hide_art_headers() */
++#ifndef USE_ICONV /* recode handles the translation directly while 
++                      decoding  the rfc1522 */
+ void slrn_chmap_fix_header (Slrn_Header_Type *h)
+ {
+-#if SLRN_HAS_CHARACTER_MAP
++#if SLRN_HAS_CHARACTER_MAP 
+    if ((h->flags & HEADER_CHMAP_PROCESSED) == 0)
+      {
+ 	chmap_map_string_from_iso (h->subject);
+@@ -101,32 +241,62 @@
+ 	chmap_map_string_from_iso (h->realname);
+ 	h->flags |= HEADER_CHMAP_PROCESSED;
+      }
+-#endif
++#endif /* SLRN_HAS_CHARACTER_MAP  */
+ }
+ 
++#endif
++
+ void slrn_chmap_fix_body (Slrn_Article_Type *a, int revert)
+ {
+-#if SLRN_HAS_CHARACTER_MAP
++#if SLRN_HAS_CHARACTER_MAP || USE_ICONV
+    Slrn_Article_Line_Type *l;
++   char * charset;
+    
+    if (a == NULL)
+      return;
++
++#ifdef USE_ICONV
++   /* check if we need to translate */
++   if (a->charset == NULL)
++     charset = ICONV_DEFAULT_CHARSET;
++   else 
++     charset = a->charset;
++       
++   if (strcasecmp (Slrn_Charset, charset) == 0)
++     return;
++#endif
++   
+    l = a->lines;
+ 
+    while (l != NULL)
+      {
+-	if (revert)
+-	  chmap_map_string_to_iso (l->buf);
+-	else
+-	  chmap_map_string_from_iso (l->buf);
+-        l = l->next;
++# ifdef USE_ICONV
++       /* don't process headers */
++       if (l->flags & HEADER_LINE)
++       {
++         l = l->next;
++         continue;
++       }
++
++       if (revert)
++         slrn_chmap_translate_string (Slrn_Charset, charset, &(l->buf));
++       else
++         slrn_chmap_translate_string (charset, Slrn_Charset, &(l->buf));
++# else /* USE_ICONV */
++       if (revert)
++         chmap_map_string_to_iso (l->buf);
++       else
++	 chmap_map_string_from_iso (l->buf);
++# endif /* USE_ICONV */
++       
++       l = l->next;
+      }
+ #endif
+ }
+ 
+ int slrn_chmap_fix_file (char *file, int reverse)
+ {
+-#if SLRN_HAS_CHARACTER_MAP
++#if SLRN_HAS_CHARACTER_MAP 
+    FILE *fp, *tmpfp;
+    char buf [4096];
+    char tmp_file [SLRN_MAX_PATH_LEN];
+@@ -170,8 +340,11 @@
+    ret = 0;
+    while (NULL != fgets (buf, sizeof (buf), fp))
+      {
++#ifdef USE_ICONV
++#else
+ 	if (reverse) chmap_map_string_from_iso (buf);
+ 	else chmap_map_string_to_iso (buf);
++#endif
+ 	if (EOF == fputs (buf, tmpfp))
+ 	  {
+ 	     slrn_error (_("Write Error. Disk Full? --- message not posted."));
+@@ -219,8 +392,39 @@
+ }
+ #endif
+ 
++
++
+ int slrn_set_charset (char *name)
+ {
++#if USE_ICONV
++  iconv_t cd;
++
++  /* use environenment for locale */
++  setlocale (LC_ALL, "");
++  
++  /* get charset of current locale */
++  Slrn_Charset = slrn_safe_strmalloc (nl_langinfo (CODESET));
++
++  /* TODO: check that we don't have any UCS2 and UCS4 charsets, as those
++   * can't be handled at all.  Slrn works with 0-terminated strings, which 
++   * is totally incompatible with these charsets.  Luckily those are extremely 
++   * uncommon anyway on usenet. */
++
++  /* initialize recode engine to check if Slrn_Charset is valid */
++  cd = iconv_open ("UTF-8", Slrn_Charset);
++  if (cd == ICONV_FAIL)
++    {
++      slrn_error (_("Unsupport character set: %s"), Slrn_Charset);
++      return -1;
++    }
++
++  /* free variables */
++  iconv_close (cd);
++
++  return 0;
++  
++#else /* USE_ICONV */
++
+ #if SLRN_HAS_CHARACTER_MAP
+    CharMap_Type *map;
+    unsigned int i;
+@@ -254,4 +458,5 @@
+    (void) name;
+    return -1;
+ #endif
++#endif /* USE_ICONV */
+ }
+diff -Nur slrn-0.9.8.1pl1.orig/src/chmap.h slrn-0.9.8.1pl1/src/chmap.h
+--- slrn-0.9.8.1pl1.orig/src/chmap.h	2002-03-13 14:03:18.000000000 +0100
++++ slrn-0.9.8.1pl1/src/chmap.h	2006-04-04 21:56:19.000000000 +0200
+@@ -20,8 +20,20 @@
+ */
+ #ifndef _SLRN_CHMAP_H
+ #define _SLRN_CHMAP_H
++
++/* don't use recode for slrnpull */
++#if defined(SLRNPULL_CODE) && defined(USE_ICONV)
++# undef USE_ICONV
++#endif
++
++#define ICONV_DEFAULT_CHARSET "iso-8859-15"
++
+ extern int slrn_set_charset (char *);
+ extern int slrn_chmap_fix_file (char *, int);
++#ifdef USE_ICONV
++extern char * slrn_chmap_translate_string (
++	char *, char *, char **);
++#endif
+ extern void slrn_chmap_fix_body (Slrn_Article_Type *, int);
+ extern void slrn_chmap_fix_header (Slrn_Header_Type *);
+ 
+diff -Nur slrn-0.9.8.1pl1.orig/src/config.h.in slrn-0.9.8.1pl1/src/config.h.in
+--- slrn-0.9.8.1pl1.orig/src/config.h.in	2005-02-17 20:43:06.000000000 +0100
++++ slrn-0.9.8.1pl1/src/config.h.in	2006-04-04 21:56:19.000000000 +0200
+@@ -167,6 +167,9 @@
+ /* Define to 1 if you have the `vsnprintf' function. */
+ #undef HAVE_VSNPRINTF
+ 
++/* Define as const if the declaration of iconv() needs const. */
++#undef ICONV_CONST
++
+ /* Define the directory where your locales are */
+ #undef LOCALEDIR
+ 
+@@ -263,9 +266,15 @@
+ /* sendmail command */
+ #undef SLRN_SENDMAIL_COMMAND
+ 
++/* define this if you want to use iconv */
++#undef SLRN_USE_ICONV
++
+ /* Define to 1 if you have the ANSI C header files. */
+ #undef STDC_HEADERS
+ 
++/* This is defined if use of iconv is requested _and_ libiconv is available */
++#undef USE_ICONV
++
+ /* define if you have va_copy() in stdarg.h */
+ #undef VA_COPY
+ 
+diff -Nur slrn-0.9.8.1pl1.orig/src/mime.c slrn-0.9.8.1pl1/src/mime.c
+--- slrn-0.9.8.1pl1.orig/src/mime.c	2004-10-30 20:31:49.000000000 +0200
++++ slrn-0.9.8.1pl1/src/mime.c	2006-04-04 21:56:19.000000000 +0200
+@@ -1,4 +1,6 @@
+ /* -*- mode: C; mode: fold -*- */
++/* vim:ts=8:expandtab:
++ */
+ /* MIME handling routines.
+  *
+  * Author: Michael Elkins <elkins@aero.org>
+@@ -46,8 +48,15 @@
+ #include "util.h"
+ #include "server.h"
+ #include "snprintf.h"
++#include "chmap.h"
+ #include "mime.h"
+ 
++/* don't use recode for slrnpull */
++#if defined(SLRNPULL_CODE) && defined(USE_ICONV)
++# undef USE_ICONV
++#endif
++
++
+ #if ! SLRN_HAS_MIME
+ int Slrn_Use_Mime = 0;
+ #else /* rest of file in this ifdef */
+@@ -60,6 +69,12 @@
+ 
+ char *Slrn_Mime_Display_Charset;
+ 
++#ifdef USE_ICONV
++static char *Compatible_Charsets[] =
++{
++   "US-ASCII",			       /* This MUST be zeroth element */
++};
++#else /* USE_ICONV */
+ /* These are all supersets of US-ASCII.  Only the first N characters are 
+  * matched, where N is the length of the table entry.
+  */
+@@ -73,6 +88,7 @@
+    "utf-8",			 /* we now have a function to decode this */
+    NULL
+ };
++#endif /* USE_ICONV */
+ 
+ #ifndef SLRNPULL_CODE
+ static char *Char_Set;
+@@ -120,6 +136,7 @@
+ 
+ int slrn_set_compatible_charsets (char *charsets)
+ {
++#ifndef USE_ICONV
+    static char* buf;
+    char *p;
+    char **pp;
+@@ -166,10 +183,12 @@
+    
+    *pp = NULL;
+    
++#endif /* USE_ICONV */
+    return 0;
+ }
+ #endif /* NOT SLRNPULL_CODE */
+ 
++#ifndef USE_ICONV
+ static char *_find_compatible_charset (char **compat_charset, char *cs,
+ 				       unsigned int len)
+ {
+@@ -187,9 +206,14 @@
+      }
+    return NULL;
+ }
++#endif /* USE_RECOEE */
+ 
+ static char *find_compatible_charset (char *cs, unsigned int len)
+ {
++#ifdef USE_ICONV
++   return slrn_strnmalloc (cs, len, 1);
++#else /* USE_ICONV */
++   
+    char *retval;
+    
+    if ((NULL == (retval = _find_compatible_charset (Compatible_Charsets, cs,
+@@ -198,6 +222,7 @@
+      retval = _find_compatible_charset (Custom_Compatible_Charsets, cs, len);
+    
+    return retval;
++#endif /* USE_ICONV */
+ }
+ 
+ #ifndef SLRNPULL_CODE
+@@ -291,13 +316,18 @@
+ 	     len = b - charset;
+ 	     
+ 	     Char_Set = find_compatible_charset (charset, len);
+-	     return 0;
++	     goto END; /* EVIL */
+ 	  }
+ 	line = line->next;
+      }
+    while ((line != NULL)
+ 	  && (line->flags & HEADER_LINE)
+ 	  && ((*(b = line->buf) == ' ') || (*b == '\t')));
++
++END:
++#ifdef USE_ICONV
++   a->charset = slrn_strmalloc (Char_Set, 1);
++#endif
+    
+    return 0;
+ }
+@@ -413,6 +443,7 @@
+    return dest;
+ }
+ 
++#ifndef USE_ICONV
+ static char *utf_to_unicode (int *out, char *in, char *srcmax)
+ {
+    int mask = 0;
+@@ -495,15 +526,21 @@
+    
+    return dest;
+ }
++#endif /* USE_ICONV */
+ 
+-int slrn_rfc1522_decode_string (char *s)
++int slrn_rfc1522_decode_string (char **str_ptr)
+ {
++   char *s = *str_ptr;
+    char *s1, *s2, ch;
+    char *charset, method, *txt;
+    char *after_last_encoded_word;
+    char *after_whitespace;
+    unsigned int count;
+    unsigned int len;
++#ifdef USE_ICONV
++   char *buff, *begin_of_encoded_part, *new_str;
++   char *output;
++#endif
+ 
+    count = 0;
+    after_whitespace = NULL;
+@@ -512,10 +549,14 @@
+ /* Even if some user agents still send raw 8bit, it is safe to call
+  * decode_utf8() -- if it finds 8bit chars that are not valid UTF-8, it
+  * will set ch to 1 and we can leave the line untouched. */
+-#if SLANG_VERSION >= 20000
++#ifdef USE_ICONV
++   output = slrn_safe_strmalloc ( *str_ptr );
++   s = output;
++#else
++# if SLANG_VERSION >= 20000
+    if (Slrn_UTF8_Mode == 0)
+      {
+-#endif
++# endif
+    len = strlen (s);
+    s1 = slrn_safe_malloc(len + 1);
+    
+@@ -525,9 +566,10 @@
+    if (ch == 0)
+      strcpy (s, s1); /* safe */
+    slrn_free (s1);
+-#if SLANG_VERSION >= 20000
++# if SLANG_VERSION >= 20000
+      }
+-#endif
++# endif
++#endif /* USE_ICONV */
+ 
+    while (1)
+      {
+@@ -536,6 +578,9 @@
+ 	if (s == NULL) break;
+ 	
+ 	s1 = s;
++#ifdef USE_ICONV
++        begin_of_encoded_part = s1;
++#endif
+ 	charset = s = s1 + 2;
+ 	while (((ch = *s) != 0)
+ 	       && (ch != '?') && (ch != ' ') && (ch != '\t') && (ch != '\n'))
+@@ -592,17 +637,67 @@
+ 	/* Note: these functions return a pointer to the END of the decoded
+ 	 * text.
+ 	 */
++
++#ifdef USE_ICONV
++        /* decoded stuff is always shorter than encoded, so this size 
++         * is safe */
++        /* TODO: I don't think this is always true, specifically consider 
++         * UTF8 encoded 4-byte characters */
++        //buff = (char *) slrn_safe_malloc( strlen(txt) + 10 );
++        len = strlen(txt) + 10;
++        buff = (char *) calloc( len, sizeof(char) );
++        s1 = buff;
++#endif
++    
+ 	s2 = s1;
+ 	
+ 	if (method == 'B')
+ 	  s1 = decode_base64 (s1, txt, s);
+-	else s1 = decode_quoted_printable (s1, txt, s, 1, 0);
+-	
++	else 
++          s1 = decode_quoted_printable (s1, txt, s, 1, 0);
++
++#ifdef USE_ICONV
++        /* ok, now the decoded string is in buff, now translate it */
++	slrn_chmap_translate_string( charset, Slrn_Charset, &buff );
++
++        /* now we have to improvise a bit, because the translated string 
++         * could, in principle be longer than the space that's available in
++         * the original string. 
++         * So, we allocate a _new_ string to replace it, and copy everything 
++         * in there */
++        /* skip the final '?=', if the string doesn't end prematurely */
++        if (*s!='\0' && *(s+1)!='\0') s+=2; 
++        len = begin_of_encoded_part - output  /* part that is done already */
++              + strlen (buff)  /* part we just translated */
++              + strlen (s) /* part that's yet to be translated */
++              + 10; /* to be on the save side */
++        new_str = (char *) slrn_safe_malloc( len * sizeof(char) );
++        s1 = new_str;
++        memcpy (s1, output, begin_of_encoded_part - output); /* old part */
++        s1 += begin_of_encoded_part - output;
++        memcpy (s1, buff, strlen (buff)); /* current part */
++        s1 += strlen (buff);
++        memcpy (s1, s, strlen (s) + 1 ); /* todo part, including final \0 */
++
++        /* now free the old string and set it to the new one */
++        memset(output, 'x', strlen(output));
++        slrn_free (output);
++        output = new_str;
++
++        /* and free the buffer */
++        slrn_free(buff);
++        buff = NULL;
++
++        /* set s to the position where we need to continue on the next 
++         * iteration */
++        s = s1;
++        
++#else /* USE_ICONV */
+ 	if ((slrn_case_strncmp((unsigned char *)"utf-8",
+ 			      (unsigned char *)charset, 5) == 0)
+-#if SLANG_VERSION >= 20000
++# if SLANG_VERSION >= 20000
+ 	    && (Slrn_UTF8_Mode == 0)
+-#endif
++# endif
+ 	    )
+ 	  s1 = decode_utf8 (s2, s2, s1, NULL);
+ 	
+@@ -611,6 +706,7 @@
+ 	s = s1;			       /* start from here next loop */
+ 	while ((ch = *s2++) != 0) *s1++ = ch;
+ 	*s1 = 0;
++#endif
+ 	
+ 	count++;
+ 	
+@@ -618,6 +714,12 @@
+ 	s = slrn_skip_whitespace (s);
+ 	after_whitespace = s;
+      }
++
++#ifdef USE_ICONV
++   // slrn_free( *str_ptr );
++   *str_ptr = output;
++#endif
++   
+    return count;
+ }
+ 
+@@ -627,6 +729,14 @@
+ static void rfc1522_decode_headers (Slrn_Article_Type *a)
+ {
+    Slrn_Article_Line_Type *line;
++
++#ifdef USE_ICONV
++   /* make sure we have a charset available */
++   if (a->charset==NULL)
++   {
++       a->charset = slrn_safe_strmalloc(ICONV_DEFAULT_CHARSET);
++   }
++#endif /* USE_ICONV */
+    
+    if (a == NULL)
+      return;
+@@ -638,12 +748,26 @@
+ 	if (slrn_case_strncmp ((unsigned char *)line->buf,
+ 			       (unsigned char *)"Newsgroups:", 11) &&
+ 	    slrn_case_strncmp ((unsigned char *)line->buf,
+-			       (unsigned char *)"Followup-To:", 12) &&
+-	    slrn_rfc1522_decode_string (line->buf))
+-	  {
+-	     a->is_modified = 1;
+-	     a->mime_was_modified = 1;
+-	  }
++			       (unsigned char *)"Followup-To:", 12)
++           )
++	{
++          /* ok, some news client (Outlook Express *sigh*) just put
++           * unencoded latin1/9/window1252 chars in their headers.  Try to
++           * decode this */
++          if (slrn_chmap_translate_string(a->charset , Slrn_Charset,
++                &(line->buf)))
++          {
++            a->is_modified = 1;
++            a->mime_was_modified = 1;
++          }
++
++          /* now do the usual rfc 1522 decoding */
++	  if (slrn_rfc1522_decode_string (&(line->buf)))
++          {
++            a->is_modified = 1;
++            a->mime_was_modified = 1;
++          }
++	}
+ 	line = line->next;
+      }
+ }
+@@ -845,6 +969,7 @@
+      }
+ }
+ 
++#ifndef USE_ICONV
+ static void decode_mime_utf8 (Slrn_Article_Type *a)
+ {
+    Slrn_Article_Line_Type *line;
+@@ -879,6 +1004,7 @@
+ 	line = line->next;
+      }
+ }
++#endif /* USE_ICONV */
+ 
+ void slrn_mime_article_init (Slrn_Article_Type *a)
+ {
+@@ -894,8 +1020,6 @@
+ 
+    a->mime_was_parsed = 1;	       /* or will be */
+    
+-   rfc1522_decode_headers (a);
+-
+ /* Is there a reason to use the following line? */
+ /*   if (NULL == find_header_line (a, "Mime-Version:")) return;*/
+    if ((-1 == parse_content_type_line (a))
+@@ -904,6 +1028,8 @@
+ 	a->mime_needs_metamail = 1;
+ 	return;
+      }
++
++   rfc1522_decode_headers (a);
+    
+    switch (Encoding_Method)
+      {
+@@ -926,14 +1052,16 @@
+ 	return;
+      }
+    
++#ifndef USE_ICONV
+    if ((a->mime_needs_metamail == 0) &&
+-#if SLANG_VERSION >= 20000
++# if SLANG_VERSION >= 20000
+        (Slrn_UTF8_Mode == 0) &&
+-#endif
++# endif
+        (Char_Set != NULL) &&
+        (slrn_case_strncmp((unsigned char *)"utf-8",
+ 			  (unsigned char *)Char_Set, 5) == 0))
+      decode_mime_utf8 (a);
++#endif /* USE_ICONV */
+ }
+ 
+ #ifndef MAXPATHLEN
+@@ -1525,6 +1653,10 @@
+    if (Mime_Posting_Charset == NULL)
+      Mime_Posting_Charset = "us-ascii";
+ 
++   /* TODO: check that a charset header isn't already present */
++   /* so: (1) extract possible charset header and use it to override 
++    * Mime_Posting_Charset here; (2) remove possible duplicate headers 
++    * that we are going to add; (3) add headers as below */
+    switch (Mime_Posting_Encoding)
+      {
+       default:
+diff -Nur slrn-0.9.8.1pl1.orig/src/mime.h slrn-0.9.8.1pl1/src/mime.h
+--- slrn-0.9.8.1pl1.orig/src/mime.h	2004-08-14 23:43:17.000000000 +0200
++++ slrn-0.9.8.1pl1/src/mime.h	2006-04-04 21:56:19.000000000 +0200
+@@ -1,6 +1,11 @@
+ #ifndef _SLRN_MIME_H
+ #define _SLRN_MIME_H
+ 
++/* don't use recode for slrnpull */
++#if defined(SLRNPULL_CODE) && defined(USE_ICONV)
++# undef USE_ICONV
++#endif
++
+ #include "vfile.h"
+ 
+ extern int Slrn_Use_Mime;
+@@ -11,7 +16,7 @@
+ 
+ # if SLRN_HAS_MIME /* rest of file in this if */
+ extern int slrn_set_compatible_charsets (char *);
+-extern int slrn_rfc1522_decode_string (char *);
++extern int slrn_rfc1522_decode_string (char **);
+ 
+ extern VFILE *slrn_mime_encode (VFILE *);
+ extern void slrn_mime_header_encode (char *, unsigned int);
+diff -Nur slrn-0.9.8.1pl1.orig/src/slrn.c slrn-0.9.8.1pl1/src/slrn.c
+--- slrn-0.9.8.1pl1.orig/src/slrn.c	2005-02-11 23:20:42.000000000 +0100
++++ slrn-0.9.8.1pl1/src/slrn.c	2006-04-04 21:56:19.000000000 +0200
+@@ -107,8 +107,15 @@
+ # include <windows.h>
+ #endif
+ 
++/* don't use recode for slrnpull */
++#if defined(SLRNPULL_CODE) && defined(USE_ICONV)
++# undef USE_ICONV
++#endif
++
++
+ /*}}}*/
+ 
++
+ /*{{{ Global Variables */
+ 
+ #if SLANG_VERSION >= 20000
+@@ -1219,7 +1226,7 @@
+    if (Slrn_Post_Id == 0) Slrn_Post_Id = Slrn_Default_Post_Obj;
+    if (no_new_groups) Slrn_Check_New_Groups = 0;
+ 
+-#if SLRN_HAS_CHARACTER_MAP
++#if SLRN_HAS_CHARACTER_MAP || defined(USE_ICONV)
+    if (-1 == slrn_set_charset (Slrn_Charset))
+      {
+ 	slrn_chmap_show_supported ();
+@@ -1227,10 +1234,13 @@
+      }
+ #endif
+ 
+-#if SLRN_HAS_MIME
++#ifdef USE_ICONV
++   Slrn_Mime_Display_Charset = slrn_safe_strmalloc (Slrn_Charset);
++#else /* USE_ICONV */
++# if SLRN_HAS_MIME
+    if (NULL == Slrn_Mime_Display_Charset)
+-     {
+-# if SLRN_HAS_CHARACTER_MAP
++   {
++#  if SLRN_HAS_CHARACTER_MAP
+ 	if (NULL != Slrn_Charset)
+ 	  {
+ 	     if (0 == slrn_case_strcmp ((unsigned char *)Slrn_Charset,
+@@ -1247,10 +1257,11 @@
+ 	       Slrn_Mime_Display_Charset = slrn_safe_strmalloc ("iso-8859-7");
+ 	  }
+ 	if (NULL == Slrn_Mime_Display_Charset)
+-# endif
++#  endif
+ 	  Slrn_Mime_Display_Charset = slrn_safe_strmalloc ("iso-8859-1");
++# endif
+      }
+-#endif
++#endif /* USE_ICONV */
+ 
+ #ifdef SIGINT
+    if (Slrn_TT_Initialized == 0)
+diff -Nur slrn-0.9.8.1pl1.orig/src/slrnpull.c slrn-0.9.8.1pl1/src/slrnpull.c
+--- slrn-0.9.8.1pl1.orig/src/slrnpull.c	2004-11-28 15:48:09.000000000 +0100
++++ slrn-0.9.8.1pl1/src/slrnpull.c	2006-04-04 21:56:19.000000000 +0200
+@@ -1335,8 +1335,8 @@
+    h.from = slrn_safe_strmalloc (xov->from);
+    if (Slrn_Use_Mime)
+      {
+-	slrn_rfc1522_decode_string (h.subject);
+-	slrn_rfc1522_decode_string (h.from);
++	slrn_rfc1522_decode_string (&(h.subject));
++	slrn_rfc1522_decode_string (&(h.from));
+      }
+ #endif
+    
+diff -Nur slrn-0.9.8.1pl1.orig/src/startup.c slrn-0.9.8.1pl1/src/startup.c
+--- slrn-0.9.8.1pl1.orig/src/startup.c	2004-10-31 15:16:25.000000000 +0100
++++ slrn-0.9.8.1pl1/src/startup.c	2006-04-04 21:56:19.000000000 +0200
+@@ -61,6 +61,13 @@
+ #ifdef VMS
+ # include "vms.h"
+ #endif
++
++/* don't use recode for slrnpull */
++#if defined(SLRNPULL_CODE) && defined(USE_ICONV)
++# undef USE_ICONV
++#endif
++
++
+ /*}}}*/
+ 
+ /*{{{ Forward Function Declarations */
+@@ -692,13 +699,15 @@
+      },
+      
+ #if SLRN_HAS_MIME
++# ifndef USE_ICONV /* this is fetched from the current locale */
+      {"mime_charset", &Slrn_Mime_Display_Charset},
++# endif /* USE_ICONV */
+      {"metamail_command", &Slrn_MetaMail_Cmd},
+ #else
+      {"mime_charset", NULL},
+      {"metamail_command", NULL},
+ #endif
+-#if SLRN_HAS_CHARACTER_MAP
++#if SLRN_HAS_CHARACTER_MAP && !defined(USE_ICONV)
+      {"charset", &Slrn_Charset},
+ #else
+      {"charset", NULL},
+diff -Nur slrn-0.9.8.1pl1.orig/src/xover.c slrn-0.9.8.1pl1/src/xover.c
+--- slrn-0.9.8.1pl1.orig/src/xover.c	2003-07-29 15:05:37.000000000 +0200
++++ slrn-0.9.8.1pl1/src/xover.c	2006-04-04 21:56:19.000000000 +0200
+@@ -155,7 +155,7 @@
+ 				     (unsigned char *)"Newsgroups") &&
+ 		   slrn_case_strcmp ((unsigned char *)h,
+ 				     (unsigned char *)"Followup-To"))
+-		 slrn_rfc1522_decode_string (colon);
++		 slrn_rfc1522_decode_string (&colon);
+ #endif
+ 	       addh->value = colon;
+ 	       break;
