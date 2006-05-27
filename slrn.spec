@@ -1,5 +1,7 @@
-# TODO: adjust iconv patch to warn instead of bail out on mime_charset
-# setting in slrnrc
+# TODO:
+# - adjust iconv patch to warn instead of bail out on mime_charset
+#   setting in slrnrc
+# - make ICONV_DEFAULT_CHARSET configurable at runtime
 #
 # Conditional build:
 %bcond_without	canlock		# - build without Cancel-Lock support
