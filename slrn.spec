@@ -192,7 +192,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/slrn/macros
 %{_mandir}/man1/slrn.1*
 %lang(pl) %{_mandir}/pl/man1/*
-%{_desktopdir}/*
+%{_desktopdir}/*.desktop
 %{_pixmapsdir}/*
 %config(noreplace,missingok) %verify(not md5 mtime size) %{_sysconfdir}/slrn.rc
 
