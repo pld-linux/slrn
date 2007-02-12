@@ -9,13 +9,13 @@
 %bcond_without	uudeview	# - build without uudeview support
 #
 Summary:	The world's best newsreader
-Summary(da):	Verdens bedste nyhedslæser
-Summary(de):	Der weltbeste Newsreader
-Summary(es):	El mejor lector de news del mundo
-Summary(fr):	Le meilleur lecteur de news du monde
-Summary(pl):	£atwy w obs³udze czytnik artyku³ów news
-Summary(pt_BR):	O melhor leitor de notícias do mundo
-Summary(tr):	Görüşüne göre dünyanın en iyi haber grubu okuyucusu
+Summary(da.UTF-8):   Verdens bedste nyhedslÃ¦ser
+Summary(de.UTF-8):   Der weltbeste Newsreader
+Summary(es.UTF-8):   El mejor lector de news del mundo
+Summary(fr.UTF-8):   Le meilleur lecteur de news du monde
+Summary(pl.UTF-8):   Åatwy w obsÅ‚udze czytnik artykuÅ‚Ã³w news
+Summary(pt_BR.UTF-8):   O melhor leitor de notÃ­cias do mundo
+Summary(tr.UTF-8):   GÃ¶rÃ¼ÅŸÃ¼ne gÃ¶re dÃ¼nyanÄ±n en iyi haber grubu okuyucusu
 Name:		slrn
 Version:	0.9.8.1pl1
 Release:	2.1
@@ -53,50 +53,50 @@ It relies extensively on the S-Lang programmer's library for many of
 its features. Slrn works particularly well over slow network
 connections.
 
-%description -l da
-Slrn er en bekvæm og kraftig nyhedslæser. Programmet skylder S-Lang
-biblioteket sin funktionalitet. Slrn er godt især ved brug igennem
-langsomme netværk forbindelser.
+%description -l da.UTF-8
+Slrn er en bekvÃ¦m og kraftig nyhedslÃ¦ser. Programmet skylder S-Lang
+biblioteket sin funktionalitet. Slrn er godt isÃ¦r ved brug igennem
+langsomme netvÃ¦rk forbindelser.
 
-%description -l de
-Slrn ist ein einfach zu bedienender und dennoch äußerst
-leistungsfähiger Voll-Bildschirm-Newsreader auf NNTP-Basis. Viele
+%description -l de.UTF-8
+Slrn ist ein einfach zu bedienender und dennoch Ã¤uÃŸerst
+leistungsfÃ¤higer Voll-Bildschirm-Newsreader auf NNTP-Basis. Viele
 seiner Funktionen bezieht er aus der S-Lang-Programmierer-Library.
-Seine besondere Stärke ist die Arbeit über langsame Netzwerke.
+Seine besondere StÃ¤rke ist die Arbeit Ã¼ber langsame Netzwerke.
 
-%description -l es
-Slrn es un lector de news basado en NNTP fácil de usar, pero potente
+%description -l es.UTF-8
+Slrn es un lector de news basado en NNTP fÃ¡cil de usar, pero potente
 con pantalla llena. Utiliza la biblioteca de programadores S-Lang para
-varias de sus características. Slrn trabaja en especial con conexiones
+varias de sus caracterÃ­sticas. Slrn trabaja en especial con conexiones
 lentas de red.
 
-%description -l fr
-Slrn et un lecteur de news NNTP plein écran facile à utiliser mais
-puissant. Il s'appuie beaucoup sur la bibliothèque S-Lang pour ses
-caractéristiques. Slrn fonctionne particulièrement bien avec des
-connexions réseau lentes.
+%description -l fr.UTF-8
+Slrn et un lecteur de news NNTP plein Ã©cran facile Ã  utiliser mais
+puissant. Il s'appuie beaucoup sur la bibliothÃ¨que S-Lang pour ses
+caractÃ©ristiques. Slrn fonctionne particuliÃ¨rement bien avec des
+connexions rÃ©seau lentes.
 
-%description -l pl
-Slrn jest wygodnym w obs³udze i ergonomicznym czytnikiem artyku³ów
-news. Sw± funkcjonalno¶æ program zawdziêcza bibliotece S-Lang. Slrn
-znakomicie sprawdza siê zw³aszcza na zapchanych i wolnych ³±czach.
+%description -l pl.UTF-8
+Slrn jest wygodnym w obsÅ‚udze i ergonomicznym czytnikiem artykuÅ‚Ã³w
+news. SwÄ… funkcjonalnoÅ›Ä‡ program zawdziÄ™cza bibliotece S-Lang. Slrn
+znakomicie sprawdza siÄ™ zwÅ‚aszcza na zapchanych i wolnych Å‚Ä…czach.
 
-%description -l pt_BR
-Slrn é um leitor de notícias baseado em NNTP fácil de usar mas
+%description -l pt_BR.UTF-8
+Slrn Ã© um leitor de notÃ­cias baseado em NNTP fÃ¡cil de usar mas
 poderoso com tela cheia. Ele utiliza a biblioteca de programadores
-S-Lang para várias das suas características. Slrn trabalha
-particularmente bem com conexões lentas de rede.
+S-Lang para vÃ¡rias das suas caracterÃ­sticas. Slrn trabalha
+particularmente bem com conexÃµes lentas de rede.
 
-%description -l tr
-Slrn, kullanımı kolay, çok yetenekli, tam ekran bir haber okuyucudur.
-Yavaş ağ bağlantılarında gayet iyi çalışır.
+%description -l tr.UTF-8
+Slrn, kullanÄ±mÄ± kolay, Ã§ok yetenekli, tam ekran bir haber okuyucudur.
+YavaÅŸ aÄŸ baÄŸlantÄ±larÄ±nda gayet iyi Ã§alÄ±ÅŸÄ±r.
 
 %package pull
 Summary:	Offline news reading support for slrn
-Summary(da):	Programmet udstyrer slrn med offline-egenskaber
-Summary(es):	Soporte para lectura de noticias "offline" para slm
-Summary(pl):	Program ¶ci±gaj±cy artyku³y z serwera news
-Summary(pt_BR):	Suporte para leitura de notícias "offline" para o slrn
+Summary(da.UTF-8):   Programmet udstyrer slrn med offline-egenskaber
+Summary(es.UTF-8):   Soporte para lectura de noticias "offline" para slm
+Summary(pl.UTF-8):   Program Å›ciÄ…gajÄ…cy artykuÅ‚y z serwera news
+Summary(pt_BR.UTF-8):   Suporte para leitura de notÃ­cias "offline" para o slrn
 Group:		Applications/News
 Requires:	%{name}
 Obsoletes:	slrn-pl-pull
@@ -105,20 +105,20 @@ Obsoletes:	slrn-pl-pull
 This package provides slrnpull, which allows set up of a small news
 spool for offline news reading.
 
-%description pull -l da
-Programmet henter indlæg ned til et lokalt newsspool for at brugeren
-kan læse og svare på dem uden at være online.
+%description pull -l da.UTF-8
+Programmet henter indlÃ¦g ned til et lokalt newsspool for at brugeren
+kan lÃ¦se og svare pÃ¥ dem uden at vÃ¦re online.
 
-%description pull -l es
+%description pull -l es.UTF-8
 Soporte para lectura de noticias "offline" para slm
 
-%description pull -l pl
-Slrnpull umo¿liwia ¶ci±gniêcie artyku³ów, a nastêpnie czytanie ich bez
-konieczno¶ci utrzymywania sta³ego po³±czenia z serwerem news.
+%description pull -l pl.UTF-8
+Slrnpull umoÅ¼liwia Å›ciÄ…gniÄ™cie artykuÅ‚Ã³w, a nastÄ™pnie czytanie ich bez
+koniecznoÅ›ci utrzymywania staÅ‚ego poÅ‚Ä…czenia z serwerem news.
 
-%description pull -l pt_BR
-Este pacote provê o slrnpull, que permite a configuração de um pequeno
-spool de notícias, para leitura "offline".
+%description pull -l pt_BR.UTF-8
+Este pacote provÃª o slrnpull, que permite a configuraÃ§Ã£o de um pequeno
+spool de notÃ­cias, para leitura "offline".
 
 %prep
 %setup -q
