@@ -9,13 +9,13 @@
 %bcond_without	uudeview	# - build without uudeview support
 #
 Summary:	The world's best newsreader
-Summary(da.UTF-8):   Verdens bedste nyhedslæser
-Summary(de.UTF-8):   Der weltbeste Newsreader
-Summary(es.UTF-8):   El mejor lector de news del mundo
-Summary(fr.UTF-8):   Le meilleur lecteur de news du monde
-Summary(pl.UTF-8):   Łatwy w obsłudze czytnik artykułów news
-Summary(pt_BR.UTF-8):   O melhor leitor de notícias do mundo
-Summary(tr.UTF-8):   Görüşüne göre dünyanın en iyi haber grubu okuyucusu
+Summary(da.UTF-8):	Verdens bedste nyhedslæser
+Summary(de.UTF-8):	Der weltbeste Newsreader
+Summary(es.UTF-8):	El mejor lector de news del mundo
+Summary(fr.UTF-8):	Le meilleur lecteur de news du monde
+Summary(pl.UTF-8):	Łatwy w obsłudze czytnik artykułów news
+Summary(pt_BR.UTF-8):	O melhor leitor de notícias do mundo
+Summary(tr.UTF-8):	Görüşüne göre dünyanın en iyi haber grubu okuyucusu
 Name:		slrn
 Version:	0.9.8.1pl1
 Release:	2.1
@@ -93,10 +93,10 @@ Yavaş ağ bağlantılarında gayet iyi çalışır.
 
 %package pull
 Summary:	Offline news reading support for slrn
-Summary(da.UTF-8):   Programmet udstyrer slrn med offline-egenskaber
-Summary(es.UTF-8):   Soporte para lectura de noticias "offline" para slm
-Summary(pl.UTF-8):   Program ściągający artykuły z serwera news
-Summary(pt_BR.UTF-8):   Suporte para leitura de notícias "offline" para o slrn
+Summary(da.UTF-8):	Programmet udstyrer slrn med offline-egenskaber
+Summary(es.UTF-8):	Soporte para lectura de noticias "offline" para slm
+Summary(pl.UTF-8):	Program ściągający artykuły z serwera news
+Summary(pt_BR.UTF-8):	Suporte para leitura de notícias "offline" para o slrn
 Group:		Applications/News
 Requires:	%{name}
 Obsoletes:	slrn-pl-pull
