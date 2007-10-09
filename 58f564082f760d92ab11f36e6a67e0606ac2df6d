@@ -1,0 +1,7 @@
+- release 2,
+- added DESTDIR style %install (DESTDIR patch),
+- aded keymap patch which replaces hardcoded terminal sequences by reading
+  terminal database),
+- added installing slrn macros in %%{_datadir}/slrn,
+- added passing LDFLAGS="-s" to %%configure environment in %build instead
+  stripping in %install.
