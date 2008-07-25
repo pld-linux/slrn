@@ -6,18 +6,13 @@ diff -Nur slrn-0.9.8.0.orig/macros/uname.sl slrn-0.9.8.0/macros/uname.sl
 +
 +set_string_variable("system_type", uname().sysname + " " + uname().release
 +    + "/" + uname().machine);
-diff -Nur slrn-0.9.8.0.orig/Makefile.am slrn-0.9.8.0/Makefile.am
---- slrn-0.9.8.0.orig/Makefile.am	2002-11-01 13:32:25.000000000 +0100
-+++ slrn-0.9.8.0/Makefile.am	2003-08-26 20:30:42.501274976 +0200
-@@ -11,7 +11,7 @@
- MACROS = macros/color.sl macros/gsort.sl macros/ispell.sl \
-  macros/latin2.sl macros/multipart.sl macros/nn.sl macros/posthook.sl \
-  macros/search.sl macros/tin-art.sl macros/tin-group.sl macros/ttyprint.sl \
-- macros/util.sl macros/varset.sl macros/xcomment.sl
-+ macros/util.sl macros/varset.sl macros/xcomment.sl macros/uname.sl
- 
- CONTRIB = contrib/cleanscore contrib/slrnrc-conv
- CONTRIBDOCS = contrib/README.cleanscore contrib/README.slrnrc-conv \
+--- slrn/macros/INSTFILES.orig	2007-11-10 06:07:20.000000000 +0100
++++ slrn/macros/INSTFILES	2008-07-25 20:24:46.864745949 +0200
+@@ -13,3 +13,4 @@
+ util.sl
+ varset.sl
+ xcomment.sl
++uname.sl
 diff -Nur slrn-0.9.8.0.orig/src/misc.h slrn-0.9.8.0/src/misc.h
 --- slrn-0.9.8.0.orig/src/misc.h	2002-10-06 00:19:51.000000000 +0200
 +++ slrn-0.9.8.0/src/misc.h	2003-08-26 20:30:42.443283792 +0200
@@ -30,47 +25,43 @@ diff -Nur slrn-0.9.8.0.orig/src/misc.h slrn-0.9.8.0/src/misc.h
  }
  Slrn_User_Info_Type;
  
-diff -Nur slrn-0.9.8.0.orig/src/post.c slrn-0.9.8.0/src/post.c
---- slrn-0.9.8.0.orig/src/post.c	2003-07-31 19:21:18.000000000 +0200
-+++ slrn-0.9.8.0/src/post.c	2003-08-26 20:34:36.863646480 +0200
-@@ -1259,10 +1259,17 @@
-    int status;
-    char *msgid = NULL;
-    int has_messageid = 0;
--   char *system_os_name;
-+   char *system_os_name, *User_Agent;
-    char *responses;
+--- slrn/src/post.c.orig	2008-07-11 07:54:20.000000000 +0200
++++ slrn/src/post.c	2008-07-25 20:25:59.896750139 +0200
+@@ -666,9 +666,16 @@
+    int newsgroups_found=0, subject_found=0, followupto_found=0;
+    Slrn_Mime_Error_Obj *err=NULL;
+    Slrn_Mime_Error_Obj *mime_err;
+-   char *tmp, *system_os_name;
++   char *tmp, *system_os_name, *User_Agent;
  
--   system_os_name = slrn_get_os_name ();
 +   if (Slrn_User_Info.system_type != NULL)
 +     system_os_name = Slrn_User_Info.system_type;
 +   else
-+     system_os_name = slrn_get_os_name ();
+    system_os_name = slrn_get_os_name ();
 +   if (Slrn_User_Info.user_agent != NULL)
 +     User_Agent = Slrn_User_Info.user_agent;
 +   else
 +     User_Agent = "slrn";
  
-    try_again:
+ #if SLRN_HAS_STRICT_FROM
+    if (NULL != (tmp = slrn_make_from_string ()))
+@@ -825,7 +832,7 @@
  
-@@ -1428,7 +1435,7 @@
- 		      slrn_mime_add_headers (fcc_fp);
- 		    }
- #endif
--		  post_printf (fcc_fp, "User-Agent: slrn/%s (%s)\n\n",
-+		  post_printf (fcc_fp, "User-Agent: %s/%s (%s)\n\n", User_Agent,
- 					    Slrn_Version, system_os_name);
- 		  header = 0;
- #if SLRN_HAS_MIME
-diff -Nur slrn-0.9.8.0.orig/src/startup.c slrn-0.9.8.0/src/startup.c
---- slrn-0.9.8.0.orig/src/startup.c	2003-08-25 17:01:17.000000000 +0200
-+++ slrn-0.9.8.0/src/startup.c	2003-08-26 20:30:42.475278928 +0200
-@@ -655,6 +655,8 @@
-      {"followup_custom_headers", &Slrn_Followup_Custom_Headers},
-      {"reply_custom_headers", &Slrn_Reply_Custom_Headers},
-      {"supersedes_custom_headers", &Slrn_Supersedes_Custom_Headers},
+    if ((NULL == (tmp = slrn_gen_date_header ()))
+        || (NULL == slrn_append_to_header (a, tmp, 1))
+-       || (NULL == (tmp = slrn_strdup_printf("User-Agent: slrn/%s (%s)", Slrn_Version_String, system_os_name)))
++       || (NULL == (tmp = slrn_strdup_printf("User-Agent: %s/%s (%s)", User_Agent, Slrn_Version_String, system_os_name)))
+        || (NULL == slrn_append_to_header (a, tmp, 1))
+        || (NULL == slrn_append_to_header (a, NULL,0)))   /* separator */
+      {
+--- slrn/src/startup.c.orig	2008-07-10 07:15:22.000000000 +0200
++++ slrn/src/startup.c	2008-07-25 20:26:23.960750978 +0200
+@@ -756,6 +756,8 @@
+      {"followup_custom_headers", &Slrn_Followup_Custom_Headers, NULL},
+      {"reply_custom_headers", &Slrn_Reply_Custom_Headers, NULL},
+      {"supersedes_custom_headers", &Slrn_Supersedes_Custom_Headers, NULL},
 +     {"user_agent", &Slrn_User_Info.user_agent},
 +     {"system_type", &Slrn_User_Info.system_type},
  #if SLRN_HAS_GROUPLENS
-      {"grouplens_pseudoname", &Slrn_GroupLens_Pseudoname},
-      {"grouplens_host", &Slrn_GroupLens_Host},
+      {"grouplens_pseudoname", &Slrn_GroupLens_Pseudoname, NULL},
+      {"grouplens_host", &Slrn_GroupLens_Host, NULL},

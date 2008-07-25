@@ -119,11 +119,11 @@ diff -ur slrn-0.9.7.3.orig/src/art_misc.c slrn-0.9.7.3/src/art_misc.c
 +			 {
 +			    lnext = l->next;
 +
-+			    colon = slrn_strchr (l->buf, ':');
++			    colon = slrn_strbyte (l->buf, ':');
 +			    if (colon != NULL)
 +			      *colon = 0;
 +			    
-+			    colon_next = slrn_strchr (lnext->buf, ':');
++			    colon_next = slrn_strbyte (lnext->buf, ':');
 +			    if (colon_next != NULL)
 +			      *colon_next = 0;
 +			    
@@ -204,14 +204,13 @@ diff -ur slrn-0.9.7.3.orig/src/art_misc.c slrn-0.9.7.3/src/art_misc.c
     return 0;
  }
  
-diff -ur slrn-0.9.7.3.orig/src/startup.c slrn-0.9.7.3/src/startup.c
---- slrn-0.9.7.3.orig/src/startup.c	Sat Nov  3 16:15:46 2001
-+++ slrn-0.9.7.3/src/startup.c	Sat Jan 12 01:35:07 2002
-@@ -520,6 +520,7 @@
-      {"cc_followup", &Slrn_Auto_CC_To_Poster},
-      {"use_tmpdir", &Slrn_Use_Tmpdir},
-      {"sorting_method", &Slrn_Sorting_Mode},
+--- slrn/src/startup.c.orig	2008-07-25 20:27:27.861397112 +0200
++++ slrn/src/startup.c	2008-07-25 20:27:56.656744273 +0200
+@@ -617,6 +617,7 @@
+      {"cc_followup", &Slrn_Auto_CC_To_Poster, NULL},
+      {"use_tmpdir", &Slrn_Use_Tmpdir, NULL},
+      {"sorting_method", &Slrn_Sorting_Mode, NULL},
 +     {"visible_headers_sorting_method", &Slrn_Visible_Headers_Sorting_Mode},
-      {"custom_sort_by_threads", &Slrn_Sort_By_Threads},
-      {"uncollapse_threads", &Slrn_Threads_Visible},
-      {"read_active", &Slrn_List_Active_File},
+      {"custom_sort_by_threads", &Slrn_Sort_By_Threads, NULL},
+      {"uncollapse_threads", &Slrn_Uncollapse_Threads, NULL},
+      {"read_active", &Slrn_List_Active_File, NULL},
