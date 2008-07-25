@@ -1,7 +1,3 @@
-# TODO:
-# - adjust iconv patch to warn instead of bail out on mime_charset
-#   setting in slrnrc
-# - make ICONV_DEFAULT_CHARSET configurable at runtime
 #
 # Conditional build:
 %bcond_without	canlock		# - build without Cancel-Lock support
@@ -17,28 +13,23 @@ Summary(pl.UTF-8):	Łatwy w obsłudze czytnik artykułów news
 Summary(pt_BR.UTF-8):	O melhor leitor de notícias do mundo
 Summary(tr.UTF-8):	Görüşüne göre dünyanın en iyi haber grubu okuyucusu
 Name:		slrn
-Version:	0.9.8.1pl1
-Release:	2.1
-License:	GPL
+Version:	0.9.9
+Release:	0.pre122.1
+License:	GPL v2+
 Group:		Applications/News
-Source0:	http://www.slrn.org/patches/%{name}-%{version}.tar.gz
-# Source0-md5:	a2aa6a802d6a1dc2bb10af3b564c96ef
+Source0:	http://slrn.org/downloads/%{name}-pre%{version}-122.tar.bz2
+# Source0-md5:	81ea5b78523acae5734f8d6d19a06f23
 Source1:	%{name}.1.pl
 Source2:	%{name}.desktop
 Source3:	%{name}.png
 Source4:	%{name}-pull.logrotate
 Patch0:		%{name}-keymap.patch
-Patch1:		%{name}-config.patch
-Patch2:		%{name}-user-agent.patch
-Patch3:		%{name}-sort_visible_headers.patch
-Patch4:		%{name}-sharedlibs.patch
-Patch5:		%{name}-home_etc.patch
-Patch6:		%{name}-pl.po-update.patch
-Patch7:		%{name}-search-author.patch
-Patch8:		%{name}-iconv.patch
+Patch1:		%{name}-user-agent.patch
+Patch2:		%{name}-sort_visible_headers.patch
+Patch3:		%{name}-home_etc.patch
+Patch4:		%{name}-pl.po-update.patch
 URL:		http://www.slrn.org/
-BuildRequires:	autoconf
-BuildRequires:	automake
+BuildRequires:	autoconf >= 2.50
 %{?with_canlock:BuildRequires:	canlock-devel >= 2a}
 BuildRequires:	gettext-devel
 %{?with_ssl:BuildRequires:	openssl-devel >= 0.9.7d}
@@ -121,36 +112,28 @@ Este pacote provê o slrnpull, que permite a configuração de um pequeno
 spool de notícias, para leitura "offline".
 
 %prep
-%setup -q
+%setup -q -n %{name}
 %patch0 -p1
 %patch1 -p1
 %patch2 -p1
 %patch3 -p1
 %patch4 -p1
-%patch5 -p1
-%patch6 -p1
-%patch7 -p1
-%patch8 -p1
+
+ln -s autoconf/configure.ac .
 
 %build
-%{__gettextize}
-%{__aclocal} -I autoconf
-%{__autoheader}
-%{__autoconf}
-%{__automake}
+%{__autoconf} -B autoconf
 %configure \
 	INEWS="/usr/bin/inews" \
 	SENDMAIL="/usr/lib/sendmail" \
-	--enable-iconv \
 	--enable-inews \
-	--enable-ipv6 \
 	--enable-mid-cache \
 	--enable-setgid-code \
 	--enable-spool \
-	%{?with_canlock:--with-canlock --with-canlock=%{_libdir}} \
-	--with-slrnpull \
-	%{?with_ssl:--with-ssl --with-ssl-library=%{_libdir}} \
-	%{?with_uudeview:--with-uudeview --with-uudeview=%{_libdir}}
+	%{?with_canlock:--with-canlock} \
+	--with-slrnpull=/var/spool/slrnpull \
+	%{?with_ssl:--with-ssl} \
+	%{?with_uudeview:--with-uu}
 
 %{__make}
 
@@ -185,15 +168,15 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %doc COPYRIGHT README changes.txt contrib/{README,NEWS}.* doc/*.html
 %doc doc/{FAQ,FIRST_STEPS,README.*,THANKS,{help,manual,score,slrnfuns}.txt,*.sl}
+%attr(755,root,root) %{_bindir}/cleanscore
 %attr(755,root,root) %{_bindir}/slrn
 %attr(755,root,root) %{_bindir}/slrnrc-conv
-%attr(755,root,root) %{_bindir}/cleanscore
 %dir %{_datadir}/slrn
-%{_datadir}/slrn/macros
+%{_datadir}/slrn/slang
 %{_mandir}/man1/slrn.1*
-%lang(pl) %{_mandir}/pl/man1/*
-%{_desktopdir}/*.desktop
-%{_pixmapsdir}/*
+%lang(pl) %{_mandir}/pl/man1/slrn.1*
+%{_desktopdir}/slrn.desktop
+%{_pixmapsdir}/slrn.png
 %config(noreplace,missingok) %verify(not md5 mtime size) %{_sysconfdir}/slrn.rc
 
 %files pull
