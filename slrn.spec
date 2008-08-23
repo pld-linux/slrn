@@ -28,7 +28,6 @@ Patch1:		%{name}-user-agent.patch
 Patch2:		%{name}-sort_visible_headers.patch
 Patch3:		%{name}-home_etc.patch
 Patch4:		%{name}-pl.po-update.patch
-Patch5:		%{name}-lib64.patch
 URL:		http://www.slrn.org/
 BuildRequires:	autoconf >= 2.50
 %{?with_canlock:BuildRequires:	canlock-devel >= 2a}
@@ -119,9 +118,6 @@ spool de notícias, para leitura "offline".
 %patch2 -p1
 %patch3 -p1
 %patch4 -p1
-%ifarch %{x8664}
-%patch5 -p1
-%endif
 
 ln -s autoconf/configure.ac .
 
@@ -135,6 +131,8 @@ ln -s autoconf/configure.ac .
 	--enable-setgid-code \
 	--enable-spool \
 	%{?with_canlock:--with-canlock} \
+	--with-slanginc=/usr/include/slang \
+	--with-slanglib=%{_libdir} \
 	--with-slrnpull=/var/spool/slrnpull \
 	%{?with_ssl:--with-ssl} \
 	%{?with_uudeview:--with-uu}
