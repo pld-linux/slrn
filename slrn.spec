@@ -14,11 +14,11 @@ Summary(pt_BR.UTF-8):	O melhor leitor de notícias do mundo
 Summary(tr.UTF-8):	Görüşüne göre dünyanın en iyi haber grubu okuyucusu
 Name:		slrn
 Version:	0.9.9
-Release:	0.pre122.2
+Release:	1
 License:	GPL v2+
 Group:		Applications/News
-Source0:	http://slrn.org/downloads/%{name}-pre%{version}-122.tar.bz2
-# Source0-md5:	81ea5b78523acae5734f8d6d19a06f23
+Source0:	http://slrn.org/downloads/%{name}-%{version}.tar.gz
+# Source0-md5:	87c0172887bf6e020759bf6241c003fc
 Source1:	%{name}.1.pl
 Source2:	%{name}.desktop
 Source3:	%{name}.png
@@ -113,7 +113,7 @@ Este pacote provê o slrnpull, que permite a configuração de um pequeno
 spool de notícias, para leitura "offline".
 
 %prep
-%setup -q -n %{name}
+%setup -q
 %patch0 -p1
 %patch1 -p1
 %patch2 -p1
