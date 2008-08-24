@@ -146,7 +146,7 @@ install -d $RPM_BUILD_ROOT%{_var}/spool/slrnpull/{data,logs,news,out.going/rejec
 	$RPM_BUILD_ROOT{%{_desktopdir},%{_pixmapsdir}} \
 	$RPM_BUILD_ROOT/etc/logrotate.d
 
-%{__make} install \
+%{__make} -j1 install \
 	DESTDIR=$RPM_BUILD_ROOT
 
 install %{SOURCE1} $RPM_BUILD_ROOT%{_mandir}/pl/man1/slrn.1
