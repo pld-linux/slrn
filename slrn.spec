@@ -13,12 +13,12 @@ Summary(pl.UTF-8):	Łatwy w obsłudze czytnik artykułów news
 Summary(pt_BR.UTF-8):	O melhor leitor de notícias do mundo
 Summary(tr.UTF-8):	Görüşüne göre dünyanın en iyi haber grubu okuyucusu
 Name:		slrn
-Version:	0.9.9
+Version:	0.9.9p1
 Release:	1
 License:	GPL v2+
 Group:		Applications/News
-Source0:	http://slrn.org/downloads/%{name}-%{version}.tar.gz
-# Source0-md5:	87c0172887bf6e020759bf6241c003fc
+Source0:	http://www.slrn.org/downloads/%{name}-%{version}.tar.gz
+# Source0-md5:	6cc8ac6baaff7cc2a8b78f7fbbe3187f
 Source1:	%{name}.1.pl
 Source2:	%{name}.desktop
 Source3:	%{name}.png
