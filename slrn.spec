@@ -31,7 +31,7 @@ Patch4:		%{name}-pl.po-update.patch
 URL:		http://www.slrn.org/
 BuildRequires:	autoconf >= 2.50
 %{?with_canlock:BuildRequires:	canlock-devel >= 2a}
-BuildRequires:	gettext-devel
+BuildRequires:	gettext-tools
 %{?with_ssl:BuildRequires:	openssl-devel >= 0.9.7d}
 BuildRequires:	slang-devel >= 2.0.0
 %{?with_uudeview:BuildRequires:	uudeview-devel}
