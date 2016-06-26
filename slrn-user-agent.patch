@@ -6,12 +6,12 @@ diff -Nur slrn-0.9.8.0.orig/macros/uname.sl slrn-0.9.8.0/macros/uname.sl
 +
 +set_string_variable("system_type", uname().sysname + " " + uname().release
 +    + "/" + uname().machine);
---- slrn/macros/INSTFILES.orig	2007-11-10 06:07:20.000000000 +0100
-+++ slrn/macros/INSTFILES	2008-07-25 20:24:46.864745949 +0200
-@@ -13,3 +13,4 @@
- util.sl
- varset.sl
+--- slrn-1.0.2/macros/INSTFILES.orig	2016-06-26 20:26:17.435600753 +0200
++++ slrn-1.0.2/macros/INSTFILES	2016-06-26 20:27:20.788590874 +0200
+@@ -15,3 +15,4 @@
  xcomment.sl
+ mime.sl
+ mailcap.sl
 +uname.sl
 diff -Nur slrn-0.9.8.0.orig/src/misc.h slrn-0.9.8.0/src/misc.h
 --- slrn-0.9.8.0.orig/src/misc.h	2002-10-06 00:19:51.000000000 +0200

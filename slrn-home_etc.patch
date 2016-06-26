@@ -30,12 +30,11 @@ diff -Nur slrn-0.9.8.0.orig/src/misc.h slrn-0.9.8.0/src/misc.h
  extern void slrn_make_home_dirname (char *, char *, size_t);
  extern void slrn_redraw (void);
  extern void slrn_update_screen (void);
-diff -Nur slrn-0.9.8.0.orig/src/slrn.c slrn-0.9.8.0/src/slrn.c
---- slrn-0.9.8.0.orig/src/slrn.c	2003-07-29 15:03:28.000000000 +0200
-+++ slrn-0.9.8.0/src/slrn.c	2003-11-22 18:25:01.000000000 +0100
-@@ -244,11 +244,11 @@
+--- slrn-1.0.2/src/slrn.c.orig	2014-09-20 04:08:47.000000000 +0200
++++ slrn-1.0.2/src/slrn.c	2016-06-26 20:29:15.147971336 +0200
+@@ -248,11 +248,11 @@
  #endif
-    
+ 
  #if SLRN_HAS_RNLOCK
 -   slrn_make_home_filename (".newsrc", file_rn, sizeof (file_rn));
 +   slrn_make_home_etc_filename (".newsrc", file_rn, sizeof (file_rn));
@@ -47,25 +46,25 @@ diff -Nur slrn-0.9.8.0.orig/src/slrn.c slrn-0.9.8.0/src/slrn.c
       }
  #endif
  
-@@ -982,7 +982,7 @@
+@@ -995,7 +995,7 @@
     if (Slrn_Score_File == NULL)
       return;
-    
+ 
 -   slrn_make_home_filename (Slrn_Score_File, file, sizeof (file));
 +   slrn_make_home_etc_filename (Slrn_Score_File, file, sizeof (file));
-    
+ 
     if (1 != slrn_file_exists (file))
       {
-@@ -1184,7 +1184,7 @@
-    
+@@ -1183,7 +1183,7 @@
+ 
     if (init_file == NULL)
       {
 -	slrn_make_home_filename (SLRN_USER_SLRNRC_FILENAME, file, sizeof (file));
 +	slrn_make_home_etc_filename (SLRN_USER_SLRNRC_FILENAME, file, sizeof (file));
  	init_file = file;
       }
-    
-@@ -1312,7 +1312,7 @@
+ 
+@@ -1289,7 +1289,7 @@
  #else
  	Slrn_Newsrc_File = ".jnewsrc";
  #endif
@@ -73,4 +72,4 @@ diff -Nur slrn-0.9.8.0.orig/src/slrn.c slrn-0.9.8.0/src/slrn.c
 +	slrn_make_home_etc_filename (Slrn_Newsrc_File, file, sizeof (file));
  	Slrn_Newsrc_File = slrn_safe_strmalloc (file);
       }
-    
+ 

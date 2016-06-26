@@ -13,12 +13,12 @@ Summary(pl.UTF-8):	Łatwy w obsłudze czytnik artykułów news
 Summary(pt_BR.UTF-8):	O melhor leitor de notícias do mundo
 Summary(tr.UTF-8):	Görüşüne göre dünyanın en iyi haber grubu okuyucusu
 Name:		slrn
-Version:	0.9.9p1
-Release:	3
+Version:	1.0.2
+Release:	1
 License:	GPL v2+
 Group:		Applications/News
-Source0:	http://www.slrn.org/downloads/%{name}-%{version}.tar.gz
-# Source0-md5:	6cc8ac6baaff7cc2a8b78f7fbbe3187f
+Source0:	http://jedsoft.org/releases/slrn/%{name}-%{version}.tar.bz2
+# Source0-md5:	4962fc3311023c7a343919ae6fb440e7
 Source1:	%{name}.1.pl
 Source2:	%{name}.desktop
 Source3:	%{name}.png
@@ -28,13 +28,15 @@ Patch1:		%{name}-user-agent.patch
 Patch2:		%{name}-sort_visible_headers.patch
 Patch3:		%{name}-home_etc.patch
 Patch4:		%{name}-pl.po-update.patch
-URL:		http://www.slrn.org/
+#URL:		http://www.slrn.org/ is outdated / faked (hidden advertisements...)
+URL:		http://jedsoft.org/releases/slrn/
 BuildRequires:	autoconf >= 2.50
 %{?with_canlock:BuildRequires:	canlock-devel >= 2a}
 BuildRequires:	gettext-tools
 %{?with_ssl:BuildRequires:	openssl-devel >= 0.9.7d}
-BuildRequires:	slang-devel >= 2.0.0
+BuildRequires:	slang-devel >= 2.2.3
 %{?with_uudeview:BuildRequires:	uudeview-devel}
+Requires:	slang >= 2.2.3
 Obsoletes:	slrn-pl
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
