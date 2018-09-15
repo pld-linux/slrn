@@ -14,7 +14,7 @@ Summary(pt_BR.UTF-8):	O melhor leitor de notícias do mundo
 Summary(tr.UTF-8):	Görüşüne göre dünyanın en iyi haber grubu okuyucusu
 Name:		slrn
 Version:	1.0.2
-Release:	1
+Release:	2
 License:	GPL v2+
 Group:		Applications/News
 Source0:	http://jedsoft.org/releases/slrn/%{name}-%{version}.tar.bz2
