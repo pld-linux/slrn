@@ -13,12 +13,12 @@ Summary(pl.UTF-8):	Łatwy w obsłudze czytnik artykułów news
 Summary(pt_BR.UTF-8):	O melhor leitor de notícias do mundo
 Summary(tr.UTF-8):	Görüşüne göre dünyanın en iyi haber grubu okuyucusu
 Name:		slrn
-Version:	1.0.2
-Release:	2
+Version:	1.0.3a
+Release:	1
 License:	GPL v2+
 Group:		Applications/News
 Source0:	http://jedsoft.org/releases/slrn/%{name}-%{version}.tar.bz2
-# Source0-md5:	4962fc3311023c7a343919ae6fb440e7
+# Source0-md5:	a06e74f9fede1196c92479210519f77e
 Source1:	%{name}.1.pl
 Source2:	%{name}.desktop
 Source3:	%{name}.png
@@ -31,8 +31,8 @@ Patch4:		%{name}-pl.po-update.patch
 #URL:		http://www.slrn.org/ is outdated / faked (hidden advertisements...)
 URL:		http://jedsoft.org/releases/slrn/
 BuildRequires:	autoconf >= 2.50
-%{?with_canlock:BuildRequires:	canlock-devel >= 2a}
 BuildRequires:	gettext-tools
+%{?with_canlock:BuildRequires:	libcanlock-devel >= 3}
 %{?with_ssl:BuildRequires:	openssl-devel >= 0.9.7d}
 BuildRequires:	slang-devel >= 2.2.3
 %{?with_uudeview:BuildRequires:	uudeview-devel}
@@ -114,7 +114,7 @@ Este pacote provê o slrnpull, que permite a configuração de um pequeno
 spool de notícias, para leitura "offline".
 
 %prep
-%setup -q
+%setup -q -n %{name}-1.0.3
 %patch0 -p1
 %patch1 -p1
 %patch2 -p1
@@ -132,7 +132,11 @@ ln -s autoconf/configure.ac .
 	--enable-mid-cache \
 	--enable-setgid-code \
 	--enable-spool \
-	%{?with_canlock:--with-canlock} \
+%if %{with canlock}
+	--with-canlock \
+	--with-canlockinc=/usr/include/libcanlock-3 \
+	--with-canlocklib=%{_libdir} \
+%endif
 	--with-slanginc=/usr/include/slang \
 	--with-slanglib=%{_libdir} \
 	--with-slrnpull=/var/spool/slrnpull \
