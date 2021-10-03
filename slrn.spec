@@ -14,7 +14,7 @@ Summary(pt_BR.UTF-8):	O melhor leitor de notícias do mundo
 Summary(tr.UTF-8):	Görüşüne göre dünyanın en iyi haber grubu okuyucusu
 Name:		slrn
 Version:	1.0.3a
-Release:	1
+Release:	2
 License:	GPL v2+
 Group:		Applications/News
 Source0:	http://jedsoft.org/releases/slrn/%{name}-%{version}.tar.bz2
@@ -28,6 +28,7 @@ Patch1:		%{name}-user-agent.patch
 Patch2:		%{name}-sort_visible_headers.patch
 Patch3:		%{name}-home_etc.patch
 Patch4:		%{name}-pl.po-update.patch
+Patch5:		no-strip.patch
 #URL:		http://www.slrn.org/ is outdated / faked (hidden advertisements...)
 URL:		http://jedsoft.org/releases/slrn/
 BuildRequires:	autoconf >= 2.50
@@ -120,6 +121,7 @@ spool de notícias, para leitura "offline".
 %patch2 -p1
 %patch3 -p1
 %patch4 -p1
+%patch5 -p1
 
 ln -s autoconf/configure.ac .
 

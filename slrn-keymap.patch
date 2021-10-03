@@ -1,7 +1,7 @@
-diff -Nur slrn-0.9.8.0.orig/src/art.c slrn-0.9.8.0/src/art.c
---- slrn-0.9.8.0.orig/src/art.c	2003-08-25 16:59:16.000000000 +0200
-+++ slrn-0.9.8.0/src/art.c	2003-08-26 20:21:55.098452392 +0200
-@@ -7263,20 +7263,28 @@
+diff -urNp -x '*.orig' slrn-1.0.3.org/src/art.c slrn-1.0.3/src/art.c
+--- slrn-1.0.3.org/src/art.c	2016-10-24 00:34:16.000000000 +0200
++++ slrn-1.0.3/src/art.c	2021-10-03 22:48:58.844392038 +0200
+@@ -7672,20 +7672,28 @@ void slrn_init_article_mode (void) /*{{{
  #else
     SLkm_define_key  ("\033\033[A", (FVOID_STAR) art_lineup, Slrn_Article_Keymap);
     SLkm_define_key  ("\033\033OA", (FVOID_STAR) art_lineup, Slrn_Article_Keymap);
@@ -30,7 +30,7 @@ diff -Nur slrn-0.9.8.0.orig/src/art.c slrn-0.9.8.0/src/art.c
  #endif
     SLkm_define_key  ("^U", (FVOID_STAR) header_pageup, Slrn_Article_Keymap);
     SLkm_define_key  ("\033V", (FVOID_STAR) header_pageup, Slrn_Article_Keymap);
-@@ -7286,10 +7294,8 @@
+@@ -7695,10 +7703,8 @@ void slrn_init_article_mode (void) /*{{{
     SLkm_define_key  ("^@Q", (FVOID_STAR) header_pagedn, Slrn_Article_Keymap);
     SLkm_define_key  ("\xE0Q", (FVOID_STAR) header_pagedn, Slrn_Article_Keymap);
  #else
@@ -43,10 +43,10 @@ diff -Nur slrn-0.9.8.0.orig/src/art.c slrn-0.9.8.0/src/art.c
  #endif
     SLkm_define_key  ("^D", (FVOID_STAR) header_pagedn, Slrn_Article_Keymap);
     SLkm_define_key  ("^V", (FVOID_STAR) header_pagedn, Slrn_Article_Keymap);
-diff -Nur slrn-0.9.8.0.orig/src/group.c slrn-0.9.8.0/src/group.c
---- slrn-0.9.8.0.orig/src/group.c	2003-08-25 16:47:09.000000000 +0200
-+++ slrn-0.9.8.0/src/group.c	2003-08-26 20:21:55.110450568 +0200
-@@ -1992,8 +1992,10 @@
+diff -urNp -x '*.orig' slrn-1.0.3.org/src/group.c slrn-1.0.3/src/group.c
+--- slrn-1.0.3.org/src/group.c	2016-10-24 00:34:16.000000000 +0200
++++ slrn-1.0.3/src/group.c	2021-10-03 22:48:58.844392038 +0200
+@@ -2027,8 +2027,10 @@ void slrn_init_group_mode (void) /*{{{*/
     SLkm_define_key ("\0330", (FVOID_STAR) slrn_digit_arg, Slrn_Group_Keymap);
     SLkm_define_key  ("^K\033[A", (FVOID_STAR) group_bob, Slrn_Group_Keymap);
     SLkm_define_key  ("^K\033OA", (FVOID_STAR) group_bob, Slrn_Group_Keymap);
@@ -57,9 +57,9 @@ diff -Nur slrn-0.9.8.0.orig/src/group.c slrn-0.9.8.0/src/group.c
     SLkm_define_key  ("\033a", (FVOID_STAR) toggle_group_formats, Slrn_Group_Keymap);
     SLkm_define_key  ("\033>", (FVOID_STAR) group_eob, Slrn_Group_Keymap);
     SLkm_define_key  ("\033<", (FVOID_STAR) group_bob, Slrn_Group_Keymap);
-@@ -2005,10 +2007,8 @@
+@@ -2040,10 +2042,8 @@ void slrn_init_group_mode (void) /*{{{*/
     SLkm_define_key  ("^@I", (FVOID_STAR) group_pageup, Slrn_Group_Keymap);
-    SLkm_define_key  ("\xE0I", (FVOID_STAR) group_pageup, Slrn_Group_Keymap);   
+    SLkm_define_key  ("\xE0I", (FVOID_STAR) group_pageup, Slrn_Group_Keymap);
  #else
 -   SLkm_define_key  ("\033[6~", (FVOID_STAR) group_pagedown, Slrn_Group_Keymap);
 -   SLkm_define_key  ("\033[G", (FVOID_STAR) group_pagedown, Slrn_Group_Keymap);
@@ -70,7 +70,7 @@ diff -Nur slrn-0.9.8.0.orig/src/group.c slrn-0.9.8.0/src/group.c
  #endif
     SLkm_define_key  ("m", (FVOID_STAR) move_group_cmd, Slrn_Group_Keymap);
     SLkm_define_key  ("^U", (FVOID_STAR) group_pageup, Slrn_Group_Keymap);
-@@ -2043,8 +2043,10 @@
+@@ -2078,8 +2078,10 @@ void slrn_init_group_mode (void) /*{{{*/
  #else
     SLkm_define_key  ("\033[A", (FVOID_STAR) group_up, Slrn_Group_Keymap);
     SLkm_define_key  ("\033OA", (FVOID_STAR) group_up, Slrn_Group_Keymap);
@@ -81,10 +81,10 @@ diff -Nur slrn-0.9.8.0.orig/src/group.c slrn-0.9.8.0/src/group.c
  #endif
     SLkm_define_key  ("N", (FVOID_STAR) group_down, Slrn_Group_Keymap);
     SLkm_define_key  ("^N", (FVOID_STAR) group_down, Slrn_Group_Keymap);
-diff -Nur slrn-0.9.8.0.orig/src/menu.c slrn-0.9.8.0/src/menu.c
---- slrn-0.9.8.0.orig/src/menu.c	2002-06-26 18:57:34.000000000 +0200
-+++ slrn-0.9.8.0/src/menu.c	2003-08-26 20:21:55.118449352 +0200
-@@ -748,16 +748,14 @@
+diff -urNp -x '*.orig' slrn-1.0.3.org/src/menu.c slrn-1.0.3/src/menu.c
+--- slrn-1.0.3.org/src/menu.c	2016-10-24 00:34:16.000000000 +0200
++++ slrn-1.0.3/src/menu.c	2021-10-03 22:48:58.844392038 +0200
+@@ -783,16 +783,14 @@ static int init_select_list_mode (int se
     SLkm_define_key  ("^@Q", (FVOID_STAR) sl_pagedn, *kmap);
     SLkm_define_key  ("\xE0Q", (FVOID_STAR) sl_pagedn, *kmap);
  #else
@@ -102,9 +102,9 @@ diff -Nur slrn-0.9.8.0.orig/src/menu.c slrn-0.9.8.0/src/menu.c
 -   SLkm_define_key  ("^(ku)", (FVOID_STAR) sl_up, *kmap);
 -# endif
  #endif
-    
+ 
     /* In select lists, these bindings collide with the new "jump" feature */
-@@ -774,12 +772,10 @@
+@@ -809,12 +807,10 @@ static int init_select_list_mode (int se
  #else
  	SLkm_define_key  ("\033[C", (FVOID_STAR) sl_right, Select_List_Keymap);
  	SLkm_define_key  ("\033OC", (FVOID_STAR) sl_right, Select_List_Keymap);

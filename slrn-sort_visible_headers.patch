@@ -1,7 +1,7 @@
-diff -ur slrn-0.9.7.3.orig/doc/slrn.rc slrn-0.9.7.3/doc/slrn.rc
---- slrn-0.9.7.3.orig/doc/slrn.rc	Sat Nov  3 16:13:26 2001
-+++ slrn-0.9.7.3/doc/slrn.rc	Sat Jan 12 01:37:32 2002
-@@ -220,6 +220,11 @@
+diff -urNp -x '*.orig' slrn-1.0.3.org/doc/slrn.rc slrn-1.0.3/doc/slrn.rc
+--- slrn-1.0.3.org/doc/slrn.rc	2016-10-24 00:34:16.000000000 +0200
++++ slrn-1.0.3/doc/slrn.rc	2021-10-03 22:48:59.521057945 +0200
+@@ -219,6 +219,11 @@
  % display all the "X-"headers except "X-Trace:").
  %visible_headers "From:,Subject:,Newsgroups:,Followup-To:,Reply-To:"
  
@@ -11,23 +11,23 @@ diff -ur slrn-0.9.7.3.orig/doc/slrn.rc slrn-0.9.7.3/doc/slrn.rc
 +%set visible_headers_sorting_method 2
 +
  % If non-zero, #v+ and #v- will be interpreted as markers of verbatim lines.
- %set process_verbatim_marks	1
+ %set process_verbatim_marks 1
  
-diff -ur slrn-0.9.7.3.orig/src/art.h slrn-0.9.7.3/src/art.h
---- slrn-0.9.7.3.orig/src/art.h	Sat Nov  3 16:15:54 2001
-+++ slrn-0.9.7.3/src/art.h	Sat Jan 12 01:35:07 2002
-@@ -47,6 +47,7 @@
+diff -urNp -x '*.orig' slrn-1.0.3.org/src/art.h slrn-1.0.3/src/art.h
+--- slrn-1.0.3.org/src/art.h	2016-10-24 00:34:16.000000000 +0200
++++ slrn-1.0.3/src/art.h	2021-10-03 22:48:59.521057945 +0200
+@@ -46,6 +46,7 @@ extern int Slrn_Query_Next_Group;
  extern int Slrn_Auto_CC_To_Poster;
  extern int Slrn_Score_After_XOver;
  extern int Slrn_Use_Tmpdir;
 +extern int Slrn_Visible_Headers_Sorting_Mode;
  extern int Slrn_Wrap_Mode;
+ extern int Slrn_Wrap_Width;
  extern int Slrn_Wrap_Method;
- extern int Slrn_Use_Header_Numbers;
-diff -ur slrn-0.9.7.3.orig/src/art_misc.c slrn-0.9.7.3/src/art_misc.c
---- slrn-0.9.7.3.orig/src/art_misc.c	Sat Nov  3 16:15:53 2001
-+++ slrn-0.9.7.3/src/art_misc.c	Sat Jan 12 01:35:07 2002
-@@ -65,6 +65,8 @@
+diff -urNp -x '*.orig' slrn-1.0.3.org/src/art_misc.c slrn-1.0.3/src/art_misc.c
+--- slrn-1.0.3.org/src/art_misc.c	2016-10-24 00:34:16.000000000 +0200
++++ slrn-1.0.3/src/art_misc.c	2021-10-03 22:48:59.524391275 +0200
+@@ -65,6 +65,8 @@ int Slrn_Wrap_Width = -1;
  
  static char *Super_Cite_Regexp = "^[^A-Za-z0-9]*\"\\([-_a-zA-Z/]+\\)\" == .+";
  
@@ -36,7 +36,7 @@ diff -ur slrn-0.9.7.3.orig/src/art_misc.c slrn-0.9.7.3/src/art_misc.c
  static void hide_article_lines (Slrn_Article_Type *a, unsigned int mask) /*{{{*/
  {
     Slrn_Article_Line_Type *l;
-@@ -908,6 +910,157 @@
+@@ -935,6 +937,157 @@ void _slrn_art_unhide_headers (Slrn_Arti
  
  /*}}}*/
  
@@ -194,8 +194,8 @@ diff -ur slrn-0.9.7.3.orig/src/art_misc.c slrn-0.9.7.3/src/art_misc.c
  int _slrn_art_unfold_header_lines (Slrn_Article_Type *a) /*{{{*/
  {
     Slrn_Article_Line_Type *l;
-@@ -952,6 +1105,9 @@
- 	
+@@ -979,6 +1132,9 @@ int _slrn_art_unfold_header_lines (Slrn_
+ 
  	l = l->next;
       }
 +   
@@ -204,9 +204,10 @@ diff -ur slrn-0.9.7.3.orig/src/art_misc.c slrn-0.9.7.3/src/art_misc.c
     return 0;
  }
  
---- slrn/src/startup.c.orig	2008-07-25 20:27:27.861397112 +0200
-+++ slrn/src/startup.c	2008-07-25 20:27:56.656744273 +0200
-@@ -617,6 +617,7 @@
+diff -urNp -x '*.orig' slrn-1.0.3.org/src/startup.c slrn-1.0.3/src/startup.c
+--- slrn-1.0.3.org/src/startup.c	2021-10-03 22:48:59.367724784 +0200
++++ slrn-1.0.3/src/startup.c	2021-10-03 22:48:59.524391275 +0200
+@@ -626,6 +626,7 @@ Slrn_Int_Var_Type Slrn_Int_Variables []
       {"cc_followup", &Slrn_Auto_CC_To_Poster, NULL},
       {"use_tmpdir", &Slrn_Use_Tmpdir, NULL},
       {"sorting_method", &Slrn_Sorting_Mode, NULL},

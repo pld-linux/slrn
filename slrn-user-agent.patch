@@ -1,22 +1,23 @@
-diff -Nur slrn-0.9.8.0.orig/macros/uname.sl slrn-0.9.8.0/macros/uname.sl
---- slrn-0.9.8.0.orig/macros/uname.sl	1970-01-01 01:00:00.000000000 +0100
-+++ slrn-0.9.8.0/macros/uname.sl	2003-08-26 20:30:42.442283944 +0200
+diff -urNp -x '*.orig' slrn-1.0.3.org/macros/INSTFILES slrn-1.0.3/macros/INSTFILES
+--- slrn-1.0.3.org/macros/INSTFILES	2016-10-24 00:34:16.000000000 +0200
++++ slrn-1.0.3/macros/INSTFILES	2021-10-03 22:48:59.187724986 +0200
+@@ -15,3 +15,4 @@ varset.sl
+ xcomment.sl
+ mime.sl
+ mailcap.sl
++uname.sl
+diff -urNp -x '*.orig' slrn-1.0.3.org/macros/uname.sl slrn-1.0.3/macros/uname.sl
+--- slrn-1.0.3.org/macros/uname.sl	1970-01-01 01:00:00.000000000 +0100
++++ slrn-1.0.3/macros/uname.sl	2021-10-03 22:48:59.187724986 +0200
 @@ -0,0 +1,4 @@
 +% example of customizing User-Agent header
 +
 +set_string_variable("system_type", uname().sysname + " " + uname().release
 +    + "/" + uname().machine);
---- slrn-1.0.2/macros/INSTFILES.orig	2016-06-26 20:26:17.435600753 +0200
-+++ slrn-1.0.2/macros/INSTFILES	2016-06-26 20:27:20.788590874 +0200
-@@ -15,3 +15,4 @@
- xcomment.sl
- mime.sl
- mailcap.sl
-+uname.sl
-diff -Nur slrn-0.9.8.0.orig/src/misc.h slrn-0.9.8.0/src/misc.h
---- slrn-0.9.8.0.orig/src/misc.h	2002-10-06 00:19:51.000000000 +0200
-+++ slrn-0.9.8.0/src/misc.h	2003-08-26 20:30:42.443283792 +0200
-@@ -81,6 +81,8 @@
+diff -urNp -x '*.orig' slrn-1.0.3.org/src/misc.h slrn-1.0.3/src/misc.h
+--- slrn-1.0.3.org/src/misc.h	2016-10-24 00:34:16.000000000 +0200
++++ slrn-1.0.3/src/misc.h	2021-10-03 22:48:59.187724986 +0200
+@@ -83,6 +83,8 @@ typedef struct
  #endif
     char *posting_host;		       /* FQDN or NULL */
     char *login_name;
@@ -25,9 +26,10 @@ diff -Nur slrn-0.9.8.0.orig/src/misc.h slrn-0.9.8.0/src/misc.h
  }
  Slrn_User_Info_Type;
  
---- slrn/src/post.c.orig	2008-07-11 07:54:20.000000000 +0200
-+++ slrn/src/post.c	2008-07-25 20:25:59.896750139 +0200
-@@ -666,9 +666,16 @@
+diff -urNp -x '*.orig' slrn-1.0.3.org/src/post.c slrn-1.0.3/src/post.c
+--- slrn-1.0.3.org/src/post.c	2016-10-24 00:34:16.000000000 +0200
++++ slrn-1.0.3/src/post.c	2021-10-03 22:48:59.187724986 +0200
+@@ -662,9 +662,16 @@ static int prepare_header (VFILE *vp, un
     int newsgroups_found=0, subject_found=0, followupto_found=0;
     Slrn_Mime_Error_Obj *err=NULL;
     Slrn_Mime_Error_Obj *mime_err;
@@ -44,8 +46,8 @@ diff -Nur slrn-0.9.8.0.orig/src/misc.h slrn-0.9.8.0/src/misc.h
 +     User_Agent = "slrn";
  
  #if SLRN_HAS_STRICT_FROM
-    if (NULL != (tmp = slrn_make_from_string ()))
-@@ -825,7 +832,7 @@
+    if (NULL != (tmp = slrn_make_from_header ()))
+@@ -821,7 +828,7 @@ static int prepare_header (VFILE *vp, un
  
     if ((NULL == (tmp = slrn_gen_date_header ()))
         || (NULL == slrn_append_to_header (a, tmp, 1))
@@ -54,9 +56,10 @@ diff -Nur slrn-0.9.8.0.orig/src/misc.h slrn-0.9.8.0/src/misc.h
         || (NULL == slrn_append_to_header (a, tmp, 1))
         || (NULL == slrn_append_to_header (a, NULL,0)))   /* separator */
       {
---- slrn/src/startup.c.orig	2008-07-10 07:15:22.000000000 +0200
-+++ slrn/src/startup.c	2008-07-25 20:26:23.960750978 +0200
-@@ -756,6 +756,8 @@
+diff -urNp -x '*.orig' slrn-1.0.3.org/src/startup.c slrn-1.0.3/src/startup.c
+--- slrn-1.0.3.org/src/startup.c	2016-10-24 00:34:16.000000000 +0200
++++ slrn-1.0.3/src/startup.c	2021-10-03 22:48:59.191058315 +0200
+@@ -766,6 +766,8 @@ Slrn_Str_Var_Type Slrn_Str_Variables []
       {"followup_custom_headers", &Slrn_Followup_Custom_Headers, NULL},
       {"reply_custom_headers", &Slrn_Reply_Custom_Headers, NULL},
       {"supersedes_custom_headers", &Slrn_Supersedes_Custom_Headers, NULL},
