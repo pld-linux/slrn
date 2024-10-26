@@ -29,8 +29,7 @@ Patch2:		%{name}-sort_visible_headers.patch
 Patch3:		%{name}-home_etc.patch
 Patch4:		%{name}-pl.po-update.patch
 Patch5:		no-strip.patch
-#URL:		http://www.slrn.org/ is outdated / faked (hidden advertisements...)
-URL:		http://jedsoft.org/releases/slrn/
+URL:		http://slrn.info/
 BuildRequires:	autoconf >= 2.50
 BuildRequires:	gettext-tools
 %{?with_canlock:BuildRequires:	libcanlock-devel >= 3}
@@ -38,7 +37,7 @@ BuildRequires:	gettext-tools
 BuildRequires:	slang-devel >= 2.2.3
 %{?with_uudeview:BuildRequires:	uudeview-devel}
 Requires:	slang-libs >= 2.2.3
-Obsoletes:	slrn-pl
+Obsoletes:	slrn-pl < 1.5
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -92,8 +91,8 @@ Summary(es.UTF-8):	Soporte para lectura de noticias "offline" para slm
 Summary(pl.UTF-8):	Program ściągający artykuły z serwera news
 Summary(pt_BR.UTF-8):	Suporte para leitura de notícias "offline" para o slrn
 Group:		Applications/News
-Requires:	%{name}
-Obsoletes:	slrn-pl-pull
+Requires:	%{name} = %{version}-%{release}
+Obsoletes:	slrn-pl-pull < 1.5
 
 %description pull
 This package provides slrnpull, which allows set up of a small news
